@@ -2,7 +2,7 @@
 
 # This is the structure of TreeNode
 class TreeNode:
-    left, right, data = None, None, 0
+    left, right, data = None, None, None
 
     def __init__(self, data):
         self.data  = data
