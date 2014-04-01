@@ -29,3 +29,19 @@ class my_queue():
                 a.append(b.pop())
             storing_a = True
             return a.pop()
+
+def sort_stack(stack):
+    temp_stack = [stack.pop(),]
+    temp_var = None
+    while len(stack) > 0:
+        temp_var = stack.pop()
+        while len(temp_stack)>0 and temp_stack[len(temp_stack)-1] > temp_var:
+            stack.append(temp_stack.pop())
+        temp_stack.append(temp_var)
+
+    return temp_stack
+
+if __name__ == '__main__':
+    stack = [8,4,7,9,2,1,6,5,10]
+    new_stack = sort_stack(stack)
+    print new_stack
