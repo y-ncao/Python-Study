@@ -30,7 +30,7 @@ class my_queue():
             storing_a = True
             return a.pop()
 
-def sort_stack(stack):
+def sort_stack1(stack):
     temp_stack = [stack.pop(),]
     temp_var = None
     while len(stack) > 0:
@@ -40,6 +40,35 @@ def sort_stack(stack):
         temp_stack.append(temp_var)
 
     return temp_stack
+
+def sort_stack(stack):
+    temp = [stack.pop(),]
+    while len(stack) > 0:
+        print '*'*10
+        print 'in stack',stack
+        print 'in temp',temp
+        # check if should put equal here
+        if stack[len(stack)-1] >= temp[len(temp)-1]:
+            print 'pushing to temp'
+            temp.append(stack.pop())
+        else:
+            var = stack.pop()
+            while len(temp) > 0:
+                print 'VAR',var
+                if var is None or var < temp[len(temp)-1]:
+                    print 'temp peek', temp[len(temp)-1]
+                    stack.append(temp.pop())
+                    print 'temp_stack', temp
+                else:
+                    print 'appending var'
+                    stack.append(var)
+                    var = None
+            # VERRRRRRRRRRY IMPORTANT, don't forget to push the last var
+            if var is not None:
+                temp = [var,]
+            else:
+                temp = [stack.pop(),]
+    return temp
 
 if __name__ == '__main__':
     stack = [8,4,7,9,2,1,6,5,10]
