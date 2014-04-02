@@ -5,7 +5,7 @@
 # For Queue, use from collections import deque as queue
 # Use append() as push, use popleft() as pop
 
-class my_queue():
+class my_queue:
     def __init__(self):
         self.stack_a = []
         self.stack_b = []
@@ -29,6 +29,26 @@ class my_queue():
                 a.append(b.pop())
             storing_a = True
             return a.pop()
+
+class new_stack:
+    def __init__(self):
+        self.stack = []
+        self.min = None
+        self.min_list = []
+
+    def pop(self):
+        self.min_list.pop()
+        return self.stack.pop()
+        
+    def push(self, data):
+        if data < self.min_list[len(min_list)-1]:
+            self.min_list.append(data)
+        else:
+            self.min_list.append(self.min_list[len(min_list)-1])
+        self.stack.append(data)
+
+    def get_min(self):
+        return self.min_list.pop()
 
 def sort_stack1(stack):
     temp_stack = [stack.pop(),]
@@ -133,8 +153,9 @@ class AnimalQueue:
             else:
                 self.deq_dog()
 
-
+# Missing 3.1 3.3 3.4
 if __name__ == '__main__':
     stack = [8,4,7,9,2,1,6,5,10]
     new_stack = sort_stack(stack)
     print new_stack
+    
