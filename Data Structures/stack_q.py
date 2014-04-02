@@ -70,6 +70,70 @@ def sort_stack(stack):
                 temp = [stack.pop(),]
     return temp
 
+class Animal:
+    def __init__(self, name):
+        self.name  = name
+
+    def set_order(self, order):
+        self.order = order
+
+    def get_order(self, order):
+        return self.order
+
+    def is_older_than(Animal):
+        if self.order < Animal.get_order():
+            return True
+        else:
+            return False
+    
+class Cat(Animal):
+    def __init__(self, name):
+        self.super()
+
+class Dog(Animal):
+    def __init__(self, name)
+
+from collection import deque
+
+class AnimalQueue:
+    def __init__(self):
+        self.cat_queue = deque()
+        self.dog_queue = deque()
+        self.order = 0
+
+    def add_animal(self, animal):
+        if isinstance(animal, Cat):
+            cat_queue.append(animal)
+        else:
+            dog_queue.append(animal)
+        animal.set_order(order)
+        self.order += 1
+
+    def deq_dog(self):
+        if len(self.dog_queue) == 0:
+            return 'No dog left'
+        return self.dog_queue.popleft()
+
+    def deq_cat(self):
+        if len(self.cat_queue) == 0:
+            return 'No cat left'
+        return self.cat_queue.popleft()
+
+    def deq_any(self):
+        if len(self.cat_queue) == 0 and len(self.dog_queue) ==0:
+            return 'No Animal Left!'
+        elif len(self.cat_queue) == 0:
+            self.deq_dog()
+        elif len(self.dog_queue) == 0:
+            self.deq_cat()
+        # Great, you have the chance to get either a cat or dog
+        else:
+            if cat_queue[0].is_older_than(dog_queue[0]):
+                self.deq_cat()
+            else:
+                self.deq_dog()
+
+
 if __name__ == '__main__':
     stack = [8,4,7,9,2,1,6,5,10]
     new_stack = sort_stack(stack)
