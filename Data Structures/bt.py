@@ -61,6 +61,17 @@ def bfs(root):
         if node.right is not None:
             queue.append(node.right)
 
+
+
+def copy_tree(root, new_node):
+    if root.left is not None:
+        new_node.left = tree_node(root.left.data)
+        copy_tree(root.left, new_node.left)
+    if root.right is not None:
+        new_node.right = tree_node(root.right.data)
+        copy_tree(root.right, new_node.right)
+        
+    return new_node
 # Note:
 # inorder preorder postorder are all DFS
 # if you want to implement inorder, you need to first push right to stack since stack is LIFO
@@ -102,7 +113,7 @@ def first_common_ancestor(root, p, q):
         return first_common_ancestor(root.right, p, q)
         
 def is_subtree(t1, t2):
-    if t1 = None:
+    if t1 == None:
         return False
     
     if t1.data == t2.data:
@@ -114,13 +125,60 @@ def is_subtree(t1, t2):
 def is_match(t1,t2):
     if t1 is None and t2 is None:
         return True
-    elif (t1 is not None and t2 is None) or (t1 is None and t2 is not None):
+    elif t1 is None or t2 is None:
         return False
     else:
         if t1.data != t2.data:
             return False
         else:
             return is_match(t1.left, t2.left) and is_match(t1.right, t2.right)
+
+def print_path(node, path_list):
+    path_list.append(node)
+
+    if node.left is None and node.right is None:
+        s = ''
+        for key in path_list:
+            s += str(key.data) + ' '
+        print s
+        return
+    if node.left is not None:
+        print_path(node.left, path_list)
+        path_list.pop()
+
+    if node.right is not None:
+        print_path(node.right, path_list)
+        path_list.pop()
+
+def is_full(root):
+    if root is None:
+        return True
+    if root.left is None and root.right is None:
+        return True
+    if root.left is None or root.right is None:
+        return False
+    return is_full(root.left) && is_full(root.right)
+
+def is_complete(root):
+    queue = deque([root,])
+    empty = False
+    while len(queue) > 0:
+        n = queue.popleft()
+        
+        if n.left is None:
+            empty = True
+        else:
+            if empty:
+                return False
+            queue.append(n.left)
+        
+        if n.right is None:
+            empty = True
+        else:
+            if empty:
+                return False
+            queue.append(n.right)
+    return True
 
 if __name__ == '__main__':
     data_list = [1,3,4,5,6,8,9,10,13,14,17,18]
@@ -136,3 +194,7 @@ if __name__ == '__main__':
     dfs(root)
     print '\nBFS'
     bfs(root)
+    #print '\nCopy Tree'
+    print '\nPrint Path'
+    path_list = []
+    print_path(root, path_list)
