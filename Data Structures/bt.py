@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 class tree_node(object):
     def __init__(self, data):
         self.data = data
@@ -179,6 +180,21 @@ def is_complete(root):
                 return False
             queue.append(n.right)
     return True
+
+def is_symmetry(root):
+    pass
+
+def mirrow_tree(root):
+    pass
+
+def create_list_level_tree(root):
+    pass
+
+def get_rank(root, num):
+    pass
+
+def tree_diameter(root, num):
+    pass
 
 if __name__ == '__main__':
     data_list = [1,3,4,5,6,8,9,10,13,14,17,18]
