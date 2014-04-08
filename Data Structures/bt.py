@@ -181,8 +181,19 @@ def is_complete(root):
             queue.append(n.right)
     return True
 
+def is_symmetry(n1, n2):
+    if n1 is None and n2 is None:
+        return True
+    if n1 is None or n2 is None:
+        return False
+    if n1.data != n2.data:
+        return False
+    return is_symmetry(n1.left, n2.right) and is_symmetry(n1.right, n2.left)
+
 def is_symmetry(root):
-    pass
+    if root is None:
+        return True
+    return is_symmetry(root.left, root.right)
 
 def mirrow_tree(root):
     pass
