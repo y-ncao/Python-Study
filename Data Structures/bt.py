@@ -195,6 +195,7 @@ def is_symmetry(root):
         return True
     return is_symmetry(root.left, root.right)
 
+# Need to check this, also symmetry
 def mirrow_tree(root):
     mirrow_tree(root.left, root.left)
 
@@ -208,7 +209,20 @@ def mirrow_tree(n1, n2):
     mirrow_tree(n1.right, n2.left)
 
 def create_list_level_tree(root):
-    pass
+    result = [[root,],]
+    prev = [root,]
+    current = []
+    while len(prev) > 0:
+        for tree_node in prev:
+            if tree_node.left is not None:
+                current.append(tree_node.left)
+            if tree_node.right is not None:
+                current.append(tree_node.right)
+        result.append(current)
+        prev = current
+        current = []
+
+    return result
 
 def get_rank(root, num):
     pass
