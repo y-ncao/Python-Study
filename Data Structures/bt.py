@@ -196,7 +196,16 @@ def is_symmetry(root):
     return is_symmetry(root.left, root.right)
 
 def mirrow_tree(root):
-    pass
+    mirrow_tree(root.left, root.left)
+
+def mirrow_tree(n1, n2):
+    if n1 is None or n2 is None:
+        return
+    tmp = n1.data
+    n1.data = n2.data
+    n2.data = tmp
+    mirrow_tree(n1.left, n2.right)
+    mirrow_tree(n1.right, n2.left)
 
 def create_list_level_tree(root):
     pass
