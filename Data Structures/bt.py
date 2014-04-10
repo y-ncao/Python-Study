@@ -195,19 +195,25 @@ def is_symmetry(root):
         return True
     return is_symmetry(root.left, root.right)
 
-# Need to check this, also symmetry
 def mirrow_tree(root):
+    if root is None:
+        return
     mirrow_tree(root.left, root.left)
 
+# Consider the case that t1 is None and T2 is not
 def mirrow_tree(n1, n2):
     if n1 is None or n2 is None:
         return
     tmp = n1.data
     n1.data = n2.data
     n2.data = tmp
-    mirrow_tree(n1.left, n2.right)
-    mirrow_tree(n1.right, n2.left)
+    if n1.left is not None and n2.right is not None:
+        mirrow_tree(n1.left, n2.right)
+    if n1.right is not None and n2.left is not None:
+        mirrow_tree(n1.right, n2.left)
+    # Not going to add more to here. Just add four more check here
 
+# BFS way
 def create_list_level_tree(root):
     result = [[root,],]
     prev = [root,]
@@ -223,6 +229,41 @@ def create_list_level_tree(root):
         current = []
 
     return result
+
+# DFS way
+
+def create_list_level_tree(root):
+    pass
+
+# Check if a BT is a BST, use in-order traverse and copy to a list
+def check_bst(root):
+    bst_list = []
+    def copy_bst(root):
+        if root is None:
+            return
+        copy_bst(root.left)
+        bst_list.append(root)
+        copy_bst(root.right)
+    prev = bst_list[0]
+    for node in bst_list[1:]:
+        if prev.data >= node.data:
+            return False
+        else:
+            prev = node
+    return True
+
+# Use a left node < current < right node
+def check_bst(root, min_value, max_value):
+    if root is None:
+        return True
+    if root.data < min_value or root.data > max_value:
+        return False
+
+    if not check_bst(root.left, min_value, root.data) or not check_bst(root.right, root.data, max_value):
+        return False
+
+    return True
+
 
 def get_rank(root, num):
     pass
