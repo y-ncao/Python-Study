@@ -51,11 +51,12 @@ def merge(data_list, low, middle, high):
     current = low
 
     while helper_left <= middle and helper_right <= high:
-        if helper[helper_left] < helper[helper_right]:
+        if helper[helper_left] <= helper[helper_right]:
             data_list[current] = helper[helper_left]
             helper_left += 1
         else:
             data_list[current] = helper[helper_right]
+            helper_right += 1
         current += 1
 
     remaining = middle - helper_left
@@ -63,7 +64,7 @@ def merge(data_list, low, middle, high):
         data_list[current+i] = helper[helper_left+i]
 
 
-# These are adata_listdata_list for quick sort
+# These are all for quick sort
 def quick_sort(data_list):
     pass
 
