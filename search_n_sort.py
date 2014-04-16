@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 def swap(data_list, i1, i2):
     temp = data_list[i1]
     data_list[i1] = data_list[i2]
@@ -65,16 +66,29 @@ def merge(data_list, low, middle, high):
 
 
 # These are all for quick sort
-def quick_sort(data_list):
-    pass
+def quick_sort(data_list, left, right):
+    index = partition(data_list, left, right)
 
-def partition():
-    pass
+    if left < index - 1:
+        quick_sort(data_list, left, index - 1)
 
-#def swap():
-#   pass
+    if index < right:
+        quick_sort(data_list, index, right)
 
+def partition(data_list, left, right):
+    pivot = data_list[ (left + right ) / 2]
 
+    while left < right:
+        while data_list[left] < pivot:
+            left += 1
+        while data_list[right] > pivot:
+            right -= 1
+        if left <= right:
+            swap(data_list, left, right)
+            left += 1
+            right -= 1
+
+    return left
 
 if __name__ == '__main__':
     import random
@@ -89,5 +103,6 @@ if __name__ == '__main__':
     #selection_sort(data_list)
     #bubble_sort(data_list)
     #insertion_sort(data_list)
-    merge_sort(data_list, 0, len(data_list)-1)
+    #merge_sort(data_list, 0, len(data_list)-1)
+    quick_sort(data_list, 0, len(data_list)-1)
     print data_list
