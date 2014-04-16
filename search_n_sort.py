@@ -141,13 +141,57 @@ def sort_anagrams(ana_list):
     pass
 
 # Q3
-def find_rotate(data_list, i):
-    pass
+def find_rotate(data_list, i, left, right):
+    mid = (left + right) / 2
+    if data_list[mid] == i:
+        return True
 
-# Q5
-def search_empty_string(data_list, i):
-    pass
+    if left > right:
+        return False
 
+    # left clean
+    if data_list[mid] > data_list[left]):
+        if i < data_list[mid]:
+            find_rotate(data_list, i, left, mid)
+        # Need to find both direction
+        else:
+            find_rotate(data_list, i, left, mid)
+            find_rotate(data_list, i, mid, right)
+    # right clean
+    else:
+        if i > data_list[mid]:
+            find_rotate(data_list, i, mid, right)
+        else:
+            bianry_search(data_list, i, left, mid)
+            find_rotate(data_list, i, mid, right)
+
+    return False
+# Need to complete with the index
+
+
+# Q5 Almost the same, but need to check if actually the same
+def search_empty_string(data_list, string, left, right):
+    mid = (left + right) / 2
+    if data_list[mid] == string:
+        return True
+    else:
+        if data_list[mid] is None:
+            find_left = mid - 1
+            find_right = mid + 1
+            while data_list[find_left] is None and data_list[find_right] is None:
+                find_left -= 1
+                find_right += 1
+            if data_list[find_left] is not None:
+                earliest = find_left
+            else:
+                earliest = find_right
+            if string < data_list[earliest]:
+                return search_empty_string(data_list, string, left, earliest)
+            elif string > data_list[earliest]:
+                return search_empty_string(data_list, string, earliest, right)
+            else:
+                return True
+    return False
 
 if __name__ == '__main__':
     import random
