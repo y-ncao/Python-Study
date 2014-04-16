@@ -90,6 +90,65 @@ def partition(data_list, left, right):
 
     return left
 
+# Maybe heapsort
+
+# Binary Search
+def binary_search_recur(data_list, i, low, high):
+    mid = (low + high) / 2
+    if i == data_list[mid]:
+        return True
+    elif i < data_list[mid]:
+        return binary_search_recur(data_list, i, low, mid-1)
+    else:
+        return binary_search_recur(data_list, i, mid+1, high)
+    return False
+
+def binary_search_iter(data_list, i):
+    low = 0
+    high = len(data_list) - 1
+    while low <= high:
+        mid = (low + high) / 2
+        if i == data_list[mid]:
+            return True
+        elif i < data_list[mid]:
+            high = mid - 1
+        else:
+            low = mid + 1
+        print low, mid, high
+
+    return False
+
+# Q1 len(list_a) is much larger than len(list_b)
+def merge_lists(list_a, list_b):
+    index_a = len(list_a) - 1
+    index_b = len(list_b) - 1
+    current = index_a + index_b + 1
+    while index_a > 0 and index_b > 0:
+        if list_a[index_a] <= list_b[index_b]:
+            index_a[current] = list_b[index_b]
+            index_b -= 1
+            current -=1
+        else:
+            index_a[current] = list_a[index_a]
+            index_a -= 1
+            current -= 1
+    if index_b > 0:
+        for i in range(current+1):
+            list_a[current] = list_b[current]
+
+# Q2
+def sort_anagrams(ana_list):
+    pass
+
+# Q3
+def find_rotate(data_list, i):
+    pass
+
+# Q5
+def search_empty_string(data_list, i):
+    pass
+
+
 if __name__ == '__main__':
     import random
     data_list = []
@@ -104,5 +163,6 @@ if __name__ == '__main__':
     #bubble_sort(data_list)
     #insertion_sort(data_list)
     #merge_sort(data_list, 0, len(data_list)-1)
-    quick_sort(data_list, 0, len(data_list)-1)
-    print data_list
+    #quick_sort(data_list, 0, len(data_list)-1)
+    #print binary_search_recur(data_list, 10, 0, len(data_list)-1)
+    print binary_search_iter(data_list, 10)
