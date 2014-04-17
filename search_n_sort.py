@@ -170,6 +170,17 @@ def find_rotate(data_list, i, left, right):
 
 
 # Q5 Almost the same, but need to check if actually the same
+# Need to notice the sequence of check
+# 1. Check if empty
+# 2. Check if correct
+def search_empty_string(data_list, string, left, right):
+    mid = (left + right) / 2
+
+    if data_list[mid] is None:
+
+
+
+
 def search_empty_string(data_list, string, left, right):
     mid = (left + right) / 2
     if data_list[mid] == string:
