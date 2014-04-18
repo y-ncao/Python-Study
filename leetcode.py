@@ -25,7 +25,7 @@ def is_same_tree(p, q):
         else:
             return is_same_tree(p.left, q.left) and is_same_tree(p.right, q.right)
 
-# Reverse Integer
+# 4.Reverse Integer
 def reverse_int(num):
     # Need to check negative, last digit zero
     is_nagative = 1
@@ -46,6 +46,10 @@ def reverse_int(num):
     result *= is_nagative
 
     return result
+
+# 5. Unique Binary Search tree
+def unique_bst():
+    pass
 
 if __name__ == '__main__':
     #print reverse_int(131)
