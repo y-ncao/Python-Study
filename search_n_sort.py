@@ -196,34 +196,12 @@ def search_empty_string(data_list, string, left, right):
     elif data_list[mid] < string:
         search_empty_string(data_list, string, mid+1, right)
     else:
-        search_empty_string(data_list, string, mid-1, left)
+        search_empty_string(data_list, string, left, mid-1)x
 
+# read Q6
+# Q7 is recurrsion, will do it later
+# Q8
 
-
-
-
-def search_empty_string(data_list, string, left, right):
-    mid = (left + right) / 2
-    if data_list[mid] == string:
-        return True
-    else:
-        if data_list[mid] is None:
-            find_left = mid - 1
-            find_right = mid + 1
-            while data_list[find_left] is None and data_list[find_right] is None:
-                find_left -= 1
-                find_right += 1
-            if data_list[find_left] is not None:
-                earliest = find_left
-            else:
-                earliest = find_right
-            if string < data_list[earliest]:
-                return search_empty_string(data_list, string, left, earliest)
-            elif string > data_list[earliest]:
-                return search_empty_string(data_list, string, earliest, right)
-            else:
-                return True
-    return False
 
 if __name__ == '__main__':
     import random
