@@ -177,6 +177,27 @@ def search_empty_string(data_list, string, left, right):
     mid = (left + right) / 2
 
     if data_list[mid] is None:
+        current_left = mid - 1
+        current_right = mid + 1
+        while True:
+            if current_left < left and current_right > right:
+                return False
+            elif current_right <= right and data_list[current_right] is not None:
+                mid = current_right
+                break
+            elif current_left >= left and data_list[current_left] is not None:
+                mid = current_left
+                break
+            current_right += 1
+            current_left -= 1
+
+    if data_list[mid] == string:
+        return True
+    elif data_list[mid] < string:
+        search_empty_string(data_list, string, mid+1, right)
+    else:
+        search_empty_string(data_list, string, mid-1, left)
+
 
 
 
