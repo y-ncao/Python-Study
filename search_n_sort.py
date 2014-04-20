@@ -202,6 +202,8 @@ def search_empty_string(data_list, string, left, right):
 # Q7 is recurrsion, will do it later
 # Q8
 
+def get_rank(node, number):
+    if node.data == number:
 
 if __name__ == '__main__':
     import random

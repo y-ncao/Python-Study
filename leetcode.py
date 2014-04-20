@@ -2,6 +2,12 @@
 
 # 1.Single Number
 # Fuck!!! use XOR
+def single_number(num_list):
+    for i in range(1, len(num_list)):
+        if num_list[i] is not None:
+            num_list[0] ^= num_list[i]
+
+    return num_list[0]
 
 # 2. Maximum depth of binary tree
 def maximum_depth(root):
@@ -48,11 +54,51 @@ def reverse_int(num):
     return result
 
 # 5. Unique Binary Search tree
-def unique_bst():
-    pass
+def unique_bst(num):
+    if num <=1:
+        return num
+
+    return unique_bst_helper(1, num)
+
+def unique_bst_helper(start, end):
+    if start >= end:
+        return 1
+
+    result = 0
+    for i in range(start, end+1):
+        # sum the result on the left ande on the right
+        result += unique_bst_helper(start, i-1) * unique_bst_helper(i+1, end)
+
+    return result
+
+# 6. Best time to buy and sell
+def stock_buy_sell(stock_list):
+    pre_price = stock_list[0]
+    buy_price = stock_list[0]
+    stock_empty = True
+    profit = 0
+    for i in range(1, len(stock_list)):
+        # price decreasing, sell at previous point
+        if stock_list[i] < pre_price:
+            if stock_empty:
+                # we got a lower buy price
+                buy_price = stock_list[i]
+            else:
+                profit += pre_price - buy_price
+                stock_empty = True
+        # stock increasing, stock empty false
+        else:
+            stack_empty = False
+        pre_price = stock_list[i]
+    # last sell
+    if not stock_empty:
+        profit += pre_price - buy_price
 
 if __name__ == '__main__':
+    #num_list = [1,2,3,4,5,6,7,8,9,10,2,3,4,5,6,7,8,9,10]
+    #print single_number(num_list)
     #print reverse_int(131)
+    print unique_bst(4)
 
 
 # Note for todo:
