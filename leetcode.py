@@ -94,6 +94,56 @@ def stock_buy_sell(stock_list):
     if not stock_empty:
         profit += pre_price - buy_price
 
+# 7. Linked List Cycle
+def list_cycle(head):
+    slow = head
+    fast = head
+    while slow != fast:
+        slow = slow.next
+        fast = fast.next.next
+    fast = head
+    while slow != fast:
+        slow = slow.next
+        fast = fast.next
+    return fast
+
+# 8. BT Inorder traversal
+def inorder_traversal(root):
+    if root is None:
+        return
+
+    inorder_traversal(root.left)
+    print root.data
+    inorder_traversal(root.right)
+
+# 9. BT Preorder traversal
+def preorder_traversal(root):
+    if root is None:
+        return
+
+    print root.data
+    preorder_traversal(root.left)
+    preorder_traversal(root.right)
+
+# 10. Populate Next right poiters in each node
+def next_right_pointer(root):
+    if root is None:
+        return
+
+    left = root.left
+    right = root.right
+
+    if left is not None and right is not None:
+        left.next = right
+
+    while left.right is not None:
+        left = left.rigt
+        right = right.left
+        left.next = right
+
+    next_right_pointer(root.left)
+    next_right_pointer(root.right)
+
 if __name__ == '__main__':
     #num_list = [1,2,3,4,5,6,7,8,9,10,2,3,4,5,6,7,8,9,10]
     #print single_number(num_list)
