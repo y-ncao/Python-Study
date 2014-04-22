@@ -167,8 +167,19 @@ def search_insert_position(num_list, num, start, end):
         return search_insert_position(num_list, num, mid+1, end)
 
 # 12. Remove Duplicates from Sorted List:
-def remove_duplicates(num_list):
-    pass
+def remove_duplicates(head):
+    if head is None or head.next is None:
+        return head
+    prev = head
+    current = head.next
+    while current is not None:
+        if prev.data = current.data:
+            prev.next = current.next
+        else:
+            prev = current
+        currnet = current.next
+
+    return head
 
 # 13. Climbing Stairs
 # Fuck you remember the num <= 2
@@ -210,12 +221,27 @@ def roman_2_integer(roman):
     return result
 
 # 16 Single Number II
-def single_number_2(num_list):
-    pass
+# Check later
+def single_number_2(num_list, num):
+    one = 0
+    two = 0
+    three = 0
+    for i in num_list:
+        two |= one & num_list[i];
+        one ^= num_list[i];
+        three = one & two;
+        one &= ~three;
+        two &= ~three;
+    return one
 
 # 17 Remove Element
-def remove_element():
-    pass
+def remove_element(num_list, elm):
+    len = 0
+    for i in range(len(num_list)):
+        if num_list[i] != elm:
+            num_list[len] = num_list[i]
+            len+=1
+    return len
 
 # 18 Integer to Roman
 # WOCAONIMA
@@ -234,12 +260,46 @@ def integer_2_roman(num):
     return result
 
 # 19 Merge two sorted list
+# Wo dou bu xiang xiang le
 def merge_sorted_list(list1, list2):
-    pass
+    head = None
+    prev = None
+    while list1 is not None and list2 is not None:
+        if head is None:
+            if list1.data < list2.data:
+                head = Node(list1.data)
+                list1 = list1.next
+            else:
+                head = Node(list2.data)
+                list2 = list2.next
+            prev = head
+        else:
+            if list2 is None or list1.data < list2.data:
+                new = Node(list1.data)
+                list1 = list1.next
+            else:
+                new = Node(list2.data)
+                list2 = list2.next
+            prev.next = new
+            prev = new
+    return head
 
 # 20. Balanced Binary Tree
+# need to check if there's a better way
 def balanced_bt(root):
-    pass
+    if root is None:
+        return True
+
+    if abs(get_height(root.left) - get_height(root.right)) > 1:
+        return False
+
+    return balanced_bt(root.left) && balanced_bt(root.right)
+
+def get_height(root):
+    if root is None:
+        return 0
+    else:
+        return max(get_height(root.left), get_height(root.right)) + 1
 
 if __name__ == '__main__':
     #num_list = [1,2,3,4,5,6,7,8,9,10,2,3,4,5,6,7,8,9,10]
