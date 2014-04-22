@@ -166,8 +166,43 @@ def search_insert_position(num_list, num, start, end):
     else:
         return search_insert_position(num_list, num, mid+1, end)
 
-# 12. Climbing Stairs
+# 12. Remove Duplicates from Sorted List:
+def remove_duplicates(num_list):
+    pass
+
+# 13. Climbing Stairs
+# Fuck you remember the num <= 2
 def climb_stairs(num):
+    if num <= 2:
+        return num
+    return climb_stairs(num-1) + climb_stairs(num-2)
+
+# 14. Maximum Subarray
+def maximum_subarray(array):
+    pass
+
+# 15. Roman to Integer
+def roman_2_integer(roman):
+    pass
+
+# 16 Single Number II
+def single_number_2(num_list):
+    pass
+
+# 17 Remove Element
+def remove_element():
+    pass
+
+# 18 Integer to Roman
+def integer_2_roman(num):
+    pass
+
+# 19 Merge two sorted list
+def merge_sorted_list(list1, list2):
+    pass
+
+# 20. Balanced Binary Tree
+def balanced_bt(root):
     pass
 
 if __name__ == '__main__':
