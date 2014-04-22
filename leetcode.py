@@ -144,12 +144,41 @@ def next_right_pointer(root):
     next_right_pointer(root.left)
     next_right_pointer(root.right)
 
+# 11. Search Insert Position
+# This is a O(n) method, need to think about something for O(log(n))
+def search_insert_position_1(num_list, num):
+    i = 0
+    while i <= len(num_list)-1:
+        if num <= num_list[i]:
+            return i
+        i += 1
+    return i
+
+def search_insert_position(num_list, num, start, end):
+    if start > end:
+        return start
+
+    mid = (start + end) / 2
+    if num_list[mid] == num:
+        return mid
+    elif num_list[mid] > num:
+        return search_insert_position(num_list, num, start, mid-1)
+    else:
+        return search_insert_position(num_list, num, mid+1, end)
+
+# 12. Climbing Stairs
+def climb_stairs(num):
+    pass
+
 if __name__ == '__main__':
     #num_list = [1,2,3,4,5,6,7,8,9,10,2,3,4,5,6,7,8,9,10]
     #print single_number(num_list)
     #print reverse_int(131)
-    print unique_bst(4)
-
+    #print unique_bst(4)
+    num_list = [1,3,5,7,9,10]
+    target = 3
+    print search_insert_position_1(num_list, target)
+    print search_insert_position(num_list, target, 0, len(num_list)-1)
 
 # Note for todo:
 """
