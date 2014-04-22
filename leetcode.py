@@ -178,12 +178,36 @@ def climb_stairs(num):
     return climb_stairs(num-1) + climb_stairs(num-2)
 
 # 14. Maximum Subarray
+# important is the way to think this shit!!!
 def maximum_subarray(array):
-    pass
+    sum = 0
+    max = MIN_INT
+    for i in range(0, len(array)):
+        sum += array[i]
+        if sum >= max:
+            max = sum
+        if sum < 0:
+            sum =0
+
+    return max
 
 # 15. Roman to Integer
 def roman_2_integer(roman):
-    pass
+    roman_map = { 'I': 1,
+                  'V': 5,
+                  'X': 10,
+                  'L': 50,
+                  'C': 100,
+                  'D': 500,
+                  'M': 1000,
+                  }
+    result = 0
+    for i in range(0, len(roman)):
+        if i > 0 and roman_map[roman[i]] > roman_map[roman[i-1]]:
+            result += roman_map[roman[i]] - 2 * roman_map[roman[i-1]]
+        else:
+            result += roman_map[roman[i]]
+    return result
 
 # 16 Single Number II
 def single_number_2(num_list):
@@ -194,8 +218,20 @@ def remove_element():
     pass
 
 # 18 Integer to Roman
+# WOCAONIMA
 def integer_2_roman(num):
-    pass
+    digits = [(1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD' ),
+            (100, 'C'), (90, 'XC'), (50, 'L'), (40, 'XL'),
+            (10, 'X'), (9, 'IX'), (5, 'V'), (4, 'IV'), (1, 'I')]
+    result = ""
+    while len(digits) > 0:
+        (val, romn) = digits[0] # Unpacks the first pair in the list
+        if n < val:
+            digits.pop(0) # Removes first element
+        else:
+            n -= val
+            result += romn
+    return result
 
 # 19 Merge two sorted list
 def merge_sorted_list(list1, list2):
@@ -210,10 +246,11 @@ if __name__ == '__main__':
     #print single_number(num_list)
     #print reverse_int(131)
     #print unique_bst(4)
-    num_list = [1,3,5,7,9,10]
-    target = 3
-    print search_insert_position_1(num_list, target)
-    print search_insert_position(num_list, target, 0, len(num_list)-1)
+    #num_list = [1,3,5,7,9,10]
+    #target = 3
+    #print search_insert_position_1(num_list, target)
+    #print search_insert_position(num_list, target, 0, len(num_list)-1)
+    #print roman_2_integer('MCMLIVx')
 
 # Note for todo:
 """
