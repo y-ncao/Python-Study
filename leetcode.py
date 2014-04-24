@@ -173,7 +173,7 @@ def remove_duplicates(head):
     prev = head
     current = head.next
     while current is not None:
-        if prev.data = current.data:
+        if prev.data == current.data:
             prev.next = current.next
         else:
             prev = current
@@ -293,7 +293,7 @@ def balanced_bt(root):
     if abs(get_height(root.left) - get_height(root.right)) > 1:
         return False
 
-    return balanced_bt(root.left) && balanced_bt(root.right)
+    return balanced_bt(root.left) and balanced_bt(root.right)
 
 def get_height(root):
     if root is None:
@@ -329,18 +329,86 @@ def remove_duplicates_in_array(num_list):
 
     return length + 1
 
-
 # 23. Pascal's Triangle
+# Fuck notice it's range(n-1) not n
+def pascal_triangle_2(n):
+    if n == 1:
+        return [1]
+    prev = [1]
+    result = [prev, ]
+    for i in range(n-1):
+        prev_copy = prev[:]
+        prev_copy.append(0)
+        prev_copy.insert(0,0)
+        new_line = []
+        # first and last num always assume 0
+        for i in range(1, len(prev_copy)):
+            new_line.append(prev_copy[i] + prev_copy[i-1])
+        result.append(new_line)
+        prev = new_line
+    return result
+
+# New way to think about this. Not appending 0 at beginning but append 1, and sum every other besides last one
+# this is the fucking best way to do this
 def pascal_triangle(n):
-    pass
+    if n == 1:
+        return [1]
+    prev = [1]
+    result = [prev,]
+
+    for i in range(n-1):
+        new_line = []
+        # appen first 1
+        new_line.append(1)
+        for j in range(1, len(prev)):
+            new_line.append(prev[j] + prev[j-1])
+        # append last 1
+        new_line.append(1)
+        result.append(new_line)
+        prev = new_line
+
+    return result
 
 # 24. Merge sorted array
+# code will be cleaner if pthon has --
 def merge_sorted_array(l1, l2):
-    pass
+    end = len(l1) + len(l2) - 1         # this will be the new end
+    end_1 = len(l1) - 1
+    end_2 = len(l2) - 1
+    while end_1 >= 0 and end_2 >= 0:
+        if l1[end_1] >= l2[end_2]:
+            l1[end] = l1[end_1]
+            end_1 -= 1
+        else:
+            l1[end] = l2[end_2]
+            end_2 -= 1
+        end -= 1
+    # if end_1 hit 0, then it's done. so only possibility is end_2 not hit zero
+    while end_2 >= 0:
+        l1[end] = l2[end_2]
+        end -= 1
+        end_2 -= 1
+
+    return l1
 
 # 25. Swap Nodes in Pairs
-def swap_nodes(n1, n2):
-    pass
+def swap_nodes(head):
+    while head is not None and head.next is not None:
+        temp = head.data
+        head.data = head.next.data
+        head.next.data = temp
+        head = head.next.next
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+def print_list(head):
+    while head is not None:
+        print head.data
+        head = head.next
+
 
 # 26. Symmetric Tree
 def symmetric_tree(root):
@@ -372,7 +440,19 @@ if __name__ == '__main__':
     #print search_insert_position_1(num_list, target)
     #print search_insert_position(num_list, target, 0, len(num_list)-1)
     #print roman_2_integer('MCMLIVx')
-
+    #print pascal_triangle(5)
+    """
+    This is way fucking too easy. Why people want to use swap the real nodes?
+    head = Node(1)
+    head.next = Node(2)
+    head.next.next = Node(5)
+    head.next.next.next = Node(3)
+    head.next.next.next.next = Node(10)
+    print_list(head)
+    swap_nodes(head)
+    print 'shit'
+    print_list(head)
+    """
 # Note for todo:
 """
 1. check the best way to implement reverse_int. This is not a clever one
