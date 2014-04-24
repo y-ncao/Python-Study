@@ -301,6 +301,67 @@ def get_height(root):
     else:
         return max(get_height(root.left), get_height(root.right)) + 1
 
+# 21. Convert sorted array to bst
+def array_to_bst(num_list):
+    if num_list is None:
+        return None
+    return array_to_bst(num_list, 0, len(num_list)-1)
+
+def array_to_bst_helper(num_list, start, end):
+    if start > end:
+        return
+
+    mid = (start + end) / 2
+    n = treeNode(num_list[mid])
+    n.left = array_to_bst_helper(num_list, start, mid - 1)
+    n.right = array_to_bst_helper(num_list, mid + 1, end)
+
+    return n
+
+# 22. Remove Duplicates from sorted array
+# Fuck remember it is length + 1 !!!!
+def remove_duplicates_in_array(num_list):
+    length = 0
+    for i in range(1, len(num_list)):
+        if num_list[i] != num_list[length]:
+            length += 1
+            num_list[length] = num_list[i]
+
+    return length + 1
+
+
+# 23. Pascal's Triangle
+def pascal_triangle(n):
+    pass
+
+# 24. Merge sorted array
+def merge_sorted_array(l1, l2):
+    pass
+
+# 25. Swap Nodes in Pairs
+def swap_nodes(n1, n2):
+    pass
+
+# 26. Symmetric Tree
+def symmetric_tree(root):
+    pass
+
+# 27. Gray Code
+def gray_code():
+    pass
+
+# 28. N-Queens II
+def n_queens_ii():
+    pass
+
+# 29. Sort Colors
+def sort_colors():
+    pass
+
+# 30. Binary Tree Level Order Traversal II
+def bt_level_traversal_ii():
+    pass
+
 if __name__ == '__main__':
     #num_list = [1,2,3,4,5,6,7,8,9,10,2,3,4,5,6,7,8,9,10]
     #print single_number(num_list)
