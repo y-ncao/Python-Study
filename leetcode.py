@@ -412,11 +412,24 @@ def print_list(head):
 
 # 26. Symmetric Tree
 def symmetric_tree(root):
-    pass
+    if root is None:
+        return True
+
+    return is_symetric(root.left, root.right)
+
+def is_symmetric(p, q):
+    if p is None and q is None:
+        return True
+    elif p is None or q is None:
+        return False
+    elif p.data != q.data:
+        return False
+    else:
+        return is_symmetric(p.left, q.right) and is_symmetric(p.right, q.left)
 
 # 27. Gray Code
 def gray_code():
-    pass
+
 
 # 28. N-Queens II
 def n_queens_ii():
