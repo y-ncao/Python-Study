@@ -428,8 +428,37 @@ def is_symmetric(p, q):
         return is_symmetric(p.left, q.right) and is_symmetric(p.right, q.left)
 
 # 27. Gray Code
-def gray_code():
+def gray_code(n):
+    for x in range(n):
+        print bin(n+x^x/2)[3:]
+# A easy understandable way to solve this
+def graycode(numbits, reverse = False):
+    if numbits = 1:
+        if reverse:
+            yield "1"
+            yield "0"
+        else:
+            yield "0"
+            yield "1"
+    else:
+        if reverse:
+            # all the "1"s start first
+            gcprev = graycode(numbits - 1, True)
+            for code in gcprev:
+                yield "1" + code
 
+            gcprev = graycode(numbits - 1, False)
+            for code in gcprev:
+                yield "0" + code
+        else:
+            # all the "0" start first
+            gcprev = graycode(numbits - 1, False)
+            for code in gcprev:
+                yield "0" + code
+
+            gcprev = graycode(numbits - 1, True)
+            for code in gcprev:
+                yield "1" + code
 
 # 28. N-Queens II
 def n_queens_ii():
