@@ -460,16 +460,156 @@ def graycode(numbits, reverse = False):
             for code in gcprev:
                 yield "1" + code
 
+# 84. N-Queens
+def n_queens(n):
+
+
+def is_valid(result, r):
+    for i in range(r):
+        if result[i] == result[r] or abs((result[i]-result[r]) - (i-r)) == 0:
+            return False
+    return True
+
+
 # 28. N-Queens II
 def n_queens_ii():
     pass
 
 # 29. Sort Colors
-def sort_colors():
-    pass
+# Passing twice
+def sort_colors(list):
+    counter = [0] * 3
+    for i in list:
+        if i == 0:
+            counter[0] += 1
+        elif i == 1:
+            counter[1] += 1
+        else:
+            counter[2] += 1
+    result = [0] * counter[0] + [1] * counter[1] + [2] * counter[2]
+
+    return result
+
+# Not 100% sure about the result but looks all right
+def sort_colors(list):
+    index = 0
+    red_index = 0
+    blue_index = len(list) - 1
+
+    while index <= blue_index:
+        if list[index] == 0:             # red
+            swap(list, index, red_index)
+            index += 1
+            red_index += 1
+        elif list[index] == 2:           # blue
+            swap(list, index, blue_index)
+            index += 1
+            blue_index -= 1
+        else:
+            index += 1
+
+    return list
+
 
 # 30. Binary Tree Level Order Traversal II
-def bt_level_traversal_ii():
+def bt_level_traversal_ii(root):
+    from collections import deque
+    if root is None:
+        return
+    # Use pop() to pop the result later
+    stack = [[root,],]
+    prev = [root,]
+    current = []
+    while len(prev) > 0:
+        for node in prev:
+            if node.left is not None:
+                current.append(node.left)
+            if node.right is not None:
+                current.append(node.right)
+        stack.append(current)
+        prev = current
+        current = []
+
+    return stack
+
+# 31. Permutations
+def permutations():
+    pass
+
+# 32. Generate Parentheses
+def parentheses_gen():
+    pass
+
+# 33. Best time to buy and sell II
+def stock_buy_sell_II():
+    pass
+
+# 34. Plus One
+def plus_one():
+    pass
+
+# 35. Roatate Image
+def rotate_image():
+    pass
+
+# 36. Linked List Cycle II
+def link_list_cycle_II():
+    pass
+
+# 37. Unique Path
+def unique_path():
+    pass
+
+# 38. Binary Tree Postorder Traversal
+def bt_post_traversal():
+    pass
+
+# 39. Binary Tree Level Order Traversal
+def bt_level_order_traversal():
+    pass
+
+# 40. Container With Most Water
+def most_water():
+    pass
+
+# 41. Minimum Path Sum
+def min_path_sum():
+    pass
+
+# 42. Search a 2D Matrix
+def search_2d_matrix():
+    pass
+
+# 43. Set Matrix Zeroes
+def set_matirx_0():
+    pass
+
+# 44. Path Sum
+def path_sum():
+    pass
+
+# 45. Remove Duplicates from Sorted Array II
+def remove_dup_II():
+    pass
+
+# 46. Spiral Matirx II
+def spiral_matrix_II():
+    pass
+
+# 47. Pascal's Triangle II
+def pascal_triangle_II():
+    pass
+
+# 48. Combinations
+def combinations():
+    pass
+
+# 49. Search in Rotated Sorted Array II
+def search_rot_arrary_II():
+    pass
+
+# 50. Remove Nth Node From End of List
+def remove_nth_end():
     pass
 
 if __name__ == '__main__':
