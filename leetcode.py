@@ -563,8 +563,23 @@ def gp(left, right, cand, res):
         gp(left, right - 1, cand + ')', res)
 
 # 33. Best time to buy and sell II
-def stock_buy_sell_II():
-    pass
+# Fuck need to delete the previous work
+def stock_buy_sell_I(prices):
+    min_price = prices[0]
+    max_profit = prices[0]
+    for price in prices:
+        max_profit = max(max_profit, price - min_price)
+        min_pirce = min(min_price, price)
+    return max_profit
+
+def stock_buy_sell_II(prices):
+    profit = 0
+    prev = price[0]
+    for price in prices[1:]:
+        if price >= prev:               # Increasing
+            profit += price - prev
+        prev = price
+    return profit
 
 # 34. Plus One
 def plus_one():
