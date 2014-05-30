@@ -533,12 +533,34 @@ def bt_level_traversal_ii(root):
     return stack
 
 # 31. Permutations
-def permutations():
-    pass
+# Need to fucking remember this. Divide and Conquer
+def permute(num):
+    if not num:
+        return [[]]
+    else:
+        res = []
+        for i, e in enumerate(num):
+            rest = num[:i] + num[i + 1:]
+            rest_perms = permute(rest)
+            for perm in rest_perms:
+                res.append( perm + [e,])
+        return res
 
 # 32. Generate Parentheses
-def parentheses_gen():
-    pass
+def parentheses_gen(n):
+        res = []
+        cand = ''
+        gp(n, n, cand, res)
+        return res
+
+def gp(left, right, cand, res):
+    if left > right or left < 0:
+        return
+    elif left == 0 and right == 0:
+        res.append(cand)
+    else:
+        gp(left - 1, right, cand + '(', res)
+        gp(left, right - 1, cand + ')', res)
 
 # 33. Best time to buy and sell II
 def stock_buy_sell_II():
