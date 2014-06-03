@@ -580,18 +580,93 @@ def stock_buy_sell_II(prices):
             profit += price - prev
         prev = price
     return profit
+"""
+Wrong solution
+def stock_buy_sell_III(prices):
+    profit_2 = [0] * 2
+    prev = price[0]
+    low_price = price[0]
+
+    for price in prices[1:]:
+        if price < prev:                 # Reached high point/decreasing, calculate profit, got new low_price
+            profit = low_price - prev
+            if prev != low_price:        # Means this is the high point
+                profit_2 = calculate_max_2(profit, profit_2)
+            low_price = price
+        prev = price
+    # Need to calcualte the last one
+    profit_2 = calculate_max_2(prev - low_price, profit_2)
+    return profit_2
+"""
+# A little bit Dynamic Programming
+# 1. in-order pass: use profit = price - min_price
+# 2. back-order pass: use profit = max_price - price
+
+def stock_buy_sell_III(prices):
+    n = len(prices)
+    m1 = [0] * n
+    m2 = [0] * n
+    max_profit1 = 0
+    min_price1 = prices[0]
+    max_profit2 = 0
+    max_price2 = prices[-1]
+    # It's O(3n) which is O(n)
+    for i in range(n):
+        max_profit1 = max(max_profit1, prices[i] - min_price1)
+        m1[i] = max_profit1
+        min_price1 = min(min_price1, prices[i])
+    for i in range(n):
+        max_profit2 = max(max_profit2, max_price2 - prices[n - 1 - i])
+        m2[n - 1 - i] = max_profit2
+        max_price2 = max(max_price2, prices[n - 1 - i])
+    max_profit = 0
+    for i in range(n):
+        max_profit = max(m1[i] + m2[i], max_profit)
+    return max_profit
 
 # 34. Plus One
-def plus_one():
-    pass
+# Fuck you cheat guys
+def plus_one(digits):
+  pass
 
 # 35. Roatate Image
-def rotate_image():
-    pass
+def rotate_image(matrix):
+    rotated = []
+    for j in range(len(matrix[0])):
+        new_row = []
+        for i in range(len(matrix)-1, -1, -1): # from n-1 to 0
+            new_row.append(matrix[i][j])
+        rotated.append(new_row)
+    return rotated
+
+# Fuck remember this is different from the 150Ti
+def link_list_cycle(head):
+    slow_runner = head
+    fast_runner = head
+    while fast_runner is not None and fast_runner.next is not None:
+        fast_runner = fast_runner.next
+        slow_runner = slow_runner.next
+        if fast_runner == slow_runner:
+            return True
+    return False
 
 # 36. Linked List Cycle II
 def link_list_cycle_II():
-    pass
+    slow_runner = head
+    fast_runner = head
+    while fast_runner != slow_runner:
+        if fast_runner is None or fast_runner.next is None:
+            return None
+        else:
+            fast_runner = fast_runner.next.next
+            slow_runner = slow_runner.next
+    # Met each other, so that's a loop
+    fast_runner = head
+    while fast_runner != slow_runner:
+        fast_runner = fast_runner.next
+        slow_runner = slow_runner.nexdt
+
+    return slow_runner
 
 # 37. Unique Path
 def unique_path():
