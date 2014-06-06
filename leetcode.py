@@ -669,20 +669,103 @@ def link_list_cycle_II():
     return slow_runner
 
 # 37. Unique Path
-def unique_path():
-    pass
+def unique_path(m,n):
+    if (m, n) == (0,0):
+        return 0
+    elif (m, n) in [(1,0), (0,1)]:
+        return 1
+    elif m == 0:
+        return unique_path(m, n-1)
+    elif n == 0:
+        return unique_path(m-1,n)
+    else:
+        return unique_path(m-1,n) + unique_path(m, n-1)
+
+def unique_path_ii(map, m, n):
+    if (m, n) == (0,0):
+        return 0
+    elif (m,n) in [(1,0),(0,1)]:
+        return 1
+    else:
+        if not valid_point(map, m-1, n) and not valid_point(map, m, n-1): # No where to go
+            return 0
+        elif valid_point(map, m-1, n) and valid_point(map, m, n-1):       # Can go both directions
+            return unique_path_ii(map, m-1, n) + unique_path_ii(map, m, n-1)
+        else:                                                             # Can only go one direction
+            if valid_point(map, m-1, n):
+                return uniqe_path_ii(map, m-1, n)
+            else:
+                return unique_path_ii(map, m, n-1)
+
+def valid_point(map, m, n):
+    if m < 0 or n < 0:
+        return False
+    if map[m][n] == 1:
+        return False
+    return True
+# This solution may look a bit stupid
+
 
 # 38. Binary Tree Postorder Traversal
-def bt_post_traversal():
-    pass
+# Doing recursive is trivial
+def bt_post_traversal(root):
+    if root is None:
+        return
+    bt_post_traversal(root.left)
+    bt_post_traversal(root.right)
+    print root.data
+
+# Any pre/in/post-order tree traversal are all dfs which use stack
+def bt_post_traversal(root):
+    if root is None:
+        return
+    stack1 = [root,]
+    stack2 = []
+    while len(stack1) > 0:
+        node = stack1.pop()
+        stack2.append(node.data)
+        if node.left is not None:
+            stack1.append(node.left)
+        if node.right is not None:
+            stack1.append(node.right)
+    path = []
+    while stack2:
+        path.append(stack2.pop())
+# Need to go back and check the logic to do so
+
 
 # 39. Binary Tree Level Order Traversal
 def bt_level_order_traversal():
     pass
 
 # 40. Container With Most Water
-def most_water():
-    pass
+# Thinking this (i, ai) and (i, 0)
+# so for pair (m, n)
+# area is abs(m-n) * min(am, an)
+def most_water(plist):
+    max_volumn = 0
+    for i, pm in enumerate(plist):
+        for pn in plist[i+1:]:
+            max(max_volumn, calculate_area(pm, pn))
+
+    return max_volumn
+
+def calculate_area(pm, pn):
+    return abs(pm[0] - pn[0]) * min(pm[1], pn[1])
+
+# My algorithm is correct, this use greedy algorithm
+def maxArea(height):
+    n = len(height)
+    i = 0
+    j = n - 1
+    max_area = 0
+    while i < j:
+        max_area = max(max_area, (j - i) * min(height[i], height[j]))
+        if height[i] <= height[j]:
+            i += 1
+        else:
+            j -= 1
+return max_area
 
 # 41. Minimum Path Sum
 def min_path_sum():
