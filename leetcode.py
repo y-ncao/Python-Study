@@ -805,8 +805,8 @@ def min_path_sum(grid):
     m = len(grid[0])
     n = len(grid)
     t = [ [0] * m ] * n
-    for j in rang(n):
-        for i in range(m):
+    for j in range(m):                  # Go up/left doesnt' matter, important is result
+        for i in range(n):
             if i == 0 and j ==0:
                 t[i][j] = grid[i][j]
             elif i == 0:
@@ -820,8 +820,32 @@ def min_path_sum(grid):
 
 
 # 42. Search a 2D Matrix
-def search_2d_matrix():
-    pass
+# !! Remember that binary search is start <= end !!!!
+def search_2d_matrix(matrix, target):
+    m = len(matrix[0])
+    n = len(matrix)
+
+    start = 0
+    end = n - 1
+    while start < end:
+        row_mid = (start+end)/2
+        if matrix[row_mid][0] <= target and matirx[row_mid][-1] >= target: # search for this row
+            start = 0
+            end = m-1
+            while start <= end:
+                col_mid = (start+end)/2
+                if matrix[row_mid][col_mid] == target:
+                    return True
+                elif matrix[row_mid][col_mid] > target: # need to search front half
+                    end = mid -1
+                else:
+                    start = mid + 1
+            return False
+        elif matrix[row_mid][0] > target: # search for front half
+            end = row_mid - 1
+        else:
+            start = row_id + 1
+    return False
 
 # 43. Set Matrix Zeroes
 def set_matirx_0():
