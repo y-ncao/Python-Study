@@ -893,8 +893,29 @@ def has_path_sum(root, target):
         return has_path_sum(root.left, target) or has_path_sum(root.right, target)
 
 # 45. Remove Duplicates from Sorted Array II
-def remove_dup_II():
-    pass
+# Note: we have 4 types of questions: Remove dup from sorted array i/ii and list i/ii
+def remove_dup_array_II(array):
+    current = 0
+    counter = 0
+    n = len(array)
+    for i in range(1, n):
+        if array[i] == array[i-1]:      # Found a dup
+            counter += 1
+        else:
+            if counter > 0:
+                pass
+            else:
+                array[current] = array[i-1]
+                current += 1
+            counter = 0
+    if counter == 0:
+        array[current] = array[n-1]
+        current += 1
+    if current > 1:
+        return array[:current]
+    else:
+        return []
+
 
 # 46. Spiral Matirx II
 def spiral_matrix_II():
