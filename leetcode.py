@@ -785,8 +785,39 @@ def maxArea(height):
 return max_area
 
 # 41. Minimum Path Sum
-def min_path_sum():
-    pass
+# Strong feel that I did correctly, but need to check more. The result on website is almost same with mine
+# Online result is doing a map, each point is the sum till current position.
+def min_path_sum(grid):
+    return min_path_helper(grid, m, n, 0)
+
+def min_path_helper(grid, m, n, sum):
+    if (m, n) == (0, 0):
+        return sum
+    elif m == 0 or n == 0:              # Reach the bound
+        if m == 0:
+            return min_path_helper(m, n-1, sum+grid[m][n])
+        else:
+            return min_path_helper(m-1, n, sum+grid[m][n])
+    else:                               # Normal one
+        return min(min_path_helper(m, n-1, sum+grid[m][n]), min_path_helper(m, n-1, sum+grid[m][n]))
+# Above is the recursive way. I think iterative way should be better
+def min_path_sum(grid):
+    m = len(grid[0])
+    n = len(grid)
+    t = [ [0] * m ] * n
+    for j in rang(n):
+        for i in range(m):
+            if i == 0 and j ==0:
+                t[i][j] = grid[i][j]
+            elif i == 0:
+                t[i][j] = t[i][j-1] + grid[i][j]
+            elif j == 0:
+                t[i][j] = t[i-1][j] + grid[i][j]
+            else:
+                t[i][j] = min(t[i-1][j], t[i][j-1]) + grid[i][j]
+
+    return t[m-1][n-1]
+
 
 # 42. Search a 2D Matrix
 def search_2d_matrix():
