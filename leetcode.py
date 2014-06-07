@@ -878,8 +878,19 @@ def set_matirx_0(matrix):
     return matrix
 
 # 44. Path Sum
-def path_sum():
-    pass
+# in a pretty good shape
+def has_path_sum(root, target):
+    if root is None:
+        return False
+
+    elif root.left is None and root.right is None: # Found a leaf
+        if target == root.data:
+            return True
+        else:
+            return False
+    else:
+        target -= root.data
+        return has_path_sum(root.left, target) or has_path_sum(root.right, target)
 
 # 45. Remove Duplicates from Sorted Array II
 def remove_dup_II():
