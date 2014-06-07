@@ -512,8 +512,8 @@ def sort_colors(list):
 
 
 # 30. Binary Tree Level Order Traversal II
+# Note: this returns a stack, in order to return a reverse one, still need to reverse them
 def bt_level_traversal_ii(root):
-    from collections import deque
     if root is None:
         return
     # Use pop() to pop the result later
@@ -526,7 +526,8 @@ def bt_level_traversal_ii(root):
                 current.append(node.left)
             if node.right is not None:
                 current.append(node.right)
-        stack.append(current)
+        if len(current) > 0:
+            stack.append(current)
         prev = current
         current = []
 
@@ -735,8 +736,24 @@ def bt_post_traversal(root):
 
 
 # 39. Binary Tree Level Order Traversal
-def bt_level_order_traversal():
-    pass
+def bt_level_order_traversal(root):
+    if root is None:
+        return []
+    result = [[root]]
+    current = []
+    prev = [root,]
+    while len(prev):
+        for node in prev:
+            if node.left is not None:
+                current.append(node.left)
+            if node.right is not None:
+                current.append(node.right)
+        if len(current) > 0:
+            result.append(current)
+        prev = current
+        current = []
+
+    return result
 
 # 40. Container With Most Water
 # Thinking this (i, ai) and (i, 0)
