@@ -1037,6 +1037,46 @@ def remove_nth_end(head, n):
         slow = slow.next
     return slow.data
 
+# 51. Populate Next Right Pointers in Each Node II
+def pop_next_pointers_ii():
+    pass
+
+# 52. Palindrome Number
+def palindrome():
+    pass
+
+# 53. Minimum Depth of Binary Tree
+def min_depth_of_bt():
+    pass
+
+# 54. Sum Root to Leaf Numbers
+def sum_root_to_leaf():
+    pass
+
+# 55. Length of Last Word
+def len_last_word():
+    pass
+
+# 56. Trapping Rain Water
+def trap_rain_water():
+    pass
+
+# 57. Search in Rotated Sorted Array
+# See 49.
+
+# 58. Valid Parenetheses
+def valid_paren():
+    pass
+
+# 59. Valid Sudoku
+def valid_sudoku():
+    pass
+
+# 60. Path Sum II
+def path_sum_ii():
+    pass
+
+
 if __name__ == '__main__':
     #num_list = [1,2,3,4,5,6,7,8,9,10,2,3,4,5,6,7,8,9,10]
     #print single_number(num_list)
