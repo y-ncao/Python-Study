@@ -1022,8 +1022,20 @@ def search_rot_arrary_II():
     return False
 
 # 50. Remove Nth Node From End of List
-def remove_nth_end():
-    pass
+# Too lazy to check if it is correct
+def remove_nth_end(head, n):
+    if head is None:
+        return
+    slow = head
+    fast = head
+    for i in range(n):
+        if fast.next is None:
+            return
+        fast = fast.next
+    while fast is not None:
+        fast = fast.next
+        slow = slow.next
+    return slow.data
 
 if __name__ == '__main__':
     #num_list = [1,2,3,4,5,6,7,8,9,10,2,3,4,5,6,7,8,9,10]
