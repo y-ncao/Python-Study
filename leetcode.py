@@ -918,8 +918,31 @@ def remove_dup_array_II(array):
 
 
 # 46. Spiral Matirx II
-def spiral_matrix_II():
-    pass
+def spiral_matrix_II(n):
+    matrix = [[0 for i in range(n)] for j in range(n)]
+    start_row = start_col = 0
+    end_row = end_col = n -1
+    num = 1
+    while start_row < end_row and start_col < end_col:
+        for i in range(start_col, end_col+1): # Go right
+            matrix[start_row][i] = num
+            num += 1
+        for i in range(start_row+1, end_row+1): # Go down
+            matrix[i][end_col] = num
+            num += 1
+        for i in range(end_col-1, start_col-1, -1): # Go left
+            matrix[end_row][i] = num
+            num += 1
+        for i in range(end_row-1, start_row, -1): # Go up
+            matrix[i][start_col] = num
+            num += 1
+        start_row += 1
+        start_col += 1
+        end_row -= 1
+        end_col -= 1
+    if n % 2 == 1:
+        matrix[start_row][start_colum] = num
+    return matrix
 
 # 47. Pascal's Triangle II
 def pascal_triangle_II():
