@@ -162,7 +162,7 @@ def find_rotate(data_list, i, left, right):
         if i > data_list[mid]:
             find_rotate(data_list, i, mid, right)
         else:
-            bianry_search(data_list, i, left, mid)
+            find_rotate(data_list, i, left, mid)
             find_rotate(data_list, i, mid, right)
 
     return False

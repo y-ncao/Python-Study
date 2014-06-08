@@ -945,16 +945,81 @@ def spiral_matrix_II(n):
     return matrix
 
 # 47. Pascal's Triangle II
-def pascal_triangle_II():
-    pass
+def pascal_triangle_II(n):
+    from collections import deque
+    result = deque()
+    for i in range(n-1):
+        for j in range(0, len(result)-1):
+            result[j] = result[j] + result[j+1]
+        result.appendleft(1)
+    return result
 
 # 48. Combinations
-def combinations():
-    pass
+# Remember in this question, result need to use result[:] as copy
+def combine(n, k):
+    ret = []
+    def combine_helper(result):
+        if len(result) == k:
+            ret.append(result[:])
+            return
+        elif len(result) == 0:
+            start = 1
+        else:
+            start = result[-1] + 1
+        if start > n:
+            return
+        else:
+            for i in range(start, n+1):
+                result.append(i)
+                combine_helper(result)
+                result.pop()
+    combine_helper([])
+    print ret
 
-# 49. Search in Rotated Sorted Array II
+# 49. Search in Rotated Sorted Array II/I
+# Don't be afraid of this problem. It's very simple once you know what to do
+def search_rot_array_i(array, target):
+    start = 0
+    end = len(array) - 1
+    while start <= end:
+        mid = (start + end) / 2
+        if target == array[mid]:
+            return True
+        if array[mid] > array[start]: # First half sorted
+            if array[start] <= target and target < array[mid]:
+                end = mid - 1
+            else:
+                start = mid + 1
+        else:                           # Second half sorted
+            if array[mid] < target and target <= array[end]:
+                start = mid + 1
+            else:
+                end = mid -1
+
+    return False
+
+# Introducing the situation that dupliate element, but actually they are same
+# When there are dup element, just keep on moving
 def search_rot_arrary_II():
-    pass
+    start = 0
+    end = len(array) - 1
+    while start <= end:
+        mid = (start + end) / 2
+        if target == array[mid]:
+            return True
+        if array[mid] > array[start]:                  # First half sorted
+            if array[start] <= target and target < array[mid]:
+                end = mid - 1
+            else:
+                start = mid + 1
+        elif array[mid] < array[start]:                # Second half sorted
+            if array[mid] < target and target <= array[end]:
+                start = mid + 1
+            else:
+                end = mid -1
+        else:                                          # array[mid] == array[start]
+            start += 1
+    return False
 
 # 50. Remove Nth Node From End of List
 def remove_nth_end():
