@@ -1212,8 +1212,36 @@ def valid_paren(parens):
 
 
 # 59. Valid Sudoku
-def valid_sudoku():
-    pass
+def valid_sudoku(board):
+    if len(board) != 9 or len(board[0]) !=9:
+        return False
+    for i in range(9):
+        row = []
+        column = []
+        for j in range(9):
+            if board[i][j] != '.':
+                if board[i][j] in row:
+                    return False
+                else:
+                    row.append(board[i][j])
+            if board[j][i] != '.':
+                if board[j][i] in column:
+                    return False
+                else:
+                    column.append(board[j][i])
+
+    for i in range(0,9,3):
+        for j in range(0,9,3):
+            for x in range(i, +3):
+                for y in range(j, j+3):
+                    if board[x][y] == '.':
+                        continue
+                    if board[x][y] in num:
+                        return False
+                    else:
+                        num.append(board[x][y])
+    return True
+
 
 # 60. Path Sum II
 def path_sum_ii():
