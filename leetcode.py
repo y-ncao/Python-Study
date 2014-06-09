@@ -1163,27 +1163,9 @@ def len_lst_word(str):
             return i
 
 # 56. Trapping Rain Water
+# Haven't finished yet
 def trap_rain_water(data_list):
-    def minus_one(data_list):
-        for data in data_list:
-            if data != 0:
-                data -= 1
-        return data_list
-    def all_zero(data_list):
-        for data in data_list:
-            if data != 0:
-                return False
-        return True
-    def get_volumn(data_list):
-        diff_list = [0] * len(data_list)
-        new_list = minus_one(data_list)
-        for i in enumerate(data_list):
-            diff_list[i] = data_list[i] - new_list[i]
-
-
-    while not all_zero(data_list):
-
-
+    pass
 
 # 57. Search in Rotated Sorted Array
 # See 49.
@@ -1279,12 +1261,27 @@ def sub_sets(list):
     return ret
 
 # 62. Unique Path
+# check 37
 def unique_path_ii():
     pass
 
 # 63. Jump Game
-def jump_game():
-    pass
+# So many boundary problem
+def jump_game(jump_list):
+    length = len(jump_list)
+    for i, height in enumerate(jump_list[::-1]):
+        if height == 0:
+            require = 1
+            location = length - i - 1
+            while location >= 0:
+                if require < jump_list[location]:
+                    break
+                else:
+                    require += 1
+                    location -= 1
+            if location < 0:
+                return False
+    return True
 
 # 64. Flatten Binary Tree to Linked List
 def flat_bt():
