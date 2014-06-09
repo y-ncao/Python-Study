@@ -1284,8 +1284,21 @@ def jump_game(jump_list):
     return True
 
 # 64. Flatten Binary Tree to Linked List
-def flat_bt():
-    pass
+# This is different from the web, need to check if this is also correct
+def flat_bt(root):
+    if root is None:
+        return None
+
+    if head is None:
+        head = root
+    else:
+        head.next = root
+        head = head.next
+
+    flat_bt(root.left)
+    flat_bt(root.right)
+    root.left is None
+    root.right is None
 
 # 65. Longest Consecutive Sequence
 def longest_con_seq():
