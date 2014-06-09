@@ -126,6 +126,17 @@ def preorder_traversal(root):
     preorder_traversal(root.right)
 
 # 10. Populate Next right poiters in each node
+# This is a bit hard to think
+def next_right_pointer(root):
+    if root is None:
+        return
+    if root.left is not None:
+        root.left.next = root.right
+    if root.right is not None and root.next is not None:
+        root.right.next = root.next.left
+    next_right_pointer(root.left)
+    next_right_pointer(root.right)
+
 def next_right_pointer(root):
     if root is None:
         return
@@ -143,6 +154,24 @@ def next_right_pointer(root):
 
     next_right_pointer(root.left)
     next_right_pointer(root.right)
+
+# Not using recursive, but also using extra space, so not a good result
+def next_right_pointer(root):
+    if root is None:
+        return
+    prev = [root,]
+    while len(prev) > 0:
+        current = []
+        for i in range(1, len(prev)):
+            prev[i-1].next = prev
+            if node.left is not None:
+                current.append(node.left)
+            if node.right is not None:
+                current.append(node.right)
+        prev[-1].next = None
+        prev = current[:]
+    return root
+
 
 # 11. Search Insert Position
 # This is a O(n) method, need to think about something for O(log(n))
@@ -1038,35 +1067,149 @@ def remove_nth_end(head, n):
     return slow.data
 
 # 51. Populate Next Right Pointers in Each Node II
-def pop_next_pointers_ii():
-    pass
+# A bit hard to think, need to slow down
+def pop_next_pointers_ii(root):
+    if root is None:
+        return
+    head = None
+    prev = None
+    while root is not None:
+        while root is not None:
+            if root.left is not None:
+                if prev is None:
+                    prev = head = root.left
+                else:
+                    prev.next = root.left
+                    prev = prev.next
+
+            if root.right is not None:
+                if prev is None:
+                    prev = head = root.right
+                else:
+                    prev.next = root.right
+                    prev = prev.next
+            root = root.next
+
+        root = head
+        prev = None
+        head = None
+    return
+
 
 # 52. Palindrome Number
-def palindrome():
-    pass
+def palindrome(num):
+    if num < 0:
+        return False
+
+    div = 10
+    while num/div > 0:
+        div *=10
+
+    while num > 0:
+        left_bit = num/div
+        right_bit = num % 10
+
+        if left_bit != right_bit:
+            return False
+        else:
+            num = (num % div) / 10
+            div /= 100
+    return True
 
 # 53. Minimum Depth of Binary Tree
-def min_depth_of_bt():
-    pass
+def min_depth_of_bt(root):
+    if root is None:
+        return 0
+    if root.left is None and root.right is None:
+        return 1
+    elif root.left is None:
+        return min_depth_of_bt(root.right) + 1
+    elif root.right is None:
+        return min_depth_of_bt(root.left) + 1
+    else:
+        return min(min_depth_of_bt(root.left), min_depth_of_bt(root.right)) + 1
 
 # 54. Sum Root to Leaf Numbers
-def sum_root_to_leaf():
-    pass
+def sum_root_to_leaf(root):
+    if root is None:
+        return 0
+    result = 0
+
+    def sum_root_to_leaf_helper(node,value):
+        value = value * 10 + node.data
+        if node.left is None and node.right is None:
+            result += value
+            return
+        if node.left is not None:
+            sum_root_to_leaf_helper(node.right, value)
+
+        if node.right is None:
+            sum_root_to_leaf_helper(node.left, value)
+
+    sum_root_to_leaf_helper(root,root.data)
+
 
 # 55. Length of Last Word
-def len_last_word():
-    pass
+# This a python way, even not the python way, it's too easy
+def len_last_word(str):
+    word_list = str.split(' ')
+    return len(word_list[-1])
+
+def len_lst_word(str):
+    if str[-1] == ' ':
+        return 0
+    for i, char in enumerate(str[::-1]):
+        if char == ' ':
+            return i
 
 # 56. Trapping Rain Water
-def trap_rain_water():
-    pass
+def trap_rain_water(data_list):
+    def minus_one(data_list):
+        for data in data_list:
+            if data != 0:
+                data -= 1
+        return data_list
+    def all_zero(data_list):
+        for data in data_list:
+            if data != 0:
+                return False
+        return True
+    def get_volumn(data_list):
+        diff_list = [0] * len(data_list)
+        new_list = minus_one(data_list)
+        for i in enumerate(data_list):
+            diff_list[i] = data_list[i] - new_list[i]
+
+
+    while not all_zero(data_list):
+
+
 
 # 57. Search in Rotated Sorted Array
 # See 49.
 
 # 58. Valid Parenetheses
-def valid_paren():
-    pass
+def valid_paren(parens):
+    pair = dict( '[' : ']', '{' : '}', '(' : ')' )
+    if parens[0] in [']','}',')']:
+        return False
+    stack = []
+    stack.append(parens[0])
+    for i in range(1, len(parens)):
+        if parens[i] in ['[','{','(']:
+            stack.append(parens[i])
+        else:
+            if not stack:
+                return False
+            current = stack[-1]
+            if pair.get(current) != parens[i]:
+                return False
+            else:
+                stack.pop()
+    if stack:
+        return False
+    return True
+
 
 # 59. Valid Sudoku
 def valid_sudoku():
