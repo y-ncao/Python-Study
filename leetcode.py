@@ -1263,8 +1263,49 @@ def path_sum_ii(root, target):
             if node.right is not None:
                 path_sum_helper(node.right, result, target-node.data)
         result.pop()
-
     path_sum_helper(root, [], target)
+
+# 61. Subsets
+def sub_sets():
+    pass
+
+# 62. Unique Path
+def unique_path_ii():
+    pass
+
+# 63. Jump Game
+def jump_game():
+    pass
+
+# 64. Flatten Binary Tree to Linked List
+def flat_bt():
+    pass
+
+# 65. Longest Consecutive Sequence
+def longest_con_seq():
+    pass
+
+# 66. Subsets II
+def sub_setes_ii():
+    pass
+
+# 67. Longest Common Prefix
+def longest_com_pre():
+    pass
+
+# 68. Search for a Range
+def search_for_range():
+    pass
+
+# 69. 3 Sum Closest
+def three_sum_closest():
+    pass
+
+# 70. Convert Sorted List to Binary Search Tree
+def conert_to_bst():
+    pass
+
+
 
 if __name__ == '__main__':
     #num_list = [1,2,3,4,5,6,7,8,9,10,2,3,4,5,6,7,8,9,10]
