@@ -1302,10 +1302,26 @@ def three_sum_closest():
     pass
 
 # 70. Convert Sorted List to Binary Search Tree
-def conert_to_bst():
-    pass
-
-
+# A bit tricky when need to check head == slow
+def convert_to_bst(head):
+    if head is None:
+        return None
+    slow = head
+    fast = head
+    prev = None
+    while fast.next is not None and fast.next.next is not None:
+        prev = slow
+        fast = fast.next.next
+        slow = slow.next                # slow is what we are looking for
+    if head == slow:
+        head = None
+    # Create two separate linklists
+    if prev is not None:
+        prev.next = None
+    node = Node(slow.data)
+    node.left = convert_to_bst(head)
+    node.right = convert_to_bst(slow.next)
+    return node
 
 if __name__ == '__main__':
     #num_list = [1,2,3,4,5,6,7,8,9,10,2,3,4,5,6,7,8,9,10]
