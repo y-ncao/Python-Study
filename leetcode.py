@@ -1266,8 +1266,17 @@ def path_sum_ii(root, target):
     path_sum_helper(root, [], target)
 
 # 61. Subsets
-def sub_sets():
-    pass
+# SOOOOOOO Niu Bi
+def sub_sets(list):
+    ret = [[]]
+    def sub_sets_helper(result, list):
+        for i, item in enumerate(list):
+            result.append(item)
+            ret.append(result[:])
+            sub_sets_helper(result, list[i+1:])
+            result.pop()
+    sub_sets_helper([], list)
+    return ret
 
 # 62. Unique Path
 def unique_path_ii():
