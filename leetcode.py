@@ -1244,9 +1244,27 @@ def valid_sudoku(board):
 
 
 # 60. Path Sum II
-def path_sum_ii():
-    pass
+# Should be correct
+def path_sum_ii(root, target):
+    if root is None:
+        return []
+    paths = []
+    def path_sum_helper(node, result, target):
+        result.append(node.value)
+        if node.left is None and node.right is None and target == node.data:
+            paths.append[result[:]]
+            return
+        elif target <= node.data:                # Stop this path
+            result.pop()
+            return
+        else:                           # target > 0, child exist
+            if node.left is not None:
+                path_sum_helper(node.left, result, target-node.data)
+            if node.right is not None:
+                path_sum_helper(node.right, result, target-node.data)
+        result.pop()
 
+    path_sum_helper(root, [], target)
 
 if __name__ == '__main__':
     #num_list = [1,2,3,4,5,6,7,8,9,10,2,3,4,5,6,7,8,9,10]
