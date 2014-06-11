@@ -1303,7 +1303,7 @@ def flat_bt(root):
 # 65. Longest Consecutive Sequence
 def longest_con_seq():
     pass
-
+# I hate to do nothing today
 # 66. Subsets II
 def sub_setes_ii():
     pass
@@ -1329,6 +1329,12 @@ def convert_to_bst(head):
     fast = head
     prev = None
     while fast.next is not None and fast.next.next is not None:
+
+
+
+
+
+
         prev = slow
         fast = fast.next.next
         slow = slow.next                # slow is what we are looking for
