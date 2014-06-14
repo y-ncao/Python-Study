@@ -1304,12 +1304,35 @@ def flat_bt(root):
     root.right is None
 
 # 65. Longest Consecutive Sequence
-def longest_con_seq():
-    pass
-# I hate to do nothing today
+def longest_con_seq(list):
+    from sets import Set
+    d = Set
+    longest = 1
+    for i in list:
+        if i not in d:
+            d.add(i)
+    for item in d:
+        cur = item
+        cur_len = 1
+        while cur+1 in d:
+            cur_len += 1
+            cur +=1
+        longest = max(longest, cur_len)
+    return longest
+
 # 66. Subsets II
-def sub_setes_ii():
-    pass
+# There's another version of doing subsets. But almost the same.
+def sub_sets_ii(list):
+    ret = [[]]
+    def sub_sets_helper(result, list):
+        for i, item in enumerate(list):
+            result.append(item)
+            if result[:] not in ret:
+                ret.append(result[:])
+            sub_sets_helper(result, list[i+1:])
+            result.pop()
+    sub_sets_helper([], list)
+    return ret
 
 # 67. Longest Common Prefix
 # Tricky is no need to set flag or anything. Just return the result
