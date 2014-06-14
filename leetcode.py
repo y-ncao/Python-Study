@@ -1312,7 +1312,8 @@ def sub_setes_ii():
     pass
 
 # 67. Longest Common Prefix
-def longest_com_pre(list_str):
+# Tricky is no need to set flag or anything. Just return the result
+def longest_common_prefix(list_str):
     if len(list_str) == 0:
         return None
     elif len(list_str) == 1:
@@ -1320,19 +1321,14 @@ def longest_com_pre(list_str):
     compare = list_str[0]
     length = len(compare)
     i = 0
-    found = False
     while i < length:
-        for string in list_str[1:]:
-            len_str = len(string)
-            print i, compare[i],string[i],compare,string
-            if len_str < i or string[i] != compare[i]:
-                Found = True
-                break
+        for stri in list_str[1:]:
+            if i > len(stri)-1 or stri[i] != compare[i]:
+                return compare[:i]
         i += 1
-        if found:
-            break
-    return compare[:i+1]
+    return compare
 
+# Use a quick way but not the Big-O best one
 def commonprefix(m):
     "Given a list of pathnames, returns the longest common leading component"
     if not m: return ''
