@@ -1386,8 +1386,25 @@ def search_for_range(target, list):
     return (-1,-1)
 
 # 69. 3 Sum Closest
-def three_sum_closest():
-    pass
+# This time cannot remember it. This is a weird solution. Need to think hard next time.
+def three_sum_closest(list, target):
+    list.sort()
+    n = len(list)
+    res = list[0] + list[1] + list[2]
+    for i in range(n-2):
+        start = i + 1
+        end = n - 1
+        sum = list[i] + list[start] + list[end]
+        if abs(sum-target) < abs(res-target):
+            res = sum
+        if sum == target:
+            return sum
+        elif sum < target:
+            start += 1
+        else:
+            end -= 1
+    return res
+
 
 # 70. Convert Sorted List to Binary Search Tree
 # A bit tricky when need to check head == slow
