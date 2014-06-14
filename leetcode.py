@@ -462,7 +462,7 @@ def gray_code(n):
         print bin(n+x^x/2)[3:]
 # A easy understandable way to solve this
 def graycode(numbits, reverse = False):
-    if numbits = 1:
+    if numbits == 1:
         if reverse:
             yield "1"
             yield "0"
@@ -491,7 +491,7 @@ def graycode(numbits, reverse = False):
 
 # 84. N-Queens
 def n_queens(n):
-
+    pass
 
 def is_valid(result, r):
     for i in range(r):
@@ -811,7 +811,7 @@ def maxArea(height):
             i += 1
         else:
             j -= 1
-return max_area
+    return max_area
 
 # 41. Minimum Path Sum
 # Strong feel that I did correctly, but need to check more. The result on website is almost same with mine
@@ -1171,8 +1171,11 @@ def trap_rain_water(data_list):
 # See 49.
 
 # 58. Valid Parenetheses
+# Remember, here cannot use dict() to define '[' as a key
 def valid_paren(parens):
-    pair = dict( '[' : ']', '{' : '}', '(' : ')' )
+    pair = { '[' : ']',
+             '{' : '}',
+             '(' : ')'}
     if parens[0] in [']','}',')']:
         return False
     stack = []
