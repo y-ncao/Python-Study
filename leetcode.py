@@ -1309,8 +1309,37 @@ def sub_setes_ii():
     pass
 
 # 67. Longest Common Prefix
-def longest_com_pre():
-    pass
+def longest_com_pre(list_str):
+    if len(list_str) == 0:
+        return None
+    elif len(list_str) == 1:
+        return list_str[0]
+    compare = list_str[0]
+    length = len(compare)
+    i = 0
+    found = False
+    while i < length:
+        for string in list_str[1:]:
+            len_str = len(string)
+            print i, compare[i],string[i],compare,string
+            if len_str < i or string[i] != compare[i]:
+                Found = True
+                break
+        i += 1
+        if found:
+            break
+    return compare[:i+1]
+
+def commonprefix(m):
+    "Given a list of pathnames, returns the longest common leading component"
+    if not m: return ''
+    s1 = min(m)
+    s2 = max(m)
+    print s1, s2
+    for i, c in enumerate(s1):
+        if c != s2[i]:
+            return s1[:i]
+    return s1
 
 # 68. Search for a Range
 def search_for_range():
@@ -1329,12 +1358,6 @@ def convert_to_bst(head):
     fast = head
     prev = None
     while fast.next is not None and fast.next.next is not None:
-
-
-
-
-
-
         prev = slow
         fast = fast.next.next
         slow = slow.next                # slow is what we are looking for
