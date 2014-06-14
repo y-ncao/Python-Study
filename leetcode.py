@@ -1428,6 +1428,50 @@ def convert_to_bst(head):
     node.right = convert_to_bst(slow.next)
     return node
 
+
+# 71. Count and Say
+def count_n_say():
+    pass
+
+# 72. Triangle
+def triangle():
+    pass
+
+# 73. Unique Binary Search
+def unique_bs():
+    pass
+
+# 74. Binary Tree Zigzag Level Order Traversal
+def zizag_traversal():
+    pass
+
+# 75. Partition List
+def partition_list():
+    pass
+
+# 76. Combination Sum
+def comb_sum():
+    pass
+
+# 77. Pow(x,n)
+def pow_func(x,n):
+    pass
+
+# 78. Construct Binary Tree from Inorder and Postorder Traversal
+def contruct_bt_ip():
+    pass
+
+# 79.Letter Combination of a Phone Number
+def phone_num():
+    pass
+
+# 80. FUCK this is empty
+
+# 81. Construct Binary Tree from Preorder and Inorder Traversal
+def contruct_bt_pi():
+    pass
+
+
 if __name__ == '__main__':
     #num_list = [1,2,3,4,5,6,7,8,9,10,2,3,4,5,6,7,8,9,10]
     #print single_number(num_list)
