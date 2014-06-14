@@ -1364,8 +1364,26 @@ def commonprefix(m):
     return s1
 
 # 68. Search for a Range
-def search_for_range():
-    pass
+# Perfect for one time
+def search_for_range(target, list):
+    start = 0
+    end = len(list) - 1
+    while start <= end:
+        mid = (start + end) / 2
+        if list[mid] == target:
+            start = end = mid
+            while True:
+                if list[start] != target and list[end] != target:
+                    return (start+1, end-1)
+                if list[start] == target:
+                    start -= 1
+                if list[end] == target:
+                    end += 1
+        elif list[mid] < target:        # need to search second half
+            start = mid + 1
+        else:
+            end = mid - 1
+    return (-1,-1)
 
 # 69. 3 Sum Closest
 def three_sum_closest():
