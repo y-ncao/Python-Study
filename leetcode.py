@@ -1545,8 +1545,25 @@ def partition_list(head, target):
         return left_start
 
 # 76. Combination Sum
-def comb_sum():
-    pass
+# Don't forget to use copy[:]
+def comb_sum(list, target):
+    ret = []
+
+    def comb_sum_helper(list, target, result):
+        if target < 0:
+            return
+        elif target == 0:
+            ret.append(result[:])
+        for i in list:
+            result.append(i)
+            comb_sum_helper(list[i:], target-i, result)
+            result.pop()
+
+    comb_sum_helper(list, target, [])
+    return ret
+
+# Combination Sum II
+# No duplicate item should be used, what I see diff is list[i:] or list[i+1:], need be tested
 
 # 77. Pow(x,n)
 def pow_func(x,n):
