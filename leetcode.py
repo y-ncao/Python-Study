@@ -1519,8 +1519,30 @@ def zizag_traversal(root):
     return result
 
 # 75. Partition List
-def partition_list():
-    pass
+def partition_list(head, target):
+    if head is None:
+        return None
+    while head is not None:
+        if head.data <= target:
+            if left_start is None:
+                left_start = head
+                left_end = left_start
+            else:
+                left_end.next = head
+                left_end = left_end.next
+        else:
+            if right_start is None:
+                right_start = head
+                right_end = head
+            else:
+                right_end.next = head
+                right_end = right_end.next
+        head = head.next
+    if left_start is None:
+        return right_start
+    else:
+        left_end.next = right_start
+        return left_start
 
 # 76. Combination Sum
 def comb_sum():
