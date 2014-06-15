@@ -1566,8 +1566,19 @@ def comb_sum(list, target):
 # No duplicate item should be used, what I see diff is list[i:] or list[i+1:], need be tested
 
 # 77. Pow(x,n)
+# WTF is this???
 def pow_func(x,n):
-    pass
+    if n ==0:
+        return 1
+    elif n < 0:
+        return 1 / pow_func(x, -n)
+    else:
+        v = pow_func(x, n/2)
+        if n % 2 ==0:
+            return v*v
+        else:
+            return v*v*x
+
 
 # 78. Construct Binary Tree from Inorder and Postorder Traversal
 def contruct_bt_ip():
