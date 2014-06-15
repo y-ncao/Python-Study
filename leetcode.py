@@ -3,10 +3,9 @@
 # 1.Single Number
 # Fuck!!! use XOR
 def single_number(num_list):
-    for i in range(1, len(num_list)):
-        if num_list[i] is not None:
-            num_list[0] ^= num_list[i]
-
+    for num in num_list[1:]
+        if num is not None:
+            num_list[0] ^= num
     return num_list[0]
 
 # 2. Maximum depth of binary tree
@@ -1563,7 +1562,7 @@ def comb_sum(list, target):
     return ret
 
 # Combination Sum II
-# No duplicate item should be used, what I see diff is list[i:] or list[i+1:], need be tested
+# No duplicate item should be used, what I see diff is list[i:] or list[i+1:], needs to be tested
 
 # 77. Pow(x,n)
 # WTF is this???
@@ -1581,17 +1580,108 @@ def pow_func(x,n):
 
 
 # 78. Construct Binary Tree from Inorder and Postorder Traversal
-def contruct_bt_ip():
-    pass
+def contruct_bt_ip(preorder, inorder):
+    if len(inorder) == 0:
+        return None
+
+    root = treeNode(preorder.pop(0))
+    root_index = inorder.index(root.data)
+    root.left = construct_bt_ip(preorder, inorder[:root_index])
+    root.right = construct_bt_ip(preorder, inorder[root_index+1:])
+    return root
 
 # 79.Letter Combination of a Phone Number
-def phone_num():
-    pass
+# Easy piece
+def phone_num(digits):
+    digit_map = {
+        '2': 'abc',
+        '3': 'def',
+        '4': 'ghi',
+        '5': 'jkl',
+        '6': 'mno',
+        '7': 'pqrs',
+        '8': 'tuv',
+        '9': 'wxyz',}
+    ret = []
+    def phone_num_helper(i, digits, result):
+        if i == len(digits):
+            ret.append(result[:])
+            return
+        for char in digit_map[digits[i]]:
+            result.append(char)
+            phone_num_helper(i+1, digits, result)
+            result.pop()
+    phone_num_helper(0,digits,[])
+    return ret
 
 # 80. FUCK this is empty
 
 # 81. Construct Binary Tree from Preorder and Inorder Traversal
-def contruct_bt_pi():
+# Should be correct. This is almost the same to 78
+def contruct_bt_pi(postorder, inorder):
+    if len(inorder) == 0:
+        return None
+    root = treeNode(postorder.pop())
+    root_index = inorder.index(root.data)
+    root.left = construct_bt_pi(postorder, inorder[:root_index])
+    root.right = construct_bt_pi(postorder, inorder[root_index+1:])
+    return root
+
+# 82. Palindrome Partitioning
+# Not 100% sure it's correct, but will discuss it later
+def palin_parti(string):
+    ret = []
+
+    def palin_parti_helper(s, result):
+        if not s:
+            ret.append(result[:])
+        else:
+            for i in range(len(s)):
+                if is_palindrome(s[:i+1]):
+                    result.append(s[:i+1])
+                    palin_parti_helper(s[i+1:], result)
+                    result.pop()
+    def is_palindrome(s):
+        start = 0
+        end = len(s) -1
+        while start < end:
+            if s[start] != s[end]:
+                return False
+            start += 1
+            end -= 1
+        return True
+
+# 83. Reverse Linked List II
+def reverse_list_ii():
+    pass
+
+# 84. N-Queens
+# There's also n queens ii
+def n_queens():
+    pass
+
+# 85. Validate Binary Search Tree
+def valid_bst():
+    pass
+
+# 86. Add Binary
+def add_binary():
+    pass
+
+# 87. Next Permutation:
+def next_perm():
+    pass
+
+# 88. Permutations II
+def permutations_ii():
+    pass
+
+# 89. Remove Duplicates from Sorted List II
+def remove_dup_from_list_ii():
+    pass
+
+# 90. Insertion Sort List
+def insert_sort_list():
     pass
 
 
