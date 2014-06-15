@@ -1430,20 +1430,93 @@ def convert_to_bst(head):
 
 
 # 71. Count and Say
-def count_n_say():
-    pass
+# Will use the num as itself here. So easy
+def count_n_say(string):
+    result = ''
+    prev = string[0]
+    count = 1
+    for char in string[1:]:
+        if char == prev:
+            count += 1
+        else:
+            result += str(count) + ' ' + prev
+            if count > 1:
+                result += 's '
+            else:
+                result += ' '
+            prev = char
+            count = 1
+    result += str(count) + ' ' + prev
+    if count > 1:
+        result += 's'
+    return result
 
 # 72. Triangle
-def triangle():
-    pass
+# way to thinking is too diao
+def triangle(triangle):
+    if triangle is None:
+        return 0
+    for i in range(len(triangle) - 2, -1, -1):
+        for j, value in enumerate(triangle[i]):
+            triangle[i][j] = triangle[i][j] + min(triangle[i+1][j], triangle[i+1][j+1])
+    return triangle[0][0]
 
 # 73. Unique Binary Search
-def unique_bs():
-    pass
+# Remember it's multiply but not plus
+# Wrong one, this is unique bst i, but not ii
+def unique_bs(list):
+    if len(list) <= 2:
+        return len(list)
+    result = 0
+    for i, num in enumerate(list):
+        result += unique_bs(list[:i]) * unique_bs(list[i+1:])
+    return result
+
+# Need to write this again
+def unique_bs_ii(n):
+    a = range(1, n + 1)
+    return unique_bs_ii_helper(a)
+
+def unique_bs_ii_helper(a):
+    if not a:
+        return [None]
+    else:
+        res = []
+        for i, c in enumerate(a):
+            left = unique_bs_ii_helper(a[:i])
+            right = unique_bs_ii_helper(a[i + 1:])
+            for l in left:
+                for r in right:
+                    root = TreeNode(c)
+                    root.left = l
+                    root.right = r
+                    res.append(root)
+        return res
 
 # 74. Binary Tree Zigzag Level Order Traversal
-def zizag_traversal():
-    pass
+def zizag_traversal(root):
+    result = [[root]]
+    prev = deque(root)
+    normal_order = False
+    current = deque()
+    while len(prev) > 0
+        while len(prev) > 0:
+            node = prev.pop()
+            if normal_order:
+                if node.left is not None:
+                    current.append(node.left)
+                if node.right is not None:
+                    current.append(node.right)
+            else:
+                if node.right is not None:
+                    current.append(node.right)
+                if node.left is not None:
+                    current.append(node.left)
+        if len(current) > 0:
+            result.append(current)
+        prev = current
+        normal_order = not normal_order
+    return result
 
 # 75. Partition List
 def partition_list():
