@@ -1738,8 +1738,27 @@ def valid_bst_helper(node, min, max):
 
 
 # 86. Add Binary
+# Pad with zeros
 def add_binary(a, b):
-
+    int_a = [ int(i) for i in a]
+    int_b = [ int(i) for i in b]
+    carry = 0
+    result = []
+    la = len(int_a)
+    lb = len(int_b)
+    if la > lb:
+        int_b = [0 for i in range(la-lb)] + int_b
+        lb = len(int_b)
+    else:
+        int_a = [0 for i in range(lb-la)] + int_a
+        la = len(int_a)
+    for i in range(1, la+1):
+        curr_bit = (int_a[-i] + int_b[-i] + carry) % 2
+        carry = (int_a[-i] + int_b[-i] + carry) / 2
+        result.insert(0, str(curr_bit))
+    if carry == 1:
+        result.insert(0, '1')
+    return ''.join(result)
 
 # 87. Next Permutation:
 def next_perm():
