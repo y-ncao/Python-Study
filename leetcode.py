@@ -1652,13 +1652,63 @@ def palin_parti(string):
         return True
 
 # 83. Reverse Linked List II
-def reverse_list_ii():
-    pass
+# Really don't want to think about it right now
+def reverse_list_ii(head, m, n):
+    i = 1
+    while head is not None and i <= n:
+        if i < m-1:
+            head = head.next
+            i += 1
+        elif i == m-1:
+            start_tail = head
+            reverse_end = head.next
+            prev = None
+            head = head.next
+            i += 1
+        elif i >=m and i <n:
+            next = head.next
+            head.next = prev
+            prev = head
+            head = next
+            i += 1
+        elif i == n:
+            start_tail.next = reverse_head
+            reverse_end.next = head.next
 
 # 84. N-Queens
 # There's also n queens ii
-def n_queens():
+# I think this is correct, but need deep validation
+def n_queens_ii(n):
+    result = ['.' for i in range(8)]
+    ret = []
+
+    def n_queens_helper_ii(i, result, queens):
+        if queens == 0:
+            ret.append(result[:])
+        for j in range(8):
+            result[i] = j
+            if is_valid_result(result):
+                n_queens_helper(i+1, result, queens-1)
+            result[i] = '.'
+
+    def is_valid_result(result):
+        for i in range(8):
+            if result[i] != '.':
+                for j in range(i:8):
+                    if result[j] != '.':
+                        if result[i] == result[j] or abs(result[i]-result[j]) == abs(i-j):
+                            return False
+        return True
+
+    n_queens_helper_ii(0, result, n)
+    return ret
+
+def n_queens(n):
     pass
+
+
+
+
 
 # 85. Validate Binary Search Tree
 def valid_bst():
