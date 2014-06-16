@@ -1678,45 +1678,68 @@ def reverse_list_ii(head, m, n):
 # 84. N-Queens
 # There's also n queens ii
 # I think this is correct, but need deep validation
-def n_queens_ii(n):
+# valid check isn't efficient
+def n_queens(n):
     result = ['.' for i in range(8)]
     ret = []
 
-    def n_queens_helper_ii(i, result, queens):
+    def n_queens_helper(i, result, queens):
         if queens == 0:
             ret.append(result[:])
         for j in range(8):
             result[i] = j
-            if is_valid_result(result):
+            if is_valid_result(result, i):
                 n_queens_helper(i+1, result, queens-1)
             result[i] = '.'
 
-    def is_valid_result(result):
-        for i in range(8):
-            if result[i] != '.':
-                for j in range(i:8):
-                    if result[j] != '.':
-                        if result[i] == result[j] or abs(result[i]-result[j]) == abs(i-j):
-                            return False
+    def is_valid_result(result, i):
+        for j in range(i):
+            if result[i] == result[j] or abs(result[i]-result[j]) == abs(i-j):
+                return False
         return True
 
-    n_queens_helper_ii(0, result, n)
+    n_queens_helper(0, result, n)
     return ret
 
-def n_queens(n):
-    pass
+def n_queens_ii(n):
+    result = ['.' for i in range(8)]
+    ret = 0
 
+    def n_queens_helper(i, result, queens):
+        if queens == 0:
+            ret += 1
+        for j in range(8):
+            result[i] = j
+            if is_valid_result(result, i):
+                n_queens_helper(i+1, result, queens-1)
+            result[i] = '.'
 
+    def is_valid_result(result, i):
+        for j in range(i):
+            if result[i] == result[j] or abs(result[i]-result[j]) == abs(i-j):
+                return False
+        return True
 
-
+    n_queens_helper(0, result, n)
+    return ret
+# Don't know what's the diff, just return a num += 1
 
 # 85. Validate Binary Search Tree
-def valid_bst():
-    pass
+# Best way to do this in recursion
+def valid_bst(root):
+    return valid_bst_helper(root, INT_MIN, INT_MAX)
+
+def valid_bst_helper(node, min, max):
+    if node is None:
+        return True
+    if node.data <= min or node.data >= max:
+        return False
+    return valid_bst_helper(node.left, min, node.data) and valid_bst_helper(node.right, node.data, max)
+
 
 # 86. Add Binary
-def add_binary():
-    pass
+def add_binary(a, b):
+
 
 # 87. Next Permutation:
 def next_perm():
