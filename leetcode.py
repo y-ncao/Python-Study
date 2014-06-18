@@ -1761,16 +1761,52 @@ def add_binary(a, b):
     return ''.join(result)
 
 # 87. Next Permutation:
-def next_perm():
-    pass
+def next_perm(list):
+    l = len(list)
+    for i in range(1, l):
+        for j in range(i+1, l+1):
+            if list[-i] > list[-j]:
+                tmp = list[-i]
+                list[-i] = list[-j]
+                list[-j] = tmp
+                return list
+    return list[::-1]
 
 # 88. Permutations II
-def permutations_ii():
-    pass
+# First redo the permutation_i
+# Pay attention to this!!!! len(a) == 0 != a is None
+def perm_i(list):
+    if len(list) == 0:
+        return [[]]
+    res = []
+    for i, e in enumerate(list):
+        rest = list[:i] + list[i+1:]
+        rest_perm = perm_i(rest)
+        for perm in rest_perm:
+            res.append( [e,] + perm)
+    return res
+# Will think about this later. But initial thought is wrong! shit
+def permutations_ii(list):
+    if len(list) == 0:
+        return [[]]
 
 # 89. Remove Duplicates from Sorted List II
-def remove_dup_from_list_ii():
-    pass
+def remove_dup_from_list_ii(head):
+    prev = head
+    current = head.next
+    unique_head = None
+    last = None
+    while current is not None:
+        if prev.data != current.data:
+            if unique_head is None:
+                unique_head = prev
+                last = unique_head
+            if last.data != prev.
+            prev = current
+            current = current.next
+        else:
+
+
 
 # 90. Insertion Sort List
 def insert_sort_list():
