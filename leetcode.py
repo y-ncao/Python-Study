@@ -1853,6 +1853,50 @@ def insert(dummy, tail, node):
     node.next = current.next
     current.next = node
 
+# 91. Edit Distance
+def edit_distance():
+    pass
+
+# 92. Reverse Nodes in k-Group
+def reverse_nodes_in_k():
+    pass
+
+# 93. Gas Station
+def gas_station():
+    pass
+
+# 94. Combination Sum II
+def comb_sum_ii():
+    pass
+
+# 95. Distinct Subsequences
+def distinct_subs():
+    pass
+
+# 96. Jump Game II
+def jump_game_ii():
+    pass
+
+# 97. Merge k Sorted Lists
+def merge_k_sorted_lists():
+    pass
+
+# 98. Zigzag Conversion
+def zigzag_convert():
+    pass
+
+# 99. Anagrams
+def anagrams():
+    pass
+
+# 100. Add Two Numbers
+def add_two_num():
+    pass
+
+# 101. Longest Substring Without Repeating Characters
+def longest_substring():
+    pass
+
 
 if __name__ == '__main__':
     #num_list = [1,2,3,4,5,6,7,8,9,10,2,3,4,5,6,7,8,9,10]
