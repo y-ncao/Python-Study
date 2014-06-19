@@ -1791,22 +1791,30 @@ def permutations_ii(list):
         return [[]]
 
 # 89. Remove Duplicates from Sorted List II
+# So many traps. Need to remember to set unused.next = None
 def remove_dup_from_list_ii(head):
     prev = head
     current = head.next
     unique_head = None
     last = None
     while current is not None:
-        if prev.data != current.data:
+        if prev.data == current.data:
+            while current is not None and current.data == prev.data:
+                current = current.next
+            if current is not None:
+                prev = current
+                current = current.next
+        else:
             if unique_head is None:
                 unique_head = prev
-                last = unique_head
-            if last.data != prev.
+                last = prev
+            else:
+                last.next = prev
+                last = last.next
+                last.next = None
             prev = current
             current = current.next
-        else:
-
-
+    return unique_head
 
 # 90. Insertion Sort List
 def insert_sort_list():
