@@ -1834,6 +1834,7 @@ def remove_dup_from_list_ii(head):
 
 # 90. Insertion Sort List
 # Sister is too niubi
+# Inpired by the dummy here
 def insertion_sort_list(head):
     dummy = Node(0)
     dummy.next = head
@@ -1878,8 +1879,22 @@ def jump_game_ii():
     pass
 
 # 97. Merge k Sorted Lists
-def merge_k_sorted_lists():
-    pass
+def merge_k_sorted_lists(lists):
+    dummy = Node(0)
+    current = dummy
+    q = PriorityQueue()
+    for head in lists:
+        if head is not None:
+            q.push(head)
+    while len(q) > 0:
+        node = q.top()
+        current = current.next = node
+        if node.next is not None:
+            q.push(node.next)
+
+    return dummy.next
+def find_min(queue):
+
 
 # 98. Zigzag Conversion
 def zigzag_convert():
