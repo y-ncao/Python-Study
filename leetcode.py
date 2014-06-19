@@ -1775,6 +1775,7 @@ def next_perm(list):
 # 88. Permutations II
 # First redo the permutation_i
 # Pay attention to this!!!! len(a) == 0 != a is None
+
 def perm_i(list):
     if len(list) == 0:
         return [[]]
@@ -1785,10 +1786,25 @@ def perm_i(list):
         for perm in rest_perm:
             res.append( [e,] + perm)
     return res
-# Will think about this later. But initial thought is wrong! shit
+
+# Nothing much diff. But use a dict to note which ones are used
 def permutations_ii(list):
-    if len(list) == 0:
-        return [[]]
+    d = {}
+    def perm_ii(list):
+        if len(list) == 0:
+            return [[]]
+        res = []
+        for i, e in enumerate(list):
+            if e in d:
+                continue
+            else:
+                d[e] = True
+            rest = list[:i] + list[i+1:]
+            rest_perm = perm_i(rest)
+            for perm in rest_perm:
+                res.append( [e,] + perm)
+        return res
+    return perm_ii(list)
 
 # 89. Remove Duplicates from Sorted List II
 # So many traps. Need to remember to set unused.next = None
@@ -1817,8 +1833,25 @@ def remove_dup_from_list_ii(head):
     return unique_head
 
 # 90. Insertion Sort List
-def insert_sort_list():
-    pass
+# Sister is too niubi
+def insertion_sort_list(head):
+    dummy = Node(0)
+    dummy.next = head
+    current = head
+    while current.next is not None:
+        if current.next.data >= current.data:
+            current = current.next
+        else:
+            insert(dummy, current, current.next)
+    return dummy.next
+
+def insert(dummy, tail, node):
+    current = dummy
+    while node.data > current.nextdata:
+        current = current.next
+    tail.next = node.next
+    node.next = current.next
+    current.next = node
 
 
 if __name__ == '__main__':
