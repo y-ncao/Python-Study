@@ -1855,16 +1855,47 @@ def insert(dummy, tail, node):
     current.next = node
 
 # 91. Edit Distance
-def edit_distance():
-    pass
+# Same to the C anwser, need to understand the meaning of M, N, also the boundary
+def edit_distance(word1, word2):
+    M = len(word1)
+    N = len(word2)
+    dp= [ [None for i in range(M+1)] for j in range(N+1)]
+    for j in range(N+1):
+        dp[j][0] = j
+    for i in range(M+1):
+        dp[0][i] = i
+    for j in range(1, N+1):
+        for i in range(1, M+1):
+            if word1[i-1] == word2[j-1]:
+                dp[j][i] = dp[j-1][i-1]
+            else:
+                dp[j][i] = min(dp[j-1][i], dp[j][i-1], dp[j-1][i-1]) + 1
+    return dp[N][M]
 
 # 92. Reverse Nodes in k-Group
 def reverse_nodes_in_k():
     pass
 
 # 93. Gas Station
-def gas_station():
-    pass
+# Couldn't understand
+def gas_station(gas,cost):
+    N = len(gas)
+    diff = []
+    for i in range(N):
+        diff.append(gas[i]-cost[i])
+    sum = 0
+    startnode = 0
+    left_gas = 0
+    for i in range(0, N):
+        left_gas += diff[i]
+        sum += diff[i]
+        if sum < 0:
+            start_node = i+1
+            sum = 0
+    if left_gas < 0:
+        return -1
+    else:
+        return start_node
 
 # 94. Combination Sum II
 def comb_sum_ii():
@@ -1893,14 +1924,27 @@ def merge_k_sorted_lists(lists):
             q.push(node.next)
 
     return dummy.next
-def find_min(queue):
-
 
 # 98. Zigzag Conversion
-def zigzag_convert():
-    pass
+def zigzag_convert(str, n):
+    interval = n - 2
+    height = n
+    result = []
+    up = True
+    i = 0
+    status_next = {1:2, 2:3, 3:4, 4:1}
+    status = 1
+    while i < len(str):
+        if status == 1:
+            result.append(str[i:i+n])
+            status = status_next[status]
+        elif status == 2:
+            tmp = [ [ '.' for i in n] for j in interval]
+
+
 
 # 99. Anagrams
+# Main Idea is to sort and then check each one's letters
 def anagrams():
     pass
 
