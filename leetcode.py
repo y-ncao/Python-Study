@@ -1268,6 +1268,16 @@ def unique_path_ii():
     pass
 
 # 63. Jump Game
+# Better way to do this, think as a dp
+def jump_game(jump_list):
+    N = len(jump_list)
+    start = 0
+    max_cover = 0
+    while start <= max_cover and max_cover < N-1:
+        max_cover = max(start+jump_list[start], max_cover)
+        start += 1
+    return max_cover >= N-1
+
 # So many boundary problem
 def jump_game(jump_list):
     length = len(jump_list)
@@ -1563,6 +1573,7 @@ def comb_sum(list, target):
 
 # Combination Sum II
 # No duplicate item should be used, what I see diff is list[i:] or list[i+1:], needs to be tested
+# Bei Ni Ya Cai Dui le
 
 # 77. Pow(x,n)
 # WTF is this???
@@ -1873,8 +1884,32 @@ def edit_distance(word1, word2):
     return dp[N][M]
 
 # 92. Reverse Nodes in k-Group
-def reverse_nodes_in_k():
-    pass
+# Remember the way to play the list node
+def reverse_nodes_in_k(head, k):
+    dummy = Node(0)
+    dummy.next = head
+    length = get_len(head)
+    reverse_time = lenght / k
+    ins = dummy
+    current = head
+    while reverse_time > 0:
+        for i in range(k-1):
+            move = current.next
+            current.next = move.next
+            move.next = current
+            ins.next = move
+        ins = current
+        current = current.next
+        reverse_time -= 1
+    return dummy.next
+
+def get_len(head):
+    len = 0
+    while head is not None:
+        head = head.next
+        len += 1
+    return len
+
 
 # 93. Gas Station
 # Couldn't understand
@@ -1898,16 +1933,74 @@ def gas_station(gas,cost):
         return start_node
 
 # 94. Combination Sum II
-def comb_sum_ii():
-    pass
+# Fucking moji
+def comb_sum_ii(list, target):
+    ret = []
+    N = len(list)
+    sorted(list)
+    def comb_sum_helper(i, target, result):
+        if target < 0:
+            return
+        elif target == 0:
+            ret.append(result[:])
+        for j in range(i,N):
+            if j<N-1 and list[j+1] == list[j]:
+                continue
+            result.append(list[j])
+            comb_sum_helper(j+1, target-list[j], result)
+            result.pop()
+    comb_sum_helper(0, target, [])
+    return ret
 
 # 95. Distinct Subsequences
-def distinct_subs():
-    pass
+# Need a better understanding in DP
+def distinct_subs(S, T):
+    len(S) = M
+    len(T) = N
+    dp = [ [0 for i in range(M+1)] for j in range(N+1)]
+    dp[0][0] = 1
+    for j in range(N+1):
+        dp[j][0] = 1
+    for i in range(M+1):
+        dp[0][j] = 1
+    for i in range(1, M+1):
+        for j in range(1, N+1):
+            if S[j-1] == T[i-1]:
+                dp[i][j] = dp[i][j-1] + dp[i-1][j-1]
+            else:
+                dp[i][j] = dp[i][j-1]
+    return dp[M][Nx]
+
+
+
+# Why not this?
+def distinct_subs(S, T):
+    result = 0
+    def distinct_helper(T):
+        if len(T) == 0:
+            return
+        if T in S:
+            result += 1
+        for i, char in enumerate(T):
+            distinct_helper(T[:i]+T[i+1:])
+    return distinct_helper(T)
 
 # 96. Jump Game II
-def jump_game_ii():
-    pass
+# Using a dp way, but there's simpler way without dp
+def jump_game_ii(jump_list):
+    start = 0
+    N = len(jump_list)
+    step = [100 for i in range(N)]
+    step[0] = 1
+    while start < N:
+        for i in range(start+1, start + jump_list[start]+1):
+            if start + jump_list[start]+1:
+                return step[start] + 1
+            if i >= N-1:
+                return 'Will not reach end'
+            step[i] = min(step[i], step[start]+1)
+        start += 1
+    return step[N-1]
 
 # 97. Merge k Sorted Lists
 def merge_k_sorted_lists(lists):
