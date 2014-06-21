@@ -2171,15 +2171,39 @@ def recover_bst_helper(root, Node1, Node2, prev):
 
 
 # 103. Copy List with Random Pointer
-def copy_list():
-    pass
+def copy_list(head):
+    res = []
+    stack = [head]
+    while len(stack) > 0:
+        node = stack.pop()
+        if node.next is not None and node.next not in res:
+            res.append(node.next)
+            stack.append(node.next)
+        if node.random is not None and node.random not in res:
+            res.append(node.random)
+            stack.append(node.random)
+    return res
+
 
 # 104. Best Time to Buy and Sell Stock III
 # see 33
 
 # 105. Valid Palindrome
-def valid_palin():
-    pass
+# Too dan teng
+def valid_palin(str):
+    start = 0
+    end = len(str) - 1
+    while start < end:
+        while start < end and not str[start].isalnum():
+            start += 1
+        while start < end and not str[end].isalnum():
+            end -= 1
+        if str[start] != str[end]:
+            return False
+        start += 1
+        end -= 1
+    return True
+
 
 # 106. First Missing Positive
 def first_missing_poisitve():
