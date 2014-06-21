@@ -1926,20 +1926,44 @@ def merge_k_sorted_lists(lists):
     return dummy.next
 
 # 98. Zigzag Conversion
+# Best result. Remember it's if if if but not if elif ...
 def zigzag_convert(str, n):
-    interval = n - 2
-    height = n
     result = []
-    up = True
-    i = 0
-    status_next = {1:2, 2:3, 3:4, 4:1}
-    status = 1
-    while i < len(str):
-        if status == 1:
-            result.append(str[i:i+n])
-            status = status_next[status]
-        elif status == 2:
-            tmp = [ [ '.' for i in n] for j in interval]
+    zig = 2*n - 2
+    N = len(str)
+    for i in range(n):
+        j = 0
+        while True:
+            if i > 0 and i < n-1 and j-i > 0 and j-i < N:
+                result.append(str[j-i])
+            if j+1 >0 and j+i < N:
+                result.append(str[j+i])
+            if j+i > N:
+                break
+            j += zig
+    return ''.join(result)
+
+# my stupid way
+def zigzag_convert(str, n):
+    result = []
+    zig = 2*n - 2
+    N = len(str)
+    for i in range(n):
+        j = 0
+        red_index = 0
+        while red_index < N:
+            red_index = j*zig + i
+            if red_index < N:
+                result.append(str[red_index])
+                j += 1
+            else:
+                break
+            if i == 0 or i == n-1:
+                continue
+            green_index = j*zig - i
+            if green_index > 0 and green_index < N:
+                result.append(str[green_index])
+    return ''.join(result)
 
 
 
