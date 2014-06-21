@@ -2133,8 +2133,19 @@ def add_two_num(l1, l2):
     return dummy.next
 
 # 101. Longest Substring Without Repeating Characters
-def longest_substring():
-    pass
+def longest_substring(str):
+    d = {}
+    max_len = 0
+    current = 0
+    for i, c in enumerate(str):
+        if c not in d:
+            d[c] = True
+            current += 1
+            max_len = max(current, max_len)
+        else:
+            d = { c : True }
+            current = 1
+    return max_len
 
 # 102. Recover Binary Search Tree
 def recover_bst():
