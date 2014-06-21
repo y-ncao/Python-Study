@@ -1975,9 +1975,54 @@ def anagrams(list):
     for key in d:
         if len(d[key]) > 1:
             return d[key]
+
 # 100. Add Two Numbers
-def add_two_num():
-    pass
+# Slim version
+def add_two_num(l1, l2):
+    carry = 0
+    dummy = Node(0)
+    current = dummy
+    while l1 is not None or l2 is not None or carry != 0:
+        sum = carry
+        if l1 is not None:
+            sum += l1.data
+            l1 = l1.next
+        if l2 is not None:
+            sum += l2.data
+            l2 = l2.next
+        carry = sum / 10
+        sum = sum % 10
+        current.next = Node(sum)
+        currnet = current.next
+    return dummy.next
+
+# dummy version
+def add_two_num(l1, l2):
+    carry = 0
+    dummy = Node(0)
+    current = dummy
+    while True:
+        if l1 is not None and l2 is not None:
+            digit = (l1.data + l2.data + carry) % 10
+            carry = (l1.data + l2.data + carry) / 10
+            l1 = l1.next
+            l2 = l2.next
+        elif l1 is None:
+            digit = (l2.data+carry) % 10
+            carry = (l2.data+carry) / 10
+            l2 = l2.next
+        elif l2 is None:
+            digit = (l1.data+carry) % 10
+            carry = (l1.data+carry) / 10
+            l1 = l1.next
+        elif carry != 0:
+            digit = carry
+            carry = 0
+        else:
+            break
+        current.next = Node(digit)
+        current = current.next
+    return dummy.next
 
 # 101. Longest Substring Without Repeating Characters
 def longest_substring():
