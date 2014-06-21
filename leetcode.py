@@ -2148,8 +2148,27 @@ def longest_substring(str):
     return max_len
 
 # 102. Recover Binary Search Tree
-def recover_bst():
-    pass
+# Way to think it
+def recover_best(root):
+    Node1 = None
+    Node2 = None
+    prev = None
+    recover_bst_helper(root, Node1, Node2, prev)
+    swap(Node1, Node2)
+    return root
+
+def recover_bst_helper(root, Node1, Node2, prev):
+    if root is None:
+        return
+    recover_bst(root.left, Node1, Node2, prev)
+    if prev is not None and current.data < prev.data:
+        if Node1 is None:
+            Node1 = prev
+        else:
+            Node2 = current
+    prev = current
+    recover_bst_helper(root.right, Node1, Node2, prev)
+
 
 # 103. Copy List with Random Pointer
 def copy_list():
