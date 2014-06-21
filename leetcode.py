@@ -1965,13 +1965,16 @@ def zigzag_convert(str, n):
                 result.append(str[green_index])
     return ''.join(result)
 
-
-
 # 99. Anagrams
 # Main Idea is to sort and then check each one's letters
-def anagrams():
-    pass
-
+def anagrams(list):
+    d = {}
+    for s in list:
+        key = ''.join(sorted(s))
+        d.setdefault(key,[]).append(s)
+    for key in d:
+        if len(d[key]) > 1:
+            return d[key]
 # 100. Add Two Numbers
 def add_two_num():
     pass
