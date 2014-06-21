@@ -2136,6 +2136,61 @@ def add_two_num(l1, l2):
 def longest_substring():
     pass
 
+# 102. Recover Binary Search Tree
+def recover_bst():
+    pass
+
+# 103. Copy List with Random Pointer
+def copy_list():
+    pass
+
+# 104. Best Time to Buy and Sell Stock III
+# see 33
+
+# 105. Valid Palindrome
+def valid_palin():
+    pass
+
+# 106. First Missing Positive
+def first_missing_poisitve():
+    pass
+
+# 107. Rotate List
+def rotate_list():
+    pass
+
+# 108. Scramble String
+def scramble_str():
+    pass
+
+# 109. 4Sum
+def four_sum():
+    pass
+
+# 110. Sqrt(x)
+def sqrt(x):
+    pass
+
+# 111. Permutation Sequence
+def perm_seq():
+    pass
+
+# 112. Clone Graph
+def clone_graph():
+    pass
+
+# 113. Maximal Rectangle
+def max_rec():
+    pass
+
+# 114. Implement strStr()
+def strStr():
+    pass
+
+# 115. Longest Palindromic Substring
+def longest_palin_str():
+    pass
+
 
 if __name__ == '__main__':
     #num_list = [1,2,3,4,5,6,7,8,9,10,2,3,4,5,6,7,8,9,10]
