@@ -1993,14 +1993,29 @@ def jump_game_ii(jump_list):
     step = [100 for i in range(N)]
     step[0] = 1
     while start < N:
-        for i in range(start+1, start + jump_list[start]+1):
-            if start + jump_list[start]+1:
+        if start + jump_list[start]+1:
                 return step[start] + 1
+        for i in range(start+1, start + jump_list[start]+1):
             if i >= N-1:
                 return 'Will not reach end'
             step[i] = min(step[i], step[start]+1)
         start += 1
     return step[N-1]
+
+# Greedy algorithm. Almost the same. But dp is easier to think but with a O(n) list
+def jump_game_ii(jump_list):
+    N = len(jump_list)
+    start =0
+    res = 0
+    while start < N-1:
+        res += 1
+        mx = start
+        if start + jump_list[start] >= N-1:
+            return res
+        for i in range(start+1, start+jump_list[start]+1):
+            if i + jump_list[i] > mx + jump_list[mx]:
+                mx = i
+        start = mx
 
 # 97. Merge k Sorted Lists
 def merge_k_sorted_lists(lists):
