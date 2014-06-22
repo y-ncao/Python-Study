@@ -2206,20 +2206,79 @@ def valid_palin(str):
 
 
 # 106. First Missing Positive
-def first_missing_poisitve():
-    pass
+def first_missing_poisitve(num_list):
+    start = 0
+    end = len(num_list) - 1
+    while start < end:
+        if num_list!=
+
 
 # 107. Rotate List
-def rotate_list():
-    pass
+def rotate_list(head, k):
+    dummy = Node(0)
+    fast = head
+    for i in range(k):
+        fast = fast.next
+    slow = head
+    while fast.next is not None:
+        fast = fast.next
+        slow = slow.next
+    fast.next = dummy.next
+    dummy.next = slow.next
+    slow.next = None
+    return dummy.next
 
 # 108. Scramble String
-def scramble_str():
-    pass
+def scramble_str(s1, s2):
+    if len(s1) != len(s2):
+        return False
+    return sramble(s1, s2)
+
+def scramble(s1, s2):
+    if not has_same_letter(s1, s2):
+        return False
+    if len(s1) == 0 or len(s1) == 1:
+        return True
+    for i in range(len(s1)+1):
+        if scramble(s1[:i], s2[:i]) and scramble(s1[i:], s2[i:]) or scramble(s1[:i], s2[i:]) and scramble(s1[i:], s2[:i]):
+            return True
+    return False
+
+def has_same_letter(s1, s2):
+    d = {}
+    for char in s1:
+        if char in d:
+            d[char] += 1
+        else:
+            d[char] = 1
+    for char in s2:
+        if char not in d:
+            return False
+        if d[char] == 1:
+            d.pop(char,None)
+    if len(d) > 0 :
+        return Fasle
+    else:
+        return True
 
 # 109. 4Sum
-def four_sum():
-    pass
+def four_sum(s, target):
+    ret = []
+    if len(s) < 4:
+        return
+    four_sum_helper(s, target, [], ret)
+    return ret
+
+def four_sum_helper(s, target, res, ret):
+    if target == 0 and len(res) == 4:
+        ret.append(res[:])
+        return
+    elif len(res) == 4 or len(s) < 4-len(res):
+        return
+    for i, num in enumerate(s):
+        res.append(num)
+        four_sum_helper(s[i+1:], target-num, res, ret)
+        res.pop()
 
 # 110. Sqrt(x)
 def sqrt(x):
