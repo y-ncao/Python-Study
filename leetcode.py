@@ -2315,22 +2315,28 @@ def perm_seq(n, k):
 # Used for testing
 # print 'Start: n = ', n,', i = ', i, ', k = ', k,', total = ', total, ', res = ', res, ', num = ', num
 # print 'n = ', n,', i = ', i, ', k = ', k,', total = ', total, ', res = ', res, ', num = ', num
-# 112. Clone Graph
-def clone_graph(node):
-    from collections import deque
-    queue = deque(node)
-    map_dic = {}
-    while len(deque) > 0:
-        node = queue.pop()
-        if node in map_dict:
-            continue
-        map_dict[node] = 'Visited'
 
-        new_node = GraphNode(node.label)
-        new_node.neighbors = []
-        for neighbor in node.neighbors:
-            queue.append(neighbor)
-            new_node.neighbors.append(GraphNode(neighbor.label))
+# 112. Clone Graph
+# Don't know why didn't pass
+def cloneGraph(self, node):
+    if node is None:
+        return None
+    from collections import deque
+    # Use oldNode as the oldGraph, newNode as the newGraph. Use tuple (oldNode, newNode) to store relation
+    newNodeHead = UndirectedGraphNode(node.label)
+    queue = deque((node,newNodeHead))
+    map_dict = {}
+    while len(deque) > 0:
+        oldNode,newNode = queue.pop()
+        if oldNode in map_dict:
+            continue
+        map_dict[oldNode] = 'Visited'
+        newNode.neighbors = []
+        for oldNeighbor in oldNode.neighbors:
+            newNeighbor = UndirectedGraphNode(oldNeighbor.label)
+            queue.append((oldNeighbor, newNeighbor))
+            newNode.neighbors.append(newNeighbor)
+    return newNodeHead
 
 # 113. Maximal Rectangle
 def max_rec():
