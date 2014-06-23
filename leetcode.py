@@ -2287,7 +2287,15 @@ def sqrt(x):
     return (start+end) / 2
 
 # 111. Permutation Sequence
-# Still a bit hard to understand
+# Way to think:
+# 1 2 3      Group them by first digit 1, 2, 3,
+# 1 3 2      Will see that (n-1)! is the permutation times of n-1 digits.
+# 2 1 3      k / (n-1)! is the bucket that n digit in, which is the sequence of available nums[].
+# 2 3 1      Or that is to say, it is the (n-1)! permuation times we loop through the nums
+# 3 1 2      So every time we get a num from nums, we need to pop it.
+# 3 2 1      nums[] has two important attributes:
+#            1. means the available nums we have. 2. Sequence, the order of the nums.
+#            So we can change the nums to whatever we want, or even use reverse order.
 def perm_seq(n, k):
     num = []
     res = ''
@@ -2297,7 +2305,6 @@ def perm_seq(n, k):
         total *= i
     k -= 1
     while n > 0:
-        print 'n = ', n,', i = ', i, ', k = ', k, ', res = ', res, ', num = ', num
         total /= n
         i = k / total
         k %= total
@@ -2305,10 +2312,25 @@ def perm_seq(n, k):
         num.pop(i)
         n -= 1
     return ''.join(res)
-
+# Used for testing
+# print 'Start: n = ', n,', i = ', i, ', k = ', k,', total = ', total, ', res = ', res, ', num = ', num
+# print 'n = ', n,', i = ', i, ', k = ', k,', total = ', total, ', res = ', res, ', num = ', num
 # 112. Clone Graph
-def clone_graph():
-    pass
+def clone_graph(node):
+    from collections import deque
+    queue = deque(node)
+    map_dic = {}
+    while len(deque) > 0:
+        node = queue.pop()
+        if node in map_dict:
+            continue
+        map_dict[node] = 'Visited'
+
+        new_node = GraphNode(node.label)
+        new_node.neighbors = []
+        for neighbor in node.neighbors:
+            queue.append(neighbor)
+            new_node.neighbors.append(GraphNode(neighbor.label))
 
 # 113. Maximal Rectangle
 def max_rec():
