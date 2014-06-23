@@ -1971,8 +1971,6 @@ def distinct_subs(S, T):
                 dp[i][j] = dp[i][j-1]
     return dp[M][Nx]
 
-
-
 # Why not this?
 def distinct_subs(S, T):
     result = 0
@@ -2171,18 +2169,9 @@ def recover_bst_helper(root, Node1, Node2, prev):
 
 
 # 103. Copy List with Random Pointer
+# Not correct
 def copy_list(head):
-    res = []
-    stack = [head]
-    while len(stack) > 0:
-        node = stack.pop()
-        if node.next is not None and node.next not in res:
-            res.append(node.next)
-            stack.append(node.next)
-        if node.random is not None and node.random not in res:
-            res.append(node.random)
-            stack.append(node.random)
-    return res
+    pass
 
 
 # 104. Best Time to Buy and Sell Stock III
@@ -2206,6 +2195,7 @@ def valid_palin(str):
 
 
 # 106. First Missing Positive
+# Not done yet
 def first_missing_poisitve(num_list):
     start = 0
     end = len(num_list) - 1
@@ -2282,11 +2272,39 @@ def four_sum_helper(s, target, res, ret):
 
 # 110. Sqrt(x)
 def sqrt(x):
-    pass
+    import sys
+    start = 0
+    end = int(sys.maxint ** 0.5) + 1    # Remember here need to force **0.5 as a integer. Also +1
+    while start <= end:                 # maybe for fully test
+        mid = (start+end) / 2
+        sqr = mid*mid
+        if sqr == x:
+            return mid
+        elif sqr < x:
+            start = mid+1
+        else:
+            end = mid -1
+    return (start+end) / 2
 
 # 111. Permutation Sequence
-def perm_seq():
-    pass
+# Still a bit hard to understand
+def perm_seq(n, k):
+    num = []
+    res = ''
+    total = 1
+    for i in range(1, n+1):
+        num.append(str(i))
+        total *= i
+    k -= 1
+    while n > 0:
+        print 'n = ', n,', i = ', i, ', k = ', k, ', res = ', res, ', num = ', num
+        total /= n
+        i = k / total
+        k %= total
+        res += num[i]
+        num.pop(i)
+        n -= 1
+    return ''.join(res)
 
 # 112. Clone Graph
 def clone_graph():
