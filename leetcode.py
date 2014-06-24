@@ -2327,7 +2327,7 @@ def cloneGraph(self, node):
     queue = deque((node,newNodeHead))
     map_dict = {}
     while len(deque) > 0:
-        oldNode,newNode = queue.pop()
+        oldNode,newNode = queue.popleft()
         if oldNode in map_dict:
             continue
         map_dict[oldNode] = 'Visited'
@@ -2343,8 +2343,43 @@ def max_rec():
     pass
 
 # 114. Implement strStr()
-def strStr():
-    pass
+def strstr(haystack, needle):
+    N = len(haystack)
+    H = len(needle)
+    while True:
+        startStack = 0
+        startNeedle = 0
+        while haystack[startStack] == needle[startNeedle] and startNeedle < H:
+            startStack += 1
+            startNeedle += 1
+        if startNeedle == H:
+            return haystack
+        if startStack == N:
+            return None
+    return None
+
+# KMP way
+def strStr(haystack, needle):
+    if len(needle) == 0:
+        return None
+    start = 0
+    H = len(haystack)
+    N = len(needle)
+    while True:
+        if H - start < N:
+            return None
+        if haystack[start] == needle[0]:
+            tmp_start = None
+            i = 1
+            while i < N and heystack[start+i] == needle[i]:
+                if tmp_start is None and heystack[start+i] == needle[0]:
+                    temp_start = start + i
+                i += 1
+            if i == N -1:
+                return haystack
+            if tmp_start is not None:
+                start = tmp_start - 1
+        start += 1
 
 # 115. Longest Palindromic Substring
 def longest_palin_str():
