@@ -2410,8 +2410,31 @@ def word_break():
     pass
 
 # 122. Restore IP Addresses
-def restore_ip():
-    pass
+def restore_ip(ip):
+    ret = []
+    restore_ip_helper(ret, [], ip)
+    return ret
+
+def restore_ip_helper(ret, res, rest_ip):
+    if len(res) == 4 and len(rest_ip) == 0:
+        ret.append(res[:])
+        return
+    if len(res) == 4:
+        return
+    # Ne need to check this? But this will truely save a lot
+    #N = len(res)
+    #if len(rest_ip) / 3 > 4-N:
+    #    return
+    for i in range(len(rest_ip)):       # This is so important, see this error
+        num = int(rest_ip[:i+1])        # num =  3 rest_ip =  35 res =  [255, 255, 111, 3] i =  0
+        if num == 0 or num > 255:       # num =  35 rest_ip =  35 res =  [255, 255, 111, 35] i =  1
+            break                       # num =  35 rest_ip =  35 res =  [255, 255, 111, 35] i =  2
+        res.append(num)
+
+        restore_ip_helper(ret, res, rest_ip[i+1:])
+        res.pop()
+# Used for debug print 'num = ', num, 'rest_ip = ', rest_ip, 'res = ', res, 'i = ', i
+
 
 # 123. Multiply Strings
 def mult_str():
