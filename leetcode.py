@@ -2385,6 +2385,46 @@ def strStr(haystack, needle):
 def longest_palin_str():
     pass
 
+# 116. Sudoku Solver
+def sudoku_sover():
+    pass
+
+# 117. Largest Rectangle in Histogram
+def lar_rec_histo():
+    pass
+
+# 118. Spiral Matrix
+def spiral_matrix():
+    pass
+
+# 119. Insert Interval
+def insert_interval():
+    pass
+
+# 120. Merge Interval
+def merge_interval():
+    pass
+
+# 121. Word Break
+def word_break():
+    pass
+
+# 122. Restore IP Addresses
+def restore_ip():
+    pass
+
+# 123. Multiply Strings
+def mult_str():
+    pass
+
+# 124. Sort List
+def sort_list():
+    pass
+
+# 125. Binary Tree Maximum Path Sum
+def bt_max_path_sum():
+    pass
+
 
 if __name__ == '__main__':
     #num_list = [1,2,3,4,5,6,7,8,9,10,2,3,4,5,6,7,8,9,10]
