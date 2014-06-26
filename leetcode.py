@@ -2380,7 +2380,7 @@ def strStr(haystack, needle):
             if tmp_start is not None:
                 start = tmp_start - 1
         start += 1
-
+# I'm going to kill this tonight
 # 115. Longest Palindromic Substring
 def longest_palin_str():
     pass
