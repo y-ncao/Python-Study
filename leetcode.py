@@ -2380,18 +2380,83 @@ def strStr(haystack, needle):
             if tmp_start is not None:
                 start = tmp_start - 1
         start += 1
-# I'm going to kill this tonight
+
 # 115. Longest Palindromic Substring
-def longest_palin_str():
-    pass
+# Check each point, has aba and abba two possibilities.
+# O(N2) time and O(1) space
+def longest_palin_str(s):
+    if len(s) == 0:
+        return 0
+    if len(s) == 1:
+        return 1
+    N = len(s)
+    longest = 1
+    for i in range(N-1):
+        string1 = expand_palin(s, i, i)
+        longest = max(longest, len(string1))
+        string2 = expand_palin(s, i, i+1)
+        longest = max(longest, len(string2))
+    return longest
+
+def expand_palin(s, l, r):
+    while l >= 0 and r <= len(s)-1 and s[l] == s[r]:
+        l -= 1
+        r += 1
+    return s[l+1:r]
+
 
 # 116. Sudoku Solver
-def sudoku_sover():
-    pass
+def sudoku_solver(board):
+    solver(board, 0, 0)
+
+def solver(board, row, col):
+    (crow, ccol) = getNextEmpty(board, row, col)
+    if (crow) == 9:
+        return True
+    available_num = getAvailable(board, crow, ccol)
+    for num in available_num:
+        board[crow][ccol] = num
+        if solver(board, crow, ccol):
+            return True
+    board[crow][ccol] = '.'
+    return False
+
+def getNextEmpty(board, row, col):
+    while row < 9 and board[row][col] != '.':
+        if col+1 == 9:
+            row = row + 1
+        col = (col+1) % 9               # No need to check the last one in the row
+    return (row, col)
+
+def getAvailable(board, row, col):
+    occupied = []
+    for i in range(9):
+        if board[row][i] != '.':
+            occupied.append(board[row][i])
+        if board[i][col] != '.':
+            occupied.append(board[i][col])
+        box_row = (row/3)*3 + i/3       # This is a awesome algorithm to generate 3 by 3 from 9
+        box_col = (col/3)*3 + i%3       # But it's the same to generate from box_row + range(3)
+        if board[box_row][box_col] != '.':
+                available.append(board[box_row][box_col])
+    return available
 
 # 117. Largest Rectangle in Histogram
-def lar_rec_histo():
-    pass
+# O(n2) way to do this
+def lar_rec_histo(histo):
+    N = len(histo)
+    maxV = 0
+    for i in range(N):
+        if i < N-1 and histo[i] < histo[i+1]:
+            continue
+        min_height = histo[i]
+        for j in range(i-1,-1,-1):
+            min_height = min(histo[j], min_height)
+            maxV = max( min_height * (i-j+1), maxV)
+    return maxV
+
+def lar_rec_histo(histo):
+
 
 # 118. Spiral Matrix
 def spiral_matrix():
