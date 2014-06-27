@@ -2495,8 +2495,30 @@ def spiral_matrix(matrix):
 
 
 # 119. Insert Interval
-def insert_interval():
-    pass
+# No need to do the same thing as website. This is pretty good. Just remember to check the last element
+def insert_interval(int_list, insert):
+    min_num = insert[0]
+    max_num = insert[1]
+    res = []
+    N = len(int_list)
+    appended = False
+    for int_pair in int_list[:]:
+        if int_pair[1] < min_num:
+            res.append(int_pair)
+        if int_pair[0] > max_num:
+            if not appended:
+                res.append([min_num,max_num])
+                appended = True
+            res.append(int_pair)
+        if int_pair[0] <= min_num and int_pair[1] >= min_num:
+            min_num = int_pair[0]
+            int_list.remove(int_pair)
+        if int_pair[0] <= max_num and int_pair[1] >= max_num:
+            max_num = int_pair[1]
+            int_list.remove(int_pair)
+    if not appended:
+        res.append([min_num,max_num])
+    return res
 
 # 120. Merge Interval
 def merge_interval():
