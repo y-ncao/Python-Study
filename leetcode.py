@@ -2571,8 +2571,47 @@ def mult_str():
     pass
 
 # 124. Sort List
-def sort_list():
-    pass
+# Need to take a deeper look into the merge sort
+def sort_list(head):
+    return sort_linked_list(head, getLength):
+
+def sort_linked_list(head, N):
+    if N == 0:
+        return None
+    if N == 1:
+        current = head
+        head = head.next
+        current.next = None
+        return current
+
+    half = N/2
+    head1 = sort_linked_list(head, half)
+    head2 = sort_linked_list(head, N-half)
+    return merge_list(head1, head2)
+
+def merge_list(head1, head2):
+    dummy = Node(0)
+    current = dummy
+    while head1 is not None and head2 is not None:
+        if head1.data < head2.data:
+            current.next = head1
+            head1 = head1.next
+        else:
+            current.next = head2
+            head2 = head2.next
+        current = current.next
+    if head1 is not None:
+        current.next = head1
+    if head2 is not None:
+        current.next = head2
+    return dummy.next
+
+def getLenght(head):
+    length = 0
+    while head is not None:
+        head = head.next
+        length += 1
+    return length
 
 # 125. Binary Tree Maximum Path Sum
 def bt_max_path_sum():
