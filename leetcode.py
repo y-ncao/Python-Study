@@ -2614,8 +2614,23 @@ def getLenght(head):
     return length
 
 # 125. Binary Tree Maximum Path Sum
-def bt_max_path_sum():
-    pass
+def bt_max_path_sum(root):
+    if root is None:
+        return 0
+    res = 0
+    bt_max_path_helper(root, res)
+    return res
+
+def bt_max_path_helper(root, res):
+    if root is None:
+        return 0
+    left = bt_max_path_helper(root.left, res)
+    right = bt_max_path_helper(root.right, res)
+    cur = root.data
+    sum = max(max(left, right) + root.data, root.data)
+    res = max(res, sum)
+    res = max(res, root.data+left+right) # The case that node from left to right is the largest
+    return sum                          # This point's max
 
 
 if __name__ == '__main__':
