@@ -2456,11 +2456,43 @@ def lar_rec_histo(histo):
     return maxV
 
 def lar_rec_histo(histo):
-
+    pass
+# KAN BU DONG
 
 # 118. Spiral Matrix
-def spiral_matrix():
-    pass
+# Need to check the diff in the future
+def spiral_matrix(matrix):
+    imin = 0
+    imax = len(matrix) - 1
+    jmin = 0
+    jmax = len(matrix[0]) - 1
+    res = []
+    while True:
+        for j in range(jmin, jmax+1):
+           res.append(matrix[imin][j])
+        imin += 1
+        if imin >= imax:
+            break
+
+        for i in range(imin, imax+1):
+            res.append(matrix[i][jmax])
+        jmax -= 1
+        if jmin >= jmax:
+            break
+
+        for j in range(jmax, jmin-1, -1):
+            res.append(matrix[imax][j])
+        imax -= 1
+        if imin >= imax:
+            break
+
+        for i in range(imax, imin-1):
+            res.append(matrix[i][jmin])
+        jmin += 1
+        if jmin >= jmax:
+            break
+    return res
+
 
 # 119. Insert Interval
 def insert_interval():
