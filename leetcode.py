@@ -2535,9 +2535,19 @@ def merge_interval(intervals):
             prev = [min(prev[0],inter[0]), max(prev[1],inter[1])]
     res.append(prev[:])
     return res
+
 # 121. Word Break
-def word_break():
-    pass
+# Return True but not list
+# This is O(n2) way, use dp can be less
+def word_break(rest_word, diction):
+    N = len(rest_word)
+    if N == 0:
+        return True
+    for i in range(1,N+1):
+        if rest_word[:i] in diction:
+            return word_break_helper(res, rest_word[i:], diction)
+    return False
+
 
 # 122. Restore IP Addresses
 def restore_ip(ip):
