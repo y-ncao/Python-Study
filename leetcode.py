@@ -2521,9 +2521,20 @@ def insert_interval(int_list, insert):
     return res
 
 # 120. Merge Interval
-def merge_interval():
-    pass
-
+# Tai ji ba jian dan le
+def merge_interval(intervals):
+    N = len(intervals)
+    res = []
+    prev_end = intervals[0][1]
+    prev = intervals[0]
+    for inter in intervals[1:]:
+        if inter[0] > prev[1]:
+            res.append(prev[:])
+            prev = inter
+        else:
+            prev = [min(prev[0],inter[0]), max(prev[1],inter[1])]
+    res.append(prev[:])
+    return res
 # 121. Word Break
 def word_break():
     pass
