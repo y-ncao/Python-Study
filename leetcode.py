@@ -2642,6 +2642,114 @@ def bt_max_path_helper(root, res):
     res = max(res, root.data+left+right) # The case that node from left to right is the largest
     return sum                          # This point's max
 
+# 126. Reorder List
+def reorder_list():
+    pass
+
+# 127. Regular Expression Matching
+def regex_matching():
+    pass
+
+# 128. Word Search
+def word_search():
+    pass
+
+# 129. Simplify Path
+def simplify_path():
+    pass
+
+# 130. Evaluate Reverse Polish Notation
+def evalu_reverse_pon():
+    pass
+
+# 131. Longest Valid Parentheses
+def longest_valid_parentheses():
+    pass
+
+# 132. Two Sum
+def two_sum():
+    pass
+
+# 133. Interleaving String
+def interleaving_string():
+    pass
+
+# 134. Substring With Concatenation of All Words
+def sub_with_con_all_words():
+    pass
+
+# 135. Candy
+def candy():
+    pass
+
+# 136. PalinDrome Partitioning II
+def palin_partition_ii():
+    pass
+
+# 137. Minimum Window Substring
+def min_window_sub():
+    pass
+
+# 138. Word Ladder
+def word_ladder():
+    pass
+
+# 139. Median of Two Sorted Arrays
+def med_of_two_arrarys():
+    pass
+
+# 140. 3 Sum
+def three_sum():
+    pass
+
+# 141. Decode Ways
+def decode_ways():
+    pass
+
+# 142. Divide Two Integers
+def divide_two_integers():
+    pass
+
+# 143. Word Break II
+def word_break_ii():
+    pass
+
+# 144. String to Integer (atoi):
+def atoi():
+    pass
+
+# 145. Surrounded Regions
+def surrounded_regions():
+    pass
+
+# 146. Text Justification
+def text_justi():
+    pass
+
+# 147. Reverse Words in a String
+def reverse_words_in_str():
+    pass
+
+# 148. LRU Cache
+def lru_cache():
+    pass
+
+# 149. Wildcard Matching
+def wildcard_matching():
+    pass
+
+# 150. Valid Number
+def valid_number():
+    pass
+
+# 151. Max Points on a Line
+def max_points_line():
+    pass
+
+# 152. Word Ladder II
+def word_ladder_ii():
+    pass
+
 
 if __name__ == '__main__':
     #num_list = [1,2,3,4,5,6,7,8,9,10,2,3,4,5,6,7,8,9,10]
