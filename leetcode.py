@@ -2726,8 +2726,9 @@ def text_justi():
     pass
 
 # 147. Reverse Words in a String
-def reverse_words_in_str():
-    pass
+# Use python is too simple
+def reverse_words_in_str(str):
+    return ' '.join(str.split()[::-1])
 
 # 148. LRU Cache
 def lru_cache():
