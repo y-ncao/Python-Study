@@ -18,12 +18,12 @@ class Solution:
     # @param s, a string
     # @return a string
     def reverseWords(self, s):
-        return self.reverse_words_in_str_2(s)
+        return self.reverseWords_2(s)
 
-    def reverse_words_in_str_1(self, str):
+    def reverseWords_1(self, str):
         return ' '.join(str.split()[::-1])
 
-    def reverse_words_in_str_2(self, str):
+    def reverseWords_2(self, str):
         res = ''
         word = ''
         for char in str:
