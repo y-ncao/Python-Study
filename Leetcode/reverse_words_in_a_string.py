@@ -14,11 +14,29 @@ How about multiple spaces between two words?
 Reduce them to a single space in the reversed string.
 
 """
-
 class Solution:
     # @param s, a string
     # @return a string
-
-    # This is a python easy way
     def reverseWords(self, s):
-        return ' '.join(s.split()[::-1])
+        return self.reverse_words_in_str_2(s)
+
+    def reverse_words_in_str_1(self, str):
+        return ' '.join(str.split()[::-1])
+
+    def reverse_words_in_str_2(self, str):
+        res = ''
+        word = ''
+        for char in str:
+            if char != ' ':
+                word += char
+            elif len(word) > 0:
+                if res != '':
+                    res = ' ' + res
+                res = word + res
+                word = ''
+
+        if len(word) > 0:
+            if res != '':
+                res = ' ' + res
+            res = word + res
+        return res
