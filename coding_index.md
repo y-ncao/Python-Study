@@ -1,5 +1,5 @@
 ##Two pointers
-###Start -> End
+1. 两个pointers从头往后走：感觉绝大多数的linked list的题目都涉及到这个操作，当然还有array。这类题目很多时候又可以称为sliding window。
 * Implement strStr()
 * Longest Substring Without Repeating Characters
 * Minimum Window Substring
@@ -12,7 +12,7 @@
 * Substring with Concatenation of All Words
 * Swap Nodes in Pairs
 
-###Sides -> Mid
+2. 两个pointers从两头往中间走：一般面试出现的的都是singly linked list,因此这类题主要是array题。
 * 3Sum
 * 3Sum Closest
 * 4Sum
@@ -22,7 +22,7 @@
 * Two Sum
 * Binary search (will discuss it in a separate section)
 
-### Separated
+3. 两个pointers控制两个不同的数组或链表：一般出现在跟merge相关的题目上。
 * Add Binary
 * Add Two Numbers
 * Merge Sorted Array
@@ -31,16 +31,17 @@
 * Partition List
 
 ##Permutation and Combination
-Permutation
+###Permutation
 * 输入没有重复：Permutations, CC150 9.5, PIE Chapter7 Permutations of a String
 * 输入有重复，输出不能有重复：Permutations II
 * Next Permutation: 经典算法，背吧
 * Permutation Sequence: 非常有意思的题目
 * Combination
-纯粹的subset
+
+####纯粹的subset
 * 输入没有重复：Subsets, CC150 9.4, PIE Chapter7 Combinations of a String
 * 输入有重复，输出不能有重复：Subsets II
-需要满足一定要求的组合
+####需要满足一定要求的组合
 * 一个元素只能取一次(输入没有重复): Combinations
 * 一个元素可以取多次(输入没有重复): Combination Sum, CC150, 9.8
 * 一个元素只能取一次(输入有重复，输出不能有重复）:
@@ -56,10 +57,13 @@ Binary search非常tricky，虽说道理简单，但是面试的时候却很容�
 * 如何合理分半
 * 分半的时候取=mid, mid-1, or mid+1
 
+
 * Search a 2D Matrix： 这是一道普通的binary search。终止条件i<=j, mid取向i+(j-i)/2, 分半的时候=mid-1 or mid+1。
 * Search for a Range：这道题需要终止条件i<j, mid取向两种都需要用到，分半的时候需要用到=mid。我发现一般＝mid的时候，终止条件往往是i<j,不然会有死循环。
 
-如何合理分半：下边这几道题都很tricky，分半的时候都有各自的特点，很不容易一次写对。需要多多练习和体会。
+
+_如何合理分半_：下边这几道题都很tricky，分半的时候都有各自的特点，很不容易一次写对。需要多多练习和体会。
+
 * Search in Rotated Sorted Array
 * Search in Rotated Sorted Array II
 * Median of Two Sorted Arrays
@@ -71,6 +75,7 @@ Binary search非常tricky，虽说道理简单，但是面试的时候却很容�
 
 ##Linked List
 首先LeetCode上几乎所有的Linked list的题目都可以用two pointers来解决，或者会用到two pointers这个基本编程技巧。因此two pointers跟linked list是紧密相关的。因为two pointers以前已经总结过了，就不多讲了。
+
 其次，因为LinkedList和Array/ArrayList一样都具备有List的特性，因此很多题目都出现在了两种数据结构上，或者说很多题目都是可以把这两种数据结构互换的。比如：
 * Add Two Numbers
 * Convert Sorted List to Binary Search Tree
@@ -80,11 +85,11 @@ Binary search非常tricky，虽说道理简单，但是面试的时候却很容�
 * Merge Two Sorted Lists
 * Remove Duplicates from Sorted List
 * Remove Duplicates from Sorted List II
+
 第三，LinkedList的题目大多自然而然使用iteration来解决的，但是我发现有些时候iteration比较容易出bug，换成recursion实现更容易。面试的时候万一iteration卡住可以换换recursion的思路。
 第四，dummy head非常有用，可以使代码简洁很多，并且容易写bug free的code。这个技巧可以大量使用。
-第五，今天做了一遍LinkedList的题目，发现两个地方容易出bug。一是two pointers
-loop完之后常常会有一个收尾的工作，比如Add Two Numbers需要处理carrier>0的情况。二是在swap了nodes之后，新的tail需要把next置
-空，不然就出现死循环了。
+
+第五，今天做了一遍LinkedList的题目，发现两个地方容易出bug。一是two pointers loop完之后常常会有一个收尾的工作，比如Add Two Numbers需要处理carrier>0的情况。二是在swap了nodes之后，新的tail需要把next置空，不然就出现死循环了。
 
 ##Tree
 1. Recursive DFS
