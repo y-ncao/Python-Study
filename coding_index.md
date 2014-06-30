@@ -1,5 +1,6 @@
 ##Two pointers
 1. 两个pointers从头往后走：感觉绝大多数的linked list的题目都涉及到这个操作，当然还有array。这类题目很多时候又可以称为sliding window。
+
 * Implement strStr()
 * Longest Substring Without Repeating Characters
 * Minimum Window Substring
@@ -31,17 +32,17 @@
 * Partition List
 
 ##Permutation and Combination
-###Permutation
+######Permutation
 * 输入没有重复：Permutations, CC150 9.5, PIE Chapter7 Permutations of a String
 * 输入有重复，输出不能有重复：Permutations II
 * Next Permutation: 经典算法，背吧
 * Permutation Sequence: 非常有意思的题目
 * Combination
 
-####纯粹的subset
+######纯粹的subset
 * 输入没有重复：Subsets, CC150 9.4, PIE Chapter7 Combinations of a String
 * 输入有重复，输出不能有重复：Subsets II
-####需要满足一定要求的组合
+######需要满足一定要求的组合
 * 一个元素只能取一次(输入没有重复): Combinations
 * 一个元素可以取多次(输入没有重复): Combination Sum, CC150, 9.8
 * 一个元素只能取一次(输入有重复，输出不能有重复）:
@@ -62,7 +63,7 @@ Binary search非常tricky，虽说道理简单，但是面试的时候却很容�
 * Search for a Range：这道题需要终止条件i<j, mid取向两种都需要用到，分半的时候需要用到=mid。我发现一般＝mid的时候，终止条件往往是i<j,不然会有死循环。
 
 
-_如何合理分半_：下边这几道题都很tricky，分半的时候都有各自的特点，很不容易一次写对。需要多多练习和体会。
+**如何合理分半**：下边这几道题都很tricky，分半的时候都有各自的特点，很不容易一次写对。需要多多练习和体会。
 
 * Search in Rotated Sorted Array
 * Search in Rotated Sorted Array II
