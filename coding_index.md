@@ -1,5 +1,5 @@
 ##Two pointers
-###[]Start -> End
+###Start -> End
 * Implement strStr()
 * Longest Substring Without Repeating Characters
 * Minimum Window Substring
@@ -12,7 +12,7 @@
 * Substring with Concatenation of All Words
 * Swap Nodes in Pairs
 
-###[]Sides -> Mid
+###Sides -> Mid
 * 3Sum
 * 3Sum Closest
 * 4Sum
@@ -22,7 +22,7 @@
 * Two Sum
 * Binary search (will discuss it in a separate section)
 
-### []Separated
+### Separated
 * Add Binary
 * Add Two Numbers
 * Merge Sorted Array
@@ -30,7 +30,7 @@
 * Multiply Strings
 * Partition List
 
-##[]Permutation and Combination
+##Permutation and Combination
 Permutation
 * 输入没有重复：Permutations, CC150 9.5, PIE Chapter7 Permutations of a String
 * 输入有重复，输出不能有重复：Permutations II
@@ -47,7 +47,7 @@ Permutation
 * Combination Sum II
 * Gray Code: 具有subset的序列特点 （考虑CC150 9.4 Solution#2: Combinatorics)
 
-##[]Binary search and divide and conquer
+##Binary search and divide and conquer
 
 Binary search非常tricky，虽说道理简单，但是面试的时候却很容易出bug，因此总结一下是必须的。假设i=0,j=A.length-1, 我做了一下LeetCode上的所有binary search的题目，发现了以下几点值得注意。
 
@@ -69,7 +69,7 @@ Binary search非常tricky，虽说道理简单，但是面试的时候却很容�
 * Pow(x, n)
 * Sqrt(x)：其实算是一道典型的binary search题目，不过里边包括了几个tricky的地方，很难一次写对
 
-##[]Linked List
+##Linked List
 首先LeetCode上几乎所有的Linked list的题目都可以用two pointers来解决，或者会用到two pointers这个基本编程技巧。因此two pointers跟linked list是紧密相关的。因为two pointers以前已经总结过了，就不多讲了。
 其次，因为LinkedList和Array/ArrayList一样都具备有List的特性，因此很多题目都出现在了两种数据结构上，或者说很多题目都是可以把这两种数据结构互换的。比如：
 * Add Two Numbers
@@ -86,7 +86,7 @@ Binary search非常tricky，虽说道理简单，但是面试的时候却很容�
 loop完之后常常会有一个收尾的工作，比如Add Two Numbers需要处理carrier>0的情况。二是在swap了nodes之后，新的tail需要把next置
 空，不然就出现死循环了。
 
-##[]Tree
+##Tree
 1. Recursive DFS
 2. Iterative DFS
 3. BFS
@@ -115,7 +115,7 @@ Leetcode上graph的题目涉及的很少，不过从算法和coding来说DFS，B
 (这题原题在CC150是一道双向链表题，不知道Leetcode上怎么改单向了。双向链表应该更复杂一些，大家要注意一下）
 
 
-##[]数据结构
+##数据结构
 * Array, ArrayList
 * String, StringBuffer
 * LinkedList
@@ -129,8 +129,4 @@ Leetcode上graph的题目涉及的很少，不过从算法和coding来说DFS，B
 * Heap: PriorityQueue
 * Grpah
 
-test1 []
-test2 [ ]
-[]test3
-[ ]test4
 Thanks to http://www.mitbbs.com/article_t/JobHunting/32564237.html
