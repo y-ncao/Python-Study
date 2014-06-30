@@ -13,7 +13,6 @@
   * Swap Nodes in Pairs
 
 2. 两个pointers从两头往中间走：一般面试出现的的都是singly linked list,因此这类题主要是array题。
-
   * 3Sum
   * 3Sum Closest
   * 4Sum
@@ -24,7 +23,6 @@
   * Binary search (will discuss it in a separate section)
 
 3. 两个pointers控制两个不同的数组或链表：一般出现在跟merge相关的题目上。
-
   * Add Binary
   * Add Two Numbers
   * Merge Sorted Array
@@ -47,8 +45,7 @@
 ######需要满足一定要求的组合
 * 一个元素只能取一次(输入没有重复): Combinations
 * 一个元素可以取多次(输入没有重复): Combination Sum, CC150, 9.8
-* 一个元素只能取一次(输入有重复，输出不能有重复）:
-* Combination Sum II
+* 一个元素只能取一次(输入有重复，输出不能有重复）: Combination Sum II
 * Gray Code: 具有subset的序列特点 （考虑CC150 9.4 Solution#2: Combinatorics)
 
 ##Binary search and divide and conquer
@@ -137,4 +134,4 @@ Leetcode上graph的题目涉及的很少，不过从算法和coding来说DFS，B
 * Heap: PriorityQueue
 * Grpah
 
-Thanks to http://www.mitbbs.com/article_t/JobHunting/32564237.html
+zz Thanks to http://www.mitbbs.com/article_t/JobHunting/32564237.html
