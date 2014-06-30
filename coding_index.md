@@ -1,3 +1,5 @@
+#zz Coding Summary
+
 ##Two pointers
 1. 两个pointers从头往后走：感觉绝大多数的linked list的题目都涉及到这个操作，当然还有array。这类题目很多时候又可以称为sliding window。
   * Implement strStr()
