@@ -137,4 +137,4 @@ Leetcode上graph的题目涉及的很少，不过从算法和coding来说DFS，B
 * Heap: PriorityQueue
 * Grpah
 
-zz Thanks to http://www.mitbbs.com/article_t/JobHunting/32564237.html
+zz Thanks to Peking2 @ http://blog.sina.com.cn/leetcode
