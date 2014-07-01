@@ -12,7 +12,6 @@ def single_number(num_list):
 def maximum_depth(root):
     if root is None:
         return 0
-
     return max( maximum_depth(root.left), maximum_depth(root.right)) + 1
 
 # 3. Same Tree
@@ -21,14 +20,11 @@ def is_same_tree(p, q):
     if p is None and q is None:
         return True
     # one of the node is None but the other is not, not same
-    elif p is None or q is None:
+    if p is None or q is None:
         return False
-    # both of them are not None
-    else:
-        if p.data != q.data:
-            return False
-        else:
-            return is_same_tree(p.left, q.left) and is_same_tree(p.right, q.right)
+    if p.data != q.data:
+        return False
+    return is_same_tree(p.left, q.left) and is_same_tree(p.right, q.right)
 
 # 4.Reverse Integer
 def reverse_int(num):
