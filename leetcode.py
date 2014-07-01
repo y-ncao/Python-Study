@@ -27,6 +27,15 @@ def is_same_tree(p, q):
     return is_same_tree(p.left, q.left) and is_same_tree(p.right, q.right)
 
 # 4.Reverse Integer
+def reverse(x):
+    if x < 0:
+        return (-1) * reverse( (-1) * x)
+    res = 0
+    while x > 0:
+        res = res*10 + x%10
+        x /= 10
+    return res
+
 def reverse_int(num):
     # Need to check negative, last digit zero
     is_nagative = 1
@@ -52,7 +61,6 @@ def reverse_int(num):
 def unique_bst(num):
     if num <=1:
         return num
-
     return unique_bst_helper(1, num)
 
 def unique_bst_helper(start, end):
