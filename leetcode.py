@@ -167,6 +167,8 @@ def next_right_pointer(root):
     next_right_pointer(root.left)
     next_right_pointer(root.right)
 
+"""
+Need to validate if this is correct
 def next_right_pointer(root):
     if root is None:
         return
@@ -178,12 +180,13 @@ def next_right_pointer(root):
         left.next = right
 
     while left.right is not None:
-        left = left.rigt
+        left = left.right
         right = right.left
         left.next = right
 
     next_right_pointer(root.left)
     next_right_pointer(root.right)
+"""
 
 # Not using recursive, but also using extra space, so not a good result
 def next_right_pointer(root):
@@ -205,6 +208,28 @@ def next_right_pointer(root):
 
 # 11. Search Insert Position
 # This is a O(n) method, need to think about something for O(log(n))
+def searchInsert(A, target):
+    start = 0
+    end = len(A) - 1
+    while start <= end:
+        mid = (start + end) / 2
+        if A[mid] == target:
+            return mid
+        elif A[mid] < target:       # need to search second half
+            start = mid + 1
+        else:
+            end = mid - 1
+    return start
+
+# Too easy way, not the way wanted
+def searchInsert_2(A, target):
+    for i, num in enumerate(A):
+        if target <= num:
+            return i
+        return len(A)
+
+"""
+Guess these two are not the best ways
 def search_insert_position_1(num_list, num):
     i = 0
     while i <= len(num_list)-1:
@@ -213,6 +238,7 @@ def search_insert_position_1(num_list, num):
         i += 1
     return i
 
+# No need to use recursive
 def search_insert_position(num_list, num, start, end):
     if start > end:
         return start
@@ -224,8 +250,22 @@ def search_insert_position(num_list, num, start, end):
         return search_insert_position(num_list, num, start, mid-1)
     else:
         return search_insert_position(num_list, num, mid+1, end)
+"""
 
 # 12. Remove Duplicates from Sorted List:
+def deleteDuplicates(self, head):
+    if head is None or head.next is None:
+        return head
+    current = head
+    while current.next is not None:
+        if current.val == current.next.val:
+            current.next = current.next.next
+        else:
+            current = current.next
+    return head
+
+"""
+No need to use prev
 def remove_duplicates(head):
     if head is None or head.next is None:
         return head
@@ -239,7 +279,7 @@ def remove_duplicates(head):
         currnet = current.next
 
     return head
-
+"""
 # 13. Climbing Stairs
 # Fuck you remember the num <= 2
 def climb_stairs(num):
