@@ -111,19 +111,46 @@ def list_cycle(head):
     return fast
 
 # 8. BT Inorder traversal
+# Iterative way
+def inorder_traversal(root):
+    stack = []
+    res = []
+    current = root
+    while current is not None or len(stack)>0:
+        if current is not None:
+            stack.append(current)
+            current = current.left
+        elif len(stack)>0:
+            current = stack.pop()
+            res.append(current.val)
+            current = current.right
+    return res
+
 def inorder_traversal(root):
     if root is None:
         return
-
     inorder_traversal(root.left)
     print root.data
     inorder_traversal(root.right)
 
 # 9. BT Preorder traversal
+# Iterative way
+def preorder_traversal(root):
+    stack = []
+    current = root
+    while current is not None or len(stack)>0:
+        if current is not None:
+            res.append(current.val)
+            stack.append(current)
+            current = current.left
+        elif len(stack)>0:
+            current = stack.pop()
+            current = current.right
+    return res
+
 def preorder_traversal(root):
     if root is None:
         return
-
     print root.data
     preorder_traversal(root.left)
     preorder_traversal(root.right)
@@ -749,6 +776,8 @@ def bt_post_traversal(root):
     print root.data
 
 # Any pre/in/post-order tree traversal are all dfs which use stack
+"""
+This is not a good way to do this
 def bt_post_traversal(root):
     if root is None:
         return
@@ -765,7 +794,7 @@ def bt_post_traversal(root):
     while stack2:
         path.append(stack2.pop())
 # Need to go back and check the logic to do so
-
+"""
 
 # 39. Binary Tree Level Order Traversal
 def bt_level_order_traversal(root):
