@@ -767,6 +767,20 @@ def valid_point(map, m, n):
 
 
 # 38. Binary Tree Postorder Traversal
+# Doing in iterative way
+
+def bt_post_traversal(root):
+    stack = [root]
+    output = []
+    while len(stack)>0:
+        node = stack.pop()
+        output.append(node.val)
+        if node.left is not None:
+            stack.append(node.left)
+        if node.right is not None:
+            stack.append(node.right)
+    return output[::-1]
+
 # Doing recursive is trivial
 def bt_post_traversal(root):
     if root is None:
@@ -776,25 +790,6 @@ def bt_post_traversal(root):
     print root.data
 
 # Any pre/in/post-order tree traversal are all dfs which use stack
-"""
-This is not a good way to do this
-def bt_post_traversal(root):
-    if root is None:
-        return
-    stack1 = [root,]
-    stack2 = []
-    while len(stack1) > 0:
-        node = stack1.pop()
-        stack2.append(node.data)
-        if node.left is not None:
-            stack1.append(node.left)
-        if node.right is not None:
-            stack1.append(node.right)
-    path = []
-    while stack2:
-        path.append(stack2.pop())
-# Need to go back and check the logic to do so
-"""
 
 # 39. Binary Tree Level Order Traversal
 def bt_level_order_traversal(root):
