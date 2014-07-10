@@ -514,7 +514,6 @@ def print_list(head):
 def symmetric_tree(root):
     if root is None:
         return True
-
     return is_symetric(root.left, root.right)
 
 def is_symmetric(p, q):
