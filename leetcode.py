@@ -752,22 +752,22 @@ def link_list_cycle(head):
     return False
 
 # 36. Linked List Cycle II
+# Remember to set slow = head.next and fast = head.next.next before entering the loop
 def link_list_cycle_II():
-    slow_runner = head
-    fast_runner = head
-    while fast_runner != slow_runner:
-        if fast_runner is None or fast_runner.next is None:
+    if head is None or head.next is None:
+        return None
+    slow = head.next
+    fast = head.next.next
+    while slow!=fast:
+        if fast is None or fast.next is None:
             return None
-        else:
-            fast_runner = fast_runner.next.next
-            slow_runner = slow_runner.next
-    # Met each other, so that's a loop
-    fast_runner = head
-    while fast_runner != slow_runner:
-        fast_runner = fast_runner.next
-        slow_runner = slow_runner.next
-
-    return slow_runner
+        slow = slow.next
+        fast = fast.next.next
+    fast = head
+    while slow!=fast:
+        slow = slow.next
+        fast = fast.next
+    return slow
 
 # 37. Unique Path
 def unique_path(m,n):
