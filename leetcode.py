@@ -282,6 +282,7 @@ def remove_duplicates(head):
 """
 # 13. Climbing Stairs
 # Fuck you remember the num <= 2
+# There's a way not to use recursive
 def climb_stairs(num):
     if num <= 2:
         return num
@@ -334,13 +335,13 @@ def single_number_2(num_list, num):
     return one
 
 # 17 Remove Element
-def remove_element(num_list, elm):
-    len = 0
-    for i in range(len(num_list)):
-        if num_list[i] != elm:
-            num_list[len] = num_list[i]
-            len+=1
-    return len
+def remove_element(A, elem):
+    i = 0
+    for j, num in enumerate(A):
+        if num != elem:
+            A[i] = A[j]
+            i += 1
+    return i
 
 # 18 Integer to Roman
 # WOCAONIMA
@@ -764,7 +765,7 @@ def link_list_cycle_II():
     fast_runner = head
     while fast_runner != slow_runner:
         fast_runner = fast_runner.next
-        slow_runner = slow_runner.nexdt
+        slow_runner = slow_runner.next
 
     return slow_runner
 
