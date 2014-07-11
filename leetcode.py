@@ -519,12 +519,31 @@ def symmetric_tree(root):
 def is_symmetric(p, q):
     if p is None and q is None:
         return True
-    elif p is None or q is None:
-        return False
-    elif p.data != q.data:
+    elif p is None or q is None or p.data != q.data:
         return False
     else:
         return is_symmetric(p.left, q.right) and is_symmetric(p.right, q.left)
+
+# Iterative way
+def isSymmetric_2(self, root):
+    if root is None:
+        return True
+    queue = collections.deque()
+    queue.append(root.left)
+    queue.append(root.right)
+    while len(queue)>0:
+        t1 = queue.popleft()
+        t2 = queue.popleft()
+        if t1 is None and t2 is None:
+            continue
+        if t1 is None or t2 is None or t1.val != t2.val:
+            return False
+        queue.append(t1.left)
+        queue.append(t2.right)
+        queue.append(t1.right)
+        queue.append(t2.left)
+    return True
+
 
 # 27. Gray Code
 def gray_code(n):
