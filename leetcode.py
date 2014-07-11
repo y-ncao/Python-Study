@@ -361,6 +361,24 @@ def integer_2_roman(num):
 
 # 19 Merge two sorted list
 # Wo dou bu xiang xiang le
+# Using dummy make life easier
+def mergeTwoLists(l1, l2):
+    dummy = ListNode(0)
+    cur = dummy
+    while l1 is not None and l2 is not None:
+        if l1.val < l2.val:
+            cur.next = l1
+            l1 = l1.next
+        else:
+            cur.next = l2
+            l2 = l2.next
+        cur = cur.next
+    if l1 is not None:
+        cur.next = l1
+    if l2 is not None:
+        cur.next = l2
+    return dummy.next
+"""
 def merge_sorted_list(list1, list2):
     head = None
     prev = None
@@ -383,6 +401,7 @@ def merge_sorted_list(list1, list2):
             prev.next = new
             prev = new
     return head
+"""
 
 # 20. Balanced Binary Tree
 # need to check if there's a better way
@@ -2408,13 +2427,13 @@ def perm_seq(n, k):
 def cloneGraph(self, node):
     if node is None:
         return None
-    from collections import deque
     # Use oldNode as the oldGraph, newNode as the newGraph. Use tuple (oldNode, newNode) to store relation
     newNodeHead = UndirectedGraphNode(node.label)
-    queue = deque((node,newNodeHead))
+    queue = collections.deque()
+    queue.append((node,newNodeHead))
     map_dict = {}
-    while len(deque) > 0:
-        oldNode,newNode = queue.popleft()
+    while len(queue) > 0:
+        (oldNode,newNode) = queue.popleft()
         if oldNode in map_dict:
             continue
         map_dict[oldNode] = 'Visited'
