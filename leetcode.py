@@ -438,6 +438,17 @@ def array_to_bst_helper(num_list, start, end):
     return n
 
 # 22. Remove Duplicates from sorted array
+# Remember i+1, also don't forget lenght check
+def removeDuplicates_2(A):
+    if len(A) <= 1:
+        return len(A)
+    i = 0
+    for j in range(1, len(A)):
+        if A[i] != A[j]:
+            A[i+1] = A[j]
+            i += 1
+    return i+1
+"""
 # Fuck remember it is length + 1 !!!!
 def remove_duplicates_in_array(num_list):
     length = 0
@@ -447,7 +458,7 @@ def remove_duplicates_in_array(num_list):
             num_list[length] = num_list[i]
 
     return length + 1
-
+"""
 # 23. Pascal's Triangle
 # Fuck notice it's range(n-1) not n
 def pascal_triangle_2(n):
