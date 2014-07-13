@@ -301,6 +301,17 @@ def maximum_subarray(array):
             sum =0
 
     return max
+# dp way
+# dp[i] = max(A[i], dp[i-1]+A[i])
+# Note        here    it's A[i] not dp
+# Because we don't need to store dp[i], so simplify to dp
+def maxSubArray_2(self, A):
+    res = A[0]
+    dp = A[0]
+    for num in A[1:]:
+        dp = max(num, dp+num)
+            res = max(res, dp)
+    return res
 
 # 15. Roman to Integer
 def roman_2_integer(roman):
@@ -461,6 +472,17 @@ def remove_duplicates_in_array(num_list):
 """
 # 23. Pascal's Triangle
 # Fuck notice it's range(n-1) not n
+def generate_1(numRows):
+    res = []
+    for j in range(numRows):
+        current = [1]
+        for i in range(1, j):
+            current.append(res[-1][i]+res[-1][i-1])
+        if j>=1:
+            current.append(1)
+        res.append(current[:])
+    return res
+"""
 def pascal_triangle_2(n):
     if n == 1:
         return [1]
@@ -498,7 +520,7 @@ def pascal_triangle(n):
         prev = new_line
 
     return result
-
+"""
 # 24. Merge sorted array
 # code will be cleaner if pthon has --
 def merge_sorted_array(l1, l2):
@@ -712,8 +734,11 @@ def gp(left, right, cand, res):
         gp(left, right - 1, cand + ')', res)
 
 # 33. Best time to buy and sell II
-# Fuck need to delete the previous work
+# Remember to pre check
+
 def stock_buy_sell_I(prices):
+    if len(prices) < 1:
+        return 0
     min_price = prices[0]
     max_profit = prices[0]
     for price in prices:
