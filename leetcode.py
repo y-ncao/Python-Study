@@ -906,6 +906,31 @@ def bt_post_traversal(root):
 # Any pre/in/post-order tree traversal are all dfs which use stack
 
 # 39. Binary Tree Level Order Traversal
+def levelOrder(root):
+    res = []
+    if root is None:
+        return res
+    queue = []
+    level = []
+    queue.append(root)
+    queue.append(None)
+    while len(queue)>0:
+        node = queue.pop(0)
+        if node is None:
+            res.append(level[:])
+            level = []
+            if len(queue)>0:
+                queue.append(None)
+        else:
+            level.append(node.val)
+            if node.left is not None:
+                queue.append(node.left)
+            if node.right is not None:
+                queue.append(node.right)
+    return res
+
+"""
+The problem here is we want a result in int, but not copy the node
 def bt_level_order_traversal(root):
     if root is None:
         return []
@@ -924,7 +949,7 @@ def bt_level_order_traversal(root):
         current = []
 
     return result
-
+"""
 # 40. Container With Most Water
 # Thinking this (i, ai) and (i, 0)
 # so for pair (m, n)
