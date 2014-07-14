@@ -33,7 +33,7 @@ class Solution:
         if numRows ==0:
             return []
         if numRows == 1:
-            return [1]
+            return [[1]]
         if numRows == 2:
             return [[1],[1,1]]
         res = [[1], [1,1]]
