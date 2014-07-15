@@ -646,6 +646,24 @@ def n_queens_ii():
     pass
 
 # 29. Sort Colors
+# Passing only once
+def sort_colors(A):
+    index = 0
+    red_index = 0
+    blue_index = len(A) - 1
+    while index <= blue_index:
+        if A[index] == 0:             # red
+            swap(A, index, red_index)
+            index += 1
+            red_index += 1
+        elif A[index] == 2:           # blue
+            swap(A, index, blue_index)
+            index += 1 # Remember this index won't increase
+            blue_index -= 1
+        else:
+            index += 1
+    return A
+
 # Passing twice
 def sort_colors(list):
     counter = [0] * 3
@@ -659,27 +677,6 @@ def sort_colors(list):
     result = [0] * counter[0] + [1] * counter[1] + [2] * counter[2]
 
     return result
-
-# Not 100% sure about the result but looks all right
-def sort_colors(list):
-    index = 0
-    red_index = 0
-    blue_index = len(list) - 1
-
-    while index <= blue_index:
-        if list[index] == 0:             # red
-            swap(list, index, red_index)
-            index += 1
-            red_index += 1
-        elif list[index] == 2:           # blue
-            swap(list, index, blue_index)
-            index += 1
-            blue_index -= 1
-        else:
-            index += 1
-
-    return list
-
 
 # 30. Binary Tree Level Order Traversal II
 # Note: this returns a stack, in order to return a reverse one, still need to reverse them
