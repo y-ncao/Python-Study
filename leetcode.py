@@ -358,6 +358,20 @@ def remove_element(A, elem):
 # WOCAONIMA
 def integer_2_roman(num):
     digits = [(1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD' ),
+              (100, 'C'), (90, 'XC'), (50, 'L'), (40, 'XL'),
+              (10, 'X'), (9, 'IX'), (5, 'V'), (4, 'IV'), (1, 'I')]
+    result = ""
+    for digit in digits:
+        while num >= digit[0]:
+            result += digit[1]
+            num -= digit[0]
+        if num == 0:
+            break
+    return result
+
+"""
+def integer_2_roman(num):
+    digits = [(1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD' ),
             (100, 'C'), (90, 'XC'), (50, 'L'), (40, 'XL'),
             (10, 'X'), (9, 'IX'), (5, 'V'), (4, 'IV'), (1, 'I')]
     result = ""
@@ -369,7 +383,7 @@ def integer_2_roman(num):
             n -= val
             result += romn
     return result
-
+"""
 # 19 Merge two sorted list
 # Wo dou bu xiang xiang le
 # Using dummy make life easier
@@ -577,7 +591,7 @@ def is_symmetric(p, q):
         return is_symmetric(p.left, q.right) and is_symmetric(p.right, q.left)
 
 # Iterative way
-def isSymmetric_2(self, root):
+def isSymmetric_2(root):
     if root is None:
         return True
     queue = collections.deque()
@@ -596,11 +610,29 @@ def isSymmetric_2(self, root):
         queue.append(t2.left)
     return True
 
-
 # 27. Gray Code
-def gray_code(n):
-    for x in range(n):
-        print bin(n+x^x/2)[3:]
+def grayCode(n):
+    i = 0
+    ret = []
+    while i < 2**n:
+        ret.append(i>>1^i)
+        i += 1
+    return i
+
+# This is better than below one which is easier to remember,
+# But this question, we want int instead of string binary
+def grayCodeGen(n):
+    if n == 1:
+        return ['0', '1']
+    else:
+        ret = []
+        code_list = grayCodeGen_2(n-1)
+        for code in code_list:
+            ret.append('0' + code)
+        for code in code_list[::-1]:
+            ret.append('1' + code)
+        return ret
+
 # A easy understandable way to solve this
 def graycode(numbits, reverse = False):
     if numbits == 1:
@@ -613,11 +645,10 @@ def graycode(numbits, reverse = False):
     else:
         if reverse:
             # all the "1"s start first
-            gcprev = graycode(numbits - 1, True)
+            gcprev = graycode(numbits - 1, False)
             for code in gcprev:
                 yield "1" + code
-
-            gcprev = graycode(numbits - 1, False)
+            gcprev = graycode(numbits - 1, True)
             for code in gcprev:
                 yield "0" + code
         else:
@@ -625,7 +656,6 @@ def graycode(numbits, reverse = False):
             gcprev = graycode(numbits - 1, False)
             for code in gcprev:
                 yield "0" + code
-
             gcprev = graycode(numbits - 1, True)
             for code in gcprev:
                 yield "1" + code
