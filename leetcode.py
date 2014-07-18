@@ -1884,6 +1884,31 @@ def reverse_list_ii(head, m, n):
 # There's also n queens ii
 # I think this is correct, but need deep validation
 # valid check isn't efficient
+# This is not correct, n queens question is n*n chessboard but not always 8*8
+def solveNQueens(n):
+    ret = []
+    res = ['.'*n for i in range(n)]
+    solveNQueens_helper(n, res, ret, 0)
+    return ret
+
+def solveNQueens_helper(n, res, ret, queens):
+    if queens == n:
+        ret.append(res[:])
+        return
+    for i in range(n):
+        new_row = '.'*n
+        res[queens] = new_row[:i] + 'Q' + new_row[i+1:]
+        if is_valid(res, queens, i):
+            solveNQueens_helper(n, res, ret, queens+1)
+        res[queens] = new_row
+
+def is_valid(board, row, col):
+    for i in range(row):
+        for j in range(len(board[0])):
+            if board[i][j] == 'Q' and (j == col or abs(row-i) == abs(col-j)):
+                return False
+    return True
+"""
 def n_queens(n):
     result = ['.' for i in range(8)]
     ret = []
@@ -1928,7 +1953,7 @@ def n_queens_ii(n):
     n_queens_helper(0, result, n)
     return ret
 # Don't know what's the diff, just return a num += 1
-
+"""
 # 85. Validate Binary Search Tree
 # Best way to do this in recursion
 def valid_bst(root):
