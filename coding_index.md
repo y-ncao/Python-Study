@@ -5,25 +5,35 @@
 * Permutations II
 * Next Permutation
 * Permutation Sequence
-+ Combinations
-+ Combination Sum
-+ Combination Sum II
-+ Letter Combination of a Phone Number
+
+----
+
+* Combinations
+* Combination Sum
+* Combination Sum II
+* Letter Combination of a Phone Number
+
+-----
 
 * Gray Code
 
+-----
+
 * Subset
 * Subset II
+
+-----
 
 * Generate Parentheses
 * Valid Parentheses
 * Longest Valid Parentheses
 
+-----
+
 * Palindrome Number
 * Valid Palindrome
 * Palindrome Partitioning
 * Palindrome Partitioning II
-
 
 ####Tree Traversal
 * Binary Tree Inorder Traversal
@@ -46,14 +56,12 @@ ____
 * Maximum Depth of Binary Tree
 * Minimum Depth of Binary Tree
 
-
 ####Binary Search Tree
 * Convert Sorted Array to Binary Search Tree
 * Unique Binary Search Trees
 * Unique Binary Search Trees II
 * Validate Binary Search Tree
 * Recover Binary Search Tree
-
 
 ####类Tree(以tree作为Data Structure的题目)
 * Path Sum
@@ -64,7 +72,6 @@ ____
 * Flatten Binary Tree to Linked List
 * Binary Tree Maximum Path Sum
 
-
 ####Array(意义不大)
 * Maximum Subarray
 * Convert Sorted Array to Binary Search Tree
@@ -74,7 +81,6 @@ ____
 * Search in Rotated Sorted Array
 * Search in Rotated Sorted Array II
 * Median of Two Sorted Arrays
-
 
 ####List(意义不大)
 * Linked List Cycle
@@ -92,18 +98,15 @@ ____
 * Sort List
 * Reorder List
 
-
 ######Dup with tree
 * Flatten Binary Tree to Linked List
 * Convert Sorted List to Binary Search Tree
-
 
 ####Matrix
 * Search a 2D Matrix
 * Spiral Matrix
 * Spiral Matrix II
 * Set Matrix Zeroes
-
 
 ####Dynamic Programming
 * Climbing Stairs
