@@ -5,21 +5,21 @@
 * Permutations II
 * Next Permutation
 * Permutation Sequence
-<br />
+<hr />
 * Combinations
 * Combination Sum
 * Combination Sum II
 * Letter Combination of a Phone Number
-<br />
+<hr />
 * Gray Code
-<br />
+<hr />
 * Subset
 * Subset II
-<br />
+<hr />
 * Generate Parentheses
 * Valid Parentheses
 * Longest Valid Parentheses
-<br />
+<hr />
 * Palindrome Number
 * Valid Palindrome
 * Palindrome Partitioning
