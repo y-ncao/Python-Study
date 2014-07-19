@@ -6,25 +6,20 @@
 * Next Permutation
 * Permutation Sequence
 
-=====
 * Combinations
 * Combination Sum
 * Combination Sum II
 * Letter Combination of a Phone Number
 
-=====
 * Gray Code
 
-=====
 * Subset
 * Subset II
 
-=====
 * Generate Parentheses
 * Valid Parentheses
 * Longest Valid Parentheses
 
-=====
 * Palindrome Number
 * Valid Palindrome
 * Palindrome Partitioning
