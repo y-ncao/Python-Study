@@ -35,6 +35,7 @@
 * Palindrome Partitioning
 * Palindrome Partitioning II
 
+
 ####Tree Traversal
 * Binary Tree Inorder Traversal
 * Binary Tree Preorder Traversal
@@ -56,6 +57,7 @@ ____
 * Maximum Depth of Binary Tree
 * Minimum Depth of Binary Tree
 
+
 ####Binary Search Tree
 * Convert Sorted Array to Binary Search Tree
 * Unique Binary Search Trees
@@ -73,7 +75,8 @@ ____
 * Flatten Binary Tree to Linked List
 * Binary Tree Maximum Path Sum
 
-###Array(意义不大)
+
+####Array(意义不大)
 * Maximum Subarray
 * Convert Sorted Array to Binary Search Tree
 * Merge Sorted Array
@@ -82,6 +85,7 @@ ____
 * Search in Rotated Sorted Array
 * Search in Rotated Sorted Array II
 * Median of Two Sorted Arrays
+
 
 ####List(意义不大)
 * Linked List Cycle
@@ -99,15 +103,18 @@ ____
 * Sort List
 * Reorder List
 
+
 ######Dup with tree
 * Flatten Binary Tree to Linked List
 * Convert Sorted List to Binary Search Tree
+
 
 ####Matrix
 * Search a 2D Matrix
 * Spiral Matrix
 * Spiral Matrix II
 * Set Matrix Zeroes
+
 
 ####Dynamic Programming
 * Climbing Stairs
