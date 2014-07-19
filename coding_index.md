@@ -5,12 +5,10 @@
 * Permutations II
 * Next Permutation
 * Permutation Sequence
-
-
-* Combinations
-* Combination Sum
-* Combination Sum II
-* Letter Combination of a Phone Number
++ Combinations
++ Combination Sum
++ Combination Sum II
++ Letter Combination of a Phone Number
 
 * Gray Code
 
