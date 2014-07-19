@@ -1991,6 +1991,28 @@ def add_binary(a, b):
     return ''.join(result)
 
 # 87. Next Permutation:
+def nextPermutation(num):
+    if len(num) <= 1:
+        return num
+    i = len(num) - 1
+    while i > 1 and num[i-1]>= num[i]: # It's >=
+        i -= 1
+    num = num[:i] + sorted(num[i:])
+    if i == 0:
+        return num
+    j = i
+    while j < len(num) and num[i-1] >= num[j]: # again >=
+        j += 1
+    swap(i-1, j, num)
+    return num
+
+def swap(i, j, num):
+    tmp = num[i]
+    num[i] = num[j]
+    num[j] = tmp
+
+"""
+Wrong answer, this not sorting the rest list
 def next_perm(list):
     l = len(list)
     for i in range(1, l):
@@ -2001,6 +2023,7 @@ def next_perm(list):
                 list[-j] = tmp
                 return list
     return list[::-1]
+"""
 
 # 88. Permutations II
 # First redo the permutation_i
