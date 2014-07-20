@@ -10,4 +10,4 @@
 
 [Whitebook](./WhiteBook) includes 150 Career Cup Questions. Very basic.
 
-[Concept Implement](./Concept Implement) includes the python implementation of important CS concepts.
+[Concept Implement](./Concept_Implement) includes the python implementation of important CS concepts.
