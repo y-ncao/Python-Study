@@ -8,6 +8,6 @@
 
 [coding_index](./coding_index.md) is my summary of leetcode questions by keywords
 
-[WhiteBook](./Whitebook) includes 150 Career Cup Questions. Very basic.
+[Whitebook](./WhiteBook) includes 150 Career Cup Questions. Very basic.
 
-[Concept Implement](./Concept\ Implement) includes the python implementation of important CS concepts.
+[Concept Implement](./Concept Implement) includes the python implementation of important CS concepts.
