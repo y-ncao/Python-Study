@@ -1178,6 +1178,20 @@ def pascal_triangle_II(n):
 
 # 48. Combinations
 # Remember in this question, result need to use result[:] as copy
+# Simpler way
+def combine(n, k):
+    ret =[]
+    combine_helper(1, n, k, [], ret)
+    return ret
+def combine_helper(cur, n, k, res, ret):
+    if len(res) == k:
+        ret.append(res[:])
+        return
+    for i in range(cur, n+1):
+        res.append(i)
+        combine_helper(i+1, n, k, res, ret)
+        res.pop()
+"""
 def combine(n, k):
     ret = []
     def combine_helper(result):
@@ -1197,7 +1211,7 @@ def combine(n, k):
                 result.pop()
     combine_helper([])
     print ret
-
+"""
 # 49. Search in Rotated Sorted Array II/I
 # Don't be afraid of this problem. It's very simple once you know what to do
 def search_rot_array_i(array, target):
@@ -1749,6 +1763,22 @@ def partition_list(head, target):
 
 # 76. Combination Sum
 # Don't forget to use copy[:]
+def combinationSum(candidates, target):
+    ret = []
+    combinationSum_helper(sorted(candidates), target, [], ret) # Look into the question, need sorted
+    return ret
+
+def combinationSum_helper(candidates, target, res, ret):
+    if target < 0:
+        return
+    elif target == 0:
+        ret.append(res[:])
+        return
+    for i, num in enumerate(candidates):
+        res.append(num)
+        combinationSum_helper(candidates[i:], target - num, res, ret)
+        res.pop()
+"""
 def comb_sum(list, target):
     ret = []
 
@@ -1757,6 +1787,7 @@ def comb_sum(list, target):
             return
         elif target == 0:
             ret.append(result[:])
+            return
         for i in list:
             result.append(i)
             comb_sum_helper(list[i:], target-i, result)
@@ -1764,7 +1795,7 @@ def comb_sum(list, target):
 
     comb_sum_helper(list, target, [])
     return ret
-
+"""
 # Combination Sum II
 # No duplicate item should be used, what I see diff is list[i:] or list[i+1:], needs to be tested
 # Bei Ni Ya Cai Dui le
@@ -2542,10 +2573,10 @@ def perm_seq(n, k):
     num = []
     res = ''
     total = 1
-    for i in range(1, n+1):
+    for i in range(1, n+1):             # n+1
         num.append(str(i))
         total *= i
-    k -= 1
+    k -= 1                              # This is important
     while n > 0:
         total /= n
         i = k / total
@@ -2553,7 +2584,7 @@ def perm_seq(n, k):
         res += num[i]
         num.pop(i)
         n -= 1
-    return ''.join(res)
+    return res                          # return ''.join(res) ?? why not just return res
 # Used for testing
 # print 'Start: n = ', n,', i = ', i, ', k = ', k,', total = ', total, ', res = ', res, ', num = ', num
 # print 'n = ', n,', i = ', i, ', k = ', k,', total = ', total, ', res = ', res, ', num = ', num

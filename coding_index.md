@@ -15,6 +15,17 @@
 
 -----
 
+######Note:
+做Permutation的感觉和做Combination的感觉非常像，注意
+1. 结束条件都是用完所有可用的char, 也就是i == len(n). 然后在ret.append(res[:]), 这里千万别忘了要return cancel函数
+2. 做for循环的时候会有些差别, 这里会影响recursion函数的输入
+  1. Permutation传入剩余num_list 是 num[:i] + num[i+1], 因为只是除去当前数字，permute剩余
+  2. Combination传入剩余num_list 是 num[i+1:]， 因为除去比当前数字之前的数，combine剩余
+  3. 两者相同的地方都是先res.append(n) then combine_rec/permute_rec then res.pop()
+P.S.记得这里用enumerate会方便好多
+
+-----
+
 * Gray Code
 
 -----
