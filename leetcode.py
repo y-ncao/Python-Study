@@ -1458,6 +1458,22 @@ def path_sum_ii(root, target):
     path_sum_helper(root, [], target)
 
 # 61. Subsets
+def subsets(S):
+    ret = []
+    subsets_helper(0, sorted(S), [], ret)
+    return ret
+
+def subsets_helper(i, S, res, ret):
+    if i == len(S):
+        ret.append(res[:])
+        return
+    subsets_helper(i+1, S, res, ret) # No element i
+    res.append(S[i])
+    subsets_helper(i+1, S, res, ret) # With element i
+    res.pop()
+
+"""
+New answer has better understanding
 # SOOOOOOO Niu Bi
 def sub_sets(list):
     ret = [[]]
@@ -1469,7 +1485,7 @@ def sub_sets(list):
             result.pop()
     sub_sets_helper([], list)
     return ret
-
+"""
 # 62. Unique Path
 # check 37
 def unique_path_ii():

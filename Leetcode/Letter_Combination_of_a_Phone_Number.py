@@ -23,6 +23,9 @@ class Solution:
                            '8': 'tuv',
                            '9': 'wxyz'
                            }
+        return self.letterCombinations_2(digits)
+
+    def letterCombinations_1(self, digits):
         ret = ['']
         for digit in digits:
             res = []
@@ -32,4 +35,15 @@ class Solution:
             ret = res
         return ret
 
-    # Need to think about a recursion way to do this
+    # Recursion way to do this
+    def letterCombinations_2(self, digits):
+        ret = []
+        self.letterCombinations_rec(0, digits, '', ret)
+        return ret
+
+    def letterCombinations_rec(self, i, digits, res, ret):
+        if i == len(digits):
+            ret.append(res[:])
+            return
+        for char in self.digit_map[digits[i]]:
+            self.letterCombinations_rec(i+1, digits, res + char, ret)

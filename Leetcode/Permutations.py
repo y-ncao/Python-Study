@@ -17,6 +17,7 @@ class Solution:
         ret = []
         self.permute_helper([], num, ret)
         return ret
+
     def permute_helper(self, res, num, ret):
         if len(num) == 0:
             ret.append(res[:])

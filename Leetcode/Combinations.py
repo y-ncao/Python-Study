@@ -20,6 +20,7 @@ class Solution:
         ret =[]
         self.combine_helper(1, n, k, [], ret)
         return ret
+
     def combine_helper(self, cur, n, k, res, ret):
         if len(res) == k:
             ret.append(res[:])
