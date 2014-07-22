@@ -745,6 +745,22 @@ def permute(num):
         return res
 
 # 32. Generate Parentheses
+# With simpler implementation
+def generateParenthesis(n):
+    ret = []
+    generateParenthesis_helper(n, n, '', ret)
+    return ret
+
+def generateParenthesis_helper(left, right, res, ret):
+    if left == 0 and right ==0:
+        ret.append(res[:])
+        return
+    if left > 0:
+        generateParenthesis_helper(left-1, right, res+'(', ret)
+    if right > left:
+        generateParenthesis_helper(left, right-1, res+')', ret)
+
+"""
 def parentheses_gen(n):
         res = []
         cand = ''
@@ -759,7 +775,7 @@ def gp(left, right, cand, res):
     else:
         gp(left - 1, right, cand + '(', res)
         gp(left, right - 1, cand + ')', res)
-
+"""
 # 33. Best time to buy and sell II
 # Remember to pre check
 
@@ -1378,6 +1394,20 @@ def trap_rain_water(data_list):
 # See 49.
 
 # 58. Valid Parenetheses
+# Simpler code
+def isValid(s):
+    bracket_dict = { '[' : ']',
+                     '{' : '}',
+                     '(' : ')',
+                     }
+    stack = []
+    for bracket in s:
+        if bracket in bracket_dict.keys():
+            stack.append(bracket)
+        elif len(stack) == 0 or bracket !=bracket_dict[stack.pop()]:
+            return False
+        return len(stack) == 0
+"""
 # Remember, here cannot use dict() to define '[' as a key
 def valid_paren(parens):
     pair = { '[' : ']',
@@ -1401,7 +1431,7 @@ def valid_paren(parens):
     if stack:
         return False
     return True
-
+"""
 
 # 59. Valid Sudoku
 def valid_sudoku(board):
