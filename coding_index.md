@@ -16,13 +16,14 @@
 -----
 
 ######Note:
-做Permutation的感觉和做Combination的感觉非常像，注意
+做Permutation, Combination和Subset的感觉非常像，注意
 
 1. 结束条件都是用完所有可用的char, 也就是i == len(n). 然后在ret.append(res[:]), 这里千万别忘了要return cancel函数
 2. 做for循环的时recursion函数的输入会有差别(记得这里用enumerate会方便好多)
   1. Permutation传入剩余num_list 是 num[:i] + num[i+1], 因为只是除去当前数字, permute剩余
   2. Combination传入剩余num_list 是 num[i+1:],  因为除去比当前数字之前的数, combine剩余
-  3. 两者相同的地方都是
+  3. Subsets其实也应该是S[i+1:],除去之前可能的set. 但是与前两者不同的是循环的内容不同， Subset只有存在和不存在两种情况，所以等于是loop一个恒为2的循环，而第一种情况还有特殊条件，这个一定要仔细看好。
+  4. Permutation&Combination两者相同的地方都是
     1. res.append(n)
     2. do combine_rec/permute_rec
     3. res.pop()
