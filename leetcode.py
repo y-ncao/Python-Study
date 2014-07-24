@@ -1227,7 +1227,7 @@ def spiral_matrix_II(n):
         end_row -= 1
         end_col -= 1
     if n % 2 == 1:
-        matrix[start_row][start_colum] = num
+        matrix[start_row][start_col] = num
     return matrix
 
 # 47. Pascal's Triangle II
