@@ -27,7 +27,7 @@
     1. res.append(n)
     2. do combine_rec/permute_rec
     3. res.pop()
-
+3. 仔细观察这三道题就会发现, 其实I都是输入没有重复, 而II都是输入有重复,但输出不能有重复的题目.
 
 -----
 
@@ -98,6 +98,8 @@ ____
 * Search in Rotated Sorted Array II
 * Median of Two Sorted Arrays
 
+* Remove Element
+
 ####List(意义不大)
 * Linked List Cycle
 * Linked List Cycle II
@@ -124,6 +126,19 @@ ____
 * Spiral Matrix II
 * Set Matrix Zeroes
 
+
+####Play With Math
+* Reverse Integer
+* Roman to Integer
+* Intger to Roman
+* Pascal's Triangle
+* Pascal's Triangle II
+
 ####Dynamic Programming
 * Climbing Stairs
+* Maximum Subarray
 * Minimum Path Sum
+* Unique Binary Search Tree
+
+####Cannot Classify(记住思路)
+* Search Insert Position

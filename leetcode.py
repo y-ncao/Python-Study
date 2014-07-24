@@ -843,8 +843,17 @@ def stock_buy_sell_III(prices):
 
 # 34. Plus One
 # Fuck you cheat guys
-def plus_one(digits):
-  pass
+def plusOne(digits):
+    i = len(digits) - 1
+    carry = 1
+    while i >= 0 and carry == 1:    # So many detail! No need to continue calculation if carry == 0
+        s = digits[i] + carry       # Calculate s first
+        digits[i] = s % 10
+        carry = s / 10
+        i -= 1
+    if carry == 1:                  # Last check
+        digits.insert(0, 1)
+    return digits
 
 # 35. Roatate Image
 def rotate_image(matrix):
@@ -1059,6 +1068,44 @@ def min_path_sum(grid):
 
 # 42. Search a 2D Matrix
 # !! Remember that binary search is start <= end !!!!
+def searchMatrix(matrix, target):
+    start = 0
+    end = len(matrix) -1            # -1 !!!
+    while start <= end:
+        mid = (start + end) / 2
+        if matrix[mid][0] <= target and target <= matrix[mid][-1]:
+            col = mid
+            start = 0
+            end = len(matrix[0]) -1         # -1!!!
+            while start <= end:
+                mid = (start + end) / 2
+                if target == matrix[row][mid]:
+                    return True
+                elif target < matrix[row][mid]:
+                    end = mid - 1
+                else:
+                    start = mid + 1
+            return False
+        elif target < matrix[mid][0]:
+            end = mid-1
+        else:
+            start = mid + 1
+    return False
+
+    # This is better, nested matrix
+"""
+Generate m*n matrix
+a = 0
+m = []
+for i in range(10):
+    row = []
+    for j in range(8):
+        row.append(a)
+        a += 1
+    m.append(row[:])
+"""
+
+"""
 def search_2d_matrix(matrix, target):
     m = len(matrix[0])
     n = len(matrix)
@@ -1084,17 +1131,17 @@ def search_2d_matrix(matrix, target):
         else:
             start = row_id + 1
     return False
-
+"""
 # 43. Set Matrix Zeroes
 # There's a better way which can save the space of doing so'
 def set_matirx_0(matrix):
-    m = len(matrix[0])
-    n = len(matrix)
+    n = len(matrix[0])
+    m = len(matrix)
     zero_row = False
     zero_col = False
 
-    for i in range(n):
-        for j in range(m):
+    for i in range(m):
+        for j in range(n):
             if matrix[i][j] == 0:
                 if i == 0:
                     zero_row = True
@@ -1102,16 +1149,17 @@ def set_matirx_0(matrix):
                     zero_col = True
                 matrix[i][0] = matrix[0][j] = 0
 
-    for i in range(1, n):
-        for j in range(1, m):
+    for i in range(1, m):
+        for j in range(1, n):
             if matrix[i][0] == 0 or matrix[0][j] == 0:
                 matrix[i][j] = 0
-    if zero_row:
-        for j in range(m):
-            matrix[0][j] = 0
-    if zero_colum:
-        for i in range(n):
+    if zero_col:
+        for i in range(m):
             matrix[i][0] = 0
+
+    if zero_row:
+        for j in range(n):
+            matrix[0][j] = 0
 
     return matrix
 
