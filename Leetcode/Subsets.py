@@ -23,7 +23,7 @@ class Solution:
     # @param S, a list of integer
     # @return a list of lists of integer
     def subsets(self, S):
-        return subsets_1(S)
+        return self.subsets_1(S)
 
     # Iteration method
     def subsets_1(self, S):
