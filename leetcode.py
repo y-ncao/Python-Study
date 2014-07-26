@@ -1278,6 +1278,8 @@ def combine(n, k):
 """
 # 49. Search in Rotated Sorted Array II/I
 # Don't be afraid of this problem. It's very simple once you know what to do
+# This is not correct for array[mid] > array[start]
+# Should use array[mid] > array[end] instead
 def search_rot_array_i(array, target):
     start = 0
     end = len(array) - 1
@@ -1285,7 +1287,7 @@ def search_rot_array_i(array, target):
         mid = (start + end) / 2
         if target == array[mid]:
             return True
-        if array[mid] > array[start]: # First half sorted
+        if array[mid] >= array[start]: # First half sorted
             if array[start] <= target and target < array[mid]:
                 end = mid - 1
             else:
