@@ -2215,6 +2215,9 @@ def permutations_ii(list):
 
 # 89. Remove Duplicates from Sorted List II
 # So many traps. Need to remember to set unused.next = None
+"""
+This is something I really need dummy here
+I don't even want to look at this answer again
 def remove_dup_from_list_ii(head):
     prev = head
     current = head.next
@@ -2238,7 +2241,7 @@ def remove_dup_from_list_ii(head):
             prev = current
             current = current.next
     return unique_head
-
+"""
 # 90. Insertion Sort List
 # Sister is too niubi
 # Inpired by the dummy here

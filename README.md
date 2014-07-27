@@ -19,10 +19,16 @@
 
 * [AnnieKim](https://github.com/AnnieKim/LeetCode) Very good and simple leetcode implementation in C.
 
-* [Yu's Coding Garden](http://yucoding.blogspot.com/) Leetcode implementation in C++ and Python
+* [Yu's Coding Garden](http://yucoding.blogspot.com/) Leetcode implementation in C++ and Python.
 
 * [Jane](http://jane4532.blogspot.com/) My friend's blog which has many leetcode solution with discussion.
 
 * [水中的鱼](http://fisherlei.blogspot.com/) Another blog of leetcode solutions.
 
-* [九章算法题解站](http://fisherlei.blogspot.com/) Leetcode solution from NineChapter in Java
+* [九章算法题解站](http://fisherlei.blogspot.com/) Leetcode solution from NineChapter in Java.
+
+####Methodology
+
+* [Dynamic Programming: From novice to advanced](http://hawstein.com/posts/dp-novice-to-advanced.html) Chinese translation.
+
+* [Knapsack problem](http://hawstein.com/posts/dp-knapsack.html) Another discussion about DP.
