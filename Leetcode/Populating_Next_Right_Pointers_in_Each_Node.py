@@ -41,13 +41,13 @@ class Solution:
     # @param root, a tree node
     # @return nothing
     def connect(self, root):
-        if root is None:
+        if root is None or root.left is None:
             return
-        if root.left is not None:
-            root.left.next = root.right
+        root.left.next = root.right
         if root.right is not None and root.next is not None:
             root.right.next = root.next.left
         self.connect(root.left)
         self.connect(root.right)
 
     # Or maybe use a level order traversal
+    # Removed one line
