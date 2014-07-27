@@ -31,7 +31,7 @@
 
 -----
 
-* Gray Code
+*[x] Gray Code
 
 -----
 
