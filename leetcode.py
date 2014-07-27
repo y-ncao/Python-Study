@@ -463,7 +463,7 @@ def array_to_bst_helper(num_list, start, end):
     return n
 
 # 22. Remove Duplicates from sorted array
-# Remember i+1, also don't forget lenght check
+# Remember i+1, also don't forget length check
 def removeDuplicates_2(A):
     if len(A) <= 1:
         return len(A)
@@ -1424,6 +1424,33 @@ def sum_root_to_leaf(root):
 
 # 55. Length of Last Word
 # This a python way, even not the python way, it's too easy
+def lengthOfLastWord_1(s):
+    if len(s.strip()) == 0:                   # Need to check if len(s) is 0
+        return 0
+    return len(s.strip().split()[-1])         # Python way
+
+def lengthOfLastWord_2(s):              # My way
+    n = len(s) - 1
+    while n >= 0 and s[n] == ' ':
+        n -= 1
+    i = 0
+    while n >= 0 and s[n] != ' ':
+        n -= 1
+        i += 1
+    return i
+
+def lengthOfLastWord_3(s):              # Annie way
+    n = len(s) - 1
+    res = 0
+    while n >= 0:
+        if s[n] != ' ':
+            res += 1
+        elif res > 0:
+            break
+        n -= 1
+        return res
+"""
+Too Sen Po Ah me
 def len_last_word(str):
     word_list = str.split(' ')
     return len(word_list[-1])
@@ -1434,7 +1461,7 @@ def len_lst_word(str):
     for i, char in enumerate(str[::-1]):
         if char == ' ':
             return i
-
+"""
 # 56. Trapping Rain Water
 # Haven't finished yet
 def trap_rain_water(data_list):
@@ -2258,7 +2285,7 @@ def reverse_nodes_in_k(head, k):
     dummy = Node(0)
     dummy.next = head
     length = get_len(head)
-    reverse_time = lenght / k
+    reverse_time = length / k
     ins = dummy
     current = head
     while reverse_time > 0:
@@ -2984,7 +3011,7 @@ def merge_list(head1, head2):
         current.next = head2
     return dummy.next
 
-def getLenght(head):
+def getLength(head):
     length = 0
     while head is not None:
         head = head.next
