@@ -13,8 +13,16 @@ Note: m and n will be at most 100.
 class Solution:
     # @return an integer
     def uniquePaths(self, m, n):
-        dp = [ [0 for i in range(m)] for j in range(n)]
+        dp = [ [0 for j in range(n)] for i in range(m) ]
+        for i in range(m):
+            dp[i][0] = 1
+        for j in range(n):
+            dp[0][j] = 1
         for i in range(1, m):
-            dp[0][i] = 1
-        for j in range(1, n):
-            dp[j][0] = 1
+            for j in range(1, n):
+                dp[i][j] = dp[i-1][j] + dp[i][j-1]
+        return dp[m-1][n-1]
+
+    # For the convinience in the future, going to use m as the rows, n as the columns
+    # So dp[m][n] which is [ [ 0 for j in range(n)] for i in range(m) ]
+    # Remember this
