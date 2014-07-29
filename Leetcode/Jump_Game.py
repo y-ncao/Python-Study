@@ -15,14 +15,14 @@ class Solution:
     # @param A, a list of integers
     # @return a boolean
     def canJump(self, A):
-        return self.canJump_1(A):
+        return self.canJump_1(A)
 
     # Constant DP
     def canJump_1(self, A):
-        pre_max = 0
-        for i, jump in enumerate(A[1:]):
-            max_jump = max(pre_max-1, A[i-1])
-            if max_jump == 0:
+        pre_max = A[0]
+        for i in range(1, len(A)):
+            max_jump = max(pre_max-1, A[i-1]-1)
+            if max_jump < 0:            # Note this is < 0 but not <= 0
                 return False
             pre_max = max_jump
         return True
