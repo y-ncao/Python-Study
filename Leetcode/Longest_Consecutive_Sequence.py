@@ -12,8 +12,10 @@ class Solution:
     # @param num, a list of integer
     # @return an integer
     def longestConsecutive(self, num):
-        if len(num) <= 1:
-            return len(num)
+        return self.longestConsecutive_2(num)
+
+    # Using dict
+    def longestConsecutive_1(self, num):
         num_dict = {}
         for i in num:
             if i not in num_dict:
@@ -35,10 +37,28 @@ class Solution:
                 j -= 1
             ret = max(ret, length)
             num_dict.pop(i, None)
-
         return ret
 
-
+    # Not using dict
+    def longestConsecutive_2(self, num):
+        ret = 1
+        for i in num[:]:
+            if i not in num:
+                continue
+            length = 1
+            j = i
+            while j+1 in num:
+                length += 1
+                num.remove(j+1)
+                j += 1
+            j = i
+            while j-1 in num:
+                length += 1
+                num.remove(j-1)
+                j -= 1
+            ret = max(ret, length)
+            num.remove(i)
+        return ret
 
 
 # This is correct but exceeded the time limit

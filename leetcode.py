@@ -1644,6 +1644,31 @@ def flat_bt(root):
     root.right is None
 
 # 65. Longest Consecutive Sequence
+def longestConsecutive_2(num):
+    if len(num) <= 1:
+        return len(num)
+    ret = 1
+    for i in num[:]:
+        if i not in num:
+            continue
+        length = 1
+        j = i
+        while j+1 in num:
+            length += 1
+            num.remove(j+1)
+            j += 1
+        j = i
+        while j-1 in num:
+            length += 1
+            num.remove(j-1)
+            j -= 1
+        ret = max(ret, length)
+        num.remove(i)
+    return ret
+
+"""
+Better way above, not using anything
+Also need to remember should use two direction find
 def longest_con_seq(list):
     from sets import Set
     d = Set
@@ -1659,7 +1684,7 @@ def longest_con_seq(list):
             cur +=1
         longest = max(longest, cur_len)
     return longest
-
+"""
 # 66. Subsets II
 # There's another version of doing subsets. But almost the same.
 def sub_sets_ii(list):
