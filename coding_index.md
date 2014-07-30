@@ -104,7 +104,7 @@ ____
 * [x] Linked List Cycle
 * [x] Linked List Cycle II
 * [x] Remove Duplicates from Sorted List
-* [x Remove Duplicates from Sorted List II
+* [x] Remove Duplicates from Sorted List II
 * [x] Merge Two Sorted Lists
 * [x] Remove Nth Node From End of List
 * [ ] Partition List
