@@ -139,6 +139,25 @@ ____
 * [x] Maximum Subarray
 * [x] Minimum Path Sum
 * [x] Unique Binary Search Tree
+* [x] Container With Most Water
+* [x] Unique Paths
+* [x] Unique Paths II
+* [x] Unique Binary Search Trees
+* [ ] Unique Binary Search Trees II
+* [x] Best Time to Buy and Sell Stock III
+* [x] Jump Game
+* [x] Jump Game II
+* [x] Longest Consecutive Sequence
+* [ ] Triangle
+* [ ] Edit Distance
+* [ ] Distinct Subsequences
+* [ ] Maximal Rectangle
+* [ ] Longest Palindromic Substring
+* [ ] Scramble String
+* [ ] Palindrome Partitioning II
+* [ ] Interleaving String
+* [ ] Word Break
+* [ ] Decode Ways
 
 ####Cannot Classify(记住思路)
 * [x] Search Insert Position
