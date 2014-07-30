@@ -1884,6 +1884,29 @@ def zizag_traversal(root):
     return result
 
 # 75. Partition List
+def partition(head, x):
+    before_dummy = ListNode(0)
+    after_dummy = ListNode(0)
+    before_cur = before_dummy
+    after_cur = after_dummy
+    while head is not None:
+        if head.val < x:
+            before_cur.next = head
+            before_cur = before_cur.next
+            head = head.next
+            before_cur.next = None
+        else:
+            after_cur.next = head
+            after_cur = after_cur.next
+            head = head.next
+            after_cur.next = None
+    if before_dummy.next is not None:
+        before_cur.next = after_dummy.next
+        return before_dummy.next
+    else:
+        return after_dummy.next
+"""
+Above solution using dummy will be a lot easier
 def partition_list(head, target):
     if head is None:
         return None
@@ -1908,7 +1931,7 @@ def partition_list(head, target):
     else:
         left_end.next = right_start
         return left_start
-
+"""
 # 76. Combination Sum
 # Don't forget to use copy[:]
 def combinationSum(candidates, target):
