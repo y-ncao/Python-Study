@@ -107,18 +107,18 @@ ____
 * [x] Remove Duplicates from Sorted List II
 * [x] Merge Two Sorted Lists
 * [x] Remove Nth Node From End of List
-* [ ] Partition List
-* [ ] Reverse Linked List II(Why only II??)
-* [ ] Insertion Sort List
+* [x] Partition List
+* [x] Reverse Linked List II (Why only II??)
+* [ ] Insertion Sort List (Insertion Sort)
 * [ ] Copy List with Random Pointer
-* [ ] Merge k Sorted Lists
+* [x] Merge k Sorted Lists
 * [ ] Rotate List
-* [ ] Sort List
+* [ ] Sort List (Merge Sort)
 * [ ] Reorder List
 
 ######Dup with tree
 * [ ] Flatten Binary Tree to Linked List
-* [ ] Convert Sorted List to Binary Search Tree
+* [x] Convert Sorted List to Binary Search Tree
 
 ####Matrix
 * [x] Search a 2D Matrix
@@ -148,7 +148,7 @@ ____
 * [x] Jump Game
 * [x] Jump Game II
 * [x] Longest Consecutive Sequence
-* [ ] Triangle
+* [x] Triangle
 * [ ] Edit Distance
 * [ ] Distinct Subsequences
 * [ ] Maximal Rectangle
