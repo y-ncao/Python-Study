@@ -125,7 +125,8 @@ ____
 * [ ] Spiral Matrix
 * [x] Spiral Matrix II
 * [x] Set Matrix Zeroes
-
+* [x] Valid Sudoku
+* [ ] Sudoku Solver
 
 ####Play With Math
 * [x] Reverse Integer
@@ -162,3 +163,11 @@ ____
 ####Cannot Classify(记住思路)
 * [x] Search Insert Position
 * [x] Container With Most Water (In Two pointers)
+* [x] Count and Say
+* [ ] Implement strStr()
+
+####Not Sure Yet
+* [ ] 3Sum Closest
+* [ ] 4Sum
+* [ ] Two Sum
+* [ ] 3Sum
