@@ -41,12 +41,12 @@ class Solution:
                 else:
                     ret.append(res[:])
                 res = []
-                if len(queue) == 0:
+                if len(queue) == 0:     # Break here, otherwise will append another None
                     break
                 zig = not zig
                 queue.append(None)
             else:
-                res.append(node.val)
+                res.append(node.val)    # Remember this, need to do this in node, not node.left/right
                 if node.left is not None:
                     queue.append(node.left)
                 if node.right is not None:
