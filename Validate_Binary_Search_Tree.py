@@ -32,7 +32,7 @@ class Solution:
         return self.isValidBST_helper_1(root.left, min, root.val) and self.isValidBST_helper_1(root.right, root.val, max)
 
     def isValidBST_2(self, root):
-        return self.isValidBST_helper_2(root, -9223372036854775808):
+        return self.isValidBST_helper_2(root, -9223372036854775808)
 
     def isValidBST_helper_2(self, root, val):
         if root is None:
@@ -42,6 +42,6 @@ class Solution:
         if root.val <= val:
             return False
         val = root.val
-        if node.right is not None and not self.isValidBST_helper_2(root.right, val):
+        if root.right is not None and not self.isValidBST_helper_2(root.right, val):
             return False
         return True
