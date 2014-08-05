@@ -57,12 +57,12 @@
 * [x] Binary Tree Postorder Traversal
 * [x] Binary Tree Level Order Traversal
 * [x] Binary Tree Level Order Traversal II
-* [ ] Binary Tree Zigzag Level Order Traversal
+* [x] Binary Tree Zigzag Level Order Traversal
 
 ____
 
-* [ ] Construct Binary Tree from Preorder and Inorder Traversal
-* [ ] Construct Binary Tree from Inorder and Postorder Traversal
+* [x] Construct Binary Tree from Preorder and Inorder Traversal (Redo)
+* [x] Construct Binary Tree from Inorder and Postorder Traversal (Redo)
 
 ----
 
@@ -76,8 +76,8 @@ ____
 * [x] Convert Sorted Array to Binary Search Tree
 * [x] Unique Binary Search Trees
 * [x] Unique Binary Search Trees II
-* [ ] Validate Binary Search Tree
-* [ ] Recover Binary Search Tree
+* [x] Validate Binary Search Tree (Redo)
+* [x] Recover Binary Search Tree (Redo)
 
 ####类Tree(以tree作为Data Structure的题目)
 * [x] Path Sum
@@ -117,7 +117,7 @@ ____
 * [ ] Reorder List
 
 ######Dup with tree
-* [ ] Flatten Binary Tree to Linked List
+* [x] Flatten Binary Tree to Linked List
 * [x] Convert Sorted List to Binary Search Tree
 
 ####Matrix
@@ -171,3 +171,9 @@ ____
 * [ ] 4Sum
 * [ ] Two Sum
 * [ ] 3Sum
+
+##Definetly Redo
+* Recover_Binary_Search_Tree
+* Validate_Binary_Search_Tree
+* Order Traversal Recover
+* ~Find last ancestor~ of node x
