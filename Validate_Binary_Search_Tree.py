@@ -22,7 +22,7 @@ class Solution:
         return self.isValidBST_1(root)
 
     def isValidBST_1(self, root):         # sys.maxint and -sys.maxint-1
-        return self.isValidBST_helper(root, -9223372036854775808,  9223372036854775807)
+        return self.isValidBST_helper_1(root, -9223372036854775808,  9223372036854775807)
 
     def isValidBST_helper_1(self, root, min, max):
         if root is None:
@@ -31,6 +31,8 @@ class Solution:
             return False
         return self.isValidBST_helper_1(root.left, min, root.val) and self.isValidBST_helper_1(root.right, root.val, max)
 
+"""
+This won't pass
     def isValidBST_2(self, root):
         return self.isValidBST_helper_2(root, -9223372036854775808)
 
@@ -45,3 +47,4 @@ class Solution:
         if root.right is not None and not self.isValidBST_helper_2(root.right, val):
             return False
         return True
+"""
