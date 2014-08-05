@@ -176,4 +176,4 @@ ____
 * Recover_Binary_Search_Tree
 * Validate_Binary_Search_Tree
 * Order Traversal Recover
-* ~Find last ancestor~ of node x
+* __Find last ancestor__ of node x
