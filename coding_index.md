@@ -85,7 +85,7 @@ ____
 * [x] Populating Next Right Pointers in Each Node
 * [x] Populating Next Right Pointers in Each Node II
 * [x] Sum Root to Leaf Numbers
-* [ ] Flatten Binary Tree to Linked List
+* [x] Flatten Binary Tree to Linked List
 * [ ] Binary Tree Maximum Path Sum
 
 ####Array(意义不大)
@@ -112,7 +112,7 @@ ____
 * [ ] Insertion Sort List (Insertion Sort)
 * [ ] Copy List with Random Pointer
 * [x] Merge k Sorted Lists
-* [ ] Rotate List
+* [x] Rotate List
 * [ ] Sort List (Merge Sort)
 * [ ] Reorder List
 
