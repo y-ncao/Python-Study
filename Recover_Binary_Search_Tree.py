@@ -69,12 +69,7 @@ class Solution:
         prev[0] = root
         self.recoverTree_helper_2(root.right, prev, wrongs)
 
-"""
-        if root is None:
-            return None
-        nodes = []
-        queue = [root]
-        while len(queue) > 0 and len(nodes)<=2:
-            node = queue.pop()
-            if node
-"""
+    """
+    The third way is mad
+    def recoverTree_3(self, root):
+    """
