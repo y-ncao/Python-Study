@@ -1463,9 +1463,23 @@ def len_lst_word(str):
             return i
 """
 # 56. Trapping Rain Water
-# Haven't finished yet
-def trap_rain_water(data_list):
-    pass
+def trap(A):
+    N = len(A)
+    if N == 0:
+        return 0
+    left_to_right = [0 for i in range(N)]
+    right_to_left = [0 for i in range(N)]
+    max_left = A[0]
+    max_right = A[N-1]
+    for i in range(N):
+        max_left = max(max_left, A[i])
+        left_to_right[i] = max_left
+        max_right = max(max_right, A[N-1-i])
+        right_to_left[N-1-i] = max_right
+    water = 0
+    for i in range(N):
+        water += min(left_to_right[i], right_to_left[i]) - A[i] # Note here
+    return water
 
 # 57. Search in Rotated Sorted Array
 # See 49.
