@@ -14,6 +14,7 @@
 
 [Concept Implement](./Concept_Implement) includes the python implementation of important CS concepts.
 
+[run.py](./run.py) is a script to test Solutions when input is not very complicated. Just update the file name and function name in Solution and run the script.
 
 ####Reference
 

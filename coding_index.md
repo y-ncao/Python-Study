@@ -164,7 +164,7 @@ ____
 * [x] Search Insert Position
 * [x] Container With Most Water (In Two pointers)
 * [x] Count and Say
-* [ ] Implement strStr()
+* [x] Implement strStr() (KMP)
 
 ####Not Sure Yet
 * [ ] 3Sum Closest
@@ -177,3 +177,4 @@ ____
 * Validate_Binary_Search_Tree
 * Order Traversal Recover
 * __Find last ancestor__ of node x
+* Rotate List

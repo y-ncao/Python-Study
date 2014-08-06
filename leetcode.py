@@ -2790,6 +2790,31 @@ def max_rec():
     pass
 
 # 114. Implement strStr()
+# This is the final KMP way
+def strStr(haystack, needle):
+    H = len(haystack)
+    N = len(needle)
+    if N == 0:
+        return haystack
+    i = 0
+    while i < H-N+1:
+        if haystack[i] == needle[0]:
+            start = None            # Use None here
+            j = 1
+            while j < N:
+                if haystack[i+j] != needle[j]:
+                    break
+                elif start is None and haystack[i+j] == needle[0]: # Find first dup occurance
+                    start = i+j
+                j += 1
+            if j == N:
+                return haystack[i:]
+            if start is not None:
+                i = start - 1       # Detail, need to check start - 1
+        i+=1
+    return None
+"""
+Definetly wrong
 def strstr(haystack, needle):
     N = len(haystack)
     H = len(needle)
@@ -2804,7 +2829,6 @@ def strstr(haystack, needle):
         if startStack == N:
             return None
     return None
-
 # KMP way
 def strStr(haystack, needle):
     if len(needle) == 0:
@@ -2827,6 +2851,7 @@ def strStr(haystack, needle):
             if tmp_start is not None:
                 start = tmp_start - 1
         start += 1
+"""
 
 # 115. Longest Palindromic Substring
 # Check each point, has aba and abba two possibilities.
