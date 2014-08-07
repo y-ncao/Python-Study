@@ -86,7 +86,7 @@ ____
 * [x] Populating Next Right Pointers in Each Node II
 * [x] Sum Root to Leaf Numbers
 * [x] Flatten Binary Tree to Linked List
-* [ ] Binary Tree Maximum Path Sum
+* [x] Binary Tree Maximum Path Sum
 
 ####Array(意义不大)
 * [x] Maximum Subarray
@@ -144,7 +144,7 @@ ____
 * [x] Unique Paths
 * [x] Unique Paths II
 * [x] Unique Binary Search Trees
-* [ ] Unique Binary Search Trees II
+* [x] Unique Binary Search Trees II
 * [x] Best Time to Buy and Sell Stock III
 * [x] Jump Game
 * [x] Jump Game II
@@ -167,7 +167,7 @@ ____
 * [x] Implement strStr() (KMP)
 
 ####Not Sure Yet
-* [ ] 3Sum Closest
+* [x] 3Sum Closest
 * [ ] 4Sum
 * [ ] Two Sum
 * [ ] 3Sum
@@ -179,3 +179,4 @@ ____
 * __Find last ancestor__ of node x
 * Rotate List
 * Trapping Water (especially the way to think)
+* 3Sum closest
