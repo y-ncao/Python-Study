@@ -180,3 +180,11 @@ ____
 * Rotate List
 * Trapping Water (especially the way to think)
 * 3Sum closest
+* Sqrt(x)
+* Pow(x,n)
+
+##### Below Two Looks Similar, seems all use DFS
+* Palindrome Partitioning
+* Binary Tree Maximum Path Sum
+
+Not good, seems I need to redo every questions AC rate below 25%
