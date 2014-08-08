@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
-file_name = 'Longest_Substring_Without_Repeating_Characters'
-func_name = 'lengthOfLongestSubstring'
+file_name = 'ZigZag_Conversion'
+func_name = 'convert'
 
 import importlib
 module = importlib.import_module('Leetcode.%s' % file_name)
 instance = module.Solution()
 
-print getattr(instance, func_name)("abcdeababbbabcde")
+print getattr(instance, func_name)("PAYPALISHIRING",3)
