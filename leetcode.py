@@ -2380,7 +2380,7 @@ def gas_station(gas,cost):
     for i in range(N):
         diff.append(gas[i]-cost[i])
     sum = 0
-    startnode = 0
+    start_node = 0
     left_gas = 0
     for i in range(0, N):
         left_gas += diff[i]
