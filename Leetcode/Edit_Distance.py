@@ -32,3 +32,11 @@ class Solution:
     # 3. When comparing the i, it compares with word[i-1] and word[j-1]
     #    This is not hard to think, since we start loop from 1
     # 4. Initial value of DP: add N chars for word1
+    # Transfer function:
+    # Target somestr1c -> somestr2d
+    # 1. Assume somestr1  -> somestr2  dp[i][j]
+    # 2.        somestr1  -> somestr2d dp[i-1][j]
+    # 3.        somestr1c -> somestr2  dp[i][j-1]
+    # 4. i.   replace c with d: somestr1  -> somestr2 + 1  :    dp[i-1][j-1] + 1
+    #    ii.  append d to c   : somestr1c -> somestr2 + 1  :    dp[i][j-1] + 1
+    #    iii. delete c        : somestr1  -> somestr2d + 1 :    dp[i-1][j] + 1
