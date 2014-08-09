@@ -182,6 +182,7 @@ ____
 * 3Sum closest
 * Sqrt(x)
 * Pow(x,n)
+* Longest Substring Without Repeating Characters
 
 ##### Below Two Looks Similar, seems all use DFS
 * Palindrome Partitioning

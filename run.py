@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
-file_name = 'ZigZag_Conversion'
-func_name = 'convert'
+file_name = 'Edit_Distance'
+func_name = 'minDistance'
 
 import importlib
 module = importlib.import_module('Leetcode.%s' % file_name)
 instance = module.Solution()
 
-print getattr(instance, func_name)("PAYPALISHIRING",3)
+print getattr(instance, func_name)('abcd','abca')
