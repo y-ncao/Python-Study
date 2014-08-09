@@ -115,6 +115,7 @@ ____
 * [x] Rotate List
 * [x] Sort List (Merge Sort)
 * [x] Reorder List
+* [ ] Reverse Nodes in k-Group
 
 ######Dup with tree
 * [x] Flatten Binary Tree to Linked List

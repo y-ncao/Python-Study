@@ -2367,6 +2367,35 @@ def edit_distance(word1, word2):
     return dp[N][M]
 
 # 92. Reverse Nodes in k-Group
+# Personal written
+def reverseKGroup(head, k):
+    if k <= 1:
+        return head
+    dummy = ListNode(0)
+    dummy.next = head
+
+    total_nodes = 0
+    cur = head
+    while cur is not None:
+        cur = cur.next
+        total_nodes += 1
+    n = total_nodes / k
+
+    prev = dummy
+    while n > 0:
+        i = 1
+        cur = prev.next
+        while i < k:
+            move = cur.next
+            cur.next = move.next
+            move.next = prev.next
+            prev.next = move
+            i += 1
+        prev = cur
+        n -= 1
+    return dummy.next
+"""
+From annie's
 # Remember the way to play the list node
 def reverse_nodes_in_k(head, k):
     dummy = Node(0)
@@ -2392,7 +2421,7 @@ def get_len(head):
         head = head.next
         len += 1
     return len
-
+"""
 
 # 93. Gas Station
 # Couldn't understand
