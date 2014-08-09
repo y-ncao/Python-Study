@@ -2304,7 +2304,29 @@ def remove_dup_from_list_ii(head):
             current = current.next
     return unique_head
 """
-# 90. Insertion Sort List
+# 90. Insertion Sort List\
+def insertionSortList(self, head):
+    dummy = ListNode(-9223372036854775807-1)
+    dummy.next = head
+    cur = dummy
+    while cur.next is not None:
+        if cur.val < cur.next.val:
+            cur = cur.next
+        else:
+            insert = cur.next
+            cur.next = insert.next
+            start = dummy
+            while start.val < insert.val:
+                prev = start
+                start = start.next
+            prev.next = insert
+            insert.next = start
+    return dummy.next
+
+# Write everything in one func MAY increase the speed of processing
+# Made a mistake here, pasted the code to Sort List and coulnd't pass...
+# 1. The insertion sort shown in wiki, will check from back to front. It's the same to check from front-back
+"""
 # Sister is too niubi
 # Inpired by the dummy here
 def insertion_sort_list(head):
@@ -2325,7 +2347,7 @@ def insert(dummy, tail, node):
     tail.next = node.next
     node.next = current.next
     current.next = node
-
+"""
 # 91. Edit Distance
 # Same to the C anwser, need to understand the meaning of M, N, also the boundary
 def edit_distance(word1, word2):

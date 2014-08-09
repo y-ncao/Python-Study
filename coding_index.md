@@ -193,3 +193,4 @@ Not good, seems I need to redo every questions AC rate below 25%
 
 ##Still Cannot Understand
 * Edit Distance
+* Distinct Subsequences(I'm too bad at DP, need to find out a way to understand these)
