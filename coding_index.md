@@ -110,11 +110,11 @@ ____
 * [x] Partition List
 * [x] Reverse Linked List II (Why only II??)
 * [x] Insertion Sort List (Insertion Sort)
-* [ ] Copy List with Random Pointer
+* [x] Copy List with Random Pointer
 * [x] Merge k Sorted Lists
 * [x] Rotate List
 * [x] Sort List (Merge Sort)
-* [ ] Reorder List
+* [x] Reorder List
 
 ######Dup with tree
 * [x] Flatten Binary Tree to Linked List
