@@ -2430,7 +2430,7 @@ def distinct_subs(S, T):
                 dp[i][j] = dp[i][j-1] + dp[i-1][j-1]
             else:
                 dp[i][j] = dp[i][j-1]
-    return dp[M][Nx]
+    return dp[M][N]
 
 # Why not this?
 def distinct_subs(S, T):
