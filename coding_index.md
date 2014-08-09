@@ -113,7 +113,7 @@ ____
 * [ ] Copy List with Random Pointer
 * [x] Merge k Sorted Lists
 * [x] Rotate List
-* [ ] Sort List (Merge Sort)
+* [x] Sort List (Merge Sort)
 * [ ] Reorder List
 
 ######Dup with tree
