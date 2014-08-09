@@ -109,7 +109,7 @@ ____
 * [x] Remove Nth Node From End of List
 * [x] Partition List
 * [x] Reverse Linked List II (Why only II??)
-* [ ] Insertion Sort List (Insertion Sort)
+* [x] Insertion Sort List (Insertion Sort)
 * [ ] Copy List with Random Pointer
 * [x] Merge k Sorted Lists
 * [x] Rotate List
