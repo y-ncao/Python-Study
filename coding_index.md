@@ -183,10 +183,13 @@ ____
 * Sqrt(x)
 * Pow(x,n)
 * Longest Substring Without Repeating Characters
-* Edit Distance
+
 
 ##### Below Two Looks Similar, seems all use DFS
 * Palindrome Partitioning
 * Binary Tree Maximum Path Sum
 
 Not good, seems I need to redo every questions AC rate below 25%
+
+##Still Cannot Understand
+* Edit Distance
