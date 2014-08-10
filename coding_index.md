@@ -6,7 +6,7 @@
 * [x] Next Permutation
 * [x] Permutation Sequence
 
-----
+-----
 
 * [x] Combinations
 * [x] Combination Sum
@@ -59,12 +59,12 @@
 * [x] Binary Tree Level Order Traversal II
 * [x] Binary Tree Zigzag Level Order Traversal
 
-____
+_____
 
 * [x] Construct Binary Tree from Preorder and Inorder Traversal (Redo)
 * [x] Construct Binary Tree from Inorder and Postorder Traversal (Redo)
 
-----
+-----
 
 * [x] Same Tree
 * [x] Balanced Binary Tree
