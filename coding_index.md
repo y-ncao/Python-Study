@@ -207,7 +207,7 @@ Not good, seems I need to redo every questions AC rate below 25%
 * Search in Rotated Sorted Array II
 * Search a 2D Matrix
 * Search a 2D Matrix II (prev[-1] may larger than cur[0])
-* [x] Median of Two Sorted Arrays
+* [x] Median of Two Sorted Arrays (Need to look back for annie's answer, she has three solutions)
 * -> Find kth in two Sorted Arrays
 
 ######From zz
