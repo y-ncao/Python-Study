@@ -195,3 +195,24 @@ Not good, seems I need to redo every questions AC rate below 25%
 ##Still Cannot Understand
 * Edit Distance
 * Distinct Subsequences(I'm too bad at DP, need to find out a way to understand these)
+
+
+##From Class
+####Binary Search
+* Find First Occurance in Sorted Array (Basic)
+*      Last
+* Search Insert Position (Same as search for kth big)
+* Search for a Range (My way is wrong, should use binary for both bounds)
+* Search in Rotated Sorted Array
+* Search in Rotated Sorted Array II
+* Search a 2D Matrix
+* Search a 2D Matrix II (prev[-1] may larger than cur[0])
+
+####Three steps reverse
+* Recover Rotated List
+* -> Recover Rotated String
+* -> Rotate String
+* -> Reverse Sentence
+
+* Median of Two Sorted Arrays
+* -> Find kth in two Sorted Arrays
