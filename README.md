@@ -26,7 +26,7 @@
 
 * [水中的鱼](http://fisherlei.blogspot.com/) Another blog of leetcode solutions.
 
-* [九章算法题解站](http://fisherlei.blogspot.com/) Leetcode solution from NineChapter in Java.
+* [九章算法题解站](http://answer.ninechapter.com/) Leetcode solution from NineChapter in Java.
 
 ####Methodology
 
