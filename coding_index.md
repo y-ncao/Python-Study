@@ -198,7 +198,7 @@ Not good, seems I need to redo every questions AC rate below 25%
 
 
 ##From Class
-####Binary Search
+###Binary Search
 * Find First Occurance in Sorted Array (Basic)
 *      Last
 * Search Insert Position (Same as search for kth big)
@@ -207,12 +207,15 @@ Not good, seems I need to redo every questions AC rate below 25%
 * Search in Rotated Sorted Array II
 * Search a 2D Matrix
 * Search a 2D Matrix II (prev[-1] may larger than cur[0])
+* Median of Two Sorted Arrays
+* -> Find kth in two Sorted Arrays
+######From zz
+* Divide Two Integers
+* Pow(x, n)
+* Sqrt(x)
 
 ####Three steps reverse
-* Recover Rotated List
+* Recover Rotated Array
 * -> Recover Rotated String
 * -> Rotate String
 * -> Reverse Sentence
-
-* Median of Two Sorted Arrays
-* -> Find kth in two Sorted Arrays
