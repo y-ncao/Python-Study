@@ -200,17 +200,18 @@ Not good, seems I need to redo every questions AC rate below 25%
 ##From Class
 ###Binary Search
 * Find First Occurance in Sorted Array (Basic)
-*      Last
+* Find Last Occurance in Sorted Array
 * Search Insert Position (Same as search for kth big)
 * Search for a Range (My way is wrong, should use binary for both bounds)
 * Search in Rotated Sorted Array
 * Search in Rotated Sorted Array II
 * Search a 2D Matrix
 * Search a 2D Matrix II (prev[-1] may larger than cur[0])
-* Median of Two Sorted Arrays
+* [ ] Median of Two Sorted Arrays
 * -> Find kth in two Sorted Arrays
+
 ######From zz
-* Divide Two Integers
+* [ ] Divide Two Integers
 * Pow(x, n)
 * Sqrt(x)
 
@@ -219,3 +220,25 @@ Not good, seems I need to redo every questions AC rate below 25%
 * -> Recover Rotated String
 * -> Rotate String
 * -> Reverse Sentence
+
+```python
+def binary_search(target, A):
+    if len(A) == 0:
+        return -1
+    start = 0
+    end = len(A) - 1
+    while start + 1 < end:
+        mid = start + (end - start) / 2    # Avoid stack overflow
+        if A[mid] == target:
+            end = mid
+        elif A[mid] > target:
+            start = mid
+        else:
+            end = mid
+    # Check start and end
+    if A[start] == target:
+        return start
+    if A[end] == target:
+        return end
+    return -1
+```
