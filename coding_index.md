@@ -115,7 +115,7 @@ _____
 * [x] Rotate List
 * [x] Sort List (Merge Sort)
 * [x] Reorder List
-* [ ] Reverse Nodes in k-Group
+* [x] Reverse Nodes in k-Group
 
 ######Dup with tree
 * [x] Flatten Binary Tree to Linked List
@@ -127,7 +127,7 @@ _____
 * [x] Spiral Matrix II
 * [x] Set Matrix Zeroes
 * [x] Valid Sudoku
-* [ ] Sudoku Solver
+* [x] Sudoku Solver
 
 ####Play With Math
 * [x] Reverse Integer
@@ -151,11 +151,11 @@ _____
 * [x] Jump Game II
 * [x] Longest Consecutive Sequence
 * [x] Triangle
-* [ ] Edit Distance
-* [ ] Distinct Subsequences
+* [x] Edit Distance
+* [x] Distinct Subsequences
 * [ ] Maximal Rectangle
 * [ ] Longest Palindromic Substring
-* [ ] Scramble String
+* [x] Scramble String
 * [ ] Palindrome Partitioning II
 * [ ] Interleaving String
 * [ ] Word Break
