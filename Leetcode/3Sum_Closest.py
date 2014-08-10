@@ -11,12 +11,13 @@ class Solution:
     def threeSumClosest(self, num, target):
         return self.threeSumClosest_1(num, target)
 
+    # Since it assume each input only have one result, there's no need to check dup
     def threeSumClosest_1(self, num, target):
         N = len(num)
         num = sorted(num)
         ret = num[0]+num[1]+num[2]
         i = 0
-        while i < N-2:
+        for i in range(N-2):
             l = i + 1
             r = N - 1
             while l < r:
@@ -29,9 +30,6 @@ class Solution:
                     l += 1
                 else:
                     r -= 1
-            i += 1
-            while i < N-2 and num[i] == num[i-1]: # This will save some calculation
-                i += 1
         return ret
 
     # time exceeded

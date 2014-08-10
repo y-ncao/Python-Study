@@ -48,7 +48,7 @@
 
 * [x] Palindrome Number
 * [x] Valid Palindrome
-* [ ] Palindrome Partitioning
+* [x] Palindrome Partitioning
 * [ ] Palindrome Partitioning II
 
 ####Tree Traversal
@@ -96,7 +96,7 @@ _____
 * [x] Remove Duplicates from Sorted Array II
 * [x] Search in Rotated Sorted Array
 * [x] Search in Rotated Sorted Array II
-* [ ] Median of Two Sorted Arrays
+* [x] Median of Two Sorted Arrays
 
 * [x] Remove Element
 
@@ -211,7 +211,7 @@ Not good, seems I need to redo every questions AC rate below 25%
 * -> Find kth in two Sorted Arrays
 
 ######From zz
-* [ ] Divide Two Integers
+* [x] Divide Two Integers (This is not binary search since not allowed to use multiply. Bit calculation)
 * Pow(x, n)
 * Sqrt(x)
 
