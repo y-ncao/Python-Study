@@ -17,4 +17,22 @@ class Solution:
     # @param path, a string
     # @return a string
     def simplifyPath(self, path):
-        path_list = path.split('/')
+        path_list = path.strip('/').split('/')
+        ret = []
+        jump = 0
+        for p in path_list[::-1]:
+            if p == '.' or p == '':
+                continue
+            elif p == '..':
+                jump += 1
+            else:                       # p is a valid path
+                if jump > 0:
+                    jump -= 1
+                    continue
+                else:
+                    ret.insert(0, p)
+        return '/'+'/'.join(ret)
+    # Note:
+    # 1. Remove dup '/', if using split(), // will become '', remove it
+    # 2. Keep in mind those two [::-1]
+    # 3. Don't forget to attach the first '/'
