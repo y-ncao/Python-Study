@@ -19,17 +19,22 @@ class Solution:
 
     # This is kitt's way, using dictionary
     def fourSum_1(self, num, target):
-        numLen, res, d = len(num), set(), {}
-        if numLen < 4: return []
+        N = len(num)
+        if N < 4:
+            return []
         num.sort()
-        for p in xrange(numLen):
-            for q in xrange(p + 1, numLen):
-                if num[p] + num[q] not in d:
-                    d[ num[p] + num[q] ] = [(p,q)]
+        res = set()
+        d = {}
+        # Convert 4Sum to 2Sum, store every i+j result
+        for i in range(N):
+            for j in range(i + 1, N):
+                if num[i] + num[j] not in d:
+                    d[ num[i] + num[j] ] = [(i,j)]
                 else:
-                    d[ num[p] + num[q] ].append( (p,q) )
-        for i in xrange(numLen):
-            for j in xrange(i + 1, numLen - 2):
+                    d[ num[i] + num[j] ].append( (i,j) )
+        # Solve 2Sum
+        for i in range(N):
+            for j in range(i + 1, N - 2):
                 T = target - num[i] - num[j]
                 if T in d:
                     for k in d[T]:
