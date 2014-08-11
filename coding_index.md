@@ -274,7 +274,7 @@ Check BFS and DFS template
 * Delete a Node in a Binary Search Tree
 * Least Common Ancestor
 这个和CC150不太一样, 是从底走, NC答案是Divide an Conquer, CC150是recursion
-(tarjan算法)
+* (tarjan算法)
 
 DFS
 主要想法是先搜索到不能再底层然后再往上走
