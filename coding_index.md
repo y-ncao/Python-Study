@@ -267,13 +267,13 @@ Binary Tree Level Order Traversal 3 ways
 
 Check BFS and DFS template
 
-Homework
-Print BST Keys in Give Range
-__Implement Iterator of BST__
-Insert a Node in a Binary Search Tree
-Delete a Node in a Binary Search Tree
-Least Common Ancestor
-这个和CC150不太一样， 是从底走。Chapter Nine答案是Divide an Conquer, CC150是recursion
+####Not in Leetcode
+* Print BST Keys in Give Range
+* __Implement Iterator of BST__
+* Insert a Node in a Binary Search Tree
+* Delete a Node in a Binary Search Tree
+* Least Common Ancestor
+这个和CC150不太一样, 是从底走, NC答案是Divide an Conquer, CC150是recursion
 (tarjan算法)
 
 DFS
