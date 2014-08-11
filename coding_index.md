@@ -246,3 +246,35 @@ def binary_search(target, A):
         return end
     return -1
 ```
+
+###Divide & Conquer (Most BT Problem)
+* Merge Sort
+* Quick Sort
+* Tree Traverse
+* Maximum Depth of Binary Tree
+* Balanced Binary Tree
+* Binary Tree Maximum Path Sum
+
+This will require extra space
+
+把一个任务划分成几个小任务
+一般来说分治是有return的，但是Recursion一般是没有的
+
+Binary Tree Level Order Traversal 3 ways
+* 2 Queues
+* 1 Queue + dummy node
+* 1 Queue 双重循环
+
+Check BFS and DFS template
+
+Homework
+Print BST Keys in Give Range
+__Implement Iterator of BST__
+Insert a Node in a Binary Search Tree
+Delete a Node in a Binary Search Tree
+Least Common Ancestor
+这个和CC150不太一样， 是从底走。Chapter Nine答案是Divide an Conquer, CC150是recursion
+(tarjan算法)
+
+DFS
+主要想法是先搜索到不能再底层然后再往上走
