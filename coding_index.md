@@ -161,17 +161,22 @@ _____
 * [ ] Word Break
 * [ ] Decode Ways
 
+#### Two Pointer
+
+The basic template of doing 'Sums'
+* [x] Two Sum
+* [x] 3Sum
+* [x] 3Sum Closest
+* [x] 4Sum
+
+
+
 ####Cannot Classify(记住思路)
 * [x] Search Insert Position
 * [x] Container With Most Water (In Two pointers)
 * [x] Count and Say
 * [x] Implement strStr() (KMP)
 
-####Not Sure Yet
-* [x] 3Sum Closest
-* [ ] 4Sum
-* [ ] Two Sum
-* [ ] 3Sum
 
 ##Definetly Redo
 * Recover_Binary_Search_Tree
@@ -184,7 +189,6 @@ _____
 * Sqrt(x)
 * Pow(x,n)
 * Longest Substring Without Repeating Characters
-
 
 ##### Below Two Looks Similar, seems all use DFS
 * Palindrome Partitioning
