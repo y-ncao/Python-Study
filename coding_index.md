@@ -158,8 +158,23 @@ _____
 * [x] Scramble String
 * [ ] Palindrome Partitioning II
 * [ ] Interleaving String
-* [ ] Word Break
-* [ ] Decode Ways
+* [x] Word Break
+* [x] Decode Ways
+
+现在对于dp的理解还是差一些，小总结下：
+我觉得dp的思路大概是这样的
+1. 思考问题，确定需要用dp解决，然后确定需要用几维的dp，dp的每个值的意思是什么
+2. 确定转移方程
+3. 思考边界条件，还有dp的长度，有的时候是N, 有的时候是N+1
+4. 看是否可以简化dp，二维简化成一维，一般来说如果是
+
+```python
+for i in range(A):
+    for j in range(B):
+        transfer dp[i][j] to dp[i-1][j-1]
+```
+这种情况的话， 由于j每次都在使用dp[j-1], 这种情况没必要储存dp[j-1],只需要把dp[i][0] 确认之后每行从1开始遍历前一项即可。
+
 
 #### Two Pointer
 
