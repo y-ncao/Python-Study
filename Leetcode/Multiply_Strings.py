@@ -15,4 +15,4 @@ class Solution:
             for j, bit_j in enumerate(num2[::-1]):
                 num_j = int(bit_j) * (10**j)
                 res += num_i * num_j
-        return res
+        return str(res)
