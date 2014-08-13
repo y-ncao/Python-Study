@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
-file_name = 'Maximal_Rectangle'
-func_name = 'maximalRectangle'
+file_name = 'Spiral_Matrix'
+func_name = 'spiralOrder'
 
 import importlib
 module = importlib.import_module('Leetcode.%s' % file_name)
 instance = module.Solution()
 
-print getattr(instance, func_name)(['00010010','00010010','00010010','00000000','00010010'])
+print getattr(instance, func_name)([[ 1, 2, 3,4,5 ],[ 4, 5, 6 ,7,8],[  8, 9,10,11,12]])
