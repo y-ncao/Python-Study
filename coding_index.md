@@ -123,7 +123,7 @@ _____
 
 ####Matrix
 * [x] Search a 2D Matrix
-* [ ] Spiral Matrix
+* [x] Spiral Matrix
 * [x] Spiral Matrix II
 * [x] Set Matrix Zeroes
 * [x] Valid Sudoku
