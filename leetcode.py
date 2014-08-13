@@ -2504,7 +2504,7 @@ def jump_game_ii(jump_list):
     step[0] = 1
     while start < N:
         if start + jump_list[start]+1:
-                return step[start] + 1
+            return step[start] + 1
         for i in range(start+1, start + jump_list[start]+1):
             if i >= N-1:
                 return 'Will not reach end'

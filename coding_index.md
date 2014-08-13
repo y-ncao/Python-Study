@@ -153,7 +153,7 @@ _____
 * [x] Triangle
 * [x] Edit Distance
 * [x] Distinct Subsequences
-* [ ] Maximal Rectangle
+* [x] Maximal Rectangle (DP isn't the best way)
 * [ ] Longest Palindromic Substring
 * [x] Scramble String
 * [ ] Palindrome Partitioning II
@@ -186,8 +186,6 @@ The basic template of doing 'Sums'
 * [x] 3Sum Closest
 * [x] 4Sum
 
-
-
 ####Cannot Classify(记住思路)
 * [x] Search Insert Position
 * [x] Container With Most Water (In Two pointers)
@@ -206,6 +204,8 @@ The basic template of doing 'Sums'
 * Sqrt(x)
 * Pow(x,n)
 * Longest Substring Without Repeating Characters
+* Largest Rectangle in Histogram (The O(n) way is the hardest one I've ever seen)
+* Maximal Rectangle (Same to above)
 
 ##### Below Two Looks Similar, seems all use DFS
 * Palindrome Partitioning

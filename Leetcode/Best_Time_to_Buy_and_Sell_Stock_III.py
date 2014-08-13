@@ -11,7 +11,26 @@ class Solution:
     # @param prices, a list of integer
     # @return an integer
     def maxProfit(self, prices):
-        if len(prices) <= 1:
+        N = len(prices)
+        if N <= 1:
             return 0
-        for i, price in enumerate(prices):
-            # Wait for future dp
+        dp_1 = [0 for i in range(N)]
+        dp_2 = [0 for i in range(N)]
+        min_price = prices[0]
+        i = 1
+        while i < N:
+            min_price = min(min_price, prices[i])
+            dp_1[i] = max(dp_1[i-1], prices[i]-min_price)
+            i+= 1
+
+        max_price = prices[-1]
+        i = N-2
+        while i >= 0:
+            max_price = max(max_price, prices[i])
+            dp_2[i] = max(dp_2[i+1], max_price-prices[i])
+            i -= 1
+        res = 0
+        for i in range(N):
+            res = max(res, dp_1[i] + dp_2[i])
+        return res
+    # Very similart to trapping rain water, from left to right then right to left
