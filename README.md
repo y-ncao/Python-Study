@@ -26,6 +26,10 @@
 
 * [水中的鱼](http://fisherlei.blogspot.com/) Another blog of leetcode solutions.
 
+* [Coding 4 Fun](http://c4fun.cn/blog/2014/03/20/leetcode-solution-02/) A python Solution.
+
+* [jw2013](https://github.com/jw2013/Leetcode/) Another python solution.
+
 * [九章算法题解站](http://answer.ninechapter.com/) Leetcode solution from NineChapter in Java.
 
 ####Methodology
