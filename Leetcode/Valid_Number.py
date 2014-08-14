@@ -14,48 +14,42 @@ class Solution:
     # @param s, a string
     # @return a boolean
     def isNumber(self, s):
-        # Need to think:
-        # 1. dot
-        # 2. e
-        # 3. '-'/'+'
-        # 4. ' '
-        has_dot = False
-        has_e = False
-        has_sign = False
-        has_digit = False
         s = s.strip()
+        if len(s.split('e')) > 2 or len(s.split('E')) > 2:
+            return False
+
+        if 'e' in s:
+            return self.isNumberwoE(s.split('e')[0]) and self.isNumberwoE(s.split('e')[1], False)
+        elif 'E' in s:
+            return self.isNumberwoE(s.split('E')[0]) and self.isNumberwoE(s.split('E')[1], False)
+        else:
+            return self.isNumberwoE(s)
+
+    def isNumberwoE(self, s, allow_digit = True):
+        digit = '0123456789'
         N = len(s)
         if N == 0:
             return False
+        has_digit = False
+        has_num = False
         for i, char in enumerate(s):
-            if char.isdigit():
+            if char == '+' or char == '-':
+                if i != 0:
+                    return False
+            elif char == ' ':
+                return False
+            elif char == '.':
+                if not allow_digit or has_digit:
+                    return False
+                if (i == 0 or s[i-1] not in digit) and (i == N-1 or s[i+1] not in digit):
+                    return False
                 has_digit = True
-                continue
-            if (char == '-' or char == '+'):
-                if not (i == 0 or s[i-1] == 'e'):
-                    return False
-                elif i == N-1 or s[i+1] == 'e':
-                    return False
-                else:
-                    continue
+            elif char not in digit:
+                return False
+            else:
+                has_num = True
+        return has_num
 
-            if char.isalpha():
-                if char != 'e':
-                    return False
-                else:
-                    if (has_e or i == 0 or i == N-1):
-                        return False
-                    elif (i == 0 or not s[i-1].isdigit()) and (i == N-1 or not s[i+1].isdigit()):
-                        return False
-                    has_e = True
-
-            if not char.isalnum():
-                if char != '.':
-                    return False
-                else:
-                    if has_dot or len(s) == 1 or has_e:
-                        return False
-                    elif (i == 0 or not s[i-1].isdigit()) and (i == N-1 or not s[i+1].isdigit()):
-                        return False
-                    has_dot = True
-        return has_digit
+    # Main idea is:
+    # 1. Before/after e/E must be a valid num
+    # 2. check each sign and dot and num and space
