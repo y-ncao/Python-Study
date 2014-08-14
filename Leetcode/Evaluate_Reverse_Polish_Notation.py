@@ -24,7 +24,7 @@ class Solution:
         return stack[0]
 
     def calculate(self, num_1, num_2, token):
-        if token == '+':
+        if token == '+':\
             return num_1 + num_2
         if token == '-':
             return num_1 - num_2
