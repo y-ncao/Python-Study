@@ -2,13 +2,12 @@
 
 from os import listdir
 from os.path import isfile, join
-
-#file_list = [ f for f in listdir('./Leetcode') if isfile(join('./Leetcode',f)) ]
 import glob
+
 file_list = glob.glob('./Leetcode/*.py')
 file_list.remove('./Leetcode/__init__.py')
 
-f = open('Combine.md', 'wb')
+f = open('Combined_Solutions.md', 'wb')
 
 for answer in file_list:
     with open(answer) as file:
