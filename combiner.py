@@ -6,6 +6,7 @@ import glob
 
 file_list = glob.glob('./Leetcode/*.py')
 file_list.remove('./Leetcode/__init__.py')
+file_list.sort()
 
 f = open('Combined_Solutions.md', 'wb')
 
