@@ -1,4 +1,4 @@
-##3Sum
+##1. 3Sum
 
 Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.
 
@@ -10,8 +10,8 @@ The solution set must not contain duplicate triplets.
     A solution set is:
     (-1, 0, 1)
     (-1, -1, 2)
-```python
 
+```python
 
 class Solution:
     # @return a list of lists of length 3, [[val1,val2,val3]]
@@ -45,15 +45,15 @@ class Solution:
 ```
 -----
 
-##3Sum Closest
+##2. 3Sum Closest
 
 Given an array S of n integers, find three integers in S such that the sum is closest to a given number, target. Return the sum of the three integers. You may assume that each input would have exactly one solution.
 
     For example, given array S = {-1 2 1 -4}, and target = 1.
 
     The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
-```python
 
+```python
 
 class Solution:
     # @return an integer
@@ -99,7 +99,7 @@ class Solution:
 ```
 -----
 
-##4Sum
+##3. 4Sum
 
 Given an array S of n integers, are there elements a, b, c, and d in S such that a + b + c + d = target? Find all unique quadruplets in the array which gives the sum of target.
 
@@ -112,8 +112,8 @@ The solution set must not contain duplicate quadruplets.
     (-1,  0, 0, 1)
     (-2, -1, 1, 2)
     (-2,  0, 0, 2)
-```python
 
+```python
 
 class Solution:
     # @return a list of lists of length 4, [[val1,val2,val3,val4]]
@@ -175,7 +175,7 @@ class Solution:
 ```
 -----
 
-##Add Binar
+##4. Add Binary
 
 Given two binary strings, return their sum (also a binary string).
 
@@ -183,8 +183,8 @@ For example,
 a = "11"
 b = "1"
 Return "100".
-```python
 
+```python
 
 class Solution:
     # @param a, a string
@@ -213,14 +213,14 @@ class Solution:
 ```
 -----
 
-##Add Two Numbers
+##5. Add Two Numbers
 
 You are given two linked lists representing two non-negative numbers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
 
 Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
 Output: 7 -> 0 -> 8
-```python
 
+```python
 
 # Definition for singly-linked list.
 # class ListNode:
@@ -249,13 +249,13 @@ class Solution:
 ```
 -----
 
-##Anagrams
+##6. Anagrams
 
 Given an array of strings, return all groups of strings that are anagrams.
 
 Note: All inputs will be in lower-case.
-```python
 
+```python
 
 class Solution:
     # @param strs, a list of strings
@@ -281,13 +281,13 @@ class Solution:
 ```
 -----
 
-##Balanced Binary Tree
+##7. Balanced Binary Tree
 
 Given a binary tree, determine if it is height-balanced.
 
 For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of every node never differ by more than 1.
-```python
 
+```python
 
 # Definition for a  binary tree node
 # class TreeNode:
@@ -338,13 +338,13 @@ class Solution:
 ```
 -----
 
-##Best Time to Buy and Sell Stock
+##8. Best Time to Buy and Sell Stock
 
 Say you have an array for which the ith element is the price of a given stock on day i.
 
 If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the stock), design an algorithm to find the maximum profit.
-```python
 
+```python
 
 class Solution:
     # @param prices, a list of integer
@@ -361,15 +361,15 @@ class Solution:
 ```
 -----
 
-##Best Time to Buy and Sell Stock II
+##9. Best Time to Buy and Sell Stock II
 
 Say you have an array for which the ith element is the price of a given stock on day i.
 
 Design an algorithm to find the maximum profit. You may complete as many transactions as you like (ie, buy one and sell one share of the stock multiple times). However, you may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).Say you have an array for which the ith element is the price of a given stock on day i.
 
 Design an algorithm to find the maximum profit. You may complete as many transactions as you like (ie, buy one and sell one share of the stock multiple times). However, you may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).
-```python
 
+```python
 
 class Solution:
     # @param prices, a list of integer
@@ -385,7 +385,7 @@ class Solution:
 ```
 -----
 
-##Best Time to Buy and Sell Stock III
+##10. Best Time to Buy and Sell Stock III
 
 Say you have an array for which the ith element is the price of a given stock on day i.
 
@@ -393,8 +393,8 @@ Design an algorithm to find the maximum profit. You may complete at most two tra
 
 Note:
 You may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).
-```python
 
+```python
 
 class Solution:
     # @param prices, a list of integer
@@ -426,7 +426,7 @@ class Solution:
 ```
 -----
 
-##Binary Tree Inorder Traversal
+##11. Binary Tree Inorder Traversal
 
 Given a binary tree, return the inorder traversal of its nodes' values.
 
@@ -440,8 +440,8 @@ Given binary tree {1,#,2,3},
 return [1,3,2].
 
 Note: Recursive solution is trivial, could you do it iteratively?
-```python
 
+```python
 
 # Definition for a  binary tree node
 # class TreeNode:
@@ -484,7 +484,7 @@ class Solution:
 ```
 -----
 
-##Binary Tree Level Order Traversal
+##12. Binary Tree Level Order Traversal
 
 Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
 
@@ -501,8 +501,8 @@ return its level order traversal as:
   [9,20],
   [15,7]
 ]
-```python
 
+```python
 
 # Definition for a  binary tree node
 # class TreeNode:
@@ -540,7 +540,7 @@ class Solution:
 ```
 -----
 
-##Binary Tree Level Order Traversal II
+##13. Binary Tree Level Order Traversal II
 
 Given a binary tree, return the bottom-up level order traversal of its nodes' values. (ie, from left to right, level by level from leaf to root).
 
@@ -557,8 +557,8 @@ return its bottom-up level order traversal as:
   [9,20],
   [3]
 ]
-```python
 
+```python
 
 # Definition for a  binary tree node
 # class TreeNode:
@@ -595,7 +595,7 @@ class Solution:
 ```
 -----
 
-##Binary Tree Maximum Path Sum
+##14. Binary Tree Maximum Path Sum
 
 Given a binary tree, find the maximum path sum.
 
@@ -608,8 +608,8 @@ Given the below binary tree,
       / \
      2   3
 Return 6.
-```python
 
+```python
 
 # Definition for a  binary tree node
 # class TreeNode:
@@ -643,7 +643,7 @@ class Solution:
 ```
 -----
 
-##Binary Tree Postorder Traversal
+##15. Binary Tree Postorder Traversal
 
 Given a binary tree, return the postorder traversal of its nodes' values.
 
@@ -657,8 +657,8 @@ Given binary tree {1,#,2,3},
 return [3,2,1].
 
 Note: Recursive solution is trivial, could you do it iteratively?
-```python
 
+```python
 
 # Definition for a  binary tree node
 # class TreeNode:
@@ -721,7 +721,7 @@ class Solution:
 ```
 -----
 
-##Binary Tree Preorder Traversal
+##16. Binary Tree Preorder Traversal
 
 Given a binary tree, return the preorder traversal of its nodes' values.
 
@@ -735,8 +735,8 @@ Given binary tree {1,#,2,3},
 return [1,2,3].
 
 Note: Recursive solution is trivial, could you do it iteratively?
-```python
 
+```python
 
 # Definition for a  binary tree node
 # class TreeNode:
@@ -779,7 +779,7 @@ class Solution:
 ```
 -----
 
-##Binary Tree Zigzag Level Order Traversal
+##17. Binary Tree Zigzag Level Order Traversal
 
 Given a binary tree, return the zigzag level order traversal of its nodes' values. (ie, from left to right, then right to left for the next level and alternate between).
 
@@ -796,8 +796,8 @@ return its zigzag level order traversal as:
   [20,9],
   [15,7]
 ]
-```python
 
+```python
 
 # Definition for a  binary tree node
 # class TreeNode:
@@ -838,7 +838,7 @@ class Solution:
 ```
 -----
 
-##Cand
+##18. Candy
 
 There are N children standing in a line. Each child is assigned a rating value.
 
@@ -847,8 +847,8 @@ You are giving candies to these children subjected to the following requirements
 Each child must have at least one candy.
 Children with a higher rating get more candies than their neighbors.
 What is the minimum candies you must give?
-```python
 
+```python
 
 class Solution:
     # @param ratings, a list of integer
@@ -866,13 +866,13 @@ class Solution:
 ```
 -----
 
-##Climbing Stairs
+##19. Climbing Stairs
 
 You are climbing a stair case. It takes n steps to reach to the top.
 
 Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
-```python
 
+```python
 
 class Solution:
     # @param n, an integer
@@ -908,7 +908,7 @@ class Solution:
 ```
 -----
 
-##Clone Graph
+##20. Clone Graph
 
 Clone an undirected graph. Each node in the graph contains a label and a list of its neighbors.
 
@@ -932,8 +932,8 @@ Visually, the graph looks like the following:
     0 --- 2
          / \
          \_/
-```python
 
+```python
 
 # Definition for a undirected graph node
 # class UndirectedGraphNode:
@@ -966,7 +966,7 @@ class Solution:
 ```
 -----
 
-##Combination Sum
+##21. Combination Sum
 
 Given a set of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.
 
@@ -980,8 +980,8 @@ For example, given candidate set 2,3,6,7 and target 7,
 A solution set is:
 [7]
 [2, 2, 3]
-```python
 
+```python
 
 class Solution:
     # @param candidates, a list of integers
@@ -1006,7 +1006,7 @@ class Solution:
 ```
 -----
 
-##Combination Sum II
+##22. Combination Sum II
 
 Given a collection of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.
 
@@ -1022,8 +1022,8 @@ A solution set is:
 [1, 2, 5]
 [2, 6]
 [1, 1, 6]
-```python
 
+```python
 
 class Solution:
     # @param candidates, a list of integers
@@ -1052,7 +1052,7 @@ class Solution:
 ```
 -----
 
-##Combinations
+##23. Combinations
 
 Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.
 
@@ -1067,8 +1067,8 @@ If n = 4 and k = 2, a solution is:
   [1,3],
   [1,4],
 ]
-```python
 
+```python
 
 class Solution:
     # @return a list of lists of integers
@@ -1088,14 +1088,14 @@ class Solution:
 ```
 -----
 
-##Construct Binary Tree from Inorder and Postorder Traversal
+##24. Construct Binary Tree from Inorder and Postorder Traversal
 
 Given inorder and postorder traversal of a tree, construct the binary tree.
 
 Note:
 You may assume that duplicates do not exist in the tree.
-```python
 
+```python
 
 # Definition for a  binary tree node
 # class TreeNode:
@@ -1121,14 +1121,14 @@ class Solution:
 ```
 -----
 
-##Construct Binary Tree from Preorder and Inorder Traversal
+##25. Construct Binary Tree from Preorder and Inorder Traversal
 
 Given preorder and inorder traversal of a tree, construct the binary tree.
 
 Note:
 You may assume that duplicates do not exist in the tree.
-```python
 
+```python
 
 # Definition for a  binary tree node
 # class TreeNode:
@@ -1153,13 +1153,13 @@ class Solution:
 ```
 -----
 
-##Container With Most Water
+##26. Container With Most Water
 
 Given n non-negative integers a1, a2, ..., an, where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water.
 
 Note: You may not slant the container.
-```python
 
+```python
 
 class Solution:
     # @return an integer
@@ -1180,11 +1180,11 @@ class Solution:
 ```
 -----
 
-##Convert Sorted Array to Binary Search Tree
+##27. Convert Sorted Array to Binary Search Tree
 
 Given an array where elements are sorted in ascending order, convert it to a height balanced BST.
-```python
 
+```python
 
 # Definition for a  binary tree node
 # class TreeNode:
@@ -1212,11 +1212,11 @@ class Solution:
 ```
 -----
 
-##Convert Sorted List to Binary Search Tree
+##28. Convert Sorted List to Binary Search Tree
 
 Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.
-```python
 
+```python
 
 # Definition for a  binary tree node
 # class TreeNode:
@@ -1259,13 +1259,13 @@ class Solution:
 ```
 -----
 
-##Copy List with Random Pointer
+##29. Copy List with Random Pointer
 
 A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null.
 
 Return a deep copy of the list.
-```python
 
+```python
 
 # Definition for singly-linked list with a random pointer.
 # class RandomListNode:
@@ -1304,7 +1304,7 @@ class Solution:
 ```
 -----
 
-##Count and Sa
+##30. Count and Say
 
 The count-and-say sequence is the sequence of integers beginning as follows:
 1, 11, 21, 1211, 111221, ...
@@ -1315,8 +1315,8 @@ The count-and-say sequence is the sequence of integers beginning as follows:
 Given an integer n, generate the nth sequence.
 
 Note: The sequence of integers will be represented as a string.
-```python
 
+```python
 
 class Solution:
     # @return a string
@@ -1340,7 +1340,7 @@ class Solution:
 ```
 -----
 
-##Decode Ways
+##31. Decode Ways
 
 A message containing letters from A-Z is being encoded to numbers using the following mapping:
 
@@ -1354,8 +1354,8 @@ For example,
 Given encoded message "12", it could be decoded as "AB" (1 2) or "L" (12).
 
 The number of ways decoding "12" is 2.
-```python
 
+```python
 
 class Solution:
     # @param s, a string
@@ -1391,7 +1391,7 @@ class Solution:
 ```
 -----
 
-##Distinct Subsequences
+##32. Distinct Subsequences
 
 Given a string S and a string T, count the number of distinct subsequences of T in S.
 
@@ -1401,8 +1401,8 @@ Here is an example:
 S = "rabbbit", T = "rabbit"
 
 Return 3.
-```python
 
+```python
 
 class Solution:
     # @return an integer
@@ -1424,11 +1424,11 @@ class Solution:
 ```
 -----
 
-##Divide Two Integers
+##33. Divide Two Integers
 
 Divide two integers without using multiplication, division and mod operator.
-```python
 
+```python
 
 class Solution:
     # @return an integer
@@ -1452,7 +1452,7 @@ class Solution:
 ```
 -----
 
-##Edit Distance
+##34. Edit Distance
 
 Given two words word1 and word2, find the minimum number of steps required to convert word1 to word2. (each operation is counted as 1 step.)
 
@@ -1461,8 +1461,8 @@ You have the following 3 operations permitted on a word:
 a) Insert a character
 b) Delete a character
 c) Replace a character
-```python
 
+```python
 
 class Solution:
     # @return an integer
@@ -1500,7 +1500,7 @@ class Solution:
 ```
 -----
 
-##Evaluate Reverse Polish Notation
+##35. Evaluate Reverse Polish Notation
 
 Evaluate the value of an arithmetic expression in Reverse Polish Notation.
 
@@ -1509,8 +1509,8 @@ Valid operators are +, -, *, /. Each operand may be an integer or another expres
 Some examples:
   ["2", "1", "+", "3", "*"] -> ((2 + 1) * 3) -> 9
   ["4", "13", "5", "/", "+"] -> (4 + (13 / 5)) -> 6
-```python
 
+```python
 
 class Solution:
     # @param tokens, a list of string
@@ -1539,7 +1539,7 @@ class Solution:
 ```
 -----
 
-##First Missing Positive
+##36. First Missing Positive
 
 Given an unsorted integer array, find the first missing positive integer.
 
@@ -1548,8 +1548,8 @@ Given [1,2,0] return 3,
 and [3,4,-1,1] return 2.
 
 Your algorithm should run in O(n) time and uses constant space.
-```python
 
+```python
 
 class Solution:
     # @param A, a list of integers
@@ -1579,7 +1579,7 @@ class Solution:
 ```
 -----
 
-##Flatten Binary Tree to Linked List
+##37. Flatten Binary Tree to Linked List
 
 Given a binary tree, flatten it to a linked list in-place.
 
@@ -1607,8 +1607,8 @@ click to show hints.
 
 Hints:
 If you notice carefully in the flattened tree, each node's right child points to the next node of a pre-order traversal.
-```python
 
+```python
 
 # Definition for a  binary tree node
 # class TreeNode:
@@ -1646,7 +1646,7 @@ class Solution:
 ```
 -----
 
-##Gas Station
+##38. Gas Station
 
 There are N gas stations along a circular route, where the amount of gas at station i is gas[i].
 
@@ -1656,8 +1656,8 @@ Return the starting gas station's index if you can travel around the circuit onc
 
 Note:
 The solution is guaranteed to be unique.
-```python
 
+```python
 
 class Solution:
     # @param gas, a list of integers
@@ -1684,15 +1684,15 @@ class Solution:
 ```
 -----
 
-##Generate Parentheses
+##39. Generate Parentheses
 
 Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
 
 For example, given n = 3, a solution set is:
 
 "((()))", "(()())", "(())()", "()(())", "()()()"
-```python
 
+```python
 
 class Solution:
     # @param an integer
@@ -1713,7 +1713,7 @@ class Solution:
 ```
 -----
 
-##Gray Code
+##40. Gray Code
 
 The gray code is a binary numeral system where two successive values differ in only one bit.
 
@@ -1731,8 +1731,8 @@ For a given n, a gray code sequence is not uniquely defined.
 For example, [0,2,3,1] is also a valid gray code sequence according to the above definition.
 
 For now, the judge is able to judge based on one instance of gray code sequence. Sorry about that.
-```python
 
+```python
 
 # Tip: you can use bin(x) to check the binary form of a num
 
@@ -1790,13 +1790,13 @@ class Solution:
 ```
 -----
 
-##Implement strStr
+##41. Implement strStr
 
 Implement strStr().
 
 Returns a pointer to the first occurrence of needle in haystack, or null if needle is not part of haystack.
-```python
 
+```python
 
 class Solution:
     # @param haystack, a string
@@ -1850,7 +1850,7 @@ class Solution:
 ```
 -----
 
-##Insert Interval
+##42. Insert Interval
 
 Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).
 
@@ -1863,8 +1863,8 @@ Example 2:
 Given [1,2],[3,5],[6,7],[8,10],[12,16], insert and merge [4,9] in as [1,2],[3,10],[12,16].
 
 This is because the new interval [4,9] overlaps with [3,5],[6,7],[8,10].
-```python
 
+```python
 
 # Definition for an interval.
 # class Interval:
@@ -1939,11 +1939,11 @@ class Solution:
 ```
 -----
 
-##Insertion Sort List
+##43. Insertion Sort List
 
 Sort a linked list using insertion sort.
-```python
 
+```python
 
 # Definition for singly-linked list.
 # class ListNode:
@@ -1978,13 +1978,13 @@ class Solution:
 ```
 -----
 
-##Integer to Roman
+##44. Integer to Roman
 
 Given an integer, convert it to a roman numeral.
 
 Input is guaranteed to be within the range from 1 to 3999.
-```python
 
+```python
 
 class Solution:
     # @return a string
@@ -2003,7 +2003,7 @@ class Solution:
 ```
 -----
 
-##Interleaving String
+##45. Interleaving String
 
 Given s1, s2, s3, find whether s3 is formed by the interleaving of s1 and s2.
 
@@ -2014,8 +2014,8 @@ s2 = "dbbca",
 
 When s3 = "aadbbcbcac", return true.
 When s3 = "aadbbbaccc", return false.
-```python
 
+```python
 
 class Solution:
     # @return a boolean
@@ -2060,7 +2060,7 @@ class Solution:
 ```
 -----
 
-##Jump Game
+##46. Jump Game
 
 Given an array of non-negative integers, you are initially positioned at the first index of the array.
 
@@ -2072,8 +2072,8 @@ For example:
 A = [2,3,1,1,4], return true.
 
 A = [3,2,1,0,4], return false.
-```python
 
+```python
 
 class Solution:
     # @param A, a list of integers
@@ -2103,7 +2103,7 @@ class Solution:
 ```
 -----
 
-##Jump Game II
+##47. Jump Game II
 
 Given an array of non-negative integers, you are initially positioned at the first index of the array.
 
@@ -2115,8 +2115,8 @@ For example:
 Given array A = [2,3,1,1,4]
 
 The minimum number of jumps to reach the last index is 2. (Jump 1 step from index 0 to 1, then 3 steps to the last index.)
-```python
 
+```python
 
 class Solution:
     # @param A, a list of integers
@@ -2139,14 +2139,14 @@ class Solution:
 ```
 -----
 
-##LRU Cache
+##48. LRU Cache
 
 Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and set.
 
 get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.
 set(key, value) - Set or insert the value if the key is not already present. When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.
-```python
 
+```python
 
 class LRUCache:
 
@@ -2209,7 +2209,7 @@ class LRUCache:
 ```
 -----
 
-##Largest Rectangle in Histogram
+##49. Largest Rectangle in Histogram
 
 Given n non-negative integers representing the histogram's bar height where the width of each bar is 1, find the area of largest rectangle in the histogram.
 
@@ -2222,8 +2222,8 @@ The largest rectangle is shown in the shaded area, which has area = 10 unit.
 For example,
 Given height = [2,1,5,6,2,3],
 return 10.
-```python
 
+```python
 
 class Solution:
     # @param height, a list of integer
@@ -2268,7 +2268,7 @@ class Solution:
 ```
 -----
 
-##Length of Last Word
+##50. Length of Last Word
 
 Given a string s consists of upper/lower-case alphabets and empty space characters ' ', return the length of last word in the string.
 
@@ -2279,8 +2279,8 @@ Note: A word is defined as a character sequence consists of non-space characters
 For example,
 Given s = "Hello World",
 return 5.
-```python
 
+```python
 
 class Solution:
     # @param s, a string
@@ -2316,7 +2316,7 @@ class Solution:
 ```
 -----
 
-##Letter Combination of a Phone Number
+##51. Letter Combination of a Phone Number
 
 Given a digit string, return all possible letter combinations that the number could represent.
 
@@ -2328,8 +2328,8 @@ Input:Digit string "23"
 Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
 Note:
 Although the above answer is in lexicographical order, your answer could be in any order you want.
-```python
 
+```python
 
 class Solution:
     # @return a list of strings, [s1, s2]
@@ -2370,14 +2370,14 @@ class Solution:
 ```
 -----
 
-##Linked List Cycle
+##52. Linked List Cycle
 
 Given a linked list, determine if it has a cycle in it.
 
 Follow up:
 Can you solve it without using extra space?
-```python
 
+```python
 
 # Definition for singly-linked list.
 # class ListNode:
@@ -2400,14 +2400,14 @@ class Solution:
 ```
 -----
 
-##Linked List Cycle II
+##53. Linked List Cycle II
 
 Given a linked list, return the node where the cycle begins. If there is no cycle, return null.
 
 Follow up:
 Can you solve it without using extra space?
-```python
 
+```python
 
 # Definition for singly-linked list.
 # class ListNode:
@@ -2438,11 +2438,11 @@ class Solution:
 ```
 -----
 
-##Longest Common Prefix
+##54. Longest Common Prefix
 
 Write a function to find the longest common prefix string amongst an array of strings.
-```python
 
+```python
 
 class Solution:
     # @return a string
@@ -2459,7 +2459,7 @@ class Solution:
 ```
 -----
 
-##Longest Consecutive Sequence
+##55. Longest Consecutive Sequence
 
 Given an unsorted array of integers, find the length of the longest consecutive elements sequence.
 
@@ -2468,8 +2468,8 @@ Given [100, 4, 200, 1, 3, 2],
 The longest consecutive elements sequence is [1, 2, 3, 4]. Return its length: 4.
 
 Your algorithm should run in O(n) complexity.
-```python
 
+```python
 
 class Solution:
     # @param num, a list of integer
@@ -2548,11 +2548,11 @@ class Solution:
 ```
 -----
 
-##Longest Palindromic Substring
+##56. Longest Palindromic Substring
 
 Given a string S, find the longest palindromic substring in S. You may assume that the maximum length of S is 1000, and there exists one unique longest palindromic substring.
-```python
 
+```python
 
 class Solution:
     # @return a string
@@ -2613,11 +2613,11 @@ class Solution:
 ```
 -----
 
-##Longest Substring Without Repeating Characters
+##57. Longest Substring Without Repeating Characters
 
 Given a string, find the length of the longest substring without repeating characters. For example, the longest substring without repeating letters for "abcabcbb" is "abc", which the length is 3. For "bbbbb" the longest substring is "b", with the length of 1.
-```python
 
+```python
 
 class Solution:
     # @return an integer
@@ -2659,15 +2659,15 @@ class Solution:
 ```
 -----
 
-##Longest Valid Parentheses
+##58. Longest Valid Parentheses
 
 Given a string containing just the characters '(' and ')', find the length of the longest valid (well-formed) parentheses substring.
 
 For "(()", the longest valid parentheses substring is "()", which has length = 2.
 
 Another example is ")()())", where the longest valid parentheses substring is "()()", which has length = 4.
-```python
 
+```python
 
 class Solution:
     # @param s, a string
@@ -2695,11 +2695,11 @@ class Solution:
 ```
 -----
 
-##Maximal Rectangle
+##59. Maximal Rectangle
 
 Given a 2D binary matrix filled with 0's and 1's, find the largest rectangle containing all ones and return its area.
-```python
 
+```python
 
 class Solution:
     # @param matrix, a list of lists of 1 length string
@@ -2771,14 +2771,14 @@ class Solution:
 ```
 -----
 
-##Maximum Depth of Binary Tree
+##60. Maximum Depth of Binary Tree
 
 Given a binary tree, find its maximum depth.
 
 The maximum depth is the number of nodes along the longest path
 from the root node down to the farthest leaf node.
-```python
 
+```python
 
 # Definition for a  binary tree node
 # class TreeNode:
@@ -2797,7 +2797,7 @@ class Solution:
 ```
 -----
 
-##Maximum Subarra
+##61. Maximum Subarray
 
 Find the contiguous subarray within an array (containing at least one number) which has the largest sum.
 
@@ -2808,8 +2808,8 @@ click to show more practice.
 
 More practice:
 If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.
-```python
 
+```python
 
 class Solution:
     # @param A, a list of integers
@@ -2840,11 +2840,11 @@ class Solution:
 ```
 -----
 
-##Median of Two Sorted Arrays
+##62. Median of Two Sorted Arrays
 
 There are two sorted arrays A and B of size m and n respectively. Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
-```python
 
+```python
 
 class Solution:
     # @return a float
@@ -2886,15 +2886,15 @@ class Solution:
 ```
 -----
 
-##Merge Intervals
+##63. Merge Intervals
 
 Given a collection of intervals, merge all overlapping intervals.
 
 For example,
 Given [1,3],[2,6],[8,10],[15,18],
 return [1,6],[8,10],[15,18].
-```python
 
+```python
 
 # Definition for an interval.
 # class Interval:
@@ -2923,14 +2923,14 @@ class Solution:
 ```
 -----
 
-##Merge Sorted Arra
+##64. Merge Sorted Array
 
 Given two sorted integer arrays A and B, merge B into A as one sorted array.
 
 Note:
 You may assume that A has enough space (size that is greater or equal to m + n) to hold additional elements from B. The number of elements initialized in A and B are m and n respectively.
-```python
 
+```python
 
 class Solution:
     # @param A  a list of integers
@@ -2958,11 +2958,11 @@ class Solution:
 ```
 -----
 
-##Merge Two Sorted Lists
+##65. Merge Two Sorted Lists
 
 Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
-```python
 
+```python
 
 # Definition for singly-linked list.
 # class ListNode:
@@ -2996,11 +2996,11 @@ class Solution:
 ```
 -----
 
-##Merge k Sorted Lists
+##66. Merge k Sorted Lists
 
 Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.
-```python
 
+```python
 
 # Definition for singly-linked list.
 # class ListNode:
@@ -3030,13 +3030,13 @@ class Solution:
 ```
 -----
 
-##Minimum Depth of Binary Tree
+##67. Minimum Depth of Binary Tree
 
 Given a binary tree, find its minimum depth.
 
 The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.
-```python
 
+```python
 
 # Definition for a  binary tree node
 # class TreeNode:
@@ -3084,13 +3084,13 @@ class Solution:
 ```
 -----
 
-##Minimum Path Sum
+##68. Minimum Path Sum
 
 Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
 
 Note: You can only move either down or right at any point in time.
-```python
 
+```python
 
 class Solution:
     # @param grid, a list of lists of integers
@@ -3146,13 +3146,13 @@ class Solution:
 ```
 -----
 
-##Multiply Strings
+##69. Multiply Strings
 
 Given two numbers represented as strings, return multiplication of the numbers as a string.
 
 Note: The numbers can be arbitrarily large and are non-negative.
-```python
 
+```python
 
 class Solution:
     # @param num1, a string
@@ -3169,7 +3169,7 @@ class Solution:
 ```
 -----
 
-##N-Queens
+##70. N-Queens
 
 The n-queens puzzle is the problem of placing n queens on an n×n chessboard such that no two queens attack each other.
 
@@ -3190,8 +3190,8 @@ There exist two distinct solutions to the 4-queens puzzle:
   "...Q",
   ".Q.."]
 ]
-```python
 
+```python
 
 # Need another way to think about this, fill row instead of fill column
 
@@ -3225,13 +3225,13 @@ class Solution:
 ```
 -----
 
-##N-Queens II
+##71. N-Queens II
 
 Follow up for N-Queens problem.
 
 Now, instead outputting board configurations, return the total number of distinct solutions.
-```python
 
+```python
 
 class Solution:
     # @return an integer
@@ -3264,7 +3264,7 @@ class Solution:
 ```
 -----
 
-##Next Permutation
+##72. Next Permutation
 
 Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.
 
@@ -3276,8 +3276,8 @@ Here are some examples. Inputs are in the left-hand column and its corresponding
 1,2,3 → 1,3,2
 3,2,1 → 1,2,3
 1,1,5 → 1,5,1
-```python
 
+```python
 
 class Solution:
     # @param num, a list of integer
@@ -3306,7 +3306,7 @@ class Solution:
 ```
 -----
 
-##Palindrome Number
+##73. Palindrome Number
 
 Determine whether an integer is a palindrome. Do this without extra space.
 
@@ -3320,8 +3320,8 @@ If you are thinking of converting the integer to string, note the restriction of
 You could also try reversing an integer. However, if you have solved the problem "Reverse Integer", you know that the reversed integer might overflow. How would you handle such case?
 
 There is a more generic way of solving this problem.
-```python
 
+```python
 
 class Solution:
     # @return a boolean
@@ -3341,7 +3341,7 @@ class Solution:
 ```
 -----
 
-##Palindrome Partitioning
+##74. Palindrome Partitioning
 
 Given a string s, partition s such that every substring of the partition is a palindrome.
 
@@ -3354,8 +3354,8 @@ Return
     ["aa","b"],
     ["a","a","b"]
   ]
-```python
 
+```python
 
 class Solution:
     # @param s, a string
@@ -3389,7 +3389,7 @@ class Solution:
 ```
 -----
 
-##Partition List
+##75. Partition List
 
 Given a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
 
@@ -3398,8 +3398,8 @@ You should preserve the original relative order of the nodes in each of the two 
 For example,
 Given 1->4->3->2->5->2 and x = 3,
 return 1->2->2->4->3->5.
-```python
 
+```python
 
 # Definition for singly-linked list.
 # class ListNode:
@@ -3435,7 +3435,7 @@ class Solution:
 ```
 -----
 
-##Pascals Triangle
+##76. Pascals Triangle
 
 Given numRows, generate the first numRows of Pascal's triangle.
 
@@ -3449,8 +3449,8 @@ Return
   [1,3,3,1],
  [1,4,6,4,1]
 ]
-```python
 
+```python
 
 class Solution:
     # @return a list of lists of integers
@@ -3488,7 +3488,7 @@ class Solution:
 ```
 -----
 
-##Pascals Triangle II
+##77. Pascals Triangle II
 
 Given an index k, return the kth row of the Pascal's triangle.
 
@@ -3497,8 +3497,8 @@ Return [1,3,3,1].
 
 Note:
 Could you optimize your algorithm to use only O(k) extra space?
-```python
 
+```python
 
 class Solution:
     # @return a list of integers
@@ -3526,7 +3526,7 @@ class Solution:
 ```
 -----
 
-##Path Sum
+##78. Path Sum
 
 Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum.
 
@@ -3540,8 +3540,8 @@ Given the below binary tree and sum = 22,
          /  \      \
         7    2      1
 return true, as there exist a root-to-leaf path 5->4->11->2 which sum is 22.
-```python
 
+```python
 
 # Definition for a  binary tree node
 # class TreeNode:
@@ -3566,7 +3566,7 @@ class Solution:
 ```
 -----
 
-##Path Sum II
+##79. Path Sum II
 
 Given a binary tree and a sum, find all root-to-leaf paths where each path's sum equals the given sum.
 
@@ -3584,8 +3584,8 @@ return
    [5,4,11,2],
    [5,8,4,5]
 ]
-```python
 
+```python
 
 # Definition for a  binary tree node
 # class TreeNode:
@@ -3643,7 +3643,7 @@ This way will have long run time
 ```
 -----
 
-##Permutation Sequence
+##80. Permutation Sequence
 
 The set [1,2,3,…,n] contains a total of n! unique permutations.
 
@@ -3659,8 +3659,8 @@ We get the following sequence (ie, for n = 3):
 Given n and k, return the kth permutation sequence.
 
 Note: Given n will be between 1 and 9 inclusive.
-```python
 
+```python
 
 class Solution:
     # @return a string
@@ -3685,15 +3685,15 @@ class Solution:
 ```
 -----
 
-##Permutations
+##81. Permutations
 
 Given a collection of numbers, return all possible permutations.
 
 For example,
 [1,2,3] have the following permutations:
 [1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], and [3,2,1].
-```python
 
+```python
 
 class Solution:
     # @param num, a list of integer
@@ -3729,15 +3729,15 @@ class Solution:
 ```
 -----
 
-##Permutations II
+##82. Permutations II
 
 Given a collection of numbers that might contain duplicates, return all possible unique permutations.
 
 For example,
 [1,1,2] have the following unique permutations:
 [1,1,2], [1,2,1], and [2,1,1].
-```python
 
+```python
 
 class Solution:
     # @param num, a list of integer
@@ -3778,13 +3778,13 @@ class Solution:
 ```
 -----
 
-##Plus One
+##83. Plus One
 
 Given a non-negative number represented as an array of digits, plus one to the number.
 
 The digits are stored such that the most significant digit is at the head of the list.
-```python
 
+```python
 
 class Solution:
     # @param digits, a list of integer digits
@@ -3803,7 +3803,7 @@ class Solution:
 ```
 -----
 
-##Populating Next Right Pointers in Each Node
+##84. Populating Next Right Pointers in Each Node
 
 Given a binary tree
 
@@ -3833,8 +3833,8 @@ After calling your function, the tree should look like:
       2 -> 3 -> NULL
      / \  / \
     4->5->6->7 -> NULL
-```python
 
+```python
 
 # Definition for a  binary tree node
 # class TreeNode:
@@ -3861,7 +3861,7 @@ class Solution:
 ```
 -----
 
-##Populating Next Right Pointers in Each Node II
+##85. Populating Next Right Pointers in Each Node II
 
 Follow up for problem "Populating Next Right Pointers in Each Node".
 
@@ -3883,8 +3883,8 @@ After calling your function, the tree should look like:
       2 -> 3 -> NULL
      / \    \
     4-> 5 -> 7 -> NULL
-```python
 
+```python
 
 # Definition for a  binary tree node
 # class TreeNode:
@@ -3928,11 +3928,11 @@ class Solution:
 ```
 -----
 
-##Pow x n
+##86. Pow x n
 
 Implement pow(x, n).
-```python
 
+```python
 
 class Solution:
     # @param x, a float
@@ -3960,7 +3960,7 @@ class Solution:
 ```
 -----
 
-##Recover Binary Search Tree
+##87. Recover Binary Search Tree
 
 Two elements of a binary search tree (BST) are swapped by mistake.
 
@@ -3968,8 +3968,8 @@ Recover the tree without changing its structure.
 
 Note:
 A solution using O(n) space is pretty straight forward. Could you devise a constant space solution?
-```python
 
+```python
 
 # Definition for a  binary tree node
 # class TreeNode:
@@ -4040,7 +4040,7 @@ class Solution:
 ```
 -----
 
-##Regular Expression Matching
+##88. Regular Expression Matching
 
 Implement regular expression matching with support for '.' and '*'.
 
@@ -4060,8 +4060,8 @@ isMatch("aa", "a*") → true
 isMatch("aa", ".*") → true
 isMatch("ab", ".*") → true
 isMatch("aab", "c*a*b") → true
-```python
 
+```python
 
 class Solution:
     # @return a boolean
@@ -4117,7 +4117,7 @@ class Solution:
 ```
 -----
 
-##Remove Duplicates from Sorted Arra
+##89. Remove Duplicates from Sorted Array
 
 Given a sorted array, remove the duplicates in place such that each element appear only once and return the new length.
 
@@ -4127,8 +4127,8 @@ For example,
 Given input array A = [1,1,2],
 
 Your function should return length = 2, and A is now [1,2].
-```python
 
+```python
 
 class Solution:
     # @param a list of integers
@@ -4157,7 +4157,7 @@ class Solution:
 ```
 -----
 
-##Remove Duplicates from Sorted Array II
+##90. Remove Duplicates from Sorted Array II
 
 Follow up for "Remove Duplicates":
 What if duplicates are allowed at most twice?
@@ -4166,8 +4166,8 @@ For example,
 Given sorted array A = [1,1,1,2,2,3],
 
 Your function should return length = 5, and A is now [1,1,2,2,3].
-```python
 
+```python
 
 class Solution:
     # @param A a list of integers
@@ -4186,15 +4186,15 @@ class Solution:
 ```
 -----
 
-##Remove Duplicates from Sorted List
+##91. Remove Duplicates from Sorted List
 
 Given a sorted linked list, delete all duplicates such that each element appear only once.
 
 For example,
 Given 1->1->2, return 1->2.
 Given 1->1->2->3->3, return 1->2->3.
-```python
 
+```python
 
 # Definition for singly-linked list.
 # class ListNode:
@@ -4218,15 +4218,15 @@ class Solution:
 ```
 -----
 
-##Remove Duplicates from Sorted List II
+##92. Remove Duplicates from Sorted List II
 
 Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.
 
 For example,
 Given 1->2->3->3->4->4->5, return 1->2->5.
 Given 1->1->1->2->3, return 2->3.
-```python
 
+```python
 
 # Definition for singly-linked list.
 # class ListNode:
@@ -4263,13 +4263,13 @@ class Solution:
 ```
 -----
 
-##Remove Element
+##93. Remove Element
 
 Given an array and a value, remove all instances of that value in place and return the new length.
 
 The order of elements can be changed. It doesn't matter what you leave beyond the new length.
-```python
 
+```python
 
 class Solution:
     # @param    A       a list of integers
@@ -4287,7 +4287,7 @@ class Solution:
 ```
 -----
 
-##Remove Nth Node From End of List
+##94. Remove Nth Node From End of List
 
 Given a linked list, remove the nth node from the end of list and return its head.
 
@@ -4299,8 +4299,8 @@ For example,
 Note:
 Given n will always be valid.
 Try to do this in one pass.
-```python
 
+```python
 
 # Definition for singly-linked list.
 # class ListNode:
@@ -4326,7 +4326,7 @@ class Solution:
 ```
 -----
 
-##Reorder List
+##95. Reorder List
 
 Given a singly linked list L: L0→L1→…→Ln-1→Ln,
 reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…
@@ -4335,8 +4335,8 @@ You must do this in-place without altering the nodes' values.
 
 For example,
 Given {1,2,3,4}, reorder it to {1,4,2,3}.
-```python
 
+```python
 
 # Definition for singly-linked list.
 # class ListNode:
@@ -4393,7 +4393,7 @@ class Solution:
 ```
 -----
 
-##Restore IP Addresses
+##96. Restore IP Addresses
 
 Given a string containing only digits, restore it by returning all possible valid IP address combinations.
 
@@ -4401,8 +4401,8 @@ For example:
 Given "25525511135",
 
 return ["255.255.11.135", "255.255.111.35"]. (Order does not matter)
-```python
 
+```python
 
 class Solution:
     # @param s, a string
@@ -4431,7 +4431,7 @@ class Solution:
 ```
 -----
 
-##Reverse Integer
+##97. Reverse Integer
 
 Reverse digits of an integer.
 
@@ -4448,8 +4448,8 @@ If the integer's last digit is 0, what should the output be? ie, cases such as 1
 Did you notice that the reversed integer might overflow? Assume the input is a 32-bit integer, then the reverse of 1000000003 overflows. How should you handle such cases?
 
 Throw an exception? Good, but what if throwing an exception is not an option? You would then have to re-design the function (ie, add an extra parameter).
-```python
 
+```python
 
 class Solution:
     # @return an integer
@@ -4464,7 +4464,7 @@ class Solution:
 ```
 -----
 
-##Reverse Linked List II
+##98. Reverse Linked List II
 
 Reverse a linked list from position m to n. Do it in-place and in one-pass.
 
@@ -4476,8 +4476,8 @@ return 1->4->3->2->5->NULL.
 Note:
 Given m, n satisfy the following condition:
 1 ≤ m ≤ n ≤ length of list.
-```python
 
+```python
 
 # Definition for singly-linked list.
 # class ListNode:
@@ -4509,7 +4509,7 @@ class Solution:
 ```
 -----
 
-##Reverse Nodes in k-Grou
+##99. Reverse Nodes in k-Group
 
 Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.
 
@@ -4525,8 +4525,8 @@ Given this linked list: 1->2->3->4->5
 For k = 2, you should return: 2->1->4->3->5
 
 For k = 3, you should return: 3->2->1->4->5
-```python
 
+```python
 
 # Definition for singly-linked list.
 # class ListNode:
@@ -4567,7 +4567,7 @@ class Solution:
 ```
 -----
 
-##Reverse Words in a String
+##100. Reverse Words in a String
 
 Given an input string, reverse the string word by word.
 
@@ -4583,8 +4583,8 @@ Yes. However, your reversed string should not contain leading or trailing spaces
 How about multiple spaces between two words?
 Reduce them to a single space in the reversed string.
 
-```python
 
+```python
 class Solution:
     # @param s, a string
     # @return a string
@@ -4614,13 +4614,13 @@ class Solution:
 ```
 -----
 
-##Roman to Integer
+##101. Roman to Integer
 
 Given a roman numeral, convert it to an integer.
 
 Input is guaranteed to be within the range from 1 to 3999.
-```python
 
+```python
 
 class Solution:
     # @return an integer
@@ -4645,7 +4645,7 @@ class Solution:
 ```
 -----
 
-##Rotate Image
+##102. Rotate Image
 
 You are given an n x n 2D matrix representing an image.
 
@@ -4653,8 +4653,8 @@ Rotate the image by 90 degrees (clockwise).
 
 Follow up:
 Could you do this in-place?
-```python
 
+```python
 
 class Solution:
     # @param matrix, a list of lists of integers
@@ -4694,15 +4694,15 @@ class Solution:
 ```
 -----
 
-##Rotate List
+##103. Rotate List
 
 Given a list, rotate the list to the right by k places, where k is non-negative.
 
 For example:
 Given 1->2->3->4->5->NULL and k = 2,
 return 4->5->1->2->3->NULL.
-```python
 
+```python
 
 # Definition for singly-linked list.
 # class ListNode:
@@ -4737,14 +4737,14 @@ class Solution:
 ```
 -----
 
-##Same Tree
+##104. Same Tree
 
 Given two binary trees, write a function to check if they are equal or not.
 
 Two binary trees are considered equal if they are structurally identical and the nodes have the same value.
 
-```python
 
+```python
 
 # Definition for a  binary tree node
 # class TreeNode:
@@ -4768,7 +4768,7 @@ class Solution:
 ```
 -----
 
-##Scramble String
+##105. Scramble String
 
 Given a string s1, we may represent it as a binary tree by partitioning it to two non-empty substrings recursively.
 
@@ -4806,8 +4806,8 @@ r   g  ta  e
 We say that "rgtae" is a scrambled string of "great".
 
 Given two strings s1 and s2 of the same length, determine if s2 is a scrambled string of s1.
-```python
 
+```python
 
 class Solution:
     # @return a boolean
@@ -4831,7 +4831,7 @@ class Solution:
 ```
 -----
 
-##Search Insert Position
+##106. Search Insert Position
 
 Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
 
@@ -4842,8 +4842,8 @@ Here are few examples.
 [1,3,5,6], 2 → 1
 [1,3,5,6], 7 → 4
 [1,3,5,6], 0 → 0
-```python
 
+```python
 
 class Solution:
     # @param A, a list of integers
@@ -4871,7 +4871,7 @@ class Solution:
 ```
 -----
 
-##Search a 2D Matrix
+##107. Search a 2D Matrix
 
 Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:
 
@@ -4887,8 +4887,8 @@ Consider the following matrix:
   [23, 30, 34, 50]
 ]
 Given target = 3, return true.
-```python
 
+```python
 
 class Solution:
     # @param matrix, a list of lists of integers
@@ -4933,7 +4933,7 @@ for i in range(10):
 ```
 -----
 
-##Search for a Range
+##108. Search for a Range
 
 Given a sorted array of integers, find the starting and ending position of a given target value.
 
@@ -4944,8 +4944,8 @@ If the target is not found in the array, return [-1, -1].
 For example,
 Given [5, 7, 7, 8, 8, 10] and target value 8,
 return [3, 4].
-```python
 
+```python
 
 class Solution:
     # @param A, a list of integers
@@ -4972,7 +4972,7 @@ class Solution:
 ```
 -----
 
-##Search in Rotated Sorted Arra
+##109. Search in Rotated Sorted Array
 
 Suppose a sorted array is rotated at some pivot unknown to you beforehand.
 
@@ -4981,8 +4981,8 @@ Suppose a sorted array is rotated at some pivot unknown to you beforehand.
 You are given a target value to search. If found in the array return its index, otherwise return -1.
 
 You may assume no duplicate exists in the array.
-```python
 
+```python
 
 class Solution:
     # @param A, a list of integers
@@ -5037,7 +5037,7 @@ class Solution:
 ```
 -----
 
-##Search in Rotated Sorted Array II
+##110. Search in Rotated Sorted Array II
 
 Follow up for "Search in Rotated Sorted Array":
 What if duplicates are allowed?
@@ -5045,8 +5045,8 @@ What if duplicates are allowed?
 Would this affect the run-time complexity? How and why?
 
 Write a function to determine if a given target is in the array.
-```python
 
+```python
 
 class Solution:
     # @param A a list of integers
@@ -5075,7 +5075,7 @@ class Solution:
 ```
 -----
 
-##Set Matrix Zeroes
+##111. Set Matrix Zeroes
 
 Given a m x n matrix, if an element is 0, set its entire row and column to 0. Do it in place.
 
@@ -5086,8 +5086,8 @@ Did you use extra space?
 A straight forward solution using O(mn) space is probably a bad idea.
 A simple improvement uses O(m + n) space, but still not the best solution.
 Could you devise a constant space solution?
-```python
 
+```python
 
 class Solution:
     # @param matrix, a list of lists of integers
@@ -5123,7 +5123,7 @@ class Solution:
 ```
 -----
 
-##Simplify Path
+##112. Simplify Path
 
 Given an absolute path for a file (Unix-style), simplify it.
 
@@ -5137,8 +5137,8 @@ Did you consider the case where path = "/../"?
 In this case, you should return "/".
 Another corner case is the path might contain multiple slashes '/' together, such as "/home//foo/".
 In this case, you should ignore redundant slashes and return "/home/foo".
-```python
 
+```python
 
 class Solution:
     # @param path, a string
@@ -5166,14 +5166,14 @@ class Solution:
 ```
 -----
 
-##Single Number
+##113. Single Number
 
 Given an array of integers, every element appears twice except for one. Find that single one.
 
 Note:
 Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
-```python
 
+```python
 
 class Solution:
     # @param A, a list of integer
@@ -5185,14 +5185,14 @@ class Solution:
 ```
 -----
 
-##Single Number II
+##114. Single Number II
 
 Given an array of integers, every element appears three times except for one. Find that single one.
 
 Note:
 Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
-```python
 
+```python
 
 class Solution:
     # @param A, a list of integer
@@ -5214,7 +5214,7 @@ class Solution:
 ```
 -----
 
-##Sort Colors
+##115. Sort Colors
 
 Given an array with n objects colored red, white or blue, sort them so that objects of the same color are adjacent, with the colors in the order red, white and blue.
 
@@ -5230,8 +5230,8 @@ A rather straight forward solution is a two-pass algorithm using counting sort.
 First, iterate the array counting number of 0's, 1's, and 2's, then overwrite array with total number of 0's, then 1's and followed by 2's.
 
 Could you come up with an one-pass algorithm using only constant space?
-```python
 
+```python
 
 class Solution:
     # @param A a list of integers
@@ -5261,11 +5261,11 @@ class Solution:
 ```
 -----
 
-##Sort List
+##116. Sort List
 
 Sort a linked list in O(n log n) time using constant space complexity.
-```python
 
+```python
 
 # Definition for singly-linked list.
 # class ListNode:
@@ -5317,7 +5317,61 @@ class Solution:
 ```
 -----
 
-##Spiral Matrix II
+##117. Spiral Matrix
+
+Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral order.
+
+For example,
+Given the following matrix:
+
+[
+ [ 1, 2, 3 ],
+ [ 4, 5, 6 ],
+ [ 7, 8, 9 ]
+]
+You should return [1,2,3,6,9,8,7,4,5].>
+
+```python
+
+class Solution:
+    # @param matrix, a list of lists of integers
+    # @return a list of integers
+    def spiralOrder(self, matrix):
+        M = len(matrix)
+        if len(matrix) == 0:
+            return []
+        N = len(matrix[0])
+        start_x = 0
+        start_y = 0
+        end_x   = N - 1
+        end_y   = M - 1
+        ret = []
+        while True:
+            for i in range(start_x, end_x + 1):
+                ret.append(matrix[start_y][i])
+            start_y += 1
+            if start_y > end_y:
+                break
+            for i in range(start_y, end_y + 1):
+                ret.append(matrix[i][end_x])
+            end_x -= 1
+            if start_x > end_x:
+                break
+            for i in range(start_x, end_x + 1)[::-1]:
+                ret.append(matrix[end_y][i])
+            end_y -= 1
+            if start_y > end_y:
+                break
+            for i in range(start_y, end_y + 1)[::-1]:
+                ret.append(matrix[i][start_x])
+            start_x += 1
+            if start_x > end_x:
+                break
+        return ret
+```
+-----
+
+##118. Spiral Matrix II
 
 Given an integer n, generate a square matrix filled with elements from 1 to n2 in spiral order.
 
@@ -5330,8 +5384,8 @@ You should return the following matrix:
  [ 8, 9, 4 ],
  [ 7, 6, 5 ]
 ]
-```python
 
+```python
 
 class Solution:
     # @return a list of lists of integer
@@ -5363,13 +5417,13 @@ class Solution:
 ```
 -----
 
-##Sqrt x
+##119. Sqrt x
 
 Implement int sqrt(int x).
 
 Compute and return the square root of x.
-```python
 
+```python
 
 class Solution:
     # @param x, an integer
@@ -5391,7 +5445,7 @@ class Solution:
 ```
 -----
 
-##Subsets
+##120. Subsets
 
 Given a set of distinct integers, S, return all possible subsets.
 
@@ -5411,8 +5465,8 @@ If S = [1,2,3], a solution is:
   [1,2],
   []
 ]
-```python
 
+```python
 
 class Solution:
     # @param S, a list of integer
@@ -5451,7 +5505,7 @@ class Solution:
 ```
 -----
 
-##Subsets II
+##121. Subsets II
 
 Given a collection of integers that might contain duplicates, S, return all possible subsets.
 
@@ -5469,8 +5523,8 @@ If S = [1,2,2], a solution is:
   [1,2],
   []
 ]
-```python
 
+```python
 
 class Solution:
     # @param num, a list of integer
@@ -5509,7 +5563,7 @@ class Solution:
 ```
 -----
 
-##Substring with Concatenation of All Words
+##122. Substring with Concatenation of All Words
 
 You are given a string, S, and a list of words, L, that are all of the same length. Find all starting indices of substring(s) in S that is a concatenation of each word in L exactly once and without any intervening characters.
 
@@ -5519,8 +5573,8 @@ L: ["foo", "bar"]
 
 You should return the indices: [0,9].
 (order does not matter).
-```python
 
+```python
 
 class Solution:
     # @param S, a string
@@ -5585,15 +5639,15 @@ class Solution:
 ```
 -----
 
-##Sudoku Solver
+##123. Sudoku Solver
 
 Write a program to solve a Sudoku puzzle by filling the empty cells.
 
 Empty cells are indicated by the character '.'.
 
 You may assume that there will be only one unique solution.
-```python
 
+```python
 
 class Solution:
     # @param board, a 9x9 2D array
@@ -5637,7 +5691,7 @@ class Solution:
 ```
 -----
 
-##Sum Root to Leaf Numbers
+##124. Sum Root to Leaf Numbers
 
 Given a binary tree containing digits from 0-9 only, each root-to-leaf path could represent a number.
 
@@ -5654,8 +5708,8 @@ The root-to-leaf path 1->2 represents the number 12.
 The root-to-leaf path 1->3 represents the number 13.
 
 Return the sum = 12 + 13 = 25.
-```python
 
+```python
 
 # Definition for a  binary tree node
 # class TreeNode:
@@ -5708,7 +5762,7 @@ class Solution:
 ```
 -----
 
-##Swap Nodes in Pairs
+##125. Swap Nodes in Pairs
 
 Given a linked list, swap every two adjacent nodes and return its head.
 
@@ -5716,8 +5770,8 @@ For example,
 Given 1->2->3->4, you should return the list as 2->1->4->3.
 
 Your algorithm should use only constant space. You may not modify the values in the list, only nodes itself can be changed.
-```python
 
+```python
 
 # Definition for singly-linked list.
 # class ListNode:
@@ -5764,7 +5818,7 @@ class Solution:
 ```
 -----
 
-##Symmetric Tree
+##126. Symmetric Tree
 
 Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).
 
@@ -5783,8 +5837,8 @@ But the following is not:
    3    3
 Note:
 Bonus points if you could solve it both recursively and iteratively.
-```python
 
+```python
 
 # Definition for a  binary tree node
 # class TreeNode:
@@ -5834,7 +5888,7 @@ class Solution:
 ```
 -----
 
-##Text Justification
+##127. Text Justification
 
 Given an array of words and a length L, format the text such that each line has exactly L characters and is fully (left and right) justified.
 
@@ -5855,8 +5909,8 @@ Return the formatted lines as:
    "justification.  "
 ]
 Note: Each word is guaranteed not to exceed L in length.
-```python
 
+```python
 
 class Solution:
     # @param words, a list of strings
@@ -5927,7 +5981,7 @@ class Solution:
 ```
 -----
 
-##Trapping Rain Water
+##128. Trapping Rain Water
 
 Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining.
 
@@ -5936,8 +5990,8 @@ Given [0,1,0,2,1,0,1,3,2,1,2,1], return 6.
 
 
 The above elevation map is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this case, 6 units of rain water (blue section) are being trapped. Thanks Marcos for contributing this image!
-```python
 
+```python
 
 class Solution:
     # @param A, a list of integers
@@ -5962,7 +6016,7 @@ class Solution:
 ```
 -----
 
-##Triangle
+##129. Triangle
 
 Given a triangle, find the minimum path sum from top to bottom. Each step you may move to adjacent numbers on the row below.
 
@@ -5977,8 +6031,8 @@ The minimum path sum from top to bottom is 11 (i.e., 2 + 3 + 5 + 1 = 11).
 
 Note:
 Bonus point if you are able to do this using only O(n) extra space, where n is the total number of rows in the triangle.
-```python
 
+```python
 
 class Solution:
     # @param triangle, a list of lists of integers
@@ -6001,7 +6055,7 @@ class Solution:
 ```
 -----
 
-##Two Sum
+##130. Two Sum
 
 Given an array of integers, find two numbers such that they add up to a specific target number.
 
@@ -6011,8 +6065,8 @@ You may assume that each input would have exactly one solution.
 
 Input: numbers={2, 7, 11, 15}, target=9
 Output: index1=1, index2=2
-```python
 
+```python
 
 class Solution:
     # @return a tuple, (index1, index2)
@@ -6057,14 +6111,14 @@ class Solution:
 ```
 -----
 
-##Unique Binary Search Trees
+##131. Unique Binary Search Trees
 
 Given n, how many structurally unique BST's (binary search trees) that store values 1...n?
 
 For example,
 Given n = 3, there are a total of 5 unique BST's.
-```python
 
+```python
 
 class Solution:
     # @return an integer
@@ -6078,7 +6132,7 @@ class Solution:
 ```
 -----
 
-##Unique Binary Search Trees II
+##132. Unique Binary Search Trees II
 
 Given n, generate all structurally unique BST's (binary search trees) that store values 1...n.
 
@@ -6090,8 +6144,8 @@ Given n = 3, your program should return all 5 unique BST's shown below.
      3     2     1      1   3      2
     /     /       \                 \
    2     1         2                 3
-```python
 
+```python
 
 # Definition for a  binary tree node
 # class TreeNode:
@@ -6125,7 +6179,7 @@ class Solution:
 ```
 -----
 
-##Unique Paths
+##133. Unique Paths
 
 A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
 
@@ -6136,8 +6190,8 @@ How many possible unique paths are there?
 Above is a 3 x 7 grid. How many possible unique paths are there?
 
 Note: m and n will be at most 100.
-```python
 
+```python
 
 class Solution:
     # @return an integer
@@ -6158,7 +6212,7 @@ class Solution:
 ```
 -----
 
-##Unique Paths II
+##134. Unique Paths II
 
 Follow up for "Unique Paths":
 
@@ -6177,8 +6231,8 @@ There is one obstacle in the middle of a 3x3 grid as illustrated below.
 The total number of unique paths is 2.
 
 Note: m and n will be at most 100.
-```python
 
+```python
 
 class Solution:
     # @param obstacleGrid, a list of lists of integers
@@ -6212,7 +6266,7 @@ class Solution:
 ```
 -----
 
-##Valid Number
+##135. Valid Number
 
 Validate if a given string is numeric.
 
@@ -6223,8 +6277,8 @@ Some examples:
 "1 a" => false
 "2e10" => true
 Note: It is intended for the problem statement to be ambiguous. You should gather all requirements up front before implementing one.
-```python
 
+```python
 
 class Solution:
     # @param s, a string
@@ -6272,7 +6326,7 @@ class Solution:
 ```
 -----
 
-##Valid Palindrome
+##136. Valid Palindrome
 
 Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
 
@@ -6284,8 +6338,8 @@ Note:
 Have you consider that the string might be empty? This is a good question to ask during an interview.
 
 For the purpose of this problem, we define empty string as valid palindrome.
-```python
 
+```python
 
 class Solution:
     # @param s, a string
@@ -6309,13 +6363,13 @@ class Solution:
 ```
 -----
 
-##Valid Parentheses
+##137. Valid Parentheses
 
 Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
 
 The brackets must close in the correct order, "()" and "()[]{}" are all valid but "(]" and "([)]" are not.
-```python
 
+```python
 
 class Solution:
     # @return a boolean
@@ -6336,7 +6390,7 @@ class Solution:
 ```
 -----
 
-##Valid Sudoku
+##138. Valid Sudoku
 
 Determine if a Sudoku is valid, according to: Sudoku Puzzles - The Rules.
 
@@ -6347,8 +6401,8 @@ A partially filled sudoku which is valid.
 
 Note:
 A valid Sudoku board (partially filled) is not necessarily solvable. Only the filled cells need to be validated.
-```python
 
+```python
 
 class Solution:
     # @param board, a 9x9 2D array
@@ -6380,7 +6434,7 @@ class Solution:
 ```
 -----
 
-##Validate Binary Search Tree
+##139. Validate Binary Search Tree
 
 Given a binary tree, determine if it is a valid binary search tree (BST).
 
@@ -6389,8 +6443,8 @@ Assume a BST is defined as follows:
 The left subtree of a node contains only nodes with keys less than the node's key.
 The right subtree of a node contains only nodes with keys greater than the node's key.
 Both the left and right subtrees must also be binary search trees.
-```python
 
+```python
 
 # Definition for a  binary tree node
 # class TreeNode:
@@ -6435,7 +6489,7 @@ This won't pass
 ```
 -----
 
-##Word Break
+##140. Word Break
 
 Given a string s and a dictionary of words dict, determine if s can be segmented into a space-separated sequence of one or more dictionary words.
 
@@ -6444,8 +6498,8 @@ s = "leetcode",
 dict = ["leet", "code"].
 
 Return true because "leetcode" can be segmented as "leet code".
-```python
 
+```python
 
 class Solution:
     # @param s, a string
@@ -6484,7 +6538,7 @@ class Solution:
 ```
 -----
 
-##Word Break II
+##141. Word Break II
 
 Given a string s and a dictionary of words dict, add spaces in s to construct a sentence where each word is a valid dictionary word.
 
@@ -6495,8 +6549,8 @@ s = "catsanddog",
 dict = ["cat", "cats", "and", "sand", "dog"].
 
 A solution is ["cats and dog", "cat sand dog"].
-```python
 
+```python
 
 class Solution:
     # @param s, a string
@@ -6526,7 +6580,7 @@ class Solution:
 ```
 -----
 
-##Word Ladder
+##142. Word Ladder
 
 Given two words (start and end), and a dictionary, find the length of shortest transformation sequence from start to end, such that:
 
@@ -6545,8 +6599,8 @@ Note:
 Return 0 if there is no such transformation sequence.
 All words have the same length.
 All words contain only lowercase alphabetic characters.
-```python
 
+```python
 class Solution:
     # @param start, a string
     # @param end, a string
@@ -6573,7 +6627,7 @@ class Solution:
 ```
 -----
 
-##Word Search
+##143. Word Search
 
 Given a 2D board and a word, find if the word exists in the grid.
 
@@ -6590,8 +6644,8 @@ Given board =
 word = "ABCCED", -> returns true,
 word = "SEE", -> returns true,
 word = "ABCB", -> returns false.
-```python
 
+```python
 
 class Solution:
     # @param board, a list of lists of 1 length string
@@ -6625,7 +6679,7 @@ class Solution:
 ```
 -----
 
-##ZigZag Conversion
+##144. ZigZag Conversion
 
 The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
 
@@ -6637,8 +6691,8 @@ Write the code that will take a string and make this conversion given a number o
 
 string convert(string text, int nRows);
 convert("PAYPALISHIRING", 3) should return "PAHNAPLSIIGYIR".
-```python
 
+```python
 
 class Solution:
     # @return a string
