@@ -48,10 +48,10 @@ class Solution:
             if board[i][j] != 'O':
                 continue
             board[i][j] = 'V'
-            q.push((i-1, j))
-            q.push((i+1, j))
-            q.push((i, j-1))
-            q.push((i, j+1))
+            q.append((i-1, j))
+            q.append((i+1, j))
+            q.append((i, j-1))
+            q.append((i, j+1))
 
     # DFS will cause stack overflow
     def dfs(self, board, row, col):
