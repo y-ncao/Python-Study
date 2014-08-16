@@ -1,21 +1,18 @@
 ##Interview Key Words
-
 * Big-O
 Sorting. quicksort, mergesort and all their complexity
-
 * Hashtable 仔细想想确实是, 好多面试都会面这个, 自己不如尝试implement一下
 * Trees 除了tree的基础题(其实已经蛮多的了), 最好还能看看n-ary tree, trie-trees. Red/black tree, splay tree or AVL tree. BFS DFS in-order, post-order and pre-order
 * Graphs 这个是我最薄弱的地方, 但是说实话, 真的会经常面试到, 这里一定要好好准备
 There are three basic ways to represent a graph in memory (objects and pointers, matrix, and adjacency list). Also BFS and DFS in 伪代码. Dijkstra and A*(卧槽这两个实在是太fancy了).
 还有一些有空时候看的东西. About NP-complete problems(NP完全), Traverling Salesman Problem(旅行推销员问题) and Knapsack Problem(背包问题)
-
-* Math, 这个简单, 主要是离散数学, 稍微复习一下排列组合
-* OS, 妈的这里实在是太蛋疼了, 实际真的都是经验之谈, 但是有好多傻逼的概念需要fresh-up
-Locks, Mutexes, Semaphores, Monitors
-Deadlock and lovelock and how to avoid them
-What resources a processes needs, and a thread needs
-Context switching
-Scheduling -> multi-core (Look Doug Lea's Concurrent Programming in Java)
+..* Math, 这个简单, 主要是离散数学, 稍微复习一下排列组合
+..* OS, 妈的这里实在是太蛋疼了, 实际真的都是经验之谈, 但是有好多傻逼的概念需要fresh-up
+..* Locks, Mutexes, Semaphores, Monitors
+..* Deadlock and lovelock and how to avoid them
+..* What resources a processes needs, and a thread needs
+..* Context switching
+..* Scheduling -> multi-core (Look Doug Lea's Concurrent Programming in Java)
 
 -----
 ##Hashtable
@@ -28,17 +25,19 @@ Using hash function is two steps:
 * Unique deterministic 唯一性
 
 MD5 and SHA1
+
 简单的Hash Functions:
 * Division method (Cormen) Choose a prime that isn't close to a power of 2. h(k) = k mod m. Works badly for many types of patterns in the input data.
 * Knuth Variant on Division h(k) = k(k+3) mod m. Supposedly works much better than the raw division method.
 * Multiplication Method (Cormen). Choose m to be a power of 2. Let A be some random-looking real number. Knuth suggests M = 0.5*(sqrt(5) - 1). Then do the following:
 ```
-s = k * A
-x = fractional part of s
-h(k) = floor(m*x)
+    s = k * A
+    x = fractional part of s
+    h(k) = floor(m*x)
 ```
 
 This seems to be the method that the theoreticians like.(可能永远都不需要知道)
+
 最重要的一点是Mod by something
 ```python
 class KeyValue:
@@ -86,14 +85,19 @@ print htable.getValue("reblow")
 * List/Dict Comprehension: [x**2 for x in range(10)]
 * Immutable Types Can't Be Changed in Place. Remember that you can't change an immutable object (e.g., tuple, string) in place:
 * Cyclic Datastructures Can Cause Loops
-* Although fairly rare in practice, if a collection object contains a reference to itself, it's called a cyclic object. Python prints a [...] whenever it detects a cycle in the object, rather than getting stuck in an infinite loop:
+
+...Although fairly rare in practice, if a collection object contains a reference to itself, it's called a cyclic object. Python prints a [...] whenever it detects a cycle in the object, rather than getting stuck in an infinite loop:
+
 ```python
 >>> L = ['grail']  # Append reference back to L
 >>> L.append(L)    # Generates cycle in object
 >>> L
 ['grail', [...]]
-Assignment Creates References, Not Copies
-This is a core Python concept, which can cause problems when its behavior isn't expected. In the following example, the list object assigned to the name L is referenced both from L and from inside of the list assigned to name M. Changing L in place changes what M references, too, because there are two references to the same object:
+```
+
+* Assignment Creates References, Not Copies
+...This is a core Python concept, which can cause problems when its behavior isn't expected. In the following example, the list object assigned to the name L is referenced both from L and from inside of the list assigned to name M. Changing L in place changes what M references, too, because there are two references to the same object:
+```
 >>> L = [1, 2, 3]        # A shared list object
 >>> M = ['X', L, 'Y']    # Embed a reference to L
 >>> M
@@ -102,7 +106,11 @@ This is a core Python concept, which can cause problems when its behavior isn't 
 >>> L[1] = 0             # Changes M too
 >>> M
 ['X', [1, 0, 3], 'Y']
-This effect usually becomes important only in larger programs, and shared references are normally exactly what you want. If they're not, you can avoid sharing objects by copying them explicitly; for lists, you can make a top-level copy by using an empty-limits slice:
+```
+
+...This effect usually becomes important only in larger programs, and shared references are normally exactly what you want. If they're not, you can avoid sharing objects by copying them explicitly; for lists, you can make a top-level copy by using an empty-limits slice:
+
+```
 >>> L = [1, 2, 3]
 >>> M = ['X', L[:], 'Y']   # Embed a copy of L
 
@@ -113,8 +121,9 @@ This effect usually becomes important only in larger programs, and shared refere
 ['X', [1, 2, 3], 'Y']
 ```
 
-Slice limits default to 0 and the length of the sequence being sliced. If both are omitted, the slice extracts every item in the sequence, and so makes a top-level copy (a new, unshared object). For dictionaries, use the dict.copy() method.
-Python的basic immutable types: Numbers, Strings, Tuples
+...Slice limits default to 0 and the length of the sequence being sliced. If both are omitted, the slice extracts every item in the sequence, and so makes a top-level copy (a new, unshared object). For dictionaries, use the dict.copy() method.
+
+* Python的basic immutable types: Numbers, Strings, Tuples
 
 ##Old Stuff
 
@@ -123,13 +132,13 @@ Python的basic immutable types: Numbers, Strings, Tuples
 * Cons: Often run more slowly because of the overhead needed for the system to determine when to deallocate and reclaim memory no longer need.
 
 两种方法：
-Reference counting(if no one is keeping a reference to the object, then the object is no longer needed.)
-* Pros: simple and relatively fast
-* Cons: doesn’t handle circular reference
+* Reference counting(if no one is keeping a reference to the object, then the object is no longer needed.)
+..* Pros: simple and relatively fast
+..* Cons: doesn’t handle circular reference
 
-Mark and sweep: two passes. 
-1. Mark all the objects that can be accessed. 
-2. Unmarked objects are deallocated.
+* Mark and sweep: two passes. 
+..1. Mark all the objects that can be accessed. 
+..2. Unmarked objects are deallocated.
 System. gc() method may be used to call it explicitly.
 
 Private Constructor
