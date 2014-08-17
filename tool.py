@@ -72,10 +72,24 @@ def frequency_creator(file_list):
         f.write('\n')
     f.close()
 
+# type 1 == Data Structure, 2 == Algorithms
+def type_searchor(target, type):
+    book = open_workbook('Leetcode Order by Frequency.xlsx')
+    sheet = book.sheet_by_index(0)
+    if type == 1:
+        col_index = 4
+    else:
+        col_index = 5
+    for row_index in range(sheet.nrows):
+        if target in str(sheet.cell(row_index, col_index).value):
+            print str(sheet.cell(row_index, 1).value)
+
+
 if __name__ == '__main__':
     file_list = glob.glob('./Leetcode/*.py')
     file_list.remove('./Leetcode/__init__.py')
     file_list.sort()
 
     combiner(file_list)
-    frequency_creator(file_list)
+    #frequency_creator(file_list)
+    #type_searchor('dp', 2)
