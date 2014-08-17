@@ -58,9 +58,7 @@ def frequency_creator(file_list):
             else:
                 f.write(' | ')
         f.write('\n')
-
     f.close()
-
 
 if __name__ == '__main__':
     file_list = glob.glob('./Leetcode/*.py')
