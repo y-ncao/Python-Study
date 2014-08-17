@@ -38,3 +38,4 @@ class Solution:
             start.next = move
             i += 1
         return dummy.next
+    # Can use or without dummy

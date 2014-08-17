@@ -39,3 +39,4 @@ class Solution:
             return before_dummy.next
         else:
             return after_dummy.next
+        # Set None can be done for only last

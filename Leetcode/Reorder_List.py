@@ -60,3 +60,8 @@ class Solution:
             head.next = tail
             head = tail.next
     """
+    # Should separate to 3 steps
+    # 1. Find middle
+    # 2. Reverse second half
+    # 3. Merge first half and reversed second half
+    # Will be simpler if separate these 3 step

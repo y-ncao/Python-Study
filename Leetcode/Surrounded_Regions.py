@@ -64,3 +64,7 @@ class Solution:
         self.dfs(board, row-1, col)
         self.dfs(board, row, col+1)
         self.dfs(board, row, col-1)
+
+    # Note:
+    # 1. For matrix/board problems, need to check if matrix/board == [], otherwise len(matrix[0]) will fail
+    # 2. DFS may cause stack overflow
