@@ -2316,7 +2316,7 @@ class Solution:
 ```
 -----
 
-##[51. Letter Combination of a Phone Number](https://oj.leetcode.com/problems/letter-combination-of-a-phone-number/)
+##[51. Letter Combinations of a Phone Number](https://oj.leetcode.com/problems/letter-combinations-of-a-phone-number/)
 
 Given a digit string, return all possible letter combinations that the number could represent.
 

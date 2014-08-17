@@ -38,13 +38,6 @@ def frequency_creator(file_list):
     for file_name in file_list:
         title = ' '.join(file_name.split('/')[-1].split('.py')[0].split('_')).lower()
         titles[title] = file_name
-    """
-    print titles
-    for i in range(1, sheet.nrows):
-        print i
-        if title_convert(sheet.cell(i, 1).value) not in titles:
-            print sheet.cell(i, 1).value
-    """
 
     for row_index in range(sheet.nrows):
         if row_index == 1:
@@ -74,6 +67,5 @@ if __name__ == '__main__':
     file_list.remove('./Leetcode/__init__.py')
     file_list.sort()
 
-    #combiner(file_list)
-
+    combiner(file_list)
     frequency_creator(file_list)
