@@ -57,6 +57,6 @@
 ##Sharing
 If you feel my solutions are helpful, I'll be happy. If you find problems or have better solutions, I'll be more than happy if you can discuss with me.
 
-Reach me at [cyandterry at gmail.com](cyandterry@gmail.com)
+Reach me at [cyandterry at gmail.com](mailto:cyandterry@gmail.com)
 
 Please feel free to share the code for any personal use.
