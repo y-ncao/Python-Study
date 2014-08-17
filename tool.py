@@ -22,26 +22,42 @@ def combiner(file_list):
             f.write('-----\n\n')
     f.close()
 
+def title_convert(title):
+    title = str(title)
+    title = title.translate(None, "()'")
+    title = title.replace(', ', '-')
+    return title.lower()
+
 def frequency_creator(file_list):
     f = open('frequency.md', 'wb')
     f.write('##Leetcode Order by Frequency\n')
     book = open_workbook('Leetcode Order by Frequency.xlsx')
     sheet = book.sheet_by_index(0)
+
+    titles = {}
+    for file_name in file_list:
+        title = ' '.join(file_name.split('/')[-1].split('.py')[0].split('_')).lower()
+        titles[title] = file_name
     """
-    print sheet.nrows
-    print sheet.ncols
+    print titles
     for i in range(1, sheet.nrows):
-        if sheet.cell(i, 1).value not in
-        print
+        print i
+        if title_convert(sheet.cell(i, 1).value) not in titles:
+            print sheet.cell(i, 1).value
     """
+
     for row_index in range(sheet.nrows):
         if row_index == 1:
             f.write('|---|:---:|---:|---:|---|---|\n')
         f.write('| ')
         for col_index in range(sheet.ncols):
-            #print cellname(row_index,col_index),'-',
             if row_index != 0 and col_index in [0,2,3]:
                 f.write(str(sheet.cell(row_index,col_index).value).split('.')[0])
+            elif row_index != 0 and col_index == 1:
+                name = str(sheet.cell(row_index, 1).value)
+                file_name = titles.get(title_convert(name), None)
+                link = '[%s](%s)' % (name, file_name)
+                f.write(link)
             else:
                 f.write(str(sheet.cell(row_index,col_index).value))
             if col_index == 5:
@@ -49,6 +65,7 @@ def frequency_creator(file_list):
             else:
                 f.write(' | ')
         f.write('\n')
+
     f.close()
 
 
