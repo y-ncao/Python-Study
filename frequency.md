@@ -1,5 +1,6 @@
 ##Leetcode Order by Frequency
 | ID | QUESTION | DIFFICULTY | FREQENCY | DATA STRUCTURES | ALGORITHMS |
+|---|---|---|---|---|---|
 | 1 | Two Sum | 2.0 | 5.0 | array, set | sort, two pointers |
 | 8 | String to Integer (atoi) | 2.0 | 5.0 | string | math |
 | 15 | 3Sum | 3.0 | 5.0 | array | two pointers |
