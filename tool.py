@@ -15,7 +15,19 @@ def combiner(file_list):
             content = file.read()
             sections = content.split("\"\"\"")
             f.write('##[%d. %s](https://oj.leetcode.com/problems/%s/)\n' % (i+1,title,address))
-            f.write(sections[1])
+            if '\\' in sections[1]:
+                new_section = sections[1].split('\n')
+                min_index = len(new_section) - 1
+                max_index = 0
+                for i, line in enumerate(new_section):
+                    if '\\' in line or '/' in line:
+                        min_index = min(min_index, i)
+                        max_index = max(max_index, i)
+                new_section.insert(min_index - 1, '```')
+                new_section.insert(max_index + 3, '```')
+                f.write('\n'.join(new_section))
+            else:
+                f.write(sections[1])
             f.write('\n```python')
             f.write(''.join(sections[2:]))
             f.write('```\n')

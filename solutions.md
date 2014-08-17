@@ -432,11 +432,13 @@ Given a binary tree, return the inorder traversal of its nodes' values.
 
 For example:
 Given binary tree {1,#,2,3},
+```
    1
     \
      2
     /
    3
+```
 return [1,3,2].
 
 Note: Recursive solution is trivial, could you do it iteratively?
@@ -490,11 +492,13 @@ Given a binary tree, return the level order traversal of its nodes' values. (ie,
 
 For example:
 Given binary tree {3,9,20,#,#,15,7},
+```
     3
    / \
   9  20
     /  \
    15   7
+```
 return its level order traversal as:
 [
   [3],
@@ -546,11 +550,13 @@ Given a binary tree, return the bottom-up level order traversal of its nodes' va
 
 For example:
 Given binary tree {3,9,20,#,#,15,7},
+```
     3
    / \
   9  20
     /  \
    15   7
+```
 return its bottom-up level order traversal as:
 [
   [15,7],
@@ -604,9 +610,11 @@ The path may start and end at any node in the tree.
 For example:
 Given the below binary tree,
 
+```
        1
       / \
      2   3
+```
 Return 6.
 
 ```python
@@ -649,11 +657,13 @@ Given a binary tree, return the postorder traversal of its nodes' values.
 
 For example:
 Given binary tree {1,#,2,3},
+```
    1
     \
      2
     /
    3
+```
 return [3,2,1].
 
 Note: Recursive solution is trivial, could you do it iteratively?
@@ -727,11 +737,13 @@ Given a binary tree, return the preorder traversal of its nodes' values.
 
 For example:
 Given binary tree {1,#,2,3},
+```
    1
     \
      2
     /
    3
+```
 return [1,2,3].
 
 Note: Recursive solution is trivial, could you do it iteratively?
@@ -785,11 +797,13 @@ Given a binary tree, return the zigzag level order traversal of its nodes' value
 
 For example:
 Given binary tree {3,9,20,#,#,15,7},
+```
     3
    / \
   9  20
     /  \
    15   7
+```
 return its zigzag level order traversal as:
 [
   [3],
@@ -926,6 +940,7 @@ Second node is labeled as 1. Connect node 1 to node 2.
 Third node is labeled as 2. Connect node 2 to node 2 (itself), thus forming a self-cycle.
 Visually, the graph looks like the following:
 
+```
        1
       / \
      /   \
@@ -933,6 +948,7 @@ Visually, the graph looks like the following:
          / \
          \_/
 
+```
 ```python
 
 # Definition for a undirected graph node
@@ -1586,13 +1602,13 @@ Given a binary tree, flatten it to a linked list in-place.
 For example,
 Given
 
+```
          1
         / \
        2   5
       / \   \
      3   4   6
 The flattened tree should look like:
-
    1
     \
      2
@@ -1604,6 +1620,7 @@ The flattened tree should look like:
            5
             \
              6
+```
 click to show hints.
 
 Hints:
@@ -3671,6 +3688,7 @@ Given a binary tree and a sum, determine if the tree has a root-to-leaf path suc
 
 For example:
 Given the below binary tree and sum = 22,
+```
               5
              / \
             4   8
@@ -3678,6 +3696,7 @@ Given the below binary tree and sum = 22,
           11  13  4
          /  \      \
         7    2      1
+```
 return true, as there exist a root-to-leaf path 5->4->11->2 which sum is 22.
 
 ```python
@@ -3711,6 +3730,7 @@ Given a binary tree and a sum, find all root-to-leaf paths where each path's sum
 
 For example:
 Given the below binary tree and sum = 22,
+```
               5
              / \
             4   8
@@ -3718,6 +3738,7 @@ Given the below binary tree and sum = 22,
           11  13  4
          /  \    / \
         7    2  5   1
+```
 return
 [
    [5,4,11,2],
@@ -3961,6 +3982,7 @@ You may only use constant extra space.
 You may assume that it is a perfect binary tree (ie, all leaves are at the same level, and every parent has two children).
 For example,
 Given the following perfect binary tree,
+```
          1
        /  \
       2    3
@@ -3972,6 +3994,7 @@ After calling your function, the tree should look like:
       2 -> 3 -> NULL
      / \  / \
     4->5->6->7 -> NULL
+```
 
 ```python
 
@@ -4011,6 +4034,7 @@ Note:
 You may only use constant extra space.
 For example,
 Given the following binary tree,
+```
          1
        /  \
       2    3
@@ -4022,6 +4046,7 @@ After calling your function, the tree should look like:
       2 -> 3 -> NULL
      / \    \
     4-> 5 -> 7 -> NULL
+```
 
 ```python
 
@@ -4916,6 +4941,7 @@ Given a string s1, we may represent it as a binary tree by partitioning it to tw
 
 Below is one possible representation of s1 = "great":
 
+```
     great
    /    \
   gr    eat
@@ -4945,6 +4971,7 @@ Similarly, if we continue to swap the children of nodes "eat" and "at", it produ
 r   g  ta  e
        / \
       t   a
+```
 We say that "rgtae" is a scrambled string of "great".
 
 Given two strings s1 and s2 of the same length, determine if s2 is a scrambled string of s1.
@@ -5890,9 +5917,11 @@ Find the total sum of all root-to-leaf numbers.
 
 For example,
 
+```
     1
    / \
   2   3
+```
 The root-to-leaf path 1->2 represents the number 12.
 The root-to-leaf path 1->3 represents the number 13.
 
@@ -6088,6 +6117,7 @@ Given a binary tree, check whether it is a mirror of itself (ie, symmetric aroun
 
 For example, this binary tree is symmetric:
 
+```
     1
    / \
   2   2
@@ -6099,6 +6129,7 @@ But the following is not:
   2   2
    \   \
    3    3
+```
 Note:
 Bonus points if you could solve it both recursively and iteratively.
 
@@ -6403,11 +6434,13 @@ Given n, generate all structurally unique BST's (binary search trees) that store
 For example,
 Given n = 3, your program should return all 5 unique BST's shown below.
 
+```
    1         3     3      2      1
     \       /     /      / \      \
      3     2     1      1   3      2
     /     /       \                 \
    2     1         2                 3
+```
 
 ```python
 
