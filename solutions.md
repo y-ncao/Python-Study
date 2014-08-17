@@ -1,4 +1,4 @@
-##1. 3Sum
+##[1. 3Sum](https://oj.leetcode.com/problems/3sum/)
 
 Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.
 
@@ -45,7 +45,7 @@ class Solution:
 ```
 -----
 
-##2. 3Sum Closest
+##[2. 3Sum Closest](https://oj.leetcode.com/problems/3sum-closest/)
 
 Given an array S of n integers, find three integers in S such that the sum is closest to a given number, target. Return the sum of the three integers. You may assume that each input would have exactly one solution.
 
@@ -99,7 +99,7 @@ class Solution:
 ```
 -----
 
-##3. 4Sum
+##[3. 4Sum](https://oj.leetcode.com/problems/4sum/)
 
 Given an array S of n integers, are there elements a, b, c, and d in S such that a + b + c + d = target? Find all unique quadruplets in the array which gives the sum of target.
 
@@ -175,7 +175,7 @@ class Solution:
 ```
 -----
 
-##4. Add Binary
+##[4. Add Binary](https://oj.leetcode.com/problems/add-binary/)
 
 Given two binary strings, return their sum (also a binary string).
 
@@ -213,7 +213,7 @@ class Solution:
 ```
 -----
 
-##5. Add Two Numbers
+##[5. Add Two Numbers](https://oj.leetcode.com/problems/add-two-numbers/)
 
 You are given two linked lists representing two non-negative numbers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
 
@@ -249,7 +249,7 @@ class Solution:
 ```
 -----
 
-##6. Anagrams
+##[6. Anagrams](https://oj.leetcode.com/problems/anagrams/)
 
 Given an array of strings, return all groups of strings that are anagrams.
 
@@ -281,7 +281,7 @@ class Solution:
 ```
 -----
 
-##7. Balanced Binary Tree
+##[7. Balanced Binary Tree](https://oj.leetcode.com/problems/balanced-binary-tree/)
 
 Given a binary tree, determine if it is height-balanced.
 
@@ -338,7 +338,7 @@ class Solution:
 ```
 -----
 
-##8. Best Time to Buy and Sell Stock
+##[8. Best Time to Buy and Sell Stock](https://oj.leetcode.com/problems/best-time-to-buy-and-sell-stock/)
 
 Say you have an array for which the ith element is the price of a given stock on day i.
 
@@ -361,7 +361,7 @@ class Solution:
 ```
 -----
 
-##9. Best Time to Buy and Sell Stock II
+##[9. Best Time to Buy and Sell Stock II](https://oj.leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/)
 
 Say you have an array for which the ith element is the price of a given stock on day i.
 
@@ -385,7 +385,7 @@ class Solution:
 ```
 -----
 
-##10. Best Time to Buy and Sell Stock III
+##[10. Best Time to Buy and Sell Stock III](https://oj.leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/)
 
 Say you have an array for which the ith element is the price of a given stock on day i.
 
@@ -426,7 +426,7 @@ class Solution:
 ```
 -----
 
-##11. Binary Tree Inorder Traversal
+##[11. Binary Tree Inorder Traversal](https://oj.leetcode.com/problems/binary-tree-inorder-traversal/)
 
 Given a binary tree, return the inorder traversal of its nodes' values.
 
@@ -484,7 +484,7 @@ class Solution:
 ```
 -----
 
-##12. Binary Tree Level Order Traversal
+##[12. Binary Tree Level Order Traversal](https://oj.leetcode.com/problems/binary-tree-level-order-traversal/)
 
 Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
 
@@ -540,7 +540,7 @@ class Solution:
 ```
 -----
 
-##13. Binary Tree Level Order Traversal II
+##[13. Binary Tree Level Order Traversal II](https://oj.leetcode.com/problems/binary-tree-level-order-traversal-ii/)
 
 Given a binary tree, return the bottom-up level order traversal of its nodes' values. (ie, from left to right, level by level from leaf to root).
 
@@ -595,7 +595,7 @@ class Solution:
 ```
 -----
 
-##14. Binary Tree Maximum Path Sum
+##[14. Binary Tree Maximum Path Sum](https://oj.leetcode.com/problems/binary-tree-maximum-path-sum/)
 
 Given a binary tree, find the maximum path sum.
 
@@ -643,7 +643,7 @@ class Solution:
 ```
 -----
 
-##15. Binary Tree Postorder Traversal
+##[15. Binary Tree Postorder Traversal](https://oj.leetcode.com/problems/binary-tree-postorder-traversal/)
 
 Given a binary tree, return the postorder traversal of its nodes' values.
 
@@ -721,7 +721,7 @@ class Solution:
 ```
 -----
 
-##16. Binary Tree Preorder Traversal
+##[16. Binary Tree Preorder Traversal](https://oj.leetcode.com/problems/binary-tree-preorder-traversal/)
 
 Given a binary tree, return the preorder traversal of its nodes' values.
 
@@ -779,7 +779,7 @@ class Solution:
 ```
 -----
 
-##17. Binary Tree Zigzag Level Order Traversal
+##[17. Binary Tree Zigzag Level Order Traversal](https://oj.leetcode.com/problems/binary-tree-zigzag-level-order-traversal/)
 
 Given a binary tree, return the zigzag level order traversal of its nodes' values. (ie, from left to right, then right to left for the next level and alternate between).
 
@@ -838,7 +838,7 @@ class Solution:
 ```
 -----
 
-##18. Candy
+##[18. Candy](https://oj.leetcode.com/problems/candy/)
 
 There are N children standing in a line. Each child is assigned a rating value.
 
@@ -866,7 +866,7 @@ class Solution:
 ```
 -----
 
-##19. Climbing Stairs
+##[19. Climbing Stairs](https://oj.leetcode.com/problems/climbing-stairs/)
 
 You are climbing a stair case. It takes n steps to reach to the top.
 
@@ -908,7 +908,7 @@ class Solution:
 ```
 -----
 
-##20. Clone Graph
+##[20. Clone Graph](https://oj.leetcode.com/problems/clone-graph/)
 
 Clone an undirected graph. Each node in the graph contains a label and a list of its neighbors.
 
@@ -966,7 +966,7 @@ class Solution:
 ```
 -----
 
-##21. Combination Sum
+##[21. Combination Sum](https://oj.leetcode.com/problems/combination-sum/)
 
 Given a set of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.
 
@@ -1006,7 +1006,7 @@ class Solution:
 ```
 -----
 
-##22. Combination Sum II
+##[22. Combination Sum II](https://oj.leetcode.com/problems/combination-sum-ii/)
 
 Given a collection of candidate numbers (C) and a target number (T), find all unique combinations in C where the candidate numbers sums to T.
 
@@ -1052,7 +1052,7 @@ class Solution:
 ```
 -----
 
-##23. Combinations
+##[23. Combinations](https://oj.leetcode.com/problems/combinations/)
 
 Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.
 
@@ -1088,7 +1088,7 @@ class Solution:
 ```
 -----
 
-##24. Construct Binary Tree from Inorder and Postorder Traversal
+##[24. Construct Binary Tree from Inorder and Postorder Traversal](https://oj.leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/)
 
 Given inorder and postorder traversal of a tree, construct the binary tree.
 
@@ -1121,7 +1121,7 @@ class Solution:
 ```
 -----
 
-##25. Construct Binary Tree from Preorder and Inorder Traversal
+##[25. Construct Binary Tree from Preorder and Inorder Traversal](https://oj.leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
 
 Given preorder and inorder traversal of a tree, construct the binary tree.
 
@@ -1153,7 +1153,7 @@ class Solution:
 ```
 -----
 
-##26. Container With Most Water
+##[26. Container With Most Water](https://oj.leetcode.com/problems/container-with-most-water/)
 
 Given n non-negative integers a1, a2, ..., an, where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water.
 
@@ -1180,7 +1180,7 @@ class Solution:
 ```
 -----
 
-##27. Convert Sorted Array to Binary Search Tree
+##[27. Convert Sorted Array to Binary Search Tree](https://oj.leetcode.com/problems/convert-sorted-array-to-binary-search-tree/)
 
 Given an array where elements are sorted in ascending order, convert it to a height balanced BST.
 
@@ -1212,7 +1212,7 @@ class Solution:
 ```
 -----
 
-##28. Convert Sorted List to Binary Search Tree
+##[28. Convert Sorted List to Binary Search Tree](https://oj.leetcode.com/problems/convert-sorted-list-to-binary-search-tree/)
 
 Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.
 
@@ -1259,7 +1259,7 @@ class Solution:
 ```
 -----
 
-##29. Copy List with Random Pointer
+##[29. Copy List with Random Pointer](https://oj.leetcode.com/problems/copy-list-with-random-pointer/)
 
 A linked list is given such that each node contains an additional random pointer which could point to any node in the list or null.
 
@@ -1304,7 +1304,7 @@ class Solution:
 ```
 -----
 
-##30. Count and Say
+##[30. Count and Say](https://oj.leetcode.com/problems/count-and-say/)
 
 The count-and-say sequence is the sequence of integers beginning as follows:
 1, 11, 21, 1211, 111221, ...
@@ -1340,7 +1340,7 @@ class Solution:
 ```
 -----
 
-##31. Decode Ways
+##[31. Decode Ways](https://oj.leetcode.com/problems/decode-ways/)
 
 A message containing letters from A-Z is being encoded to numbers using the following mapping:
 
@@ -1391,7 +1391,7 @@ class Solution:
 ```
 -----
 
-##32. Distinct Subsequences
+##[32. Distinct Subsequences](https://oj.leetcode.com/problems/distinct-subsequences/)
 
 Given a string S and a string T, count the number of distinct subsequences of T in S.
 
@@ -1424,7 +1424,7 @@ class Solution:
 ```
 -----
 
-##33. Divide Two Integers
+##[33. Divide Two Integers](https://oj.leetcode.com/problems/divide-two-integers/)
 
 Divide two integers without using multiplication, division and mod operator.
 
@@ -1452,7 +1452,7 @@ class Solution:
 ```
 -----
 
-##34. Edit Distance
+##[34. Edit Distance](https://oj.leetcode.com/problems/edit-distance/)
 
 Given two words word1 and word2, find the minimum number of steps required to convert word1 to word2. (each operation is counted as 1 step.)
 
@@ -1500,7 +1500,7 @@ class Solution:
 ```
 -----
 
-##35. Evaluate Reverse Polish Notation
+##[35. Evaluate Reverse Polish Notation](https://oj.leetcode.com/problems/evaluate-reverse-polish-notation/)
 
 Evaluate the value of an arithmetic expression in Reverse Polish Notation.
 
@@ -1539,7 +1539,7 @@ class Solution:
 ```
 -----
 
-##36. First Missing Positive
+##[36. First Missing Positive](https://oj.leetcode.com/problems/first-missing-positive/)
 
 Given an unsorted integer array, find the first missing positive integer.
 
@@ -1579,7 +1579,7 @@ class Solution:
 ```
 -----
 
-##37. Flatten Binary Tree to Linked List
+##[37. Flatten Binary Tree to Linked List](https://oj.leetcode.com/problems/flatten-binary-tree-to-linked-list/)
 
 Given a binary tree, flatten it to a linked list in-place.
 
@@ -1646,7 +1646,7 @@ class Solution:
 ```
 -----
 
-##38. Gas Station
+##[38. Gas Station](https://oj.leetcode.com/problems/gas-station/)
 
 There are N gas stations along a circular route, where the amount of gas at station i is gas[i].
 
@@ -1684,7 +1684,7 @@ class Solution:
 ```
 -----
 
-##39. Generate Parentheses
+##[39. Generate Parentheses](https://oj.leetcode.com/problems/generate-parentheses/)
 
 Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
 
@@ -1713,7 +1713,7 @@ class Solution:
 ```
 -----
 
-##40. Gray Code
+##[40. Gray Code](https://oj.leetcode.com/problems/gray-code/)
 
 The gray code is a binary numeral system where two successive values differ in only one bit.
 
@@ -1790,7 +1790,7 @@ class Solution:
 ```
 -----
 
-##41. Implement strStr
+##[41. Implement strStr](https://oj.leetcode.com/problems/implement-strstr/)
 
 Implement strStr().
 
@@ -1850,7 +1850,7 @@ class Solution:
 ```
 -----
 
-##42. Insert Interval
+##[42. Insert Interval](https://oj.leetcode.com/problems/insert-interval/)
 
 Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).
 
@@ -1939,7 +1939,7 @@ class Solution:
 ```
 -----
 
-##43. Insertion Sort List
+##[43. Insertion Sort List](https://oj.leetcode.com/problems/insertion-sort-list/)
 
 Sort a linked list using insertion sort.
 
@@ -1978,7 +1978,7 @@ class Solution:
 ```
 -----
 
-##44. Integer to Roman
+##[44. Integer to Roman](https://oj.leetcode.com/problems/integer-to-roman/)
 
 Given an integer, convert it to a roman numeral.
 
@@ -2003,7 +2003,7 @@ class Solution:
 ```
 -----
 
-##45. Interleaving String
+##[45. Interleaving String](https://oj.leetcode.com/problems/interleaving-string/)
 
 Given s1, s2, s3, find whether s3 is formed by the interleaving of s1 and s2.
 
@@ -2060,7 +2060,7 @@ class Solution:
 ```
 -----
 
-##46. Jump Game
+##[46. Jump Game](https://oj.leetcode.com/problems/jump-game/)
 
 Given an array of non-negative integers, you are initially positioned at the first index of the array.
 
@@ -2103,7 +2103,7 @@ class Solution:
 ```
 -----
 
-##47. Jump Game II
+##[47. Jump Game II](https://oj.leetcode.com/problems/jump-game-ii/)
 
 Given an array of non-negative integers, you are initially positioned at the first index of the array.
 
@@ -2139,7 +2139,7 @@ class Solution:
 ```
 -----
 
-##48. LRU Cache
+##[48. LRU Cache](https://oj.leetcode.com/problems/lru-cache/)
 
 Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and set.
 
@@ -2209,7 +2209,7 @@ class LRUCache:
 ```
 -----
 
-##49. Largest Rectangle in Histogram
+##[49. Largest Rectangle in Histogram](https://oj.leetcode.com/problems/largest-rectangle-in-histogram/)
 
 Given n non-negative integers representing the histogram's bar height where the width of each bar is 1, find the area of largest rectangle in the histogram.
 
@@ -2268,7 +2268,7 @@ class Solution:
 ```
 -----
 
-##50. Length of Last Word
+##[50. Length of Last Word](https://oj.leetcode.com/problems/length-of-last-word/)
 
 Given a string s consists of upper/lower-case alphabets and empty space characters ' ', return the length of last word in the string.
 
@@ -2316,7 +2316,7 @@ class Solution:
 ```
 -----
 
-##51. Letter Combination of a Phone Number
+##[51. Letter Combination of a Phone Number](https://oj.leetcode.com/problems/letter-combination-of-a-phone-number/)
 
 Given a digit string, return all possible letter combinations that the number could represent.
 
@@ -2370,7 +2370,7 @@ class Solution:
 ```
 -----
 
-##52. Linked List Cycle
+##[52. Linked List Cycle](https://oj.leetcode.com/problems/linked-list-cycle/)
 
 Given a linked list, determine if it has a cycle in it.
 
@@ -2400,7 +2400,7 @@ class Solution:
 ```
 -----
 
-##53. Linked List Cycle II
+##[53. Linked List Cycle II](https://oj.leetcode.com/problems/linked-list-cycle-ii/)
 
 Given a linked list, return the node where the cycle begins. If there is no cycle, return null.
 
@@ -2438,7 +2438,7 @@ class Solution:
 ```
 -----
 
-##54. Longest Common Prefix
+##[54. Longest Common Prefix](https://oj.leetcode.com/problems/longest-common-prefix/)
 
 Write a function to find the longest common prefix string amongst an array of strings.
 
@@ -2459,7 +2459,7 @@ class Solution:
 ```
 -----
 
-##55. Longest Consecutive Sequence
+##[55. Longest Consecutive Sequence](https://oj.leetcode.com/problems/longest-consecutive-sequence/)
 
 Given an unsorted array of integers, find the length of the longest consecutive elements sequence.
 
@@ -2548,7 +2548,7 @@ class Solution:
 ```
 -----
 
-##56. Longest Palindromic Substring
+##[56. Longest Palindromic Substring](https://oj.leetcode.com/problems/longest-palindromic-substring/)
 
 Given a string S, find the longest palindromic substring in S. You may assume that the maximum length of S is 1000, and there exists one unique longest palindromic substring.
 
@@ -2613,7 +2613,7 @@ class Solution:
 ```
 -----
 
-##57. Longest Substring Without Repeating Characters
+##[57. Longest Substring Without Repeating Characters](https://oj.leetcode.com/problems/longest-substring-without-repeating-characters/)
 
 Given a string, find the length of the longest substring without repeating characters. For example, the longest substring without repeating letters for "abcabcbb" is "abc", which the length is 3. For "bbbbb" the longest substring is "b", with the length of 1.
 
@@ -2659,7 +2659,7 @@ class Solution:
 ```
 -----
 
-##58. Longest Valid Parentheses
+##[58. Longest Valid Parentheses](https://oj.leetcode.com/problems/longest-valid-parentheses/)
 
 Given a string containing just the characters '(' and ')', find the length of the longest valid (well-formed) parentheses substring.
 
@@ -2695,7 +2695,51 @@ class Solution:
 ```
 -----
 
-##59. Maximal Rectangle
+##[59. Max Points on a Line](https://oj.leetcode.com/problems/max-points-on-a-line/)
+
+Given n points on a 2D plane, find the maximum number of points that lie on the same straight line.
+
+```python
+
+# Definition for a point
+# class Point:
+#     def __init__(self, a=0, b=0):
+#         self.x = a
+#         self.y = b
+
+class Solution:
+    # @param points, a list of Points
+    # @return an integer
+    def maxPoints(self, points):
+        N = len(points)
+        if N <= 2:
+            return N
+        ret = 2
+        for i, p1 in enumerate(points[:-1]):
+            slots = {}
+            same = 0
+            vertical = 1
+            current_max = 0
+            for j, p2 in enumerate(points[i+1:]):
+                if p1.x == p2.x and p1.y == p2.y:
+                    same += 1
+                elif p1.x == p2.x:
+                    vertical += 1
+                    #print vertical
+                else:
+                    k = (p1.y - p2.y) * 1.0 / (p1.x - p2.x)
+                    if k not in slots:
+                        slots[k] = 2
+                    else:
+                        slots[k] += 1
+            for slot in slots.keys():
+                current_max = max(current_max, slots[slot] + same) # Here need to check twice
+            ret = max(ret, current_max, vertical+same)             # Cuz slot might be empty
+        return ret
+```
+-----
+
+##[60. Maximal Rectangle](https://oj.leetcode.com/problems/maximal-rectangle/)
 
 Given a 2D binary matrix filled with 0's and 1's, find the largest rectangle containing all ones and return its area.
 
@@ -2771,7 +2815,7 @@ class Solution:
 ```
 -----
 
-##60. Maximum Depth of Binary Tree
+##[61. Maximum Depth of Binary Tree](https://oj.leetcode.com/problems/maximum-depth-of-binary-tree/)
 
 Given a binary tree, find its maximum depth.
 
@@ -2797,7 +2841,7 @@ class Solution:
 ```
 -----
 
-##61. Maximum Subarray
+##[62. Maximum Subarray](https://oj.leetcode.com/problems/maximum-subarray/)
 
 Find the contiguous subarray within an array (containing at least one number) which has the largest sum.
 
@@ -2840,7 +2884,7 @@ class Solution:
 ```
 -----
 
-##62. Median of Two Sorted Arrays
+##[63. Median of Two Sorted Arrays](https://oj.leetcode.com/problems/median-of-two-sorted-arrays/)
 
 There are two sorted arrays A and B of size m and n respectively. Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
 
@@ -2886,7 +2930,7 @@ class Solution:
 ```
 -----
 
-##63. Merge Intervals
+##[64. Merge Intervals](https://oj.leetcode.com/problems/merge-intervals/)
 
 Given a collection of intervals, merge all overlapping intervals.
 
@@ -2923,7 +2967,7 @@ class Solution:
 ```
 -----
 
-##64. Merge Sorted Array
+##[65. Merge Sorted Array](https://oj.leetcode.com/problems/merge-sorted-array/)
 
 Given two sorted integer arrays A and B, merge B into A as one sorted array.
 
@@ -2958,7 +3002,7 @@ class Solution:
 ```
 -----
 
-##65. Merge Two Sorted Lists
+##[66. Merge Two Sorted Lists](https://oj.leetcode.com/problems/merge-two-sorted-lists/)
 
 Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
 
@@ -2996,7 +3040,7 @@ class Solution:
 ```
 -----
 
-##66. Merge k Sorted Lists
+##[67. Merge k Sorted Lists](https://oj.leetcode.com/problems/merge-k-sorted-lists/)
 
 Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.
 
@@ -3030,7 +3074,7 @@ class Solution:
 ```
 -----
 
-##67. Minimum Depth of Binary Tree
+##[68. Minimum Depth of Binary Tree](https://oj.leetcode.com/problems/minimum-depth-of-binary-tree/)
 
 Given a binary tree, find its minimum depth.
 
@@ -3084,7 +3128,7 @@ class Solution:
 ```
 -----
 
-##68. Minimum Path Sum
+##[69. Minimum Path Sum](https://oj.leetcode.com/problems/minimum-path-sum/)
 
 Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
 
@@ -3146,7 +3190,70 @@ class Solution:
 ```
 -----
 
-##69. Multiply Strings
+##[70. Minimum Window Substring](https://oj.leetcode.com/problems/minimum-window-substring/)
+
+Given a string S and a string T, find the minimum window in S which will contain all the characters in T in complexity O(n).
+
+For example,
+S = "ADOBECODEBANC"
+T = "ABC"
+Minimum window is "BANC".
+
+Note:
+If there is no such window in S that covers all characters in T, return the emtpy string "".
+
+If there are multiple such windows, you are guaranteed that there will always be only one unique minimum window in S.
+
+```python
+
+class Solution:
+    # @return a string
+    def minWindow(self, S, T):
+        N = len(S)
+        M = len(T)
+        if N < M:
+            return ''
+        need = dict.fromkeys(T, 0)
+        find = dict.fromkeys(T, 0)
+        for i, char in enumerate(T):
+            need[char] += 1
+        start = 0
+        end = 0
+        res_start = -1
+        res_end = N
+        count = 0
+        while end < N:
+            if S[end] not in need:
+                end += 1
+                continue
+            if find[S[end]] < need[S[end]]:
+                count += 1
+            find[S[end]] += 1
+            if count != M:
+                end += 1
+                continue
+            while start < end:
+                if S[start] not in need:
+                    start += 1
+                    continue
+                if find[S[start]] == need[S[start]]:
+                    break
+                find[S[start]] -= 1
+                start += 1
+            if end - start < res_end - res_start:
+                res_end = end
+                res_start = start
+            end += 1
+        if res_start == -1:
+            return ''
+        else:
+            return S[res_start: res_end+1]
+
+    # Whole bunch of things can be improved from here
+```
+-----
+
+##[71. Multiply Strings](https://oj.leetcode.com/problems/multiply-strings/)
 
 Given two numbers represented as strings, return multiplication of the numbers as a string.
 
@@ -3169,7 +3276,7 @@ class Solution:
 ```
 -----
 
-##70. N-Queens
+##[72. N-Queens](https://oj.leetcode.com/problems/n-queens/)
 
 The n-queens puzzle is the problem of placing n queens on an n×n chessboard such that no two queens attack each other.
 
@@ -3225,7 +3332,7 @@ class Solution:
 ```
 -----
 
-##71. N-Queens II
+##[73. N-Queens II](https://oj.leetcode.com/problems/n-queens-ii/)
 
 Follow up for N-Queens problem.
 
@@ -3264,7 +3371,7 @@ class Solution:
 ```
 -----
 
-##72. Next Permutation
+##[74. Next Permutation](https://oj.leetcode.com/problems/next-permutation/)
 
 Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.
 
@@ -3306,7 +3413,7 @@ class Solution:
 ```
 -----
 
-##73. Palindrome Number
+##[75. Palindrome Number](https://oj.leetcode.com/problems/palindrome-number/)
 
 Determine whether an integer is a palindrome. Do this without extra space.
 
@@ -3341,7 +3448,7 @@ class Solution:
 ```
 -----
 
-##74. Palindrome Partitioning
+##[76. Palindrome Partitioning](https://oj.leetcode.com/problems/palindrome-partitioning/)
 
 Given a string s, partition s such that every substring of the partition is a palindrome.
 
@@ -3389,7 +3496,37 @@ class Solution:
 ```
 -----
 
-##75. Partition List
+##[77. Palindrome Partitioning II](https://oj.leetcode.com/problems/palindrome-partitioning-ii/)
+
+Given a string s, partition s such that every substring of the partition is a palindrome.
+
+Return the minimum cuts needed for a palindrome partitioning of s.
+
+For example, given s = "aab",
+Return 1 since the palindrome partitioning ["aa","b"] could be produced using 1 cut.
+
+```python
+
+class Solution:
+    # @param s, a string
+    # @return an integer
+    def minCut(self, s):
+        dp = [0 for i in range(len(s)+1)]
+        p = [[False for i in range(len(s))] for j in range(len(s))]
+        for i in range(len(s)+1):
+            dp[i] = len(s) - i
+        for i in range(len(s)-1, -1, -1):
+            for j in range(i, len(s)):
+                if s[i] == s[j] and (((j - i) < 2) or p[i+1][j-1]):
+                    p[i][j] = True
+                    dp[i] = min(1+dp[j+1], dp[i])
+        return dp[0]-1
+    # This solution will get a TLE
+    # Need to find a better way
+```
+-----
+
+##[78. Partition List](https://oj.leetcode.com/problems/partition-list/)
 
 Given a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
 
@@ -3432,10 +3569,11 @@ class Solution:
             return before_dummy.next
         else:
             return after_dummy.next
+        # Set None can be done for only last
 ```
 -----
 
-##76. Pascals Triangle
+##[79. Pascals Triangle](https://oj.leetcode.com/problems/pascals-triangle/)
 
 Given numRows, generate the first numRows of Pascal's triangle.
 
@@ -3488,7 +3626,7 @@ class Solution:
 ```
 -----
 
-##77. Pascals Triangle II
+##[80. Pascals Triangle II](https://oj.leetcode.com/problems/pascals-triangle-ii/)
 
 Given an index k, return the kth row of the Pascal's triangle.
 
@@ -3526,7 +3664,7 @@ class Solution:
 ```
 -----
 
-##78. Path Sum
+##[81. Path Sum](https://oj.leetcode.com/problems/path-sum/)
 
 Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum.
 
@@ -3566,7 +3704,7 @@ class Solution:
 ```
 -----
 
-##79. Path Sum II
+##[82. Path Sum II](https://oj.leetcode.com/problems/path-sum-ii/)
 
 Given a binary tree and a sum, find all root-to-leaf paths where each path's sum equals the given sum.
 
@@ -3643,7 +3781,7 @@ This way will have long run time
 ```
 -----
 
-##80. Permutation Sequence
+##[83. Permutation Sequence](https://oj.leetcode.com/problems/permutation-sequence/)
 
 The set [1,2,3,…,n] contains a total of n! unique permutations.
 
@@ -3685,7 +3823,7 @@ class Solution:
 ```
 -----
 
-##81. Permutations
+##[84. Permutations](https://oj.leetcode.com/problems/permutations/)
 
 Given a collection of numbers, return all possible permutations.
 
@@ -3729,7 +3867,7 @@ class Solution:
 ```
 -----
 
-##82. Permutations II
+##[85. Permutations II](https://oj.leetcode.com/problems/permutations-ii/)
 
 Given a collection of numbers that might contain duplicates, return all possible unique permutations.
 
@@ -3778,7 +3916,7 @@ class Solution:
 ```
 -----
 
-##83. Plus One
+##[86. Plus One](https://oj.leetcode.com/problems/plus-one/)
 
 Given a non-negative number represented as an array of digits, plus one to the number.
 
@@ -3803,7 +3941,7 @@ class Solution:
 ```
 -----
 
-##84. Populating Next Right Pointers in Each Node
+##[87. Populating Next Right Pointers in Each Node](https://oj.leetcode.com/problems/populating-next-right-pointers-in-each-node/)
 
 Given a binary tree
 
@@ -3861,7 +3999,7 @@ class Solution:
 ```
 -----
 
-##85. Populating Next Right Pointers in Each Node II
+##[88. Populating Next Right Pointers in Each Node II](https://oj.leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/)
 
 Follow up for problem "Populating Next Right Pointers in Each Node".
 
@@ -3928,7 +4066,7 @@ class Solution:
 ```
 -----
 
-##86. Pow x n
+##[89. Powx-n](https://oj.leetcode.com/problems/powx-n/)
 
 Implement pow(x, n).
 
@@ -3960,7 +4098,7 @@ class Solution:
 ```
 -----
 
-##87. Recover Binary Search Tree
+##[90. Recover Binary Search Tree](https://oj.leetcode.com/problems/recover-binary-search-tree/)
 
 Two elements of a binary search tree (BST) are swapped by mistake.
 
@@ -4040,7 +4178,7 @@ class Solution:
 ```
 -----
 
-##88. Regular Expression Matching
+##[91. Regular Expression Matching](https://oj.leetcode.com/problems/regular-expression-matching/)
 
 Implement regular expression matching with support for '.' and '*'.
 
@@ -4117,7 +4255,7 @@ class Solution:
 ```
 -----
 
-##89. Remove Duplicates from Sorted Array
+##[92. Remove Duplicates from Sorted Array](https://oj.leetcode.com/problems/remove-duplicates-from-sorted-array/)
 
 Given a sorted array, remove the duplicates in place such that each element appear only once and return the new length.
 
@@ -4157,7 +4295,7 @@ class Solution:
 ```
 -----
 
-##90. Remove Duplicates from Sorted Array II
+##[93. Remove Duplicates from Sorted Array II](https://oj.leetcode.com/problems/remove-duplicates-from-sorted-array-ii/)
 
 Follow up for "Remove Duplicates":
 What if duplicates are allowed at most twice?
@@ -4186,7 +4324,7 @@ class Solution:
 ```
 -----
 
-##91. Remove Duplicates from Sorted List
+##[94. Remove Duplicates from Sorted List](https://oj.leetcode.com/problems/remove-duplicates-from-sorted-list/)
 
 Given a sorted linked list, delete all duplicates such that each element appear only once.
 
@@ -4218,7 +4356,7 @@ class Solution:
 ```
 -----
 
-##92. Remove Duplicates from Sorted List II
+##[95. Remove Duplicates from Sorted List II](https://oj.leetcode.com/problems/remove-duplicates-from-sorted-list-ii/)
 
 Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.
 
@@ -4263,7 +4401,7 @@ class Solution:
 ```
 -----
 
-##93. Remove Element
+##[96. Remove Element](https://oj.leetcode.com/problems/remove-element/)
 
 Given an array and a value, remove all instances of that value in place and return the new length.
 
@@ -4287,7 +4425,7 @@ class Solution:
 ```
 -----
 
-##94. Remove Nth Node From End of List
+##[97. Remove Nth Node From End of List](https://oj.leetcode.com/problems/remove-nth-node-from-end-of-list/)
 
 Given a linked list, remove the nth node from the end of list and return its head.
 
@@ -4326,7 +4464,7 @@ class Solution:
 ```
 -----
 
-##95. Reorder List
+##[98. Reorder List](https://oj.leetcode.com/problems/reorder-list/)
 
 Given a singly linked list L: L0→L1→…→Ln-1→Ln,
 reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…
@@ -4390,10 +4528,15 @@ class Solution:
             head.next = tail
             head = tail.next
     
+    # Should separate to 3 steps
+    # 1. Find middle
+    # 2. Reverse second half
+    # 3. Merge first half and reversed second half
+    # Will be simpler if separate these 3 step
 ```
 -----
 
-##96. Restore IP Addresses
+##[99. Restore IP Addresses](https://oj.leetcode.com/problems/restore-ip-addresses/)
 
 Given a string containing only digits, restore it by returning all possible valid IP address combinations.
 
@@ -4431,7 +4574,7 @@ class Solution:
 ```
 -----
 
-##97. Reverse Integer
+##[100. Reverse Integer](https://oj.leetcode.com/problems/reverse-integer/)
 
 Reverse digits of an integer.
 
@@ -4464,7 +4607,7 @@ class Solution:
 ```
 -----
 
-##98. Reverse Linked List II
+##[101. Reverse Linked List II](https://oj.leetcode.com/problems/reverse-linked-list-ii/)
 
 Reverse a linked list from position m to n. Do it in-place and in one-pass.
 
@@ -4506,10 +4649,11 @@ class Solution:
             start.next = move
             i += 1
         return dummy.next
+    # Can use or without dummy
 ```
 -----
 
-##99. Reverse Nodes in k-Group
+##[102. Reverse Nodes in k-Group](https://oj.leetcode.com/problems/reverse-nodes-in-k-group/)
 
 Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.
 
@@ -4567,7 +4711,7 @@ class Solution:
 ```
 -----
 
-##100. Reverse Words in a String
+##[103. Reverse Words in a String](https://oj.leetcode.com/problems/reverse-words-in-a-string/)
 
 Given an input string, reverse the string word by word.
 
@@ -4614,7 +4758,7 @@ class Solution:
 ```
 -----
 
-##101. Roman to Integer
+##[104. Roman to Integer](https://oj.leetcode.com/problems/roman-to-integer/)
 
 Given a roman numeral, convert it to an integer.
 
@@ -4645,7 +4789,7 @@ class Solution:
 ```
 -----
 
-##102. Rotate Image
+##[105. Rotate Image](https://oj.leetcode.com/problems/rotate-image/)
 
 You are given an n x n 2D matrix representing an image.
 
@@ -4694,7 +4838,7 @@ class Solution:
 ```
 -----
 
-##103. Rotate List
+##[106. Rotate List](https://oj.leetcode.com/problems/rotate-list/)
 
 Given a list, rotate the list to the right by k places, where k is non-negative.
 
@@ -4737,7 +4881,7 @@ class Solution:
 ```
 -----
 
-##104. Same Tree
+##[107. Same Tree](https://oj.leetcode.com/problems/same-tree/)
 
 Given two binary trees, write a function to check if they are equal or not.
 
@@ -4768,7 +4912,7 @@ class Solution:
 ```
 -----
 
-##105. Scramble String
+##[108. Scramble String](https://oj.leetcode.com/problems/scramble-string/)
 
 Given a string s1, we may represent it as a binary tree by partitioning it to two non-empty substrings recursively.
 
@@ -4831,7 +4975,7 @@ class Solution:
 ```
 -----
 
-##106. Search Insert Position
+##[109. Search Insert Position](https://oj.leetcode.com/problems/search-insert-position/)
 
 Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
 
@@ -4871,7 +5015,7 @@ class Solution:
 ```
 -----
 
-##107. Search a 2D Matrix
+##[110. Search a 2D Matrix](https://oj.leetcode.com/problems/search-a-2d-matrix/)
 
 Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:
 
@@ -4933,7 +5077,7 @@ for i in range(10):
 ```
 -----
 
-##108. Search for a Range
+##[111. Search for a Range](https://oj.leetcode.com/problems/search-for-a-range/)
 
 Given a sorted array of integers, find the starting and ending position of a given target value.
 
@@ -4972,7 +5116,7 @@ class Solution:
 ```
 -----
 
-##109. Search in Rotated Sorted Array
+##[112. Search in Rotated Sorted Array](https://oj.leetcode.com/problems/search-in-rotated-sorted-array/)
 
 Suppose a sorted array is rotated at some pivot unknown to you beforehand.
 
@@ -5037,7 +5181,7 @@ class Solution:
 ```
 -----
 
-##110. Search in Rotated Sorted Array II
+##[113. Search in Rotated Sorted Array II](https://oj.leetcode.com/problems/search-in-rotated-sorted-array-ii/)
 
 Follow up for "Search in Rotated Sorted Array":
 What if duplicates are allowed?
@@ -5075,7 +5219,7 @@ class Solution:
 ```
 -----
 
-##111. Set Matrix Zeroes
+##[114. Set Matrix Zeroes](https://oj.leetcode.com/problems/set-matrix-zeroes/)
 
 Given a m x n matrix, if an element is 0, set its entire row and column to 0. Do it in place.
 
@@ -5123,7 +5267,7 @@ class Solution:
 ```
 -----
 
-##112. Simplify Path
+##[115. Simplify Path](https://oj.leetcode.com/problems/simplify-path/)
 
 Given an absolute path for a file (Unix-style), simplify it.
 
@@ -5166,7 +5310,7 @@ class Solution:
 ```
 -----
 
-##113. Single Number
+##[116. Single Number](https://oj.leetcode.com/problems/single-number/)
 
 Given an array of integers, every element appears twice except for one. Find that single one.
 
@@ -5185,7 +5329,7 @@ class Solution:
 ```
 -----
 
-##114. Single Number II
+##[117. Single Number II](https://oj.leetcode.com/problems/single-number-ii/)
 
 Given an array of integers, every element appears three times except for one. Find that single one.
 
@@ -5214,7 +5358,7 @@ class Solution:
 ```
 -----
 
-##115. Sort Colors
+##[118. Sort Colors](https://oj.leetcode.com/problems/sort-colors/)
 
 Given an array with n objects colored red, white or blue, sort them so that objects of the same color are adjacent, with the colors in the order red, white and blue.
 
@@ -5261,7 +5405,7 @@ class Solution:
 ```
 -----
 
-##116. Sort List
+##[119. Sort List](https://oj.leetcode.com/problems/sort-list/)
 
 Sort a linked list in O(n log n) time using constant space complexity.
 
@@ -5317,7 +5461,7 @@ class Solution:
 ```
 -----
 
-##117. Spiral Matrix
+##[120. Spiral Matrix](https://oj.leetcode.com/problems/spiral-matrix/)
 
 Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral order.
 
@@ -5371,7 +5515,7 @@ class Solution:
 ```
 -----
 
-##118. Spiral Matrix II
+##[121. Spiral Matrix II](https://oj.leetcode.com/problems/spiral-matrix-ii/)
 
 Given an integer n, generate a square matrix filled with elements from 1 to n2 in spiral order.
 
@@ -5417,7 +5561,7 @@ class Solution:
 ```
 -----
 
-##119. Sqrt x
+##[122. Sqrtx](https://oj.leetcode.com/problems/sqrtx/)
 
 Implement int sqrt(int x).
 
@@ -5445,7 +5589,54 @@ class Solution:
 ```
 -----
 
-##120. Subsets
+##[123. String to Integer atoi](https://oj.leetcode.com/problems/string-to-integer-atoi/)
+
+Implement atoi to convert a string to an integer.
+
+Hint: Carefully consider all possible input cases. If you want a challenge, please do not see below and ask yourself what are the possible input cases.
+
+Notes: It is intended for this problem to be specified vaguely (ie, no given input specs). You are responsible to gather all the input requirements up front.
+
+spoilers alert... click to show requirements for atoi.
+
+Requirements for atoi:
+The function first discards as many whitespace characters as necessary until the first non-whitespace character is found. Then, starting from this character, takes an optional initial plus or minus sign followed by as many numerical digits as possible, and interprets them as a numerical value.
+
+The string can contain additional characters after those that form the integral number, which are ignored and have no effect on the behavior of this function.
+
+If the first sequence of non-whitespace characters in str is not a valid integral number, or if no such sequence exists because either str is empty or it contains only whitespace characters, no conversion is performed.
+
+If no valid conversion could be performed, a zero value is returned. If the correct value is out of the range of representable values, INT_MAX (2147483647) or INT_MIN (-2147483648) is returned.
+
+```python
+
+class Solution:
+    # @return an integer
+    def atoi(self, str):
+        str = str.strip()
+        N = len(str)
+        if N == 0:
+            return 0
+        sign = 1
+        res = 0
+        imin, imax = -1<<31, (1<<31)-1
+        for i, bit in enumerate(str):
+            if i == 0 and bit in ['-', '+']:
+                if bit == '-':
+                    sign = -1
+            elif bit.isdigit():
+                res = res * 10 + int(bit)
+                if res*sign <= imin:
+                    return imin
+                elif res*sign >= imax:
+                    return imax
+            else:
+                break
+        return sign * res
+```
+-----
+
+##[124. Subsets](https://oj.leetcode.com/problems/subsets/)
 
 Given a set of distinct integers, S, return all possible subsets.
 
@@ -5505,7 +5696,7 @@ class Solution:
 ```
 -----
 
-##121. Subsets II
+##[125. Subsets II](https://oj.leetcode.com/problems/subsets-ii/)
 
 Given a collection of integers that might contain duplicates, S, return all possible subsets.
 
@@ -5563,7 +5754,7 @@ class Solution:
 ```
 -----
 
-##122. Substring with Concatenation of All Words
+##[126. Substring with Concatenation of All Words](https://oj.leetcode.com/problems/substring-with-concatenation-of-all-words/)
 
 You are given a string, S, and a list of words, L, that are all of the same length. Find all starting indices of substring(s) in S that is a concatenation of each word in L exactly once and without any intervening characters.
 
@@ -5639,7 +5830,7 @@ class Solution:
 ```
 -----
 
-##123. Sudoku Solver
+##[127. Sudoku Solver](https://oj.leetcode.com/problems/sudoku-solver/)
 
 Write a program to solve a Sudoku puzzle by filling the empty cells.
 
@@ -5691,7 +5882,7 @@ class Solution:
 ```
 -----
 
-##124. Sum Root to Leaf Numbers
+##[128. Sum Root to Leaf Numbers](https://oj.leetcode.com/problems/sum-root-to-leaf-numbers/)
 
 Given a binary tree containing digits from 0-9 only, each root-to-leaf path could represent a number.
 
@@ -5762,7 +5953,82 @@ class Solution:
 ```
 -----
 
-##125. Swap Nodes in Pairs
+##[129. Surrounded Regions](https://oj.leetcode.com/problems/surrounded-regions/)
+
+Given a 2D board containing 'X' and 'O', capture all regions surrounded by 'X'.
+
+A region is captured by flipping all 'O's into 'X's in that surrounded region.
+
+For example,
+X X X X
+X O O X
+X X O X
+X O X X
+After running your function, the board should be:
+
+X X X X
+X X X X
+X X X X
+X O X X
+
+```python
+
+class Solution:
+    # @param board, a 2D array
+    # Capture all regions by modifying the input board in-place.
+    # Do not return any value.
+    def solve(self, board):
+        if len(board) == 0 or len(board[0]) == 0: # This is sooooo keng
+            return board
+        M = len(board)
+        N = len(board[0])
+        for i in range(M):
+            for j in range(N):
+                if i == 0 or i == M-1 or j == 0 or j == N-1:
+                    self.bfs(board, i, j)
+        for i in range(M):
+            for j in range(N):
+                if board[i][j] == 'V':
+                    board[i][j] = 'O'
+                elif board[i][j] == 'O':
+                    board[i][j] = 'X'
+
+    def bfs(self, board, row, col):
+        if (board[row][col] != 'O'):
+            return
+        q = []
+        q.append((row, col))
+        while len(q) > 0:
+            i, j = q.pop(0)
+            if i < 0 or i >= len(board) or j < 0 or j >= len(board[0]):
+                continue
+            if board[i][j] != 'O':
+                continue
+            board[i][j] = 'V'
+            q.append((i-1, j))
+            q.append((i+1, j))
+            q.append((i, j-1))
+            q.append((i, j+1))
+
+    # DFS will cause stack overflow
+    def dfs(self, board, row, col):
+        if row < 0 or row >= len(board) or col < 0 or col >= len(board[0]):
+            return
+        if board[row][col] != 'O':
+            return
+        board[row][col] = 'V'
+        self.dfs(board, row+1, col)
+        self.dfs(board, row-1, col)
+        self.dfs(board, row, col+1)
+        self.dfs(board, row, col-1)
+
+    # Note:
+    # 1. For matrix/board problems, need to check if matrix/board == [], otherwise len(matrix[0]) will fail
+    # 2. DFS may cause stack overflow
+```
+-----
+
+##[130. Swap Nodes in Pairs](https://oj.leetcode.com/problems/swap-nodes-in-pairs/)
 
 Given a linked list, swap every two adjacent nodes and return its head.
 
@@ -5818,7 +6084,7 @@ class Solution:
 ```
 -----
 
-##126. Symmetric Tree
+##[131. Symmetric Tree](https://oj.leetcode.com/problems/symmetric-tree/)
 
 Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).
 
@@ -5888,7 +6154,7 @@ class Solution:
 ```
 -----
 
-##127. Text Justification
+##[132. Text Justification](https://oj.leetcode.com/problems/text-justification/)
 
 Given an array of words and a length L, format the text such that each line has exactly L characters and is fully (left and right) justified.
 
@@ -5981,7 +6247,7 @@ class Solution:
 ```
 -----
 
-##128. Trapping Rain Water
+##[133. Trapping Rain Water](https://oj.leetcode.com/problems/trapping-rain-water/)
 
 Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining.
 
@@ -6016,7 +6282,7 @@ class Solution:
 ```
 -----
 
-##129. Triangle
+##[134. Triangle](https://oj.leetcode.com/problems/triangle/)
 
 Given a triangle, find the minimum path sum from top to bottom. Each step you may move to adjacent numbers on the row below.
 
@@ -6055,7 +6321,7 @@ class Solution:
 ```
 -----
 
-##130. Two Sum
+##[135. Two Sum](https://oj.leetcode.com/problems/two-sum/)
 
 Given an array of integers, find two numbers such that they add up to a specific target number.
 
@@ -6111,7 +6377,7 @@ class Solution:
 ```
 -----
 
-##131. Unique Binary Search Trees
+##[136. Unique Binary Search Trees](https://oj.leetcode.com/problems/unique-binary-search-trees/)
 
 Given n, how many structurally unique BST's (binary search trees) that store values 1...n?
 
@@ -6132,7 +6398,7 @@ class Solution:
 ```
 -----
 
-##132. Unique Binary Search Trees II
+##[137. Unique Binary Search Trees II](https://oj.leetcode.com/problems/unique-binary-search-trees-ii/)
 
 Given n, generate all structurally unique BST's (binary search trees) that store values 1...n.
 
@@ -6179,7 +6445,7 @@ class Solution:
 ```
 -----
 
-##133. Unique Paths
+##[138. Unique Paths](https://oj.leetcode.com/problems/unique-paths/)
 
 A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
 
@@ -6212,7 +6478,7 @@ class Solution:
 ```
 -----
 
-##134. Unique Paths II
+##[139. Unique Paths II](https://oj.leetcode.com/problems/unique-paths-ii/)
 
 Follow up for "Unique Paths":
 
@@ -6266,7 +6532,7 @@ class Solution:
 ```
 -----
 
-##135. Valid Number
+##[140. Valid Number](https://oj.leetcode.com/problems/valid-number/)
 
 Validate if a given string is numeric.
 
@@ -6326,7 +6592,7 @@ class Solution:
 ```
 -----
 
-##136. Valid Palindrome
+##[141. Valid Palindrome](https://oj.leetcode.com/problems/valid-palindrome/)
 
 Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
 
@@ -6363,7 +6629,7 @@ class Solution:
 ```
 -----
 
-##137. Valid Parentheses
+##[142. Valid Parentheses](https://oj.leetcode.com/problems/valid-parentheses/)
 
 Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
 
@@ -6390,7 +6656,7 @@ class Solution:
 ```
 -----
 
-##138. Valid Sudoku
+##[143. Valid Sudoku](https://oj.leetcode.com/problems/valid-sudoku/)
 
 Determine if a Sudoku is valid, according to: Sudoku Puzzles - The Rules.
 
@@ -6434,7 +6700,7 @@ class Solution:
 ```
 -----
 
-##139. Validate Binary Search Tree
+##[144. Validate Binary Search Tree](https://oj.leetcode.com/problems/validate-binary-search-tree/)
 
 Given a binary tree, determine if it is a valid binary search tree (BST).
 
@@ -6489,7 +6755,77 @@ This won't pass
 ```
 -----
 
-##140. Word Break
+##[145. Wildcard Matching](https://oj.leetcode.com/problems/wildcard-matching/)
+
+Implement wildcard pattern matching with support for '?' and '*'.
+
+'?' Matches any single character.
+'*' Matches any sequence of characters (including the empty sequence).
+
+The matching should cover the entire input string (not partial).
+
+The function prototype should be:
+bool isMatch(const char *s, const char *p)
+
+Some examples:
+isMatch("aa","a") -> false
+isMatch("aa","aa") -> true
+isMatch("aaa","aa") -> false
+isMatch("aa", "*") -> true
+isMatch("aa", "a*") -> true
+isMatch("ab", "?*") -> true
+isMatch("aab", "c*a*b") -> false
+
+```python
+
+class Solution:
+    # @param s, an input string
+    # @param p, a pattern string
+    # @return a boolean
+    def isMatch(self, s, p):
+        i = 0
+        j = 0
+        backupS = -1
+        backupP = -1
+        while i < len(s):
+            if j < len(p) and (p[j] == '?' or s[i] == p[j]):
+                i += 1
+                j += 1
+            elif j < len(p) and p[j] == '*':
+                while j < len(p) and p[j] == '*':
+                    j += 1
+                if j == len(p):
+                    return True
+                backupS = i
+                backupP = j
+            else:
+                if backupS == -1:
+                    return False
+                i = backupS + 1
+                backupS += 1
+                j = backupP
+        while j < len(p) and p[j] == '*':
+            j += 1
+        return j == len(p) and i == len(s)
+
+
+    def isMatch_helper(self, s, i1, p, i2):
+        S = len(s)
+        P = len(p)
+        if i1 >= S and i2 >= P:
+            return True
+        elif i2 >= P:
+            return False
+        elif i1 >= S and p[i2] == '*':
+            return self.isMatch_helper(s, i1, p, i2+1)
+        elif p[i2] == '?':
+            return self.isMatch_helper(s, i1+1, p, i2+1)
+        elif p[i2] == '*':
+            return self.isMatch_helper(s, i1+1)
+```
+-----
+
+##[146. Word Break](https://oj.leetcode.com/problems/word-break/)
 
 Given a string s and a dictionary of words dict, determine if s can be segmented into a space-separated sequence of one or more dictionary words.
 
@@ -6538,7 +6874,7 @@ class Solution:
 ```
 -----
 
-##141. Word Break II
+##[147. Word Break II](https://oj.leetcode.com/problems/word-break-ii/)
 
 Given a string s and a dictionary of words dict, add spaces in s to construct a sentence where each word is a valid dictionary word.
 
@@ -6580,7 +6916,7 @@ class Solution:
 ```
 -----
 
-##142. Word Ladder
+##[148. Word Ladder](https://oj.leetcode.com/problems/word-ladder/)
 
 Given two words (start and end), and a dictionary, find the length of shortest transformation sequence from start to end, such that:
 
@@ -6627,7 +6963,79 @@ class Solution:
 ```
 -----
 
-##143. Word Search
+##[149. Word Ladder II](https://oj.leetcode.com/problems/word-ladder-ii/)
+
+Given two words (start and end), and a dictionary, find all shortest transformation sequence(s) from start to end, such that:
+
+Only one letter can be changed at a time
+Each intermediate word must exist in the dictionary
+For example,
+
+Given:
+start = "hit"
+end = "cog"
+dict = ["hot","dot","dog","lot","log"]
+Return
+  [
+    ["hit","hot","dot","dog","cog"],
+    ["hit","hot","lot","log","cog"]
+  ]
+Note:
+All words have the same length.
+All words contain only lowercase alphabetic characters.
+
+```python
+
+class Solution:
+    # @param start, a string
+    # @param end, a string
+    # @param dict, a set of string
+    # @return a list of lists of string
+    def findLadders(self, start, end, dict):
+        ret     = []
+        prevMap = {}
+        length  = len(start)
+        for i in dict:
+            prevMap[i] = []
+        candidates = [set(),set()]
+        current    = 0
+        previous   = 1
+        candidates[current].add(start)
+        while True:
+            current, previous=previous, current
+            for i in candidates[previous]: dict.remove(i)
+            candidates[current].clear()
+            for word in candidates[previous]:
+                for i in range(length):
+                    part1=word[:i]; part2=word[i+1:]
+                    for j in 'abcdefghijklmnopqrstuvwxyz':
+                        if word[i]!=j:
+                            nextword=part1+j+part2
+                            if nextword in dict:
+                                prevMap[nextword].append(word)
+                                candidates[current].add(nextword)
+            if len(candidates[current])==0:
+                return ret
+            if end in candidates[current]: break
+        self.buildpath([], end, prevMap, ret)
+        return ret
+
+    def buildpath(self, path, word, prevMap, ret):
+        if len(prevMap[word])==0:
+            path.append(word)
+            currPath=path[:]
+            currPath.reverse()
+            ret.append(currPath)
+            path.pop();
+            return
+        path.append(word)
+        for prev in prevMap[word]:
+            self.buildpath(path, prev, prevMap, ret)
+        path.pop()
+```
+-----
+
+##[150. Word Search](https://oj.leetcode.com/problems/word-search/)
 
 Given a 2D board and a word, find if the word exists in the grid.
 
@@ -6679,7 +7087,7 @@ class Solution:
 ```
 -----
 
-##144. ZigZag Conversion
+##[151. ZigZag Conversion](https://oj.leetcode.com/problems/zigzag-conversion/)
 
 The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
 
