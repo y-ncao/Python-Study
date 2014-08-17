@@ -1,6 +1,6 @@
 ##Play with Python and Leetcode
 
-####说给自己的话
+###说给自己的话
 
 从14年四月开始准备跳槽, 到现在已经四个月了.
 
@@ -10,7 +10,7 @@
 
 但愿以后的我, 能够感谢现在的我, 曾经为了这些未知意义的事情而努力过.
 
-####My Coding
+###My Coding
 
 [leetcode.py](./leetcode.py) is my first pass for leetcode, started from March, 2014. Code weren't submitted to OJ.
 
@@ -31,7 +31,7 @@
 * Generate the frequency map to [Frequency](./frequency.md)
 
 
-####Reference
+###Reference
 由衷的感谢这些无私分享的人, 没有你们的帮助, 我没法完成这151/151.
 
 * [AnnieKim](https://github.com/AnnieKim/LeetCode) Very good and simple leetcode implementation in C.
@@ -48,15 +48,15 @@
 
 * [九章算法题解站](http://answer.ninechapter.com/) Leetcode solution from NineChapter in Java.
 
-####Methodology
+###Methodology
 
 * [Dynamic Programming: From novice to advanced](http://hawstein.com/posts/dp-novice-to-advanced.html) Chinese translation.
 
 * [Knapsack problem](http://hawstein.com/posts/dp-knapsack.html) Another discussion about DP.
 
-##Sharing
+###Sharing
 If you feel my solutions are helpful, I'll be happy. If you find problems or have better solutions, I'll be more than happy if you can discuss with me.
 
-Reach me at [cyandterry at gmail.com](mailto:cyandterry@gmail.com)
+You can reach me at [cyandterry at gmail.com](mailto:cyandterry@gmail.com)
 
 Please feel free to share the code for any personal use.
