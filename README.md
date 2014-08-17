@@ -26,7 +26,7 @@
 
 [run.py](./run.py) is a script to test Solutions when input is not very complicated. Just update the file name and function name in Solution and run the script.
 
-[combiner.py](./combiner.py) is a script to combine all the solutions in [Leetcode](./Leetcode), output to [Combined_Solutions.md](./Combined_Solutions.md)
+[combiner.py](./combiner.py) is a script to combine all the solutions in [Leetcode](./Leetcode), output to [Solutions](./solutions.md)
 
 ####Reference
 
