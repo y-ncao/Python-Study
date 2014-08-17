@@ -1592,6 +1592,7 @@ Given
       / \   \
      3   4   6
 The flattened tree should look like:
+
    1
     \
      2
