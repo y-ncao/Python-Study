@@ -50,8 +50,6 @@ class Solution:
                 i+=1
             return False
 
-
-
     #dp
     def isMatch(self, s, p):
         dp=[[False for i in range(len(p)+1)] for j in range(len(s)+1)]
@@ -69,4 +67,3 @@ class Solution:
                 else:
                     dp[i][j]=dp[i-1][j-1] and s[i-1]==p[j-1]
         return dp[len(s)][len(p)]
-复制代码
