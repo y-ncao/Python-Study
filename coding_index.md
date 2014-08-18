@@ -170,6 +170,105 @@ _____
 3. 思考边界条件，还有dp的长度，有的时候是N, 有的时候是N+1
 4. 看是否可以简化dp，二维简化成一维，一般来说如果是
 
+###From class
+####Way to solve
+1. state
+2. Transfer Function
+3. Initialization
+4. Which state is the answer
+
+####Clues
+1. Cannot sort, or swap
+2. Satisfy:
+* Find a maximum/minimum result
+* Decide whether something is possible or not
+* Count all possible solutions(Doesn't care about solution details, only care about the count or possibility)
+
+####Types of DP
+* Matrix DP 20% (Triangle, Unique Path)
+State: dp[x][y]表示从起点走到坐标x,y的
+例如: Unique Paths, state: dp[x][y]从起点到x, y的路径数
+Function： dp[x][y] = dp[x-1][y] + dp[x][y-1]
+Initialize: 起点 dp[0][0] = 1 dp[0][i] = 1
+answer f[n-1][m-1]
+
+* Sequence DP 40%
+state: dp[i]表示前i个位置/数字/字母，以第i个为...
+function: dp[i] = dp[j] ...j 是i之前的一个位置
+initialize: dp[0] = ...
+answer: dp[n-1]
+
+######Jump Game / Jump Game II
+state: dp[i]表示能否跳到第i个位置 / dp[i]表示跳到这个位置最少需要多少步.
+function: dp[i] = or(dp[j], j<i and j能跳到i) / min(f[j]+1, )
+initialize: f[0] = True
+answer: f[n-1]
+
+Palindrom Partitioning II
+state: dp[i] 前i个字符组成的字符串需要最少几次cut
+function: dp[i] = min( dp[j]+1, j<i and j+1 ~ i 这一段是一个palindrome(这里需要用另外一个数组来储存是否是palindrome))
+initialize: dp[0] = 0
+answer: dp[len(s)]
+
+Word Break
+state: dp[i] 表示前i个字符能否被完美切分
+function： dp[i] = or( dp[j], j<1 ,j+1 ~ i是一个字典中的单词)
+initialize: dp[0] = True
+answer: dp[len(s)]
+
+注意j的枚举 -> 枚举单词长度
+O(NL) N: 字符串长度  L:最长单词的长度
+
+最长上升子序列
+state: dp[i] 表示前i个数字中最长的LIS长度(错误)
+       dp[i] 表示第i个数字结尾的LIS长度(正确)
+function: dp[i] = max(dp[j]+1, j<i and a[j] <= a[i])
+initialize: f[0..n-1] = 1
+answer = max(f[0..n-1])
+任何一个位置都可能为开始, 所以所有都要初始化为1, 因为最少LIS是1
+
+
+* Two Sequences DP 40%
+state: dp[i][j] 代表了第一个sequence的前i个数字/字符配上第二个的sequence的前j个...
+function: dp[i][j] = 研究第i个和第j个的匹配关系
+initialize: dp[i][0] and dp[0][j]
+answer: dp[len(s1)][len(s2)]
+
+######Longest Common Subsequence
+state: dp[i][j]表示前i个字符配上前j个字符的LCS的长度
+function: dp[i][j] = dp[i-1][j-1]              # if a[i]  = b[j]
+                   = max(dp[i][j-1],dp[i-1][j] # if a[i] != b[j]
+initialize: dp[i][0] = 0
+            dp[0][j] = 0
+answer: dp[len(a)][len(b)]
+
+######Longest Common Substring
+to be continued
+
+######Edit Distance
+state: dp[i][j] a的前i个字符配上b的
+function:
+initialize:
+answer
+
+
+* Interval DP
+state: dp[i][j] 代表从i到j这一段区间...
+function: dp[i][j] = max/min/sum(dp[i][k], dp[k+1][j])
+initialize: dp[i][i] = ?
+answer: dp[1][n]
+
+Merge Stone 石子归并
+
+__LIS__, __LCS__
+* Tree DP
+* States Compressing DP
+
+
+复杂度:
+一个变量 O(n)
+两个变量 O(n^2)
+
 ```python
 for i in range(A):
     for j in range(B):
