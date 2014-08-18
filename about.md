@@ -1,8 +1,8 @@
 ##关于面试
 
 1. 跳槽目的:
-* GF got a job in SF, so decided to move to a larger city
-* Like your company and interested about what your company is doing.
+...* GF got a job in SF, so decided to move to a larger city
+...* Like your company and interested about what your company is doing.
 
 2. 工作类型:
 
