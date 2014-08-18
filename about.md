@@ -1,10 +1,12 @@
 ##关于面试
 
 1. 跳槽目的:
+
 ..* GF got a job in SF, so decided to move to a larger city
 ..* Like your company and interested about what your company is doing.
 
 2. 工作类型:
+
 ..* 70% dealing with back-end, including 15% of database work. Mostly Python.
 ..* 30% dealing with front-end, working with Coffeescript or Javascript, html & css.
 
