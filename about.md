@@ -17,17 +17,17 @@
 
 ###Detail about Mercury
 
-#####1. Tornado, Python优点， 为什么选这个.
+#####1. Tornado, Python's adv, why python
 * Memcached
 * Session & Permission & dispatch file
 * queue engine
 * email engine
 
-#####2. SpineJS的优点， 为什么SpineJS. v1.3.2
+#####2. SpineJS's adv, why SpineJS. v1.3.2
 * MVC - talk about this
 * grunt
 
-#####3. Unit Test, TDD, 为什么不做这些.
+#####3. Unit Test, TDD, why not
 * sinon
 * sinon-qunit
 
