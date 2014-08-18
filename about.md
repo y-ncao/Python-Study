@@ -16,21 +16,22 @@
 * Working closely with our Sales Team to constantly improve and update internal systems for them.
 
 ###Detail about Mercury
-#####1. Tornado, Python优点， 为什么选这个.
+
+####1. Tornado, Python优点， 为什么选这个.
 * Memcached
 * Session & Permission & dispatch file
 * queue engine
 * email engine
 
-#####2. SpineJS的优点， 为什么SpineJS. v1.3.2
+####2. SpineJS的优点， 为什么SpineJS. v1.3.2
 * MVC - talk about this
 * grunt
 
-#####3. Unit Test, TDD, 为什么不做这些.
+####3. Unit Test, TDD, 为什么不做这些.
 * sinon
 * sinon-qunit
 
-#####4. Libraries:
+####4. Libraries:
 
 ######Back-End
 * MPS: sqlio, validation, logger, format, config. Wrapper lib for pthon. handy functions.
