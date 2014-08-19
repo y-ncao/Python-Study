@@ -1,8 +1,8 @@
 ##关于面试
 
 #####1. 跳槽目的:
-+ GF got a job in SF, so decided to move to a larger city
-+ Like your company and interested about what your company is doing.
+* GF got a job in SF, so decided to move to a larger city
+* Like your company and interested about what your company is doing.
 
 #####2. 工作类型:
 * 70% dealing with back-end, including 15% of database work. Mostly Python.
@@ -33,12 +33,13 @@
 
 #####4. Libraries:
 
-######Back-End
-* MPS: sqlio, validation, logger, format, config. Wrapper lib for pthon. handy functions.
+#####Back-End
+* MPS: sqlio, validation, logger, format, config, dateutil. Wrapper lib for pthon. handy functions.
 * ~~Pyxuss~~
-* dateutil, ascii parser
+* SalesForce
+* Memcached
 
-######Front-End
+#####Front-End
 * jquery v 2.1
 * Bootstrap v3.2.0
 * font-awesome
