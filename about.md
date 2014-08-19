@@ -6,7 +6,7 @@
 
 #####2. 工作类型:
 * 70% dealing with back-end, including 15% of database work. Mostly Python.
-* 30% dealing with front-end, working with Coffeescript or Javascript, html & css.
+* 30% dealing with front-end, working with Coffeescript or Javascript, html & less.
 
 #####3. 工作内容:
 * In Host System Support Team, mostly develop and support internal tools. Working full stack.
@@ -18,10 +18,14 @@
 ###Detail about Mercury
 
 #####1. Tornado, Python's adv, why python
+* RESTful by dispatch file
+* Tornado handler receive API call
 * Memcached
 * Session & Permission & dispatch file
-* queue engine
-* email engine
+* Queue engine
+* Email engine
+* Oracle Database
+* Nginx
 
 #####2. SpineJS's adv, why SpineJS. v1.3.2
 * MVC - talk about this
@@ -40,9 +44,29 @@
 * Memcached
 
 #####Front-End
+* LESS
 * jquery v 2.1
 * Bootstrap v3.2.0
 * font-awesome
 * moment
 * requireJS
 * underscoreJS
+
+#####4. My Jobs:
+#####Back-End
+* Permissions
+* Sessions
+* Part Catalog with ten thousands of rows of data, stored in Memcached
+
+#####Front-End
+* Add Part
+* Part Wiki
+* Solutions
+
+###Questions:
+* What do you think is the most challenging part of the work
+* What makes the best candidate
+* How do you different your product with ...
+* Tell me more about your team
+* How do you evaluate your company compare to your comnpetitors
+* ...

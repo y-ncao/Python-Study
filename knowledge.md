@@ -488,3 +488,17 @@ The following code returns a reference to a function:
 function sayHello2(name) { var text = ‘Hello ‘ + name; // local variable var sayAlert = function() { alert(text); } return sayAlert; }
 Closures reduce the need to pass state around the application. The inner function has access to the variables in the outer function so there is no need to store the information somewhere that the inner function can get it.
 This is important when the inner function will be called after the outer function has exited. The most common example of this is when the inner function is being used to handle an event. In this case you get no control over the arguments that are passed to the function so using a closure to keep track of state can be very convenient.
+
+##Linux
+* grep
+* awk
+* xargs
+* wc
+* ps -A
+* top
+
+##Memcached
+* Default size is 64MB
+* Default object size if 1MB
+* Very fast
+* service memecached restart
