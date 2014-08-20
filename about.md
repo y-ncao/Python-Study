@@ -52,6 +52,15 @@ Can talk about serilization here
 * SalesForce
 * Memcached
 
+#####Some numbers to show this is not a easy project
+* List of modals we have
+* Queues
+* Two Engines
+* Data Size
+* Rules
+* Main table names
+* Users, and no. of roles & permissions
+
 #####Front-End
 * LESS
 * jquery v 2.1

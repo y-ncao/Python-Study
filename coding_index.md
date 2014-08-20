@@ -1,6 +1,6 @@
 ## Coding Summary by Keywords and Type
 
-####Permutation & Combination Type
+###Permutation & Combination Type
 * [x] Permutations
 * [x] Permutations II
 * [x] Next Permutation
@@ -51,7 +51,7 @@
 * [x] Palindrome Partitioning
 * [ ] Palindrome Partitioning II
 
-####Tree Traversal
+###Tree Traversal
 * [x] Binary Tree Inorder Traversal
 * [x] Binary Tree Preorder Traversal
 * [x] Binary Tree Postorder Traversal
@@ -72,14 +72,14 @@ _____
 * [x] Maximum Depth of Binary Tree
 * [x] Minimum Depth of Binary Tree
 
-####Binary Search Tree
+###Binary Search Tree
 * [x] Convert Sorted Array to Binary Search Tree
 * [x] Unique Binary Search Trees
 * [x] Unique Binary Search Trees II
 * [x] Validate Binary Search Tree (Redo)
 * [x] Recover Binary Search Tree (Redo)
 
-####类Tree(以tree作为Data Structure的题目)
+###类Tree(以tree作为Data Structure的题目)
 * [x] Path Sum
 * [x] Path Sum II
 * [x] Populating Next Right Pointers in Each Node
@@ -88,7 +88,7 @@ _____
 * [x] Flatten Binary Tree to Linked List
 * [x] Binary Tree Maximum Path Sum
 
-####Array(意义不大)
+###Array(意义不大)
 * [x] Maximum Subarray
 * [x] Convert Sorted Array to Binary Search Tree
 * [x] Merge Sorted Array
@@ -100,7 +100,7 @@ _____
 
 * [x] Remove Element
 
-####List(意义不大)
+###List(意义不大)
 * [x] Linked List Cycle
 * [x] Linked List Cycle II
 * [x] Remove Duplicates from Sorted List
@@ -121,7 +121,7 @@ _____
 * [x] Flatten Binary Tree to Linked List
 * [x] Convert Sorted List to Binary Search Tree
 
-####Matrix
+###Matrix
 * [x] Search a 2D Matrix
 * [x] Spiral Matrix
 * [x] Spiral Matrix II
@@ -129,14 +129,16 @@ _____
 * [x] Valid Sudoku
 * [x] Sudoku Solver
 
-####Play With Math
+###Play With Math
 * [x] Reverse Integer
 * [x] Roman to Integer
 * [x] Intger to Roman
 * [x] Pascal's Triangle
 * [x] Pascal's Triangle II
 
-####Dynamic Programming
+-----
+
+###Dynamic Programming
 * [x] Climbing Stairs
 * [x] Maximum Subarray
 * [x] Minimum Path Sum
@@ -154,10 +156,10 @@ _____
 * [x] Edit Distance
 * [x] Distinct Subsequences
 * [x] Maximal Rectangle (DP isn't the best way)
-* [ ] Longest Palindromic Substring
+* [x] Longest Palindromic Substring
 * [x] Scramble String
-* [ ] Palindrome Partitioning II
-* [ ] Interleaving String
+* [x] Palindrome Partitioning II
+* [x] Interleaving String
 * [x] Word Break
 * [x] Decode Ways
 
@@ -276,6 +278,7 @@ for i in range(A):
 ```
 这种情况的话， 由于j每次都在使用dp[j-1], 这种情况没必要储存dp[j-1],只需要把dp[i][0] 确认之后每行从1开始遍历前一项即可。
 
+-----
 
 #### Two Pointer
 

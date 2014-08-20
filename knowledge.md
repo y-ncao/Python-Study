@@ -85,6 +85,8 @@ print htable.getValue("reblow")
 * List/Dict Comprehension: [x**2 for x in range(10)]
 * Immutable Types Can't Be Changed in Place. Remember that you can't change an immutable object (e.g., tuple, string) in place:
 * Cyclic Datastructures Can Cause Loops
+* Decorator
+* Classmethod
 
 ...Although fairly rare in practice, if a collection object contains a reference to itself, it's called a cyclic object. Python prints a [...] whenever it detects a cycle in the object, rather than getting stuck in an infinite loop:
 
@@ -502,6 +504,7 @@ This is important when the inner function will be called after the outer functio
 * Default object size if 1MB
 * Very fast
 * service memecached restart
+* config file /etc/memcached.conf
 
 ##RESTful vs SOAP
 
