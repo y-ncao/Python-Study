@@ -506,3 +506,7 @@ This is important when the inner function will be called after the outer functio
 ##RESTful vs SOAP
 
 ##Bower & Grunt
+
+##About Python
+* Class Method
+* Decorator

@@ -21,6 +21,9 @@
 * RESTful by dispatch file
 * Tornado handler receive API call
 * Memcached
+
+Can talk about serilization here
+
 * Session & Permission & dispatch file
 * Queue engine
 * Email engine
@@ -76,3 +79,10 @@
 * Tell me more about your team
 * How do you evaluate your company compare to your comnpetitors
 * ...
+
+1. T
+
+
+1. First ordered list item
+2. Another item
+⋅⋅* Unordered sub-list.
