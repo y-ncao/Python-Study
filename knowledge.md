@@ -502,3 +502,7 @@ This is important when the inner function will be called after the outer functio
 * Default object size if 1MB
 * Very fast
 * service memecached restart
+
+##RESTful vs SOAP
+
+##Bower & Grunt

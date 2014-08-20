@@ -35,6 +35,12 @@
 * sinon
 * sinon-qunit
 
+* Team leader's decision. Personally, I'm not against doing Unit Test.
+* Some people go too far from writing test cases
+* Changed to a function will need refactor all test cases
+* You think the test case would cover all the mistakes, but not always
+* Have limitation, like database(what about back-end pull data from database) and front-end, ui layout
+
 #####4. Libraries:
 
 #####Back-End
