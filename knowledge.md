@@ -22,20 +22,6 @@
 ###List/Dict Comprehension: [x**2 for x in range(10)]
 ###Decorator
 ###Classmethod
-###Immutable
-Immutable Types Can't Be Changed in Place. Remember that you can't change an immutable object (e.g., tuple, string) in place:
-###Cyclic Datastructures
-Cyclic Datastructures Can Cause Loops
-
-Although fairly rare in practice, if a collection object contains a reference to itself, it's called a cyclic object. Python prints a [...] whenever it detects a cycle in the object, rather than getting stuck in an infinite loop:
-
-```
->>> L = ['grail']  # Append reference back to L
->>> L.append(L)    # Generates cycle in object
->>> L
-['grail', [...]]
-```
-
 ###Pass by Assignment
 Assignment Creates References, Not Copies
 
@@ -67,8 +53,10 @@ This effect usually becomes important only in larger programs, and shared refere
 
 Slice limits default to 0 and the length of the sequence being sliced. If both are omitted, the slice extracts every item in the sequence, and so makes a top-level copy (a new, unshared object). For dictionaries, use the dict.copy() method.
 
-###Basic immutable types
+###Basic Immutable types
 Numbers, Strings, Tuples
+
+Immutable Types Can't Be Changed in Place. Remember that you can't change an immutable object.
 
 ###Special Data Structures
 * DefaultDict
@@ -77,18 +65,33 @@ Numbers, Strings, Tuples
 * Deque
 * Priority Queue
 
+###Cyclic Datastructures
+Cyclic Datastructures Can Cause Loops
+
+Although fairly rare in practice, if a collection object contains a reference to itself, it's called a cyclic object. Python prints a [...] whenever it detects a cycle in the object, rather than getting stuck in an infinite loop:
+
+```
+>>> L = ['grail']  # Append reference back to L
+>>> L.append(L)    # Generates cycle in object
+>>> L
+['grail', [...]]
+```
+
 #Hashtable
+
+[Implementation](./Concept_Implement/HashTable.py)
+
 Using hash function is two steps:
 
 1. Map the key to an integer
 2. Map the integer to a bucket
 
-两个特性:
+Hash的两个特性:
 
 * Not invertible 不可逆
 * Unique deterministic 唯一性
 
-MD5 and SHA1
+常见的Hash方法是MD5 and SHA1
 
 简单的Hash Functions:
 
@@ -279,6 +282,8 @@ This is important when the inner function will be called after the outer functio
 * top
 
 #SQL
+
+#MapReduce, Sharding
 
 #Project
 ###Memcached
