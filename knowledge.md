@@ -22,6 +22,40 @@
 ###List/Dict Comprehension: [x**2 for x in range(10)]
 ###Decorator
 ###Classmethod
+
+###Diff from python 2.x to 3.x
+
+###Diff with other languages
+### Pros and Cons
+
+#####Pros
+* Cleaner Syntax
+* No brackets, use indentation, which I'm comfortable with
+* Easier to test, no need to compile. Type python in terminal you can start testing.
+
+#####Cons
+* Lack of true multiprocessor support
+* Slow - Performance not good
+* Lacks any sort of data protection, use __ instead
+* All strings are not unicode by default (Fixed in Python3)
+
+###[Class Attributes](http://www.toptal.com/python/python-class-attributes-an-overly-thorough-guide#.)
+###Import
+1. import SomeModule
+  可以用import SomeModule.SomeName 调用时用 SomeModule.SomeName()
+2. from SomeModule import SomeName
+  可以直接用 SomeName()
+3. from SomeModule import *
+  可能mess up with your namespaces
+
+###Self
+Used by method or anything inside a class to access method or varibles inside
+To use a reference of itself
+
+###Namespace
+* [A](http://stackoverflow.com/questions/3913217/what-are-python-namespaces-all-about)
+* [B](http://bytebaker.com/2008/07/30/python-namespaces/)
+
 ###Pass by Assignment
 Assignment Creates References, Not Copies
 
@@ -286,6 +320,7 @@ This is important when the inner function will be called after the outer functio
 #MapReduce, Sharding
 
 #Project
+
 ###Memcached
 * Default size is 64MB
 * Default object size if 1MB
@@ -295,8 +330,19 @@ This is important when the inner function will be called after the outer functio
 
 ###RESTful vs SOAP
 
-###Bower & Grunt
-
+###Other Key Words:
+* Grunt
+* LESS
+* Bower
+* Coffeescript
+* Tornado
+* MVC
+* Bootstrap
+* SpineJS
+* RESTful
+* Nginx vs Apache2
+* Tornado vs Django
+* Salesforce
 
 #OS Knowledge
 
