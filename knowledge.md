@@ -17,8 +17,6 @@
   * Context switching
   * Scheduling -> multi-core (Look Doug Lea's Concurrent Programming in Java)
 
------
-
 #Python
 ###Lambda
 ###List/Dict Comprehension: [x**2 for x in range(10)]
@@ -37,7 +35,6 @@ Although fairly rare in practice, if a collection object contains a reference to
 >>> L
 ['grail', [...]]
 ```
-
 
 ###Pass by Assignment
 Assignment Creates References, Not Copies
@@ -79,8 +76,6 @@ Numbers, Strings, Tuples
 * Set
 * Deque
 * Priority Queue
-
-----
 
 #Hashtable
 Using hash function is two steps:
@@ -154,8 +149,6 @@ htable.setValue("reblow","akfj-askf")
 print htable.getValue("wolber")
 print htable.getValue("reblow")
 ```
-
------
 
 #Javascript
 
@@ -277,8 +270,6 @@ Closures reduce the need to pass state around the application. The inner functio
 
 This is important when the inner function will be called after the outer function has exited. The most common example of this is when the inner function is being used to handle an event. In this case you get no control over the arguments that are passed to the function so using a closure to keep track of state can be very convenient.
 
------
-
 #Linux
 * grep
 * awk
@@ -287,10 +278,7 @@ This is important when the inner function will be called after the outer functio
 * ps -A
 * top
 
------
 #SQL
-
------
 
 #Project
 ###Memcached
@@ -304,7 +292,6 @@ This is important when the inner function will be called after the outer functio
 
 ###Bower & Grunt
 
------
 
 #OS Knowledge
 
@@ -413,8 +400,6 @@ There is no retransmission of lost packets in User Datagram Protcol (UDP).
 Java provides a mechanism, called object serialization where an object can be represented as a sequence of bytes that includes the object's data as well as information about the object's type and the types of data stored in the object.
 
 After a serialized object has been written into a file, it can be read from the file and deserialized that is, the type information and bytes that represent the object and its data can be used to recreate the object in memory.
-
-----
 
 #Java & C
 
