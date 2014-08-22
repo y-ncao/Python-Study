@@ -18,6 +18,19 @@
   * Scheduling -> multi-core (Look Doug Lea's Concurrent Programming in Java)
 
 #Python
+
+[Reference](http://pyzh.readthedocs.org/en/latest/index.html)
+long-polling
+WSGI
+###__new__() and __init__()
+__new__ is static class method, while __init__ is instance method.  __new__ has to create the instance first, so __init__ can initialize it. Note that __init__ takes self as parameter. Until you create instance there is no self.
+
+###Metaclass
+
+###pyzh
+
+###xrange and range
+
 ###Lambda
 ###List/Dict Comprehension: [x**2 for x in range(10)]
 ###Decorator
