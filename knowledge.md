@@ -56,6 +56,8 @@ To use a reference of itself
 * [A](http://stackoverflow.com/questions/3913217/what-are-python-namespaces-all-about)
 * [B](http://bytebaker.com/2008/07/30/python-namespaces/)
 
+###args, kargs
+
 ###Pass by Assignment
 Assignment Creates References, Not Copies
 
@@ -316,6 +318,9 @@ This is important when the inner function will be called after the outer functio
 * top
 
 #SQL
+###ORM
+Object-relational mapping
+Like SQLAlchemy
 
 #MapReduce, Sharding
 
@@ -330,18 +335,76 @@ This is important when the inner function will be called after the outer functio
 
 ###RESTful vs SOAP
 
+###Nginx vs Apache2
+__Nginx__ is a http request and load balancing server
+Nginx is faster
+
+###Python Back-end Framework Comparison
+#####Django (Powerful)
+* Perfect documentation
+* Full-stack framework - cache, session, feed, [orm](http://stackoverflow.com/questions/53428/what-are-some-good-python-orm-solutions), geo, auth
+* MVC on the back end, have the template system
+
+* System functions laid on each other. If you don't like the Django's ORM, hard to use your own.
+* Not good at customization.
+
+#####Tornado (Flexible) (Good for Scale)
+* We have many libraries in our company. MPS.
+* __Non-blocking__ network I/O
+* Only provides what a basic web server needs. Like url dispatch
+
+#####Flask & Bottle (Nimble) (Not non-blocking so not good for scale)
+* Flask + Jinja + SQLAlchemy
+  Framework + Template + ORM
+
+#####[Twisted](http://stackoverflow.com/questions/5458631/whats-so-cool-about-twisted)
+* Include a lot of protocols implementation.
+* Event-driven networking engine
+
+#####[Blocking and Non-blocking I/O](http://stackoverflow.com/questions/8362794/networked-systems-whats-the-difference-between-a-blocking-and-a-non-blocki)
+######Blocking - Synchronous vs Non-blocking - Asynchronous
+A "blocking" call "blocks" the program that calls it until it completes. Your program has to wait for it to do (whatever) before the next statement runs.
+
+A "non-blocking" or asynchronous method usually, instead, either deposits its results in a "mailbox" or "queue" of some kind, or (more commonly) will call back a function that you provide when it completes. 
+
+###[Javascript Front-end Framework Comparison]
+######References
+[CodeBrief](http://codebrief.com/2012/01/the-top-10-javascript-mvc-frameworks-reviewed/)
+[InfoQ](http://www.infoq.com/research/top-javascript-mvc-frameworks/)
+
+
+#####Spine.js
+* MVC
+* Asynchronous interfaces
+* Simplicity
+
+Spine stores and renders everything client-side, communicating with the server asynchronously.
+
+
+#####Backbone.js
+
+#####Ember.js
+
+#####Angular.js
+
+
+###MVC
+* Model stores the data object. Spine can easily bind model change event with api-call the update on the back-end
+* View is the template to be rendered to users.
+* Controller controls all the logic. Render Views and modify Model.
+
+###Coffeescript vs Javascript
+
+
+###Reason
+1. 可能是因为Spine的核心和Tornado一样是asynchronus
+
 ###Other Key Words:
 * Grunt
 * LESS
 * Bower
-* Coffeescript
-* Tornado
-* MVC
 * Bootstrap
-* SpineJS
 * RESTful
-* Nginx vs Apache2
-* Tornado vs Django
 * Salesforce
 
 #OS Knowledge
@@ -574,7 +637,7 @@ Runnable interface 好在：
 2. Inheriting the full thread class would be excessive.
 
 ###Abstract Tips
-抽象类中不一定包含抽象方法，但是包含抽象方法的类一定要被声明为抽象类。抽象类本身不具备实际的功能，只能用于派生其子类。抽象类中可以包含构造方法，但是构造方法不能被声明为抽象。 
+抽象类中不一定包含抽象方法，但是包含抽象方法的类一定要被声明为抽象类。抽象类本身不具备实际的功能，只能用于派生其子类。抽象类中可以包含构造方法，但是构造方法不能被声明为抽象。
 
 调用抽象类中的方法(抽象方法和非抽象方法)，如果方法是static的，直接 抽象类.方法  就可以了；如果是非static的则必须需要一个继承的非抽象类，然后用这个非抽象类的实例来调用方法。
 
@@ -646,3 +709,10 @@ By comparison, Comparator is an external comparison:
 * You __name each implementation__ with the way you want to sort things
 * You can provide comparators for __classes that you do not control__
 * The implementation is __usable even if the first object is null__
+
+-----
+
+###NodeJS
+Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.
+
+[Reference](http://www.ibm.com/developerworks/cn/opensource/os-nodejs/)

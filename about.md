@@ -9,13 +9,13 @@
 * 30% dealing with front-end, working with Coffeescript or Javascript, html & less.
 
 #####3. 工作内容:
-* In Host System Support Team, mostly develop and support internal tools. Working full stack.
+* In Hosting System Support Team, mostly develop and support internal tools. Working full stack.
 * Build new quoting tool "Mercury" for our Salse Team. SpineJS in Coffeescript handles the front-end, Tornado in Python handles the back-end, with Oracle Database.
 * Develop and deploy scripts in Python and SQL to analyze data and maintain database.
 * Day-to-day support issues for internal systems.
 * Working closely with our Sales Team to constantly improve and update internal systems for them.
 
-###Detail about Mercury
+##Detail about Mercury
 
 #####1. Tornado, Python's adv, why python
 * RESTful by dispatch file
@@ -47,7 +47,9 @@ Can talk about serilization here
 #####4. Libraries:
 
 #####Back-End
-* MPS: sqlio, validation, logger, format, config, dateutil. Wrapper lib for pthon. handy functions.
+* MPS
+  sqlio, validation, logger, format, config, dateutil. Wrapper lib for pthon. handy functions.
+  sqlio is similar for SQLAlchemy
 * ~~Pyxuss~~
 * SalesForce
 * Memcached
@@ -60,6 +62,12 @@ Can talk about serilization here
 * Rules
 * Main table names
 * Users, and no. of roles & permissions
+
+#####A lot of comparing
+* Python's pros and cons, and comparing to other programming languages.
+* Front-end frame work
+* Back-end frame work
+* Memcached comparing to other DB
 
 #####Front-End
 * LESS
@@ -75,11 +83,17 @@ Can talk about serilization here
 * Permissions
 * Sessions
 * Part Catalog with ten thousands of rows of data, stored in Memcached
+* Nginx - gzip
 
 #####Front-End
 * Add Part
 * Part Wiki
 * Solutions
+
+#####5. Difficulties:
+1. Started from zero and everyone works full-stack
+2. The memcache problem
+3. Support for different browsers on different OS. Especially on mobile device. Had a problem about memory using on iOS device.
 
 ###Questions:
 * What do you think is the most challenging part of the work
@@ -87,4 +101,12 @@ Can talk about serilization here
 * How do you different your product with ...
 * Tell me more about your team
 * How do you evaluate your company compare to your comnpetitors
+* I've learnt a lot about this opportunity from xxxxx, as well as my research. I'd love to hear from you about what you are looking for the best candidate and what are some challenges in this work.
 * ...
+
+###References that I follow
+* V2EX
+* InfoQ
+* The Hacker News
+* TechCrunch
+* Web Design Inspiration
