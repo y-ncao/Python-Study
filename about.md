@@ -38,7 +38,7 @@ Can talk about serilization here
 * sinon
 * sinon-qunit
 
-* Team leader's decision. Personally, I'm not against doing Unit Test.
+* Team leader's decision. Personally, I'm not against doing Unit Test
 * Some people go too far from writing test cases
 * Changed to a function will need refactor all test cases
 * You think the test case would cover all the mistakes, but not always
@@ -48,6 +48,7 @@ Can talk about serilization here
 
 #####Back-End
 * MPS
+
   sqlio, validation, logger, format, config, dateutil. Wrapper lib for pthon. handy functions.
   sqlio is similar for SQLAlchemy
 * ~~Pyxuss~~

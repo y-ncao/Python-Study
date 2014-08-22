@@ -336,14 +336,18 @@ Like SQLAlchemy
 ###RESTful vs SOAP
 
 ###Nginx vs Apache2
-__Nginx__ is a http request and load balancing server
-Nginx is faster
+__Nginx__ is a http request and load balancing server.
+
+Nginx is faster.
+
+Apache2 used to be not good at scale. Had some memory problem.
 
 ###Python Back-end Framework Comparison
 #####Django (Powerful)
 * Perfect documentation
 * Full-stack framework - cache, session, feed, [orm](http://stackoverflow.com/questions/53428/what-are-some-good-python-orm-solutions), geo, auth
 * MVC on the back end, have the template system
+
 
 * System functions laid on each other. If you don't like the Django's ORM, hard to use your own.
 * Not good at customization.
@@ -370,8 +374,8 @@ A "non-blocking" or asynchronous method usually, instead, either deposits its re
 ###[Javascript Front-end Framework Comparison]
 ######References
 [CodeBrief](http://codebrief.com/2012/01/the-top-10-javascript-mvc-frameworks-reviewed/)
-[InfoQ](http://www.infoq.com/research/top-javascript-mvc-frameworks/)
 
+[InfoQ](http://www.infoq.com/research/top-javascript-mvc-frameworks/)
 
 #####Spine.js
 * MVC
@@ -381,12 +385,7 @@ A "non-blocking" or asynchronous method usually, instead, either deposits its re
 Spine stores and renders everything client-side, communicating with the server asynchronously.
 
 
-#####Backbone.js
-
-#####Ember.js
-
-#####Angular.js
-
+#####Backbone.js / Ember.js / Angular.js
 
 ###MVC
 * Model stores the data object. Spine can easily bind model change event with api-call the update on the back-end
@@ -396,8 +395,10 @@ Spine stores and renders everything client-side, communicating with the server a
 ###Coffeescript vs Javascript
 
 
-###Reason
-1. 可能是因为Spine的核心和Tornado一样是asynchronus
+###Reason for Spine
+Fits well with our user's workflow.
+* Most of the time, user are inputing data and choosing options. Like selecting parts, play with price. Data are changed frequently. We don't want our users wait everytime when they input anything, so doing async is the best solution, where SpineJS is good at.
+* User opens up the app, load principle models ahead, and later on do async calls to the back-end. User can't even feel that this app is talking with it's back-end because there's non-block IO.
 
 ###Other Key Words:
 * Grunt
