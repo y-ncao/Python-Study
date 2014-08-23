@@ -18,8 +18,6 @@
 
 [zz_coding_index](./zz_coding_index.md) is the summary of leetcode questions by programming solutions
 
-[coding_index](./coding_index.md) is my summary of leetcode questions by keywords
-
 [Whitebook](./WhiteBook) includes 150 Career Cup Questions. Very basic.
 
 [Concept Implement](./Concept_Implement) includes the python implementation of important CS concepts.
