@@ -125,7 +125,7 @@ list(set(dup_list))
 * ```[x**2 for x in range(10)]```
 * ```{str(x): x+1 for x in range(10)}```
 
-### Pros and Cons
+###Python Pros and Cons
 
 #####Pros
 * Cleaner Syntax
@@ -156,6 +156,17 @@ To use a reference of itself
 * [B](http://bytebaker.com/2008/07/30/python-namespaces/)
 
 ###[args, kargs](http://stackoverflow.com/questions/3394835/args-and-kwargs)
+
+* All the keyword arguments passed must match one of the arguments accepted by the function, and their order is not important. This also includes non-optional arguments.
+* No argument may receive a value more than once.
+```
+def foo(kind, *args, **kwargs):
+    for value in args:
+        print value
+    for key, value in kwargs:
+        print key, value
+
+```
 
 ###Pass by Assignment
 Assignment Creates References, Not Copies
@@ -195,10 +206,65 @@ Immutable Types Can't Be Changed in Place. Remember that you can't change an imm
 
 ###Special Data Structures
 * DefaultDict
-* OrderedDict
+  ```
+  from collections import defaultdict
+  # Use case 1. Similar to setdefault(key, [])
+  d = defaultdict(list)
+  for k, v in s:
+     d[k].append(v)
+
+  # Use case 2. 
+  d = defaultdict(int)
+  for k in s:
+     d[k] += 1
+  ```
+
+* [OrderedDict](./Leetcode/LRU_Cache.py)
+  ```
+  from collections import OrderedDict
+  # Like LRU Cache
+  self.cache = collections.OrderedDict()
+  self.cache.popitem(last=False)
+  ```
+
 * Set
+
+  Use {1,2,3} to create.
+
+  Another way is:
+  ```
+  from sets import Set
+  engineers = Set(['John', 'Jane', 'Jack', 'Janice'])
+  s.add(x)     # add element x to set s
+  s.remove(x)  # remove x from set s; raises KeyError if not present
+  s.discard(x) # removes x from set s if present
+  s.pop()      # remove and return an arbitrary element from s; raises KeyError if empty
+  ```
+
 * Deque
-* Priority Queue
+  ######Deque
+   * Deque manages its elements with a dynamic array, provides random access, and has almost the same interface as a vector.
+   * Deque provides Fast insertions and deletions at both the end and the beginning. Inserting and deleting elements in the middle is relatively slow because all elements up to either of both ends may be moved to make room or to fill a gap.
+   * Any insertion or deletion of elements other than at the beginning or end invalidates all pointers, references, and iterators that refer to elements of the deque.
+
+  ######List
+   * List manages its elements as a doubly linked list and does not provide random access.
+   * In List, inserting and removing elements is fast at each position, and not only at one or both ends.
+   * List: Inserting and deleting elements does not invalidate pointers, references, and iterators to other elements.
+  Deque is better for insert/delete at begining and ending of the sequence
+  ```
+  from collections import deque
+  d.append('j')
+  d.appendleft('f') # This is what queue should use
+  d.pop()           # This is what queue should use
+  d.popleft()
+  ```
+
+* [Priority Queue](./Leetocde/Merge_k_Sorted_Lists.py)
+  ```
+  heapq.heappush(pq, (node.val, node))
+  val, node = heapq.heappop(pq)
+  ```
 
 -----
 ##Just Interesting
@@ -214,10 +280,7 @@ Although fairly rare in practice, if a collection object contains a reference to
 ['grail', [...]]
 ```
 
-#Hashtable
-
-[Implementation](./Concept_Implement/HashTable.py)
-
+#[Hashtable](./Concept_Implement/HashTable.py)
 Using hash function is two steps:
 
 1. Map the key to an integer
@@ -343,7 +406,7 @@ If you're not doing an assignment then you need to use var:
 ```
 var x; // Declare x
 ```
-~~http://stackoverflow.com/questions/1470488/what-is-the-function-of-the-var-keyword-in-ecmascript-262-3rd-edition-javascript~~
+http://stackoverflow.com/questions/1470488/what-is-the-function-of-the-var-keyword-in-ecmascript-262-3rd-edition-javascript
 
 ###this:
 Javascript's this keyword normally refers to the object that owns the method, but it depends on how a function is called. Basically, it points to the currently in scope object that owns where you are in the code. When working within a Web page, this usually refers to the Window object. If you are in an object created with the new keyword, the this keyword refers to the object being created. When working with event handlers, JavaScript's this keyword will point to the object that generated the event.
@@ -445,6 +508,9 @@ Nginx is faster.
 
 Apache2 used to be not good at scale. Had some memory problem.
 
+```sudo nginx -t``` 查看config file 有无错误
+记住千万不能有两个default server
+
 ###Python Back-end Framework Comparison
 #####Django (Powerful)
 * Perfect documentation
@@ -503,15 +569,25 @@ Fits well with our user's workflow.
 * Most of the time, user are inputing data and choosing options. Like selecting parts, play with price. Data are changed frequently. We don't want our users wait everytime when they input anything, so doing async is the best solution, where SpineJS is good at.
 * User opens up the app, load principle models ahead, and later on do async calls to the back-end. User can't even feel that this app is talking with it's back-end because there's non-block IO.
 
+
+###Grunt
+最重要的两个File: package.json & Gruntfile.js/cofffee
+
 ###Other Key Words:
-* Grunt
 * LESS
 * Bower
 * Bootstrap
-* RESTful
 * Salesforce
 
 #OS Knowledge
+
+###Load Balancing
+Three ways:
+  1. Round-robin 平均分配
+  2. Least-connected 最少链接
+  3. ip-hash 根据ip造server
+
+Health Check: response from a server fails with error. Fail timeout / max fail.
 
 ###Unicode, Ascii, UTF-8
 
