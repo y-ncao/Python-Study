@@ -2,7 +2,7 @@
 * Big-O
 * Sorting. quicksort, mergesort and all their complexity.
 * Hashtable 仔细想想确实是, 好多面试都会面这个, 自己不如尝试implement一下.
-* Trees 除了tree的基础题(其实已经蛮多的了), 最好还能看看n-ary tree, trie-trees. Red/black tree, splay tree or AVL tree. BFS DFS in-order, post-order and pre-order.
+* b Trees 除了tree的基础题(其实已经蛮多的了), 最好还能看看n-ary tree, trie-trees. Red/black tree, splay tree or AVL tree. BFS DFS in-order, post-order and pre-order.
 * Graphs 这个是我最薄弱的地方, 但是说实话, 真的会经常面试到, 这里一定要好好准备.
 
   There are three basic ways to represent a graph in memory (objects and pointers, matrix, and adjacency list). Also BFS and DFS in 伪代码. Dijkstra and A(卧槽这两个实在是太fancy了).
@@ -17,28 +17,114 @@
   * Context switching
   * Scheduling -> multi-core (Look Doug Lea's Concurrent Programming in Java)
 
-#Python
+#[Python](https://docs.python.org/2/faq/programming.html#what-is-a-class)
 
 [Reference](http://pyzh.readthedocs.org/en/latest/index.html)
 long-polling
 WSGI
+
+-----
+##Important Concepts
+###Classmethod
+###Descriptor
+
+###Decorator
+Decorators allow you to inject or modify code in functions or classes". In other words decorators allow you to wrap a function or class method call and execute some code before or after the execution of the original code. And also you can nest them e.g. to use more than one decorator for a specific function. Usage examples include – logging the calls to specific method, checking for permission(s), checking and/or modifying the arguments passed to the method etc.
+
+###[Magic Methods](http://www.rafekettler.com/magicmethods.html)
+* Can use dir() to check what methods does an object own.
+
+###[Metaclass](http://stackoverflow.com/questions/100003/what-is-a-metaclass-in-python)
+
+###[Abstract Class](https://docs.python.org/2/library/abc.html)
+
+-----
+
+##Interview
 ###__new__() and __init__()
 __new__ is static class method, while __init__ is instance method.  __new__ has to create the instance first, so __init__ can initialize it. Note that __init__ takes self as parameter. Until you create instance there is no self.
 
-###Metaclass
+###isinstance(inst, class)
+Use this function to check if an object is an instance of a given class or of a subclass of it.
 
-###pyzh
+### [With Statement](http://effbot.org/zone/python-with-statement.htm)
+In a few words the with statement allows you to executed code before and/or after a specific set of operations. For example if you open a file for reading and parsing no matter what happens during the parsing you want to be sure that at the end the file is closed. This is normally achieved using the try… finally construction but the with statement simplifies it usin the so called “context management protocol”. To use it with your own objects you just have to define ```__enter__``` and ```__exit__``` methods. Some standard objects like the file object automatically support this protocol. For more information you may check Understanding Python’s “with” statement.
+
+
+###[Underscore and Double Underscore](http://stackoverflow.com/questions/1301346/the-meaning-of-a-single-and-a-double-underscore-before-an-object-name-in-python)
+* Names, in a class, with a leading underscore are simply to indicate to other programmers that the attribute or method is intended to be private. However, nothing special is done with the name itself.
+* ```_single_leading_underscore```: weak "internal use" indicator. E.g. from M import * does not import objects whose name starts with an underscore. 
+
+* ```__foo__```: this is just a convention, a way for the Python system to use names that won't conflict with user names.
+* ```_foo```: this is just a convention, a way for the programmer to indicate that the variable is private (whatever that means in Python).
+* ```__foo```: this has real meaning: the interpreter replaces this name with ```_classname__foo``` as a way to ensure that the name will not overlap with a similar name in another class.
+
+###PEP8
+PEP 8 is a coding convention(a set of recommendations) how to write your Python code in order to make it more readable and useful for those after you.
+
+###Python 2.x to 3.x
+* All strings are now Unicode
+* Print is now function not a statement. 
+* There is no range, it has been replaced by xrange which is removed. 
+* All classes are new style and the division of integers now returns float.
 
 ###xrange and range
+* range creates a list, so if you do range(1, 10000000) it creates a list in memory with 10000000 elements.
+* xrange is a sequence object is a that evaluates lazily.
 
+###Pickling and unpickling
+pickle module accepts any python object converts it into a string representation & dumps it into a file(by using dump() function) which can be used later, process is called pickling. Whereas unpickling is process of retrieving original python object from the stored string representation for use.
+
+###```__repr__```vs ```__str__```
+machine-headable vs human-readable
+
+###Explain how python is interpreted.
+Python program runs directly from the source code. Each type Python programs are executed code is required. Python converts source code written by the programmer into intermediate language which is again translated it into the native language / machine language that is executed. So Python is an Interpreted language.
+
+###How is memory managed in python?
+* Memory management in Python involves a private heap containing all Python objects and data structures. Interpreter takes care of Python heap and that the programmer has no access to it.
+* The allocation of heap space for Python objects is done by Python memory manager. The core API of Python provides some tools for the programmer to code reliable and more robust program.
+* Python also has a build-in garbage collector which recycles all the unused memory. When an object is no longer referenced by the program, the heap space it occupies can be freed. The garbage collector determines objects which are no longer referenced by the program frees the occupied memory and make it available to the heap space.
+* The gc module defines functions to enable /disable garbage collector:
+  gc.enable() -Enables automatic garbage collection.
+  gc.disable() - Disables automatic garbage collection.
+
+###What is delegation? 
+
+
+###Write a sample program to print the complete contents of a file, with a way to catch a missing file.
+```
+try:
+    with open(‘filename’,’r’) as file:
+    print file.read()
+except IOError:
+    print “no such file exists”
+```
+
+###Write a sample program to print the length of each line in a particular file, not counting whitespace at the ends.
+```
+with open(“filename.txt”, “r”) as file:
+    print len(file.readline().rstrip())
+```
+
+###Remove Duplicates
+```
+list(set(dup_list))
+```
+
+###Random
+* random() - generate(0,1)
+
+-----
+
+##My Search
 ###Lambda
-###List/Dict Comprehension: [x**2 for x in range(10)]
-###Decorator
-###Classmethod
+* ```sorted(student_tuples, key=lambda student: student[2])```
 
-###Diff from python 2.x to 3.x
+###List/Dict Comprehension: 
+* ```[x**2 for x in range(10)]```
+* ```{str(x): x+1 for x in range(10)}```
 
-###Diff with other languages
 ### Pros and Cons
 
 #####Pros
@@ -69,7 +155,7 @@ To use a reference of itself
 * [A](http://stackoverflow.com/questions/3913217/what-are-python-namespaces-all-about)
 * [B](http://bytebaker.com/2008/07/30/python-namespaces/)
 
-###args, kargs
+###[args, kargs](http://stackoverflow.com/questions/3394835/args-and-kwargs)
 
 ###Pass by Assignment
 Assignment Creates References, Not Copies
@@ -114,6 +200,8 @@ Immutable Types Can't Be Changed in Place. Remember that you can't change an imm
 * Deque
 * Priority Queue
 
+-----
+##Just Interesting
 ###Cyclic Datastructures
 Cyclic Datastructures Can Cause Loops
 
@@ -322,6 +410,8 @@ Closures reduce the need to pass state around the application. The inner functio
 
 This is important when the inner function will be called after the outer function has exited. The most common example of this is when the inner function is being used to handle an event. In this case you get no control over the arguments that are passed to the function so using a closure to keep track of state can be very convenient.
 
+###[Closure](http://en.wikipedia.org/wiki/Closure%5F%28computer%5Fscience%29)
+
 #Linux
 * grep
 * awk
@@ -422,6 +512,8 @@ Fits well with our user's workflow.
 * Salesforce
 
 #OS Knowledge
+
+###Unicode, Ascii, UTF-8
 
 ###Lock
 __Lock__: at most one thread can hold the lock, and therefore only on thread can access the shared resource.

@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-from os import listdir
-from os.path import isfile, join
 import glob
 
 from xlrd import open_workbook
@@ -91,5 +89,5 @@ if __name__ == '__main__':
     file_list.sort()
 
     combiner(file_list)
-    #frequency_creator(file_list)
+    frequency_creator(file_list)
     #type_searchor('dp', 2)
