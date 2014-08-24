@@ -126,7 +126,7 @@ for x in mylist:
     ...loop body...
 ```
 1. Gets an iterator for mylist:
-   Call iter(mylist) -> this returns an object with a next() method (or __next__() in Python 3).
+   Call iter(mylist) -> this returns an object with a next() method (or ```__next__()``` in Python 3).
 2. Uses the iterator to loop over items:
    Keep calling the next() method on the iterator returned from step 1. The return value from next() is assigned to x and the loop body is executed. If an exception StopIteration is raised from within next(), it means there are no more values in the iterator and the loop is exited.
 
