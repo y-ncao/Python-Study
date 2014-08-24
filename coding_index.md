@@ -303,10 +303,10 @@ dp[i][j] = dp[i-1][j-1]                                    # a[i] == b[j]
 * initialize: ```dp[i][0] = i, dp[0][j] = j```
 * answer: ```dp[len(a)][len(b)]
 
-######Distinct Subsequence
+######[Distinct Subsequence](./Leetcode/Distinct_Subsequences.py)
 To be continued
 
-######Interleaving String
+######[Interleaving String](./Leetcode/Interleaving_String.py)
 To be continued
 
 -----
@@ -339,7 +339,6 @@ To be continued
 -----
 
 #### Two Pointer
-
 The basic template of doing 'Sums'
 * [x] Two Sum
 * [x] 3Sum
@@ -440,7 +439,7 @@ This will require extra space
 Binary Tree Level Order Traversal 3 ways
 * 2 Queues
 * 1 Queue + dummy node
-* 1 Queue 双重循环
+* 1 Queue 双重循环 (Best)
 
 Check BFS and DFS template
 
