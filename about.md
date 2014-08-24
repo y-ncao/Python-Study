@@ -105,6 +105,38 @@ Can talk about serilization here
 * I've learnt a lot about this opportunity from xxxxx, as well as my research. I'd love to hear from you about what you are looking for the best candidate and what are some challenges in this work.
 * ...
 
+闲来没事可以问的问题：
+#####Question to HR:
+* How would you describe the company culture?
+* What type of employees tend to excel at this company?
+* Can you tell me more about the interview process?
+* How would you describe the work enviroment here—collaborative or independent?
+
+#####Hiring Manager: Your Future Boss
+* What is the ideal candidate?
+* What are some challenges one might face in this position?
+* What are the most important skillset for the job?
+* What are the backgrounds of people in the team?
+* What's a typical career path at the company for someone in this role?
+* If I am luck enough to get the job, what preparation would you suggest me do?
+* Learning/training opportunities
+
+#####The Executive or high level expert
+* How do you think this industry will change in the next five years?
+* What do you think is the competitive advantage of our company?
+* What's the company's biggest challenge? How is it planning to meet that challenge?
+
+#####The Coworker
+* Could you please describe a typical day?
+* How would you describe the work environment at the company?
+* Share something about your background.
+
+#####普适的问题：
+* What do you particularly like about the company?
+* What do you dislike about the company if there is any?
+* Could you tell me something about the projects that you are working on? The size of the team. The language the team is adopting?
+
+
 ###References that I follow
 * V2EX
 * InfoQ

@@ -589,7 +589,12 @@ Three ways:
 
 Health Check: response from a server fails with error. Fail timeout / max fail.
 
-###Unicode, Ascii, UTF-8
+###[Encoding](http://kunststube.net/encoding/)
+Unicode, Ascii, UTF-8
+
+###Big O
+* Time Complexity - The amount of time needed to finish the task
+* Space Complexity - The amount of memory needed to store values/variables
 
 ###Lock
 __Lock__: at most one thread can hold the lock, and therefore only on thread can access the shared resource.
