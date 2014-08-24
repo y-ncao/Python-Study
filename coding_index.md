@@ -498,3 +498,11 @@ while (!Q.empty()) {
     }
 }
 ```
+###DFS vs BFS
+#####DFS - O(2^n), O(n!)
+1. Find all solutions
+2. Permutations / Subsets
+
+#####BFS - O(m) O(n)
+1. Graph Traversal(每个点都遍历一次)
+2. Find shorted path in a simple graph

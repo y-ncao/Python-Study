@@ -41,3 +41,4 @@ class Solution:
             l += 1
             r -= 1
         return True
+    # This function can use return s == s[::-1] to replace.
