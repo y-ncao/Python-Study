@@ -180,24 +180,24 @@ for i in range(A):
 
 -----
 
-###From class
+##From class
 
-#####模板
+###模板
 * 状态 state: 灵感, 创造力, 储存小规模问题的结果
 * 转移方程 transfer function: 状态之间的联系, 怎么通过小的状态来算大的状态
 * 初始化 initialization: 最极限的小状态是什么
 * 答案 answer: 最大的那个状态是什么
 
-####Clues
+###Clues
 1. Cannot sort, or swap
 2. Satisfy:
   * Find a maximum/minimum result
   * Decide whether something is possible or not
   * Count all possible solutions(Doesn't care about solution details, only care about the count or possibility)
 
-####Types of DP
+###Types of DP
 
-#####Matrix DP 20% (Triangle, Unique Path)
+####Matrix DP 20% (Triangle, Unique Path)
 * state: ```dp[x][y]```表示从起点走到坐标 (x,y) 的xxx
 * function: 研究下一步怎么走
 * initialize: 起点
@@ -220,7 +220,7 @@ for i in range(A):
 
 -----
 
-#####One Sequence DP 40%
+####One Sequence DP 40%
 * state: dp[i]表示前i个位置/数字/字母，以第i个为...
 * function: ```dp[i] = dp[j] ...j``` 是i之前的一个位置
 * initialize: ```dp[0] = ...```
@@ -265,7 +265,7 @@ for i in range(A):
 
 -----
 
-#####Two Sequences DP 40%
+####Two Sequences DP 40%
 * state: dp[i][j] 代表了第一个sequence的前i个数字/字符配上第二个的sequence的前j个...
 * function: dp[i][j] = 研究第i个和第j个的匹配关系
 * initialize: dp[i][0] and dp[0][j]
@@ -311,7 +311,7 @@ To be continued
 
 -----
 
-#####Interval DP
+####Interval DP
 * state: dp[i][j] 代表从i到j这一段区间...
 * function: dp[i][j] = max/min/sum(dp[i][k], dp[k+1][j])
 * initialize: dp[i][i] = ?
@@ -323,16 +323,16 @@ To be continued
 
 -----
 
-#####Tree DP
+####Tree DP
 ######Binary Tree Maximum Path Sum
 
 -----
 
-#####States Compressing DP
-#####Knapsack
+####States Compressing DP
+####Knapsack
 
 -----
-#####复杂度
+####复杂度
 * 一个变量 O(n)
 * 两个变量 O(n^2)
 
