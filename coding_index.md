@@ -274,26 +274,32 @@ for i in range(A):
 ######[Longest Common Subsequence](http://www.geeksforgeeks.org/dynamic-programming-set-4-longest-common-subsequence/)
 * state: dp[i][j]表示前i个字符配上前j个字符的LCS的长度
 * function: 
-  ```
-  dp[i][j] = dp[i-1][j-1]              # if a[i]  = b[j]
-           = max(dp[i][j-1],dp[i-1][j] # if a[i] != b[j]
-  ```
+```
+dp[i][j] = dp[i-1][j-1]              # if a[i]  = b[j]
+         = max(dp[i][j-1],dp[i-1][j] # if a[i] != b[j]
+```
 * initialize: ```dp[i][0] = 0```
               ```dp[0][j] = 0```
 * answer: ```dp[len(a)][len(b)]```
 
 ######[Longest Common Substring](http://www.geeksforgeeks.org/longest-common-substring/)
 * state: dp[i][j]表示前i个字符配上前j个字符的LCS的长度(一定以第i个和第j个结尾的LCS)
-* function: ```dp[i][j] = dp[i-1][j-1] + 1 # a[i] == b[j]
-                        = 0                # a[i] != b[j]```
+* function: 
+```
+dp[i][j] = dp[i-1][j-1] + 1 # a[i] == b[j]
+         = 0                # a[i] != b[j]
+```
 * initialize: ```dp[i][j] = 0
                  dp[0][j] = 0```
 * answer: ```max(dp[0...len(a)][0...len(b)])
 
 ######[Edit Distance](./Leetcode/Edit_Distance.py)
 * state: dp[i][j] a的前i个字符配上b的前j个字符最少要用几次编辑使得他们相等
-* function: ```dp[i][j] = dp[i-1][j-1]                                    # a[i] == b[j]
-                        = min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1]) + 1)  # a[i] != b[j]```
+* function: 
+```
+dp[i][j] = dp[i-1][j-1]                                    # a[i] == b[j]
+         = min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1]) + 1)  # a[i] != b[j]
+```
 * initialize: ```dp[i][0] = i, dp[0][j] = j```
 * answer: ```dp[len(a)][len(b)]
 
