@@ -25,11 +25,12 @@ WSGI
 
 -----
 ##Important Concepts
-###Classmethod
 ###Descriptor
 
 ###Decorator
 Decorators allow you to inject or modify code in functions or classes". In other words decorators allow you to wrap a function or class method call and execute some code before or after the execution of the original code. And also you can nest them e.g. to use more than one decorator for a specific function. Usage examples include – logging the calls to specific method, checking for permission(s), checking and/or modifying the arguments passed to the method etc.
+
+A implement of decorator is classmethod() and staticmethod()
 
 ###[Magic Methods](http://www.rafekettler.com/magicmethods.html)
 * Can use dir() to check what methods does an object own.
@@ -38,6 +39,10 @@ Decorators allow you to inject or modify code in functions or classes". In other
 
 ###[Abstract Class](https://docs.python.org/2/library/abc.html)
 
+
+###Some Words
+* [Duck-Typing](https://docs.python.org/2/glossary.html#term-duck-typing)
+* [Classic Class vs New Style Class](https://docs.python.org/2/glossary.html#term-new-style-class) - Inherits from object
 -----
 
 ###[Yield](http://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do-in-python)
@@ -67,6 +72,13 @@ gx.next()
 * Like the discussion above on yield, the generator isn't "generated" until it is called by next().
 * So if we need to iterate again the whole generator, we need to re-gen the generator.
 * Stops when raising StopIteration
+* Generator doesn't support indexing or slicing. Also can't add anything.
+
+#####[Generator Expression]
+Compare to list comprehension
+1. Generator doesn't support indexing or slicing. Also can't add anything.
+2. [But save memory](http://stackoverflow.com/a/47792)
+
 #####Conclusion
 1. 必须包含yield语句的函数。
 2. 在调用时不会运行。
@@ -103,7 +115,7 @@ If you have infinite loops, or it may make inefficient use of memory when you ha
   * sequence object can access from index
   * non-sequence object can't
 
-####[过程](http://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do-in-python) (参见答案2的"Don't confuse your Iterables, Iterators and Generators")
+####[过程](http://stackoverflow.com/a/237028)
 ```
 for x in mylist:
     ...loop body...
@@ -112,8 +124,6 @@ for x in mylist:
    Call iter(mylist) -> this returns an object with a next() method (or __next__() in Python 3).
 2. Uses the iterator to loop over items:
    Keep calling the next() method on the iterator returned from step 1. The return value from next() is assigned to x and the loop body is executed. If an exception StopIteration is raised from within next(), it means there are no more values in the iterator and the loop is exited.
-
-
 
 -----
 
