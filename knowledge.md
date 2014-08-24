@@ -43,6 +43,7 @@ A implement of decorator is classmethod() and staticmethod()
 ###Some Words
 * [Duck-Typing](https://docs.python.org/2/glossary.html#term-duck-typing)
 * [Classic Class vs New Style Class](https://docs.python.org/2/glossary.html#term-new-style-class) - Inherits from object
+
 -----
 
 ###[Yield](http://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do-in-python)
@@ -95,20 +96,20 @@ If you have infinite loops, or it may make inefficient use of memory when you ha
 * iter(iterable) -> iterator object
 * 核心是implement iterable protocol
   1. Built-in lists, dictionaries, tuples, sets, files.
-  2. User defined classes that implement __iter__().
+  2. User defined classes that implement ```__iter__()```.
   3. Generators.
 
 ####Sequence定义
 1. Iterable
-2. Supports efficient element access using integer indices via the __getitem__() special method and defines a __len__() method that returns the length of the sequence.
+2. Supports efficient element access using integer indices via the ```__getitem__()``` special method and defines a ```__len__()``` method that returns the length of the sequence.
    也就是必须要支持下标搜索, 所以dict是一个iterable, 但是不是sequence.
 
 ####Iterator
-* 通过调用__iter__(object)来得到iterator
+* 通过调用```__iter__(object)```来得到iterator
 * 通过调用next()来获取下一个element
 
 ####关系
-* 所有的定义了__iter__() or getitem()函数的object称作Iterable
+* 所有的定义了```__iter__() or getitem()```函数的object称作Iterable
 * Iterable分为两类
   * Sequence类 (list, tuple, str, ...)
   * Non-sequence类 (dict, set)
@@ -119,7 +120,7 @@ If you have infinite loops, or it may make inefficient use of memory when you ha
 #####[Generator vs Iterator](http://stackoverflow.com/questions/2776829/difference-between-python-generators-vs-iterators)
 All Generators must be Iterator, but no vise versa.
 
-####[过程](http://stackoverflow.com/a/237028)
+####[For循环过程](http://stackoverflow.com/a/237028)
 ```
 for x in mylist:
     ...loop body...
@@ -132,8 +133,8 @@ for x in mylist:
 -----
 
 ##Interview
-###__new__() and __init__()
-__new__ is static class method, while __init__ is instance method.  __new__ has to create the instance first, so __init__ can initialize it. Note that __init__ takes self as parameter. Until you create instance there is no self.
+###```__new__() and __init__()```
+__new__ is static class method, while ```__init__``` is instance method.  ```__new__``` has to create the instance first, so ```__init__``` can initialize it. Note that ```__init__``` takes self as parameter. Until you create instance there is no self.
 
 ###isinstance(inst, class)
 Use this function to check if an object is an instance of a given class or of a subclass of it.
