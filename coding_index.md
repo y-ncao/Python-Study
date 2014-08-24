@@ -171,6 +171,14 @@ _____
 2. 确定转移方程
 3. 思考边界条件，还有dp的长度，有的时候是N, 有的时候是N+1
 4. 看是否可以简化dp，二维简化成一维，一般来说如果是
+```python
+for i in range(A):
+    for j in range(B):
+        transfer dp[i][j] to dp[i-1][j-1]
+```
+这种情况的话， 由于j每次都在使用dp[j-1], 这种情况没必要储存dp[j-1],只需要把dp[i][0] 确认之后每行从1开始遍历前一项即可。
+
+-----
 
 ###From class
 
@@ -265,10 +273,11 @@ _____
 
 ######[Longest Common Subsequence](http://www.geeksforgeeks.org/dynamic-programming-set-4-longest-common-subsequence/)
 * state: dp[i][j]表示前i个字符配上前j个字符的LCS的长度
-* function: ```
-            dp[i][j] = dp[i-1][j-1]              # if a[i]  = b[j]
-                     = max(dp[i][j-1],dp[i-1][j] # if a[i] != b[j]
-            ```
+* function: 
+  ```
+  dp[i][j] = dp[i-1][j-1]              # if a[i]  = b[j]
+           = max(dp[i][j-1],dp[i-1][j] # if a[i] != b[j]
+  ```
 * initialize: ```dp[i][0] = 0```
               ```dp[0][j] = 0```
 * answer: ```dp[len(a)][len(b)]```
@@ -320,14 +329,6 @@ To be continued
 #####复杂度
 * 一个变量 O(n)
 * 两个变量 O(n^2)
-
-#####滚动数组
-```python
-for i in range(A):
-    for j in range(B):
-        transfer dp[i][j] to dp[i-1][j-1]
-```
-这种情况的话， 由于j每次都在使用dp[j-1], 这种情况没必要储存dp[j-1],只需要把dp[i][0] 确认之后每行从1开始遍历前一项即可。
 
 -----
 
