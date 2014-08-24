@@ -115,6 +115,12 @@ list(set(dup_list))
 ###Random
 * random() - generate(0,1)
 
+###Python vs Other Languages
+1. Python is script language, Java C++ compiling language.
+2. Simpler
+
+###Python数字精度问题
+
 -----
 
 ##My Search
@@ -482,6 +488,9 @@ This is important when the inner function will be called after the outer functio
 * wc
 * ps -A
 * top
+
+###[Compiled Language vs Scripting Language](http://eimg.wordpress.com/2007/12/31/compiled-languages-vs-scripting-languages/)
+
 
 #SQL
 ###ORM

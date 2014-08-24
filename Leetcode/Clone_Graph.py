@@ -51,3 +51,6 @@ class Solution:
                 queue.append((oldNeighbor, newNeighbor))
                 newNode.neighbors.append(newNeighbor)
         return newNodeHead
+
+    # Another way to this is like Nine Chapter, no need to do like level order BFS
+    # Finally add all neighbors

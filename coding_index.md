@@ -197,7 +197,7 @@ for i in range(A):
 
 ###Types of DP
 
-####Matrix DP 20% (Triangle, Unique Path)
+####1. Matrix DP 20% (Triangle, Unique Path)
 * state: ```dp[x][y]```表示从起点走到坐标 (x,y) 的xxx
 * function: 研究下一步怎么走
 * initialize: 起点
@@ -220,7 +220,7 @@ for i in range(A):
 
 -----
 
-####One Sequence DP 40%
+####2. One Sequence DP 40%
 * state: dp[i]表示前i个位置/数字/字母，以第i个为...
 * function: ```dp[i] = dp[j] ...j``` 是i之前的一个位置
 * initialize: ```dp[0] = ...```
@@ -265,7 +265,7 @@ for i in range(A):
 
 -----
 
-####Two Sequences DP 40%
+####3. Two Sequences DP 40%
 * state: dp[i][j] 代表了第一个sequence的前i个数字/字符配上第二个的sequence的前j个...
 * function: dp[i][j] = 研究第i个和第j个的匹配关系
 * initialize: dp[i][0] and dp[0][j]
@@ -311,7 +311,7 @@ To be continued
 
 -----
 
-####Interval DP
+####4. Interval DP
 * state: dp[i][j] 代表从i到j这一段区间...
 * function: dp[i][j] = max/min/sum(dp[i][k], dp[k+1][j])
 * initialize: dp[i][i] = ?
@@ -323,13 +323,13 @@ To be continued
 
 -----
 
-####Tree DP
+####5. Tree DP
 ######Binary Tree Maximum Path Sum
 
 -----
 
-####States Compressing DP
-####Knapsack
+####6. States Compressing DP(不需要知道)
+####7. Knapsack
 
 -----
 ####复杂度
@@ -452,5 +452,49 @@ Check BFS and DFS template
 这个和CC150不太一样, 是从底走, NC答案是Divide an Conquer, CC150是recursion
 * (tarjan算法)
 
-DFS
+###DFS
 主要想法是先搜索到不能再底层然后再往上走
+#####复杂度问题
+* 组合的话就是O(n^2)
+* 排列的话就是(n!)
+
+
+* [Permutations](./Leetcode/Permutations.py)
+尝试把DFS的
+
+* [Subsets](./Leetcode/Subsets.py)
+* [N Queens](./Leetcode/N-Queens.py)
+* [Palindrome Partitioning](./Leetcode/Palindrome_Partitioning.py)
+* [Combinations Sum](./Leetcode/Combination_Sum.py)
+* [Word Ladder](./Leetcode/Word_Ladder.py)
+  __无向图求最短路径用BFS, 用Level Order搜索法__
+  注意, 因为是单词, 所以做搜索的时候是按字母变化来
+
+
+
+#####[Word Ladder II](./Leetcode/Word_Ladder_II.py)
+1. 最短的是什么
+2. 所有最短的是啥
+
+1. 对所有点进行分层BFS
+2. 对DFS层进行搜索
+
+###Graph
+* 图上的BFS需要用HashTable去重
+
+#####[Clone Graph](./Leetcode/Clone_Graph.py)
+
+#####[拓扑排序Topological sorting](http://www.geeksforgeeks.org/topological-sorting/)
+主要是入度为零
+```
+Q.offer(....)
+while (!Q.empty()) {
+    Node head = Q.poll();
+    for (int i = 0; i < head.neighbors.size(); i++) {
+        inDegree[neighbor] --;
+        if ( .. == 0) {
+            Q.offer(.xxx)
+        }
+    }
+}
+```
