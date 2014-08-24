@@ -284,10 +284,11 @@ dp[i][j] = dp[i-1][j-1]              # if a[i]  = b[j]
 
 ######[Longest Common Substring](http://www.geeksforgeeks.org/longest-common-substring/) (Not in Leetcode)
 * state: dp[i][j]表示前i个字符配上前j个字符的LCS的长度(一定以第i个和第j个结尾的LCS)
-* function: ```
-            dp[i][j] = dp[i-1][j-1] + 1 # a[i] == b[j]
-                     = 0                # a[i] != b[j]
-            ```
+* function: 
+```
+dp[i][j] = dp[i-1][j-1] + 1 # a[i] == b[j]
+         = 0                # a[i] != b[j]
+```
 * initialize: ```dp[i][j] = 0
                  dp[0][j] = 0```
 * answer: ```max(dp[0...len(a)][0...len(b)])
