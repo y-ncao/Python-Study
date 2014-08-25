@@ -793,11 +793,16 @@ Fits well with our user's workflow.
 
 
 ###Grunt
-最重要的两个File: package.json & Gruntfile.js/cofffee
+* Javascript task runner, or automation. Helps you to do automated compile, build and test.
+* 最重要的两个file: package.json & Gruntfile.js/cofffee
+
+###Bower
+* Package Manger. Helps you to manage and update package. Used with Grunt. Like if you have a package update, and tested by team member, grunt-bower will help you to install that package.
+* 重要的file: bower.json
 
 ###Other Key Words:
 * LESS
-* Bower
+
 * Bootstrap
 * Salesforce
 
