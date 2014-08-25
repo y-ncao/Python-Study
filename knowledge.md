@@ -74,6 +74,14 @@ A implement of decorator is classmethod() and staticmethod()
 * If an object defines both```__get__() and __set__()```, it is considered a __data descriptor__.
 * Object only define ```__get__()``` are called non-data descriptors.
 
+###[Classmethod vs Staticmethod](http://stackoverflow.com/questions/12179271/python-classmethod-and-staticmethod-for-beginner)
+First of all, both of ```@classmethod and @staticmethod``` are decorators.
+* ```@classmethod``` means: when this method is called, we pass the class as the first argument instead of the instance of that class (as we normally do with methods). This means you can use the class and its properties inside that method rather than a particular instance.
+  Parse something into the method an return an object. Like ```Date.from_string('11-09-2012')``` where ```def from_string(cls, date_as_string):``` pass the cls(in the place where self should go) in.
+
+* ```@staticmethod``` means: when this method is called, we don't pass an instance of the class to it (as we normally do with methods). This means you can put a function inside a class but you can't access the instance of that class (this is useful when your method does not use the instance).
+  Nothing more than a function defined inside a class. Think example of ```Date.is_date_valid()``` and ```Math``` functions.
+
 ###[Magic Methods](http://www.rafekettler.com/magicmethods.html)
 * Can use dir() to check what methods does an object own.
 
