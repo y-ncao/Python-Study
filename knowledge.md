@@ -22,18 +22,59 @@
 [Reference](http://pyzh.readthedocs.org/en/latest/index.html)
 long-polling
 WSGI
-
 -----
 ##Important Concepts
-###Descriptor
+
+###[Data Models](https://docs.python.org/2/reference/datamodel.html#attribute-access)
+###[Descriptor](https://docs.python.org/2/howto/descriptor.html)
+[Another paper](http://www.cafepy.com/article/python_attributes_and_methods/python_attributes_and_methods.html)
+[PPT](http://www.aleax.it/Python/osc05_bla_dp.pdf)
+####Definition
+If any of ```__get__(), __set__(), and __delete__()``` these methods are defined for an object, it is said to be a descriptor.
+
+####Descriptor Protocal
+```
+descr.__get__(self, obj, type=None) --> value
+descr.__set__(self, obj, value) --> None
+descr.__delete__(self, obj) --> None
+```
+
+####Invoking
+* For objects, the machinery is in ```object.__getattribute__()``` which transforms ```b.x``` into ```type(b).__dict__['x'].__get__(b, type(b))```.
+* For classes, the machinery is in ```type.__getattribute__()``` which transforms ```B.x``` into ```B.__dict__['x'].__get__(None, B)```.
+
+* descriptors are invoked by the ```__getattribute__()``` method
+* overriding ```__getattribute__()``` prevents automatic descriptor calls
+* ```__getattribute__()``` is only available with new style classes and objects (感觉就这句话说的不是天书)
+* ```object.__getattribute__()``` and ```type.__getattribute__()``` make different calls to ```__get__()```.
+* data descriptors always override instance dictionaries.
+* non-data descriptors may be overridden by instance dictionaries.
+
+####[Use Case](https://docs.python.org/2/howto/descriptor.html#descriptor-example)
+感觉看了这里才稍微有点点知道这东西是干吗用的
+
+####[Property](https://docs.python.org/2/howto/descriptor.html#properties)
+property(fget=None, fset=None, fdel=None, doc=None) -> property attribute
+
+####Bound vs Unbound
+* 从instance访问, 返回bound method
+* 从Class访问, 返回unbound method
 
 ###Decorator
 Decorators allow you to inject or modify code in functions or classes". In other words decorators allow you to wrap a function or class method call and execute some code before or after the execution of the original code. And also you can nest them e.g. to use more than one decorator for a specific function. Usage examples include – logging the calls to specific method, checking for permission(s), checking and/or modifying the arguments passed to the method etc.
 
 A implement of decorator is classmethod() and staticmethod()
 
+* If an object defines both```__get__() and __set__()```, it is considered a __data descriptor__.
+* Object only define __get__() are called non-data descriptors.
+
 ###[Magic Methods](http://www.rafekettler.com/magicmethods.html)
 * Can use dir() to check what methods does an object own.
+
+* ```__getitem__()``` 用于像list get index, dict get key的方法.
+* ```__getattribute__()``` 用于调用一个dir()之后可以看到的method.
+* ```__dict___()``` 用于得到object的内部变量?
+* ```dir()``` 用于得到object的method(attribute)
 
 ###[Metaclass](http://stackoverflow.com/questions/100003/what-is-a-metaclass-in-python)
 
@@ -108,6 +149,8 @@ If you have infinite loops, or it may make inefficient use of memory when you ha
 * 通过调用```__iter__(object)```来得到iterator
 * 通过调用next()来获取下一个element
 
+Iterator Protocol就是implement以上两个method.
+
 ####关系
 * 所有的定义了```__iter__() or getitem()```函数的object称作Iterable
 * Iterable分为两类
@@ -181,8 +224,10 @@ Python program runs directly from the source code. Each type Python programs are
   gc.enable() -Enables automatic garbage collection.
   gc.disable() - Disables automatic garbage collection.
 
-###What is delegation? 
+###[What is delegation?](https://docs.python.org/2/faq/programming.html#what-is-delegation)
+Delegation is an object oriented technique (also called a design pattern). Let’s say you have an object x and want to change the behaviour of just one of its methods. You can create a new class that provides a new implementation of the method you’re interested in changing and delegates all other methods to the corresponding method of x.
 
+Need to see the example from the above link.
 
 ###Write a sample program to print the complete contents of a file, with a way to catch a missing file.
 ```
