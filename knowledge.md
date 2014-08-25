@@ -32,7 +32,7 @@ WSGI
 ####Definition
 If any of ```__get__(), __set__(), and __delete__()``` these methods are defined for an object, it is said to be a descriptor.
 
-####Descriptor Protocal
+####Descriptor Protocol
 ```
 descr.__get__(self, obj, type=None) --> value
 descr.__set__(self, obj, value) --> None
@@ -59,6 +59,11 @@ property(fget=None, fset=None, fdel=None, doc=None) -> property attribute
 ####Bound vs Unbound
 * 从instance访问, 返回bound method
 * 从Class访问, 返回unbound method
+感觉Unbound method主要就是没有绑定instance的method. 一般来说是不能运行的, 但是如果用了decorator @staticmethod, 就可以tell metaclass type not to create a bound method.
+
+####[Static Methods and Class Methods](https://docs.python.org/2/howto/descriptor.html#static-methods-and-class-methods)
+* Static Methods: return the underlying function without changes. Good candidates for static methods are methods that do not reference the self variable.
+* Class Methods: function only needs to have a class reference and does not care about any underlying data.
 
 ###Decorator
 Decorators allow you to inject or modify code in functions or classes". In other words decorators allow you to wrap a function or class method call and execute some code before or after the execution of the original code. And also you can nest them e.g. to use more than one decorator for a specific function. Usage examples include – logging the calls to specific method, checking for permission(s), checking and/or modifying the arguments passed to the method etc.
@@ -76,14 +81,55 @@ A implement of decorator is classmethod() and staticmethod()
 * ```__dict___()``` 用于得到object的内部变量?
 * ```dir()``` 用于得到object的method(attribute)
 
+###[New Class vs Old Class](http://stackoverflow.com/questions/54867/old-style-and-new-style-classes-in-python).
+* If x is an instance of an old-style class, then x.__class__ designates the class of x, but type(x) is always <type 'instance'>.
+* If x is an instance of a new-style class, then type(x) is the same as x.__class__.
+* For compatibility reasons, classes are still old-style by default.
+* Python 3 only has new-style classes.
+
 ###[Metaclass](http://stackoverflow.com/questions/100003/what-is-a-metaclass-in-python)
+* Metaclasses are the 'stuff' that creates classes.
+* type is the built-in metaclass Python uses, but of course, you can create your own metaclass. ```MyClass = type('MyClass', (), {})```
+```
+type(name of the class, 
+     tuple of the parent class (for inheritance, can be empty), 
+     dictionary containing attributes names and values)
+```
+```
+>>> class MyShinyClass(object):
+...       pass
+```
+can be created manually this way:
+```
+>>> MyShinyClass = type('MyShinyClass', (), {}) # returns a class object
+>>> print(MyShinyClass)
+<class '__main__.MyShinyClass'>
+>>> print(MyShinyClass()) # create an instance with the class
+<__main__.MyShinyClass object at 0x8997cec>
+```
+
+#####Usage
+* intercept a class creation
+* modify the class
+* return the modified class
+
+#####Why metaclass over function?
+* The intention is clear. When you read UpperAttrMetaclass(type), you know what's going to follow
+* You can use OOP. Metaclass can inherit from metaclass, override parent methods. Metaclasses can even use metaclasses.
+* You can structure your code better. You never use metaclasses for something as trivial as the above example. It's usually for something complicated. Having the ability to make several methods and group them in one class is very useful to make the code easier to read.
+* You can hook on __new__, __init__ and __call__. Which will allow you to do different stuff. Even if usually you can do it all in __new__, some people are just more comfortable using __init__.
+* These are called metaclasses, damn it! It must mean something!
+
+#####Use Case
+The main use case for a metaclass is creating an API. A typical example of this is the Django ORM.
+
+classes are themselves instances. Of metaclasses.
 
 ###[Abstract Class](https://docs.python.org/2/library/abc.html)
 
 
 ###Some Words
 * [Duck-Typing](https://docs.python.org/2/glossary.html#term-duck-typing)
-* [Classic Class vs New Style Class](https://docs.python.org/2/glossary.html#term-new-style-class) - Inherits from object
 
 -----
 
@@ -424,19 +470,17 @@ Although fairly rare in practice, if a collection object contains a reference to
 ```
 
 #[Hashtable](./Concept_Implement/HashTable.py)
-Using hash function is two steps:
-
+###Using hash function is two steps
 1. Map the key to an integer
 2. Map the integer to a bucket
 
-Hash的两个特性:
-
+###Hash的两个特性:
 * Not invertible 不可逆
 * Unique deterministic 唯一性
 
 常见的Hash方法是MD5 and SHA1
 
-简单的Hash Functions:
+###简单的Hash Functions:
 
 * __Division method (Cormen)__ Choose a prime that isn't close to a power of 2. h(k) = k mod m. Works badly for many types of patterns in the input data.
 * __Knuth Variant__ on Division h(k) = k(k+3) mod m. Supposedly works much better than the raw division method.
@@ -452,6 +496,10 @@ Hash的两个特性:
   ```
 
 This seems to be the method that the theoreticians like.(可能永远都不需要知道)
+
+###Collision
+* Open Hashing (支持元素删除)
+* Closed Hashing (不支持元素删除)
 
 最重要的一点是Mod by something
 

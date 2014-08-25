@@ -506,3 +506,23 @@ while (!Q.empty()) {
 #####BFS - O(m) O(n)
 1. Graph Traversal(每个点都遍历一次)
 2. Find shorted path in a simple graph
+
+###Data Structure
+
+####Stack
+#####Min Stack
+```
+class min_stack(object):
+
+
+```
+
+#####Implement a queue by two stacks
+
+####Heap
+#####Median Number(应该是CC150)里的题
+* 要求插入一个数
+* 要求return median number
+
+
+####Interval Tree(线段树)

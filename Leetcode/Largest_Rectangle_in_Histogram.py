@@ -52,3 +52,4 @@ class Solution:
                     width = i - stack[-1] - 1
                 max_area = max(max_area, width * height[index])
         return max_area
+    # 维护一个递增序列
