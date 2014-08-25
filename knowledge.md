@@ -306,15 +306,15 @@ Need to see the example from the above link.
 ###Write a sample program to print the complete contents of a file, with a way to catch a missing file.
 ```python
 try:
-    with open(‘filename’,’r’) as file:
+    with open('filename','r') as file:
     print file.read()
 except IOError:
-    print “no such file exists”
+    print 'no such file exists'
 ```
 
 ###Write a sample program to print the length of each line in a particular file, not counting whitespace at the ends.
 ```python
-with open(“filename.txt”, “r”) as file:
+with open('filename.txt', 'r') as file:
     print len(file.readline().rstrip())
 ```
 
@@ -376,20 +376,19 @@ To use a reference of itself
 
 * All the keyword arguments passed must match one of the arguments accepted by the function, and their order is not important. This also includes non-optional arguments.
 * No argument may receive a value more than once.
-```
+```python
 def foo(kind, *args, **kwargs):
     for value in args:
         print value
     for key, value in kwargs:
         print key, value
-
 ```
 
 ###Pass by Assignment
 Assignment Creates References, Not Copies
 
 This is a core Python concept, which can cause problems when its behavior isn't expected. In the following example, the list object assigned to the name L is referenced both from L and from inside of the list assigned to name M. Changing L in place changes what M references, too, because there are two references to the same object:
-  
+
 ```python
 >>> L = [1, 2, 3]        # A shared list object
 >>> M = ['X', L, 'Y']    # Embed a reference to L
@@ -423,7 +422,7 @@ Immutable Types Can't Be Changed in Place. Remember that you can't change an imm
 
 ###Special Data Structures
 * DefaultDict
-  ```
+  ```python
   from collections import defaultdict
   # Use case 1. Similar to setdefault(key, [])
   d = defaultdict(list)
@@ -595,8 +594,7 @@ alert(typeof TestVar); //shows object
 
 From the preceding examples, it is clear that undefined and null are two distinct types: undefined is a type itself (undefined) while null is an object.
 
-###Var
-
+###[Var](http://stackoverflow.com/questions/1470488/what-is-the-function-of-the-var-keyword-in-ecmascript-262-3rd-edition-javascript)
 If you're in the __global__ scope then there's no difference.
 
 If you're in a function then "var" will create a local variable, "no var" will look up the scope chain until it finds the variable or hits the global scope (at which point it will create it):
@@ -625,12 +623,10 @@ If you're not doing an assignment then you need to use var:
 ```javascript
 var x; // Declare x
 ```
-http://stackoverflow.com/questions/1470488/what-is-the-function-of-the-var-keyword-in-ecmascript-262-3rd-edition-javascript
 
-###this:
+
+###[this](http://stackoverflow.com/questions/133973/how-does-this-keyword-work-within-a-javascript-object-literal)
 Javascript's this keyword normally refers to the object that owns the method, but it depends on how a function is called. Basically, it points to the currently in scope object that owns where you are in the code. When working within a Web page, this usually refers to the Window object. If you are in an object created with the new keyword, the this keyword refers to the object being created. When working with event handlers, JavaScript's this keyword will point to the object that generated the event.
-
-http://stackoverflow.com/questions/133973/how-does-this-keyword-work-within-a-javascript-object-literal
 
 ###Keep on mind this thing.
 ```javascript
@@ -748,6 +744,9 @@ Apache2 used to be not good at scale. Had some memory problem.
 * __Non-blocking__ network I/O
 * Only provides what a basic web server needs. Like url dispatch
 
+###Reason for Tornado
+Tornado is flexible and light weight. Since we are putting all the MVC part to our front-end, we don't need that powerful framework like Django.
+
 #####Flask & Bottle (Nimble) (Not non-blocking so not good for scale)
 * Flask + Jinja + SQLAlchemy
   Framework + Template + ORM
@@ -790,7 +789,6 @@ Spine stores and renders everything client-side, communicating with the server a
 Fits well with our user's workflow.
 * Most of the time, user are inputing data and choosing options. Like selecting parts, play with price. Data are changed frequently. We don't want our users wait everytime when they input anything, so doing async is the best solution, where SpineJS is good at.
 * User opens up the app, load principle models ahead, and later on do async calls to the back-end. User can't even feel that this app is talking with it's back-end because there's non-block IO.
-
 
 ###Grunt
 * Javascript task runner, or automation. Helps you to do automated compile, build and test.
