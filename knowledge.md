@@ -8,7 +8,7 @@
   There are three basic ways to represent a graph in memory (objects and pointers, matrix, and adjacency list). Also BFS and DFS in 伪代码. Dijkstra and A(卧槽这两个实在是太fancy了).
 
   还有一些有空时候看的东西. About NP-complete problems(NP完全), Traverling Salesman Problem(旅行推销员问题) and Knapsack Problem(背包问题)
-  
+
 * Math, 这个简单, 主要是离散数学, 稍微复习一下排列组合.
 * OS, 妈的这里实在是太蛋疼了, 实际真的都是经验之谈, 但是有好多傻逼的概念需要fresh-up
   * Locks, Mutexes, Semaphores, Monitors
@@ -33,7 +33,7 @@ WSGI
 If any of ```__get__(), __set__(), and __delete__()``` these methods are defined for an object, it is said to be a descriptor.
 
 ####Descriptor Protocol
-```
+```python
 descr.__get__(self, obj, type=None) --> value
 descr.__set__(self, obj, value) --> None
 descr.__delete__(self, obj) --> None
@@ -91,17 +91,17 @@ A implement of decorator is classmethod() and staticmethod()
 ###[Metaclass](http://stackoverflow.com/questions/100003/what-is-a-metaclass-in-python)
 * Metaclasses are the 'stuff' that creates classes.
 * type is the built-in metaclass Python uses, but of course, you can create your own metaclass. ```MyClass = type('MyClass', (), {})```
-```
+```python
 type(name of the class, 
      tuple of the parent class (for inheritance, can be empty), 
      dictionary containing attributes names and values)
 ```
-```
+```python
 >>> class MyShinyClass(object):
 ...       pass
 ```
 can be created manually this way:
-```
+```python
 >>> MyShinyClass = type('MyShinyClass', (), {}) # returns a class object
 >>> print(MyShinyClass)
 <class '__main__.MyShinyClass'>
@@ -126,8 +126,35 @@ The main use case for a metaclass is creating an API. A typical example of this 
 
 classes are themselves instances. Of metaclasses.
 
-###[Abstract Class](https://docs.python.org/2/library/abc.html)
+###[Abstract Class](http://pymotw.com/2/abc/)
 
+Abstract base classes are a form of interface checking more strict than individual hasattr() checks for particular methods.
+
+#####Why?
+Define a set of subclasses, so for large project, you won't forget to miss one of the method.
+
+#####Work
+
+```python
+import abc
+
+class PluginBase(object):
+    __metaclass__ = abc.ABCMeta
+
+    @abc.abstractmethod
+    def load(self, input):
+        """Retrieve data from the input source and return an object."""
+        return
+
+    @abc.abstractmethod
+    def save(self, output, data):
+        """Save the data object to the output."""
+        return
+```
+
+#####Two ways to make this work:
+* [Registering a Concrete Class](http://pymotw.com/2/abc/#registering-a-concrete-class) ```PluginBase.register(RegisteredImplementation)```
+* [Implementation Through Subclassing](http://pymotw.com/2/abc/#implementation-through-subclassing) ```class SubclassImplementation(PluginBase):```
 
 ###Some Words
 * [Duck-Typing](https://docs.python.org/2/glossary.html#term-duck-typing)
@@ -139,7 +166,7 @@ classes are themselves instances. Of metaclasses.
 * When you call the function, the code you have written in the function body does not run. It's because they do not store all the values in memory, they generate the values on the fly.
 
 ###Itertool
-```
+```python
 import itertools
 horses = [1,2,3,4]
 races = itertools.permutations(horses)
@@ -211,7 +238,7 @@ Iterator Protocol就是implement以上两个method.
 All Generators must be Iterator, but no vise versa.
 
 ####[For循环过程](http://stackoverflow.com/a/237028)
-```
+```python
 for x in mylist:
     ...loop body...
 ```
@@ -277,7 +304,7 @@ Delegation is an object oriented technique (also called a design pattern). Let�
 Need to see the example from the above link.
 
 ###Write a sample program to print the complete contents of a file, with a way to catch a missing file.
-```
+```python
 try:
     with open(‘filename’,’r’) as file:
     print file.read()
@@ -286,13 +313,13 @@ except IOError:
 ```
 
 ###Write a sample program to print the length of each line in a particular file, not counting whitespace at the ends.
-```
+```python
 with open(“filename.txt”, “r”) as file:
     print len(file.readline().rstrip())
 ```
 
 ###Remove Duplicates
-```
+```python
 list(set(dup_list))
 ```
 
@@ -363,7 +390,7 @@ Assignment Creates References, Not Copies
 
 This is a core Python concept, which can cause problems when its behavior isn't expected. In the following example, the list object assigned to the name L is referenced both from L and from inside of the list assigned to name M. Changing L in place changes what M references, too, because there are two references to the same object:
   
-```
+```python
 >>> L = [1, 2, 3]        # A shared list object
 >>> M = ['X', L, 'Y']    # Embed a reference to L
 >>> M
@@ -376,7 +403,7 @@ This is a core Python concept, which can cause problems when its behavior isn't 
 
 This effect usually becomes important only in larger programs, and shared references are normally exactly what you want. If they're not, you can avoid sharing objects by copying them explicitly; for lists, you can make a top-level copy by using an empty-limits slice:
 
-```
+```python
 >>> L = [1, 2, 3]
 >>> M = ['X', L[:], 'Y']   # Embed a copy of L
 
@@ -410,7 +437,7 @@ Immutable Types Can't Be Changed in Place. Remember that you can't change an imm
   ```
 
 * [OrderedDict](./Leetcode/LRU_Cache.py)
-  ```
+  ```python
   from collections import OrderedDict
   # Like LRU Cache
   self.cache = collections.OrderedDict()
@@ -422,7 +449,7 @@ Immutable Types Can't Be Changed in Place. Remember that you can't change an imm
   Use {1,2,3} to create.
 
   Another way is:
-  ```
+  ```python
   from sets import Set
   engineers = Set(['John', 'Jane', 'Jack', 'Janice'])
   s.add(x)     # add element x to set s
@@ -442,7 +469,7 @@ Immutable Types Can't Be Changed in Place. Remember that you can't change an imm
    * In List, inserting and removing elements is fast at each position, and not only at one or both ends.
    * List: Inserting and deleting elements does not invalidate pointers, references, and iterators to other elements.
   Deque is better for insert/delete at begining and ending of the sequence
-  ```
+  ```python
   from collections import deque
   d.append('j')
   d.appendleft('f') # This is what queue should use
@@ -451,7 +478,7 @@ Immutable Types Can't Be Changed in Place. Remember that you can't change an imm
   ```
 
 * [Priority Queue](./Leetocde/Merge_k_Sorted_Lists.py)
-  ```
+  ```python
   heapq.heappush(pq, (node.val, node))
   val, node = heapq.heappop(pq)
   ```
@@ -463,7 +490,7 @@ Cyclic Datastructures Can Cause Loops
 
 Although fairly rare in practice, if a collection object contains a reference to itself, it's called a cyclic object. Python prints a [...] whenever it detects a cycle in the object, rather than getting stuck in an infinite loop:
 
-```
+```python
 >>> L = ['grail']  # Append reference back to L
 >>> L.append(L)    # Generates cycle in object
 >>> L
@@ -490,7 +517,7 @@ Although fairly rare in practice, if a collection object contains a reference to
   2. Let A be some random-looking real number. Knuth suggests M = 0.5*(sqrt(5) - 1). 
   3. Then do the following:
 
-  ```
+  ```python
   s = k * A
   x = fractional part of s
   h(k) = floor(m*x)
@@ -504,39 +531,39 @@ This seems to be the method that the theoreticians like.(可能永远都不需�
 
 最重要的一点是Mod by something
 
-```
+```python
 class KeyValue:
-	def __init__(self,key,value):
-		self.key=key
-		self.value=value
-	def __str__(self):
-		return self.key+":"+str(self.value)
+    def __init__(self,key,value):
+        self.key=key
+        self.value=value
+    def __str__(self):
+        return self.key+":"+str(self.value)
 class HashTable:
-	SIZE=10
-	def __init__(self):
-		i=0
-		self.list=[]
-		while i<self.SIZE:
-			self.list.append([])
-			i=i+1
-	
-	def getValue(self,key):
-		h = self.hash (key)
-		bucket = self.list[h]
-		for kv in bucket:
-			if kv.key==key:
-				return kv.value
-	def setValue(self,key,value):
-		h = self.hash(key)
-		# should search first so we don't put key in twice, but for now ignore
-		self.list[h].append(KeyValue(key,value))
-	def hash(self,key):
-		i=0
-		total=0
-		while i<len(key):
-			total = total+ord(key[i])
-			i=i+1
-		return total % self.SIZE
+    SIZE=10
+    def __init__(self):
+        i=0
+        self.list=[]
+        while i<self.SIZE:
+            self.list.append([])
+            i=i+1
+
+    def getValue(self,key):
+        h = self.hash (key)
+        bucket = self.list[h]
+        for kv in bucket:
+            if kv.key==key:
+                return kv.value
+    def setValue(self,key,value):
+        h = self.hash(key)
+        # should search first so we don't put key in twice, but for now ignore
+        self.list[h].append(KeyValue(key,value))
+    def hash(self,key):
+        i=0
+        total=0
+        while i<len(key):
+            total = total+ord(key[i])
+            i=i+1
+        return total % self.SIZE
 
 htable= HashTable()
 htable.setValue("wolber","359-4787")
@@ -552,7 +579,7 @@ Number, String, Boolean, Function, Object, Null, and Undefined
 
 In JavaScript, __undefined__ means a variable has been declared but has not yet been assigned a value, such as:
 
-```
+```javascript
 var TestVar;
 alert(TestVar); //shows undefined
 alert(typeof TestVar); //shows undefined
@@ -560,7 +587,7 @@ alert(typeof TestVar); //shows undefined
 
 null is an assignment value. It can be assigned to a variable as a representation of no value:
 
-```
+```javascript
 var TestVar = null;
 alert(TestVar); //shows null
 alert(typeof TestVar); //shows object
@@ -574,7 +601,7 @@ If you're in the __global__ scope then there's no difference.
 
 If you're in a function then "var" will create a local variable, "no var" will look up the scope chain until it finds the variable or hits the global scope (at which point it will create it):
 
-```
+```javascript
 // These are both globals
 var foo = 1;
 bar = 2;
@@ -595,7 +622,7 @@ function()
 ```
 If you're not doing an assignment then you need to use var:
 
-```
+```javascript
 var x; // Declare x
 ```
 http://stackoverflow.com/questions/1470488/what-is-the-function-of-the-var-keyword-in-ecmascript-262-3rd-edition-javascript
@@ -606,7 +633,7 @@ Javascript's this keyword normally refers to the object that owns the method, bu
 http://stackoverflow.com/questions/133973/how-does-this-keyword-work-within-a-javascript-object-literal
 
 ###Keep on mind this thing.
-```
+```javascript
 var elements = [...];
 for (var i = 0, n = elements.length; i < n; i++) {
   var el = elements[i];
@@ -658,7 +685,7 @@ A closure takes place when a function creates an environment that binds local va
 
 The following code returns a reference to a function:
 
-```
+```javascript
 function sayHello2(name) { var text = ‘Hello ‘ + name; // local variable var sayAlert = function() { alert(text); } return sayAlert; }
 ```
 Closures reduce the need to pass state around the application. The inner function has access to the variables in the outer function so there is no need to store the information somewhere that the inner function can get it.
@@ -997,7 +1024,7 @@ A package is a collection of classes and interfaces that provides a high-level l
 1. __Implementing the java.lang.Runnable interface__
 
 
-  ```
+  ```java
   public interface Runnable{
 	  void run();
   }
@@ -1009,7 +1036,7 @@ A package is a collection of classes and interfaces that provides a high-level l
 
 2. __Extending the java.lang.Thread class__
 
-  ```
+  ```java
   ThreadExample instance=new ThreadExample();
   instance.start();
   ```
@@ -1041,7 +1068,7 @@ Map(K,V) is an interface which Hashtable and HashMap implement it.
 Priority Queue 可以选择ordered or unordered  反正insert 和extract一个是O(n)一个是O(1)
 Heap  insert和extract都是O(logn)
 
-```
+```java
 Nested Class
 class OuterClass {
     ...
