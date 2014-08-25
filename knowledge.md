@@ -59,6 +59,7 @@ property(fget=None, fset=None, fdel=None, doc=None) -> property attribute
 ####Bound vs Unbound
 * 从instance访问, 返回bound method
 * 从Class访问, 返回unbound method
+
 感觉Unbound method主要就是没有绑定instance的method. 一般来说是不能运行的, 但是如果用了decorator @staticmethod, 就可以tell metaclass type not to create a bound method.
 
 ####[Static Methods and Class Methods](https://docs.python.org/2/howto/descriptor.html#static-methods-and-class-methods)
@@ -71,7 +72,7 @@ Decorators allow you to inject or modify code in functions or classes". In other
 A implement of decorator is classmethod() and staticmethod()
 
 * If an object defines both```__get__() and __set__()```, it is considered a __data descriptor__.
-* Object only define __get__() are called non-data descriptors.
+* Object only define ```__get__()``` are called non-data descriptors.
 
 ###[Magic Methods](http://www.rafekettler.com/magicmethods.html)
 * Can use dir() to check what methods does an object own.
@@ -82,8 +83,8 @@ A implement of decorator is classmethod() and staticmethod()
 * ```dir()``` 用于得到object的method(attribute)
 
 ###[New Class vs Old Class](http://stackoverflow.com/questions/54867/old-style-and-new-style-classes-in-python).
-* If x is an instance of an old-style class, then x.__class__ designates the class of x, but type(x) is always <type 'instance'>.
-* If x is an instance of a new-style class, then type(x) is the same as x.__class__.
+* If x is an instance of an old-style class, then ```x.__class__``` designates the class of x, but type(x) is always <type 'instance'>.
+* If x is an instance of a new-style class, then type(x) is the same as ```x.__class__```.
 * For compatibility reasons, classes are still old-style by default.
 * Python 3 only has new-style classes.
 
@@ -117,7 +118,7 @@ can be created manually this way:
 * The intention is clear. When you read UpperAttrMetaclass(type), you know what's going to follow
 * You can use OOP. Metaclass can inherit from metaclass, override parent methods. Metaclasses can even use metaclasses.
 * You can structure your code better. You never use metaclasses for something as trivial as the above example. It's usually for something complicated. Having the ability to make several methods and group them in one class is very useful to make the code easier to read.
-* You can hook on __new__, __init__ and __call__. Which will allow you to do different stuff. Even if usually you can do it all in __new__, some people are just more comfortable using __init__.
+* You can hook on ```__new__```, ```__init__``` and ```__call__```. Which will allow you to do different stuff. Even if usually you can do it all in ```__new__```, some people are just more comfortable using __init__.
 * These are called metaclasses, damn it! It must mean something!
 
 #####Use Case
