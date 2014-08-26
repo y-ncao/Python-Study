@@ -87,14 +87,16 @@ Can talk about serilization here
 * Nginx - gzip
 
 #####Front-End
-* Add Part
+* Add Part Info
 * Part Wiki
 * Solutions
 
-#####5. Difficulties:
-1. Started from zero and everyone works full-stack
+#####5. Challenges:
+1. Started from scratch and everyone works full-stack.
 2. The memcache problem
 3. Support for different browsers on different OS. Especially on mobile device. Had a problem about memory using on iOS device.
+
+-----
 
 ###Questions:
 * What do you think is the most challenging part of the work
