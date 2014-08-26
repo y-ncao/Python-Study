@@ -526,3 +526,7 @@ class min_stack(object):
 
 
 ####Interval Tree(线段树)
+
+-----
+
+####增加一个jumble的算法，跟permutation和combination还有subset一起做简算。
