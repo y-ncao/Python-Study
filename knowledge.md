@@ -20,15 +20,14 @@
 #[Python](https://docs.python.org/2/faq/programming.html#what-is-a-class)
 
 [Reference](http://pyzh.readthedocs.org/en/latest/index.html)
-long-polling
-WSGI
------
+
 ##Important Concepts
 
 ###[Data Models](https://docs.python.org/2/reference/datamodel.html#attribute-access)
 ###[Descriptor](https://docs.python.org/2/howto/descriptor.html)
 [Another paper](http://www.cafepy.com/article/python_attributes_and_methods/python_attributes_and_methods.html)
 [PPT](http://www.aleax.it/Python/osc05_bla_dp.pdf)
+
 ####Definition
 If any of ```__get__(), __set__(), and __delete__()``` these methods are defined for an object, it is said to be a descriptor.
 
@@ -280,19 +279,21 @@ In a few words the with statement allows you to executed code before and/or afte
 
 ###[Underscore and Double Underscore](http://stackoverflow.com/questions/1301346/the-meaning-of-a-single-and-a-double-underscore-before-an-object-name-in-python)
 * Names, in a class, with a leading underscore are simply to indicate to other programmers that the attribute or method is intended to be private. However, nothing special is done with the name itself.
-* ```_single_leading_underscore```: weak "internal use" indicator. E.g. from M import * does not import objects whose name starts with an underscore. 
-
+* ```_single_leading_underscore```: weak "internal use" indicator. E.g. from M import * does not import objects whose name starts with an underscore.
 * ```__foo__```: this is just a convention, a way for the Python system to use names that won't conflict with user names.
 * ```_foo```: this is just a convention, a way for the programmer to indicate that the variable is private (whatever that means in Python).
-* ```__foo```: this has real meaning: the interpreter replaces this name with ```_classname__foo``` as a way to ensure that the name will not overlap with a similar name in another class.
+* ```__foo```: this has real meaning: the interpreter replaces this name with ```_classname__foo``` as a way to ensure that the name will not overlap with a similar name in another class.  
+  __(at least two leading underscores, at most one trailing underscore)__
+  
+Private class/method/var are same since everything is object in python.
 
 ###PEP8
 PEP 8 is a coding convention(a set of recommendations) how to write your Python code in order to make it more readable and useful for those after you.
 
 ###Python 2.x to 3.x
 * All strings are now Unicode
-* Print is now function not a statement. 
-* There is no range, it has been replaced by xrange which is removed. 
+* Print is now function not a statement.
+* There is no range, it has been replaced by xrange which is removed.
 * All classes are new style and the division of integers now returns float.
 
 ###xrange and range
@@ -374,6 +375,12 @@ list(set(dup_list))
 * All strings are not unicode by default (Fixed in Python3)
 
 ###[Class Attributes](http://www.toptal.com/python/python-class-attributes-an-overly-thorough-guide#.)
+
+###Override and Overload
+* Overloading(same func name, but different parameters) - Can use default value like ```def func(self, abc = None)```
+  __Python does NOT support overloading
+* Override - 就是正常的override, 自己去试以下
+
 ###Import
 1. import SomeModule
   可以用import SomeModule.SomeName 调用时用 SomeModule.SomeName()
@@ -502,6 +509,24 @@ Immutable Types Can't Be Changed in Place. Remember that you can't change an imm
 
 -----
 ##Just Interesting
+
+###["Sticky" Method](http://effbot.org/zone/default-values.htm)
+Problem:
+```
+>>> def function(data=[]):
+...     data.append(1)
+...     return data
+...
+>>> function()
+[1]
+>>> function()
+[1, 1]
+>>> function()
+[1, 1, 1]
+```
+
+So when def is called, it creates a function object, and it also evaluates the default values. It will always be the same object when you call function, unless you def a new one.
+
 ###Cyclic Datastructures
 Cyclic Datastructures Can Cause Loops
 
