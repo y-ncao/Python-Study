@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import glob
-
 from xlrd import open_workbook
 
 def combiner(file_list):

@@ -41,8 +41,7 @@ class Solution:
 
     # Notice:
     # 1. This is almost the same to 3 Sum Closest.
-    # 2. remember to remove duplicate result by doing l += 1 and r -= 1, also the continue on line 21
-```
+    # 2. remember to remove duplicate result by doing l += 1 and r -= 1, also the continue on line 22```
 -----
 
 ##[2. 3Sum Closest](https://oj.leetcode.com/problems/3sum-closest/)
@@ -979,6 +978,9 @@ class Solution:
                 queue.append((oldNeighbor, newNeighbor))
                 newNode.neighbors.append(newNeighbor)
         return newNodeHead
+
+    # Another way to this is like Nine Chapter, no need to do like level order BFS
+    # Finally add all neighbors
 ```
 -----
 
@@ -2283,6 +2285,7 @@ class Solution:
                     width = i - stack[-1] - 1
                 max_area = max(max_area, width * height[index])
         return max_area
+    # 维护一个递增序列
 ```
 -----
 
@@ -3511,7 +3514,7 @@ class Solution:
             l += 1
             r -= 1
         return True
-```
+    # This function can use return s == s[::-1] to replace.```
 -----
 
 ##[77. Palindrome Partitioning II](https://oj.leetcode.com/problems/palindrome-partitioning-ii/)
@@ -5650,15 +5653,16 @@ class Solution:
                 if bit == '-':
                     sign = -1
             elif bit.isdigit():
-                res = res * 10 + int(bit)
-                if res*sign <= imin:
+                res = res*10 + int(bit)
+                if res * sign <= imin:
                     return imin
-                elif res*sign >= imax:
+                elif res * sign >= imax:
                     return imax
             else:
                 break
         return sign * res
-```
+
+    # Don't forget to check sign at the beginning```
 -----
 
 ##[124. Subsets](https://oj.leetcode.com/problems/subsets/)
@@ -6385,9 +6389,9 @@ class Solution:
             else:
                 return (num_map[target-n] + 1, i + 1) # Don't know why leetcode call the index [0] as 1
 
-    # O(nlgn)
+    # O(nlgn) This is the best way, used in X Sum
     def twoSum_3(self, num, target):
-        d = {}                          # This is used becase we need to sort the array
+        d = {}                          # This is used because we need to sort the array
         for i, n in enumerate(num):
             d.setdefault(n, []).append(i+1)
         num = sorted(num)
@@ -6403,7 +6407,9 @@ class Solution:
                 l += 1
             else:
                 r -= 1
-```
+
+    # Note:
+    # 1. Keep in mind we need to use a dict to store the original position.```
 -----
 
 ##[136. Unique Binary Search Trees](https://oj.leetcode.com/problems/unique-binary-search-trees/)
