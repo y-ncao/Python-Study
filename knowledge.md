@@ -19,8 +19,6 @@
 
 #[Python](https://docs.python.org/2/faq/programming.html#what-is-a-class)
 
-[Reference](http://pyzh.readthedocs.org/en/latest/index.html)
-
 ##Important Concepts
 
 ###[Data Models](https://docs.python.org/2/reference/datamodel.html#attribute-access)
@@ -284,7 +282,7 @@ In a few words the with statement allows you to executed code before and/or afte
 * ```_foo```: this is just a convention, a way for the programmer to indicate that the variable is private (whatever that means in Python).
 * ```__foo```: this has real meaning: the interpreter replaces this name with ```_classname__foo``` as a way to ensure that the name will not overlap with a similar name in another class.  
   __(at least two leading underscores, at most one trailing underscore)__
-  
+
 Private class/method/var are same since everything is object in python.
 
 ###PEP8
@@ -350,6 +348,25 @@ list(set(dup_list))
 2. Simpler
 
 ###Python数字精度问题
+Flexible精度, you can test it by doing
+```
+import sys
+sys.getsizeof(x)
+```
+where x is the number.
+You can get 24 or 36.
+```
+print sys.maxint
+```
+Also
+
+```
+>>> print type(1<<62)
+<type 'int'>
+>>> print type(1<<63)
+<type 'long'>
+```
+[But note this depends on the system is 32bit or 64bit](http://stackoverflow.com/a/2104962/1939805)
 
 -----
 
@@ -538,6 +555,11 @@ Although fairly rare in practice, if a collection object contains a reference to
 >>> L
 ['grail', [...]]
 ```
+
+###Reference
+[Reference](http://pyzh.readthedocs.org/en/latest/index.html)
+
+-----
 
 #[Hashtable](./Concept_Implement/HashTable.py)
 ###Using hash function is two steps
