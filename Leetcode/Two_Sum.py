@@ -31,9 +31,9 @@ class Solution:
             else:
                 return (num_map[target-n] + 1, i + 1) # Don't know why leetcode call the index [0] as 1
 
-    # O(nlgn)
+    # O(nlgn) This is the best way, used in X Sum
     def twoSum_3(self, num, target):
-        d = {}                          # This is used becase we need to sort the array
+        d = {}                          # This is used because we need to sort the array
         for i, n in enumerate(num):
             d.setdefault(n, []).append(i+1)
         num = sorted(num)
@@ -49,3 +49,6 @@ class Solution:
                 l += 1
             else:
                 r -= 1
+
+    # Note:
+    # 1. Keep in mind we need to use a dict to store the original position.
