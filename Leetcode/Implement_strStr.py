@@ -37,7 +37,7 @@ class Solution:
         if N == 0:
             return haystack
         i = 0
-        while i < H-N+1:
+        while i < H - N + 1:
             if haystack[i] == needle[0]:
                 start = None            # Use None here
                 j = 1
@@ -45,11 +45,16 @@ class Solution:
                     if haystack[i+j] != needle[j]:
                         break
                     elif start is None and haystack[i+j] == needle[0]: # Find first dup occurance
-                        start = i+j
+                        start = i + j
                     j += 1
                 if j == N:
                     return haystack[i:]
                 if start is not None:
                     i = start - 1       # Detail, need to check start - 1
-            i+=1
+                else:
+                    i = i + j - 1
+            i += 1
         return None
+    # Note:
+    # 1. Note line 53 and 54, minus one there, but in interview, probably do i += 1 in else will be better
+    # 2. Both ways will pass
