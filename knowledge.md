@@ -4,7 +4,7 @@
 * Hashtable 仔细想想确实是, 好多面试都会面这个, 自己不如尝试implement一下.
 * b Trees 除了tree的基础题(其实已经蛮多的了), 最好还能看看n-ary tree, trie-trees. Red/black tree, splay tree or AVL tree. BFS DFS in-order, post-order and pre-order.
 * Graphs 这个是我最薄弱的地方, 但是说实话, 真的会经常面试到, 这里一定要好好准备.  
-x
+
   There are three basic ways to represent a graph in memory (objects and pointers, matrix, and adjacency list). Also BFS and DFS in 伪代码. Dijkstra and A(卧槽这两个实在是太fancy了).
 
   还有一些有空时候看的东西. About NP-complete problems(NP完全), Traverling Salesman Problem(旅行推销员问题) and Knapsack Problem(背包问题)
@@ -70,6 +70,20 @@ property(fget=None, fset=None, fdel=None, doc=None) -> property attribute
 Decorators allow you to inject or modify code in functions or classes". In other words decorators allow you to wrap a function or class method call and execute some code before or after the execution of the original code. And also you can nest them e.g. to use more than one decorator for a specific function. Usage examples include – logging the calls to specific method, checking for permission(s), checking and/or modifying the arguments passed to the method etc.
 
 A implement of decorator is classmethod() and staticmethod()
+
+####The decorator is solving problems by avoid doing closure way
+
+###Closure and nonlocal
+
+
+###dir
+* dir(x) is used to find out which names does module x defines. Including variables, modules, functions, etc.
+* Without arguments, dir() lists the names you have defined currently.
+```
+>>>import __builtin__
+>>>dir(__builtin__)
+```
+And you will get a lot
 
 ###[Classmethod vs Staticmethod](http://stackoverflow.com/questions/12179271/python-classmethod-and-staticmethod-for-beginner)
 First of all, both of ```@classmethod and @staticmethod``` are decorators.

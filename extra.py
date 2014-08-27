@@ -149,3 +149,11 @@ def find_consecutive(num, sum):
 num = [9, 1, 4, 20, 10, 3, 5]
 sum = 33
 print find_consecutive(num, sum)
+
+
+def add(x):
+    def temp(y):
+        return add(x+y)
+    return temp
+
+
