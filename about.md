@@ -149,7 +149,7 @@ Spine stores and renders everything client-side, communicating with the server a
 
 
 ####Reason for Spine
-Fits well with our user's workflow.
+Fits well with our user's workflow.  
 * Most of the time, user are inputing data and choosing options. Like selecting parts, play with price. Data are changed frequently. We don't want our users wait everytime when they input anything, so doing async is the best solution, where SpineJS is good at.
 * User opens up the app, load principle models ahead, and later on do async calls to the back-end. User can't even feel that this app is talking with it's back-end because there's non-block IO.
 
