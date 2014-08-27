@@ -3,8 +3,8 @@
 * Sorting. quicksort, mergesort and all their complexity.
 * Hashtable 仔细想想确实是, 好多面试都会面这个, 自己不如尝试implement一下.
 * b Trees 除了tree的基础题(其实已经蛮多的了), 最好还能看看n-ary tree, trie-trees. Red/black tree, splay tree or AVL tree. BFS DFS in-order, post-order and pre-order.
-* Graphs 这个是我最薄弱的地方, 但是说实话, 真的会经常面试到, 这里一定要好好准备.
-
+* Graphs 这个是我最薄弱的地方, 但是说实话, 真的会经常面试到, 这里一定要好好准备.  
+x
   There are three basic ways to represent a graph in memory (objects and pointers, matrix, and adjacency list). Also BFS and DFS in 伪代码. Dijkstra and A(卧槽这两个实在是太fancy了).
 
   还有一些有空时候看的东西. About NP-complete problems(NP完全), Traverling Salesman Problem(旅行推销员问题) and Knapsack Problem(背包问题)
@@ -71,9 +71,6 @@ Decorators allow you to inject or modify code in functions or classes". In other
 
 A implement of decorator is classmethod() and staticmethod()
 
-* If an object defines both```__get__() and __set__()```, it is considered a __data descriptor__.
-* Object only define ```__get__()``` are called non-data descriptors.
-
 ###[Classmethod vs Staticmethod](http://stackoverflow.com/questions/12179271/python-classmethod-and-staticmethod-for-beginner)
 First of all, both of ```@classmethod and @staticmethod``` are decorators.
 * ```@classmethod``` means: when this method is called, we pass the class as the first argument instead of the instance of that class (as we normally do with methods). This means you can use the class and its properties inside that method rather than a particular instance.
@@ -84,7 +81,6 @@ First of all, both of ```@classmethod and @staticmethod``` are decorators.
 
 ###[Magic Methods](http://www.rafekettler.com/magicmethods.html)
 * Can use dir() to check what methods does an object own.
-
 * ```__getitem__()``` 用于像list get index, dict get key的方法.
 * ```__getattribute__()``` 用于调用一个dir()之后可以看到的method.
 * ```__dict___()``` 用于得到object的内部变量?
@@ -259,7 +255,7 @@ for x in mylist:
 
 ##Interview
 ###```__new__() and __init__()```
-__new__ is static class method, while ```__init__``` is instance method.  ```__new__``` has to create the instance first, so ```__init__``` can initialize it. Note that ```__init__``` takes self as parameter. Until you create instance there is no self.
+```__new__``` is static class method, while ```__init__``` is instance method.  ```__new__``` has to create the instance first, so ```__init__``` can initialize it. Note that ```__init__``` takes self as parameter. Until you create instance there is no self.
 
 ###isinstance(inst, class)
 Use this function to check if an object is an instance of a given class or of a subclass of it.
