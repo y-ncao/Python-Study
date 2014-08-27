@@ -32,11 +32,13 @@ class Solution:
                 if bit == '-':
                     sign = -1
             elif bit.isdigit():
-                res = res * 10 + int(bit)
-                if res*sign <= imin:
+                res = res*10 + int(bit)
+                if res * sign <= imin:
                     return imin
-                elif res*sign >= imax:
+                elif res * sign >= imax:
                     return imax
             else:
                 break
         return sign * res
+
+    # Don't forget to check sign at the beginning
