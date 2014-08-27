@@ -39,4 +39,4 @@ class Solution:
 
     # Notice:
     # 1. This is almost the same to 3 Sum Closest.
-    # 2. remember to remove duplicate result by doing l += 1 and r -= 1, also the continue on line 21
+    # 2. remember to remove duplicate result by doing l += 1 and r -= 1, also the continue on line 22
