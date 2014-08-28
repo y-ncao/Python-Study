@@ -52,6 +52,11 @@ descr.__delete__(self, obj) --> None
 
 ####[Property](https://docs.python.org/2/howto/descriptor.html#properties)
 property(fget=None, fset=None, fdel=None, doc=None) -> property attribute
+我觉得[这个](https://docs.python.org/3.3/library/functions.html#property)才讲的比较清楚
+```
+x = property(getx, setx, delx, "I'm the 'x' property.")
+```
+If then c is an instance of C, c.x will invoke the getter, c.x = value will invoke the setter and del c.x the deleter.
 
 ####Bound vs Unbound
 * 从instance访问, 返回bound method
@@ -68,10 +73,23 @@ Decorators allow you to inject or modify code in functions or classes". In other
 
 A implement of decorator is classmethod() and staticmethod()
 
-####The decorator is solving problems by avoid doing closure way
+```
+@f1(arg)
+@f2
+class Foo: pass
+```
+is equivalent to
+```
+class Foo: pass
+Foo = f1(arg)(f2(Foo))
+```
 
-###Closure and nonlocal
+######The decorator is solving problems by avoid doing closure way
 
+###Closure and nonlocal (说到closure就应该想到nonlocal)
+* locals()  
+  Update and return a dictionary representing the current local symbol table. Free variables are returned by locals() when it is called in function blocks, but not in class blocks.
+太长了的[解释](https://gist.github.com/DmitrySoshnikov/700292), 但是挺好.
 
 ###dir
 * dir(x) is used to find out which names does module x defines. Including variables, modules, functions, etc.
