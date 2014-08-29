@@ -235,3 +235,7 @@ Fits well with our user's workflow.
 * The Hacker News
 * TechCrunch
 * Web Design Inspiration
+
+###About Workflow
+* Use remedy and redmine as our bug tracker
+* We work in iterative agile way. We wanted to work like Scrum and actually currently my manager's role is almost same as Scrum Master, but since we are in a small team, we are not tight to the sprints.
