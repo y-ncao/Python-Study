@@ -35,3 +35,6 @@ class Solution:
             fn_1 = fn
             fn_2 = fn_1
         return fn
+
+    # Note:
+    # DP way is the best, and no need to check if n <= 2 or not.
