@@ -25,7 +25,7 @@ class Solution:
     def insert(self, intervals, newInterval):
         res = []
         inserted = False
-        for i, inter in enumerate(intervals):
+        for inter in intervals:
             if not inserted and inter.start > newInterval.end:
                 res.append(newInterval)
                 res.append(inter)
@@ -34,11 +34,14 @@ class Solution:
                 res.append(inter)
             else:
                 newInterval.start = min(newInterval.start, inter.start)
-                newInterval.end = max(newInterval.end, inter.end)
+                newInterval.end   = max(newInterval.end, inter.end)
         if not inserted:
             res.append(newInterval)
         return res
 
+    # Note:
+    # 1. Line 29, the if not inserted check is very important
+    # 2. Three conditions very important
 """ This works, but leetcode require a sorted result
     def insert(self, intervals, newInterval):
         res = []
