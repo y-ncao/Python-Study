@@ -31,11 +31,8 @@ class Solution:
             if word == end:
                 return depth
             for i in range(N):
-                before = word[:i]
-                after = word[i+1:]
                 for char in 'abcdefghijklmnopqrstuvwxyz':
-                    if char != word[i]:
-                        new_word = before+char+after
+                        new_word = word[:i] + char + word[i+1:]
                         if new_word in dict:
                             queue.append((new_word, depth+1))
                             dict.remove(new_word)
