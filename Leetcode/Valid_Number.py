@@ -19,13 +19,13 @@ class Solution:
             return False
 
         if 'e' in s:
-            return self.isNumberwoE(s.split('e')[0]) and self.isNumberwoE(s.split('e')[1], False)
+            return self.isNumberwoE_2(s.split('e')[0]) and self.isNumberwoE_2(s.split('e')[1], False)
         elif 'E' in s:
-            return self.isNumberwoE(s.split('E')[0]) and self.isNumberwoE(s.split('E')[1], False)
+            return self.isNumberwoE_2(s.split('E')[0]) and self.isNumberwoE_2(s.split('E')[1], False)
         else:
-            return self.isNumberwoE(s)
+            return self.isNumberwoE_2(s)
 
-    def isNumberwoE(self, s, allow_digit = True):
+    def isNumberwoE_1(self, s, allow_digit = True):
         digit = '0123456789'
         N = len(s)
         if N == 0:
@@ -50,6 +50,24 @@ class Solution:
                 has_num = True
         return has_num
 
-    # Main idea is:
+    def isNumberwoE_2(self, s, allow_digit = True):
+        digit = '0123456789'
+        has_num = False
+        for i, char in enumerate(s):
+            if i == 0 and char in ['+', '-']:
+                continue
+            if char == '.' and allow_digit:
+                allow_digit = False
+                if (i == 0 or s[i-1] in digit) or (i == len(s)-1 or s[i+1] in digit):
+                    continue
+            if char in digit:
+                has_num = True
+                continue
+            return False
+        return has_num
+
+    # Note:
     # 1. Before/after e/E must be a valid num
     # 2. check each sign and dot and num and space
+    # 3. Keep an eye on line 44 and line 61 using and / or. Reason is +.8 is valid.
+    # 4. isNumberwoE_2 is easier to think, don't think reversely
