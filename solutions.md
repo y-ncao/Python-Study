@@ -918,7 +918,9 @@ class Solution:
             fn_1 = fn
             fn_2 = fn_1
         return fn
-```
+
+    # Note:
+    # DP way is the best, and no need to check if n <= 2 or not.```
 -----
 
 ##[20. Clone Graph](https://oj.leetcode.com/problems/clone-graph/)
@@ -1851,7 +1853,7 @@ class Solution:
         if N == 0:
             return haystack
         i = 0
-        while i < H-N+1:
+        while i < H - N + 1:
             if haystack[i] == needle[0]:
                 start = None            # Use None here
                 j = 1
@@ -1859,15 +1861,19 @@ class Solution:
                     if haystack[i+j] != needle[j]:
                         break
                     elif start is None and haystack[i+j] == needle[0]: # Find first dup occurance
-                        start = i+j
+                        start = i + j
                     j += 1
                 if j == N:
                     return haystack[i:]
                 if start is not None:
                     i = start - 1       # Detail, need to check start - 1
-            i+=1
+                else:
+                    i = i + j - 1
+            i += 1
         return None
-```
+    # Note:
+    # 1. Note line 53 and 54, minus one there, but in interview, probably do i += 1 in else will be better
+    # 2. Both ways will pass```
 -----
 
 ##[42. Insert Interval](https://oj.leetcode.com/problems/insert-interval/)
@@ -1899,7 +1905,7 @@ class Solution:
     def insert(self, intervals, newInterval):
         res = []
         inserted = False
-        for i, inter in enumerate(intervals):
+        for inter in intervals:
             if not inserted and inter.start > newInterval.end:
                 res.append(newInterval)
                 res.append(inter)
@@ -1908,11 +1914,14 @@ class Solution:
                 res.append(inter)
             else:
                 newInterval.start = min(newInterval.start, inter.start)
-                newInterval.end = max(newInterval.end, inter.end)
+                newInterval.end   = max(newInterval.end, inter.end)
         if not inserted:
             res.append(newInterval)
         return res
 
+    # Note:
+    # 1. Line 29, the if not inserted check is very important
+    # 2. Three conditions very important
  This works, but leetcode require a sorted result
     def insert(self, intervals, newInterval):
         res = []
@@ -4108,9 +4117,9 @@ class Solution:
     def pow(self, x, n):
         if x == 0 or x == 1:
             return x
-        elif x < 0 and n%2 == 0:
+        elif x < 0 and n % 2 == 0:
             return self.pow(-x, n)
-        elif x < 0 and n%2 ==1:
+        elif x < 0 and n % 2 ==1:
             return self.pow(-x, n) * (-1)
         elif n < 0:
             return 1.0 / self.pow(x, -n)
@@ -4124,7 +4133,7 @@ class Solution:
             return half * half
         else:
             return half * half * x
-```
+    # Note to use the half var to make the code clean```
 -----
 
 ##[90. Recover Binary Search Tree](https://oj.leetcode.com/problems/recover-binary-search-tree/)
@@ -6592,13 +6601,13 @@ class Solution:
             return False
 
         if 'e' in s:
-            return self.isNumberwoE(s.split('e')[0]) and self.isNumberwoE(s.split('e')[1], False)
+            return self.isNumberwoE_2(s.split('e')[0]) and self.isNumberwoE_2(s.split('e')[1], False)
         elif 'E' in s:
-            return self.isNumberwoE(s.split('E')[0]) and self.isNumberwoE(s.split('E')[1], False)
+            return self.isNumberwoE_2(s.split('E')[0]) and self.isNumberwoE_2(s.split('E')[1], False)
         else:
-            return self.isNumberwoE(s)
+            return self.isNumberwoE_2(s)
 
-    def isNumberwoE(self, s, allow_digit = True):
+    def isNumberwoE_1(self, s, allow_digit = True):
         digit = '0123456789'
         N = len(s)
         if N == 0:
@@ -6623,10 +6632,27 @@ class Solution:
                 has_num = True
         return has_num
 
-    # Main idea is:
+    def isNumberwoE_2(self, s, allow_digit = True):
+        digit = '0123456789'
+        has_num = False
+        for i, char in enumerate(s):
+            if i == 0 and char in ['+', '-']:
+                continue
+            if char == '.' and allow_digit:
+                allow_digit = False
+                if (i == 0 or s[i-1] in digit) or (i == len(s)-1 or s[i+1] in digit):
+                    continue
+            if char in digit:
+                has_num = True
+                continue
+            return False
+        return has_num
+
+    # Note:
     # 1. Before/after e/E must be a valid num
     # 2. check each sign and dot and num and space
-```
+    # 3. Keep an eye on line 44 and line 61 using and / or. Reason is +.8 is valid.
+    # 4. isNumberwoE_2 is easier to think, don't think reversely```
 -----
 
 ##[141. Valid Palindrome](https://oj.leetcode.com/problems/valid-palindrome/)
@@ -6988,16 +7014,12 @@ class Solution:
             if word == end:
                 return depth
             for i in range(N):
-                before = word[:i]
-                after = word[i+1:]
                 for char in 'abcdefghijklmnopqrstuvwxyz':
-                    if char != word[i]:
-                        new_word = before+char+after
+                        new_word = word[:i] + char + word[i+1:]
                         if new_word in dict:
                             queue.append((new_word, depth+1))
                             dict.remove(new_word)
-        return 0
-```
+        return 0```
 -----
 
 ##[149. Word Ladder II](https://oj.leetcode.com/problems/word-ladder-ii/)
