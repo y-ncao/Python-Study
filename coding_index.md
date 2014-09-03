@@ -623,3 +623,5 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
      qps: 1000, router: round robin
      storage: consistant hashing: http://www.programering.com/a/MzN2MjMwATI.html
   4. Locale: router
+
+  This will be my today's streak, from tomorrow, I need to work double hard.
