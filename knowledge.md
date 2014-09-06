@@ -444,7 +444,13 @@ def foo(kind, *args, **kwargs):
         print key, value
 ```
 
-###Pass by Assignment
+###[Pass by Assignment]
+
+1. If passing a mutable object, the method got an reference of the object and you can change it. But if you rebind the reference, outer scope wouldn't know
+2. Immutable object is changed by rebind, so outer scope wouldn't know.
+
+-----
+
 Assignment Creates References, Not Copies
 
 This is a core Python concept, which can cause problems when its behavior isn't expected. In the following example, the list object assigned to the name L is referenced both from L and from inside of the list assigned to name M. Changing L in place changes what M references, too, because there are two references to the same object:
