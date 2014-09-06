@@ -14,9 +14,9 @@ class Solution:
     def sqrt_1(self, x):
         if x <= 1:
             return x
-        left = 0                         
-        right = x                        
-        while left + 1 < right:            
+        left = 0
+        right = x
+        while left + 1 < right:
             mid = (left + right) / 2
             sqr = mid * mid
             if sqr == x:
@@ -25,9 +25,10 @@ class Solution:
                 left = mid
             else:
                 right = mid
-        return left                      # This is so important
+        return left
+    # We are looking for the smaller one
 
-    def sqrt_2(self, x):        
+    def sqrt_2(self, x):
         left = 0                         # Here must 0, otherwise 1 won't pass
         right = x                        # Use x/2 + 1
         while left <= right:             # <=
@@ -39,5 +40,5 @@ class Solution:
                 left = mid + 1
             else:
                 right = mid - 1
-        return (left+right)/2           # This is so important
+        return (left + right) / 2           # This is so important
     # On the end, we can return right, or recalculate the mid, very important
