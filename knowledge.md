@@ -521,7 +521,7 @@ class MyError(Exception):
   for k, v in s:
      d[k].append(v)
 
-  # Use case 2. 
+  # Use case 2.
   d = defaultdict(int)
   for k in s:
      d[k] += 1
