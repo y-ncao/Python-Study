@@ -486,6 +486,32 @@ Numbers, Strings, Tuples
 
 Immutable Types Can't Be Changed in Place. Remember that you can't change an immutable object.
 
+###Exception and Error
+
+####Common Errors
+* ZeroDivisionError
+* NameError
+* TypeError
+* RuntimeError
+
+#######[Why are Python exceptions named “Error”?](http://stackoverflow.com/questions/2903827/why-are-python-exceptions-named-error)
+因为名字命名要有意义...
+
+```python
+try:
+    int('100+5')
+except ValueError:
+    print "Oh I can't"
+
+
+class MyError(Exception):
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        return "WRONG %d" % self.value
+# 基本就是重写这两个函数
+```
+
 ###Special Data Structures
 * DefaultDict
   ```python
@@ -557,6 +583,20 @@ Immutable Types Can't Be Changed in Place. Remember that you can't change an imm
   heapq.heappush(pq, (node.val, node))
   val, node = heapq.heappop(pq)
   ```
+
+###Special function
+* ```str.isalnum()``` is alphanumeric
+* ```str.isalpha()``` is alphabetic
+* ```str.isdigit()``` is digits
+* ```str.strip()``` 没什么好讲的了
+* ```str.split(sep, maxsplit)``` separate by sep. 发现的位置全会被replace by '', 但不会重复  
+  ```
+  >>>a = 'abssdfcds'
+  >>>a.split('s')
+  ['ab', '', 'dfcd', '']
+  ```
+
+* ```int()``` 如果有空格的话会直接无视，可以正确转化，不能有小数点
 
 -----
 ##Just Interesting
