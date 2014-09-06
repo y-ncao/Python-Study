@@ -10,9 +10,13 @@
 
 ####3. 工作内容:
 * In Hosting System Support Team, mostly develop and support internal tools. Working full stack.
-* Build new quoting tool "Mercury" for our Salse Team. SpineJS in Coffeescript handles the front-end, Tornado in Python handles the back-end, with Oracle Database.
-* Develop and deploy scripts in Python and SQL to analyze data and maintain database.
-* Day-to-day support issues for internal systems.
+* Build new quoting tool for our Salse Team. 
+  * SpineJS in Coffeescript handles the front-end. MVC framework on the front-end.
+  * Tornado in Python handles the back-end, with Oracle Database. REST API on back-end. Use Memecached to increase the speed of some api calls that either the data is pretty big or is used very frequently.
+* Develop and deploy scripts in Python and SQL to do data analysis and maintain database.  
+  Sometimes provide reports from our database to other department. Or use script to fix data integrity problem.
+* Day-to-day support issues for internal systems.  
+  Become fire fighter, internal user report there's issue for systems that we support, then dive into the systems and find traceback and try to fix.
 * Working closely with our Sales Team to constantly improve and update internal systems for them.
 
 ##Detail about Mercury
