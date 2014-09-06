@@ -46,7 +46,7 @@ class Solution:
     # iii. use if += instead of if dp = xx else dp = xx
 
     # Another idea
-    def numDecodings(self, s):
+    def numDecodings_2(self, s):
         if s == '' or s[0] == '0': return 0
         dp = [1, 1]
         length = len(s)
