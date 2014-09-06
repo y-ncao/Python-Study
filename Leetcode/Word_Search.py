@@ -21,27 +21,38 @@ class Solution:
     # @param word, a string
     # @return a boolean
     def exist(self, board, word):
-        rowN = len(board)
-        colN = len(board[0])
-        visited = [ [False for j in range(colN)] for i in range(rowN) ]
-        for i in range(rowN):
-            for j in range(colN):
-                if self.isWord(board, visited, i, j, word):
+        M = len(board)
+        N = len(board[0])
+        for i in range(M):
+            for j in range(N):
+                if board[i][j] == word[0] and self.isWord(board, i, j, 0, word):
                     return True
         return False
 
-    def isWord(self, board, visited, i, j, word):
-        if len(word) == 0:
+    def isWord(self, board, i, j, index, word):
+        if index == len(word):
             return True
-        rowN = len(board)
-        colN = len(board[0])
-        if i < 0 or i >= rowN or j < 0 or j >= colN or visited[i][j] or board[i][j] != word[0]:
+
+        M = len(board)
+        N = len(board[0])
+
+        if i < 0 or i >= M or j < 0 or j >= N or board[i][j] != word[index]:
             return False
 
-        visited[i][j] = True
-        if self.isWord(board, visited, i+1, j, word[1:]) or self.isWord(board, visited, i-1, j, word[1:]) or self.isWord(board, visited, i, j+1, word[1:]) or self.isWord(board, visited, i, j-1, word[1:]):
-            return True
+        board[i][j] = '#'
+        if self.isWord(board, i+1, j, index+1, word) or \
+                self.isWord(board, i-1, j, index+1, word) or \
+                self.isWord(board, i, j+1, index+1, word) or \
+                self.isWord(board, i, j-1, index+1, word):
+           return True
 
-        visited[i][j] = False
+        board[i][j] = word[index]
 
         return False
+
+    # Note:
+    # 1. Keep in mind the declare of matrix, M, N, board, board[0]
+    # 2. Line 28 check board[i][j] == word[0]
+    # 3. Use in place make board[i][j] = '#' and recover later
+    # 4. Line 43 line break use \
+    # 5. Very important, must remark the 'visisted' part
