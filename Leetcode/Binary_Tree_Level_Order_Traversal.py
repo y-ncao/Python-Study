@@ -30,22 +30,20 @@ class Solution:
         res = []
         if root is None:
             return res
-        queue = []
-        level = []
-        queue.append(root)
-        queue.append(None)
+        queue = [root, ]
         while len(queue)>0:
-            node = queue.pop(0)
-            if node is None:
-                res.append(level[:])
-                level = []
-                if len(queue)>0:
-                    queue.append(None)
-            else:
+            size = len(queue)
+            level = []
+            for i in range(size):
+                node = queue.pop()
                 level.append(node.val)
                 if node.left is not None:
-                    queue.append(node.left)
+                    queue.insert(0, node.left)
                 if node.right is not None:
-                    queue.append(node.right)
+                    queue.insert(0, node.right)
+            res.append(level[:])
         return res
-    # Found out why, the question want the val of the node but not the whole node
+
+    # Note
+    # 1. Try to use double loop to do this
+    # 2. Other ways are: a. use dummy node(None) b. use two queues
