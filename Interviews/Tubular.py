@@ -1,6 +1,10 @@
-## This is the text editor interface. 
-## Anything you type or change here will be seen by the other person in real time.
+# 9/4/2014 Interview with Tubular
 
+# 1. Subset(秒了)
+# 2. LCS
+
+#This is the text editor interface. 
+# Anything you type or change here will be seen by the other person in real time.
 # "abc", "zyabcbcyz" -> "abc"
 '''
 len(a) -> m

@@ -115,7 +115,7 @@ First of all, both of ```@classmethod and @staticmethod``` are decorators.
 * ```__dict___()``` 用于得到object的内部变量?
 * ```dir()``` 用于得到object的method(attribute)
 
-###[New Class vs Old Class](http://stackoverflow.com/questions/54867/old-style-and-new-style-classes-in-python).
+###[New Class vs Old Class](http://stackoverflow.com/questions/54867/old-style-and-new-style-classes-in-python)
 * If x is an instance of an old-style class, then ```x.__class__``` designates the class of x, but type(x) is always <type 'instance'>.
 * If x is an instance of a new-style class, then type(x) is the same as ```x.__class__```.
 * For compatibility reasons, classes are still old-style by default.
@@ -536,8 +536,18 @@ Immutable Types Can't Be Changed in Place. Remember that you can't change an imm
   d.popleft()
   ```
 
-* [Priority Queue](./Leetocde/Merge_k_Sorted_Lists.py)
+* [Priority Queue](./Leetcode/Merge_k_Sorted_Lists.py)
   ```python
+  import heapq
+
+  heap = []
+  heapq.heappush(heap, 1)
+  heapq.heappush(heap, -5)
+  heapq.heappush(heap, 2)
+
+  heapq.heappop()
+  >>>-5
+
   heapq.heappush(pq, (node.val, node))
   val, node = heapq.heappop(pq)
   ```

@@ -13,7 +13,7 @@
 * Build new quoting tool for our Salse Team. 
   * SpineJS in Coffeescript handles the front-end. MVC framework on the front-end.
   * Tornado in Python handles the back-end, with Oracle Database. REST API on back-end.  
-    Use Memecached to increase the speed of some api calls that either the data is pretty big or is used very frequently.
+    Use Memecached to reduce the database fetch for 1. data is pretty big 2. data is used very frequently.
 * Develop and deploy scripts in Python and SQL to do data analysis and maintain database.  
   Sometimes provide reports from our database to other department. Or use script to fix data integrity problem.
 * Day-to-day support issues for internal systems.  
