@@ -1121,21 +1121,20 @@ A package is a collection of classes and interfaces that provides a high-level l
 ###Thread:
 1. __Implementing the java.lang.Runnable interface__
 
-
   ```java
   public interface Runnable{
-	  void run();
+      void run();
   }
 
-  RunnableThreadExample instance =new RunnableThreadExample();
-  Thread thread=new Thread(instance);
+  RunnableThreadExample instance = new RunnableThreadExample();
+  Thread thread = new Thread(instance);
   thread.start();
   ```
 
 2. __Extending the java.lang.Thread class__
 
   ```java
-  ThreadExample instance=new ThreadExample();
+  ThreadExample instance = new ThreadExample();
   instance.start();
   ```
 
