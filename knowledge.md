@@ -961,6 +961,9 @@ In __big endian__, the most significant byte is stored at the memory address loc
 But Basically,
 * Process is on Heap memory.
 * Thread is on Stack memory.
+* Stack is faster while heap is slower
+* stackoverflow for stack while heap is for memory leak
+
 
 #####Compare
 | Stack | Heap |
@@ -975,7 +978,8 @@ But Basically,
 | You would use the stack if you know exactly how much data you need to allocate before compile time and it is not too big. | You would use the heap if you don't know exactly how much data you will need at runtime or if you need to allocate a lot of data.|
 | Usually has a maximum size already determined when your program starts | Responsible for memory leaks |
 
-#####Memory Leak
+#####[Memory Leak](http://en.wikipedia.org/wiki/Memory_leak)
+A memory leak may happen when an object is stored in memory but cannot be accessed by the running code.
 
 #####Stack (Memory)
 When a function calls another function which calls another function, this memory goes onto the stack An int (not a pointer to an int) that is created in a function is stored on the stack
