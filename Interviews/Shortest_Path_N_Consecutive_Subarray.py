@@ -155,5 +155,3 @@ def add(x):
     def temp(y):
         return add(x+y)
     return temp
-
-
