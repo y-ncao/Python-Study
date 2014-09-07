@@ -460,6 +460,11 @@ for i in range(5):
   Allow more than one worker access to a resource at a time(其实就是一个带counter的lock)  
   ```threading.Semaphore(2)```
 
+* [GIL](http://stackoverflow.com/questions/34020/are-python-threads-buggy) Global Interpreter Lock  
+  Cpython use OS threads. Only one thread at a time is allowed to run Python code.
+  * Use multiple python interpreters concurrently,
+  * Use different implementation of Python that does not use a GIL, like Jython and IronPython.
+
 ###[Class Attributes](http://www.toptal.com/python/python-class-attributes-an-overly-thorough-guide#.)
 
 ###Override and Overload
