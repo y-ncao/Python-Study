@@ -917,7 +917,7 @@ Health Check: response from a server fails with error. Fail timeout / max fail.
 ###[Encoding](http://kunststube.net/encoding/)
 Unicode, Ascii, UTF-8
 
-###Big O
+###[Big O](http://bigocheatsheet.com/)
 * Time Complexity - The amount of time needed to finish the task
 * Space Complexity - The amount of memory needed to store values/variables
 
@@ -954,7 +954,28 @@ A thread is a particular execution path of a process; when one thread modifies a
 ###Big vs Little Endian:
 In __big endian__, the most significant byte is stored at the memory address location with the lowest address This is akin to left-to-right reading order Little endian is the reverse: the most significant byte is stored at the address with the highest address
 
-###Memory
+###[Memory](http://stackoverflow.com/questions/79923/what-and-where-are-the-stack-and-heap)
+* Cpython only involves a private heap containing all python objects.
+* Cpython use reference counting for garbage collection.
+
+But Basically,
+* Process is on Heap memory.
+* Thread is on Stack memory.
+
+#####Compare
+| Stack | Heap |
+| --- | --- |
+| Stored in computer RAM just like the heap. | Stored in computer RAM just like the stack. |
+| Variables created on the stack will go out of scope and automatically deallocate. | Variables on the heap must be destroyed manually and never fall out of scope. The data is freed with delete, delete[] or free |
+| Much faster to allocate in comparison to variables on the heap. | Slower to allocate in comparison to variables on the stack. |
+| Implemented with an actual stack data structure. | Used on demand to allocate a block of data for use by the program. |
+| Stores local data, return addresses, used for parameter passing | Can have fragmentation when there are a lot of allocations and deallocations |
+| Can have a stack overflow when too much of the stack is used. (mostly from infinite (or too much) recursion, very large allocations) | In C++ data created on the heap will be pointed to by pointers and allocated with new or malloc |
+| Data created on the stack can be used without pointers. | Can have allocation failures if too big of a buffer is requested to be allocated. |
+| You would use the stack if you know exactly how much data you need to allocate before compile time and it is not too big. | You would use the heap if you don't know exactly how much data you will need at runtime or if you need to allocate a lot of data.|
+| Usually has a maximum size already determined when your program starts | Responsible for memory leaks |
+
+#####Memory Leak
 
 #####Stack (Memory)
 When a function calls another function which calls another function, this memory goes onto the stack An int (not a pointer to an int) that is created in a function is stored on the stack
