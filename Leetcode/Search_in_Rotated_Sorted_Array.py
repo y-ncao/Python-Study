@@ -18,26 +18,27 @@ class Solution:
     def search_1(self, A, target):
         start = 0
         end = len(A) - 1
-        while start <= end:
+        while start + 1 < end:
             mid = (start + end) / 2
             if target == A[mid]:
                 return mid
-            if A[start] <= A[mid]:                          # First half sorted
-                if target >= A[start] and target < A[mid]:  # In first half
-                    end = mid - 1
+            if A[start] < A[mid]:                           # First half sorted
+                if A[start] <= target < A[mid]:             # In first half
+                    end = mid
                 else:                                       # In second half
-                    start = mid + 1
+                    start = mid
             else:                                           # Second half sorted
-                if target > A[mid] and target <= A[end]:    # In second half
-                    start = mid + 1
+                if A[mid] < target <= A[end]:               # In second half
+                    start = mid
                 else:
-                    end = mid - 1
+                    end = mid
+        if A[start] == target:
+            return start
+        if A[end] == target:
+            return end
         return -1
-    # Very important trap here
-    # Line 25
-    # A[mid] > A[end] or A[start] <= A[mid] will pass
-    # But not A[start] < A[mid]
-    # Bescause there's a chance that mid = start
+
+    # Switching to NC way, use start+1 < end instead
 
     def search_rec(self, A, target):
         return self.search_helper(A, target, 0, len(A) - 1)
