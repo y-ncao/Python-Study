@@ -409,6 +409,57 @@ Also
 * Lacks any sort of data protection, use __ instead
 * All strings are not unicode by default (Fixed in Python3)
 
+###[Python's Thread](http://pymotw.com/2/threading/)
+```python
+# An very basic example
+import threading
+
+def worker(num):
+    """thread worker function"""
+    print 'Worker: %s' % num
+    return
+
+threads = []
+for i in range(5):
+    t = threading.Thread(target=worker, args=(i,))
+    threads.append(t)
+    t.start()
+```
+
+* Current Thread  
+  ```threading.currentThread().getName()```
+* Daemon vs. Non-Daemon Threads  
+  意思就是daeomon thread will run wihtout blocking main program from exiting  
+  如果不设的话主程序会等待所有thread运行完毕
+* Subclass 应该用  
+  ```python
+  class MyThread(threading.Thread):
+
+    def run(self):
+        logging.debug('running')
+        return
+  ```
+  重写run()函数
+* Signaling Between Threads 用```threading.Event()```在thread之间传递信号
+* [Lock](http://pymotw.com/2/threading/#controlling-access-to-resources)
+  Python’s built-in data structures (lists, dictionaries, etc.) are thread-safe as a side-effect of having atomic byte-codes for manipulating them (the GIL is not released in the middle of an update). Other data structures implemented in Python, or simpler types like integers and floats, don’t have that protection. To guard against simultaneous access to an object, use a Lock object.  
+  ```python
+  lock = threading.Lock()
+  lock.acquire()
+  lock.release()
+  ```  
+  注意如果是普通的lock.acquire()就会一直等着lock release，程序就sb了  
+  但是可以用  
+  ```python
+  lock.acquire(0)
+  # or
+  lock = threading.RLock()
+  ```  
+  这样只会try一下，如果锁死就干别的去了
+* [Semaphore](http://pymotw.com/2/threading/#limiting-concurrent-access-to-resources)  
+  Allow more than one worker access to a resource at a time(其实就是一个带counter的lock)  
+  ```threading.Semaphore(2)```
+
 ###[Class Attributes](http://www.toptal.com/python/python-class-attributes-an-overly-thorough-guide#.)
 
 ###Override and Overload
