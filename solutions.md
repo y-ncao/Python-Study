@@ -41,7 +41,8 @@ class Solution:
 
     # Notice:
     # 1. This is almost the same to 3 Sum Closest.
-    # 2. remember to remove duplicate result by doing l += 1 and r -= 1, also the continue on line 22```
+    # 2. remember to remove duplicate result by doing l += 1 and r -= 1, also the continue on line 22
+```
 -----
 
 ##[2. 3Sum Closest](https://oj.leetcode.com/problems/3sum-closest/)
@@ -521,25 +522,23 @@ class Solution:
         res = []
         if root is None:
             return res
-        queue = []
-        level = []
-        queue.append(root)
-        queue.append(None)
+        queue = [root, ]
         while len(queue)>0:
-            node = queue.pop(0)
-            if node is None:
-                res.append(level[:])
-                level = []
-                if len(queue)>0:
-                    queue.append(None)
-            else:
+            size = len(queue)
+            level = []
+            for i in range(size):
+                node = queue.pop()
                 level.append(node.val)
                 if node.left is not None:
-                    queue.append(node.left)
+                    queue.insert(0, node.left)
                 if node.right is not None:
-                    queue.append(node.right)
+                    queue.insert(0, node.right)
+            res.append(level[:])
         return res
-    # Found out why, the question want the val of the node but not the whole node
+
+    # Note
+    # 1. Try to use double loop to do this
+    # 2. Other ways are: a. use dummy node(None) b. use two queues
 ```
 -----
 
@@ -920,7 +919,8 @@ class Solution:
         return fn
 
     # Note:
-    # DP way is the best, and no need to check if n <= 2 or not.```
+    # DP way is the best, and no need to check if n <= 2 or not.
+```
 -----
 
 ##[20. Clone Graph](https://oj.leetcode.com/problems/clone-graph/)
@@ -1384,24 +1384,40 @@ class Solution:
         N = len(s)
         if N == 0 or s[0] == '0':
             return 0
-        dp = [0 for i in range(N)]      # [0,1,2,3]
+        dp = [0 for i in range(N+1)]
         dp[0] = 1
         dp[1] = 1
         for i in range(2, N+1):
-            if 10 <= int(s[i-2:i]) <= 26 and 1 <= int(s[i-1]) <= 9:
-                dp[i] = dp[i-1] + dp[i-2]
-            else:
-                dp[i] = dp[i-1]
+            if s[i-1] == '0' and s[i-2] not in ['1', '2']:
+                return 0
+            if s[i-1] != '0':
+                dp[i] += dp[i-1]
+            if 10 <= int(s[i-2: i]) <= 26:
+                dp[i] += dp[i-2]
         return dp[N]
 
-    def numDecodings(self, s):
+    # Note:
+    # 1. State: dp[i] means from char 0 to char i-1 how many decode ways
+    # 2. Init: dp[0] = 1; dp[1] = 1
+    # 3. Function:
+    #      dp[i] = if s[i-1] == 0 and s[i-2] not in ['1', '2'] : return 0
+    #              if s[i-1] != 0                              : += dp[i-1]
+    #              if 10 <= int(s[i-2:i]) <= 26                : += dp[i-2]
+    # 4. Result: dp[N]
+
+    # i.   dp size is len(s)+1
+    # ii.  10 <= x <= 26
+    # iii. use if += instead of if dp = xx else dp = xx
+
+    # Another idea
+    def numDecodings_2(self, s):
         if s == '' or s[0] == '0': return 0
         dp = [1, 1]
         length = len(s)
         for i in xrange(2, length + 1):
             if 10 <= int(s[i-2:i]) <= 26 and '1' <= s[i-1] <= '9':
                 dp.append(dp[i-1] + dp[i-2])
-            elif 10 <= int(s[i-2:i]) <= 26:
+            elif 10 <= int(s[i-2:i]) <= 26: # s[i-1] == '0'
                 dp.append(dp[i-2])
             elif '1' <= s[i-1] <= '9':
                 dp.append(dp[i-1])
@@ -1873,7 +1889,8 @@ class Solution:
         return None
     # Note:
     # 1. Note line 53 and 54, minus one there, but in interview, probably do i += 1 in else will be better
-    # 2. Both ways will pass```
+    # 2. Both ways will pass
+```
 -----
 
 ##[42. Insert Interval](https://oj.leetcode.com/problems/insert-interval/)
@@ -4133,7 +4150,8 @@ class Solution:
             return half * half
         else:
             return half * half * x
-    # Note to use the half var to make the code clean```
+    # Note to use the half var to make the code clean
+```
 -----
 
 ##[90. Recover Binary Search Tree](https://oj.leetcode.com/problems/recover-binary-search-tree/)
@@ -5135,21 +5153,43 @@ class Solution:
     def searchRange(self, A, target):
         start = 0
         end = len(A) - 1
-        while start <= end:
+        bound = [-1, -1]
+
+        # Check for left bound
+        while start + 1 < end:
             mid = (start + end) / 2
-            if target == A[mid]:
-                start = mid - 1
-                end = mid + 1
-                while start >= 0 and A[start] == target:
-                    start -= 1
-                while end <= len(A)-1 and A[end] == target:
-                    end += 1
-                return [start+1, end-1]
-            elif target < A[mid]:
-                end = mid -1
+            if A[mid] == target:
+                end = mid
+            elif A[mid] < target:
+                start = mid
             else:
-                start = mid + 1
-        return [-1,-1]
+                end = mid
+
+        if A[start] == target:
+            bound[0] = start
+        elif A[end] == target:
+            bound[0] = end
+        else:
+            return bound
+
+        # Check right bound
+        start = 0
+        end = len(A) - 1
+        while start + 1 < end:
+            mid = (start + end) / 2
+            if A[mid] == target:
+                start = mid
+            elif A[mid] < target:
+                start = mid
+            else:
+                end = mid
+
+        if A[end] == target:
+            bound[1] = end
+        elif A[start] == target:
+            bound[1] = start
+
+        return bound
 ```
 -----
 
@@ -5175,26 +5215,27 @@ class Solution:
     def search_1(self, A, target):
         start = 0
         end = len(A) - 1
-        while start <= end:
+        while start + 1 < end:
             mid = (start + end) / 2
             if target == A[mid]:
                 return mid
-            if A[start] <= A[mid]:                          # First half sorted
-                if target >= A[start] and target < A[mid]:  # In first half
-                    end = mid - 1
+            if A[start] < A[mid]:                           # First half sorted
+                if A[start] <= target < A[mid]:             # In first half
+                    end = mid
                 else:                                       # In second half
-                    start = mid + 1
+                    start = mid
             else:                                           # Second half sorted
-                if target > A[mid] and target <= A[end]:    # In second half
-                    start = mid + 1
+                if A[mid] < target <= A[end]:               # In second half
+                    start = mid
                 else:
-                    end = mid - 1
+                    end = mid
+        if A[start] == target:
+            return start
+        if A[end] == target:
+            return end
         return -1
-    # Very important trap here
-    # Line 25
-    # A[mid] > A[end] or A[start] <= A[mid] will pass
-    # But not A[start] < A[mid]
-    # Bescause there's a chance that mid = start
+
+    # Switching to NC way, use start+1 < end instead
 
     def search_rec(self, A, target):
         return self.search_helper(A, target, 0, len(A) - 1)
@@ -5610,6 +5651,27 @@ class Solution:
     # @param x, an integer
     # @return an integer
     def sqrt(self, x):
+        return self.sqrt_1(x)
+
+    # NC way to do this
+    def sqrt_1(self, x):
+        if x <= 1:
+            return x
+        left = 0
+        right = x
+        while left + 1 < right:
+            mid = (left + right) / 2
+            sqr = mid * mid
+            if sqr == x:
+                return mid
+            elif sqr < x:
+                left = mid
+            else:
+                right = mid
+        return left
+    # We are looking for the smaller one
+
+    def sqrt_2(self, x):
         left = 0                         # Here must 0, otherwise 1 won't pass
         right = x                        # Use x/2 + 1
         while left <= right:             # <=
@@ -5621,7 +5683,7 @@ class Solution:
                 left = mid + 1
             else:
                 right = mid - 1
-        return (left+right)/2           # This is so important
+        return (left + right) / 2           # This is so important
     # On the end, we can return right, or recalculate the mid, very important
 ```
 -----
@@ -5671,7 +5733,8 @@ class Solution:
                 break
         return sign * res
 
-    # Don't forget to check sign at the beginning```
+    # Don't forget to check sign at the beginning
+```
 -----
 
 ##[124. Subsets](https://oj.leetcode.com/problems/subsets/)
@@ -6418,7 +6481,8 @@ class Solution:
                 r -= 1
 
     # Note:
-    # 1. Keep in mind we need to use a dict to store the original position.```
+    # 1. Keep in mind we need to use a dict to store the original position.
+```
 -----
 
 ##[136. Unique Binary Search Trees](https://oj.leetcode.com/problems/unique-binary-search-trees/)
@@ -6652,7 +6716,8 @@ class Solution:
     # 1. Before/after e/E must be a valid num
     # 2. check each sign and dot and num and space
     # 3. Keep an eye on line 44 and line 61 using and / or. Reason is +.8 is valid.
-    # 4. isNumberwoE_2 is easier to think, don't think reversely```
+    # 4. isNumberwoE_2 is easier to think, don't think reversely
+```
 -----
 
 ##[141. Valid Palindrome](https://oj.leetcode.com/problems/valid-palindrome/)
@@ -7019,7 +7084,8 @@ class Solution:
                         if new_word in dict:
                             queue.append((new_word, depth+1))
                             dict.remove(new_word)
-        return 0```
+        return 0
+```
 -----
 
 ##[149. Word Ladder II](https://oj.leetcode.com/problems/word-ladder-ii/)
@@ -7119,30 +7185,41 @@ class Solution:
     # @param word, a string
     # @return a boolean
     def exist(self, board, word):
-        rowN = len(board)
-        colN = len(board[0])
-        visited = [ [False for j in range(colN)] for i in range(rowN) ]
-        for i in range(rowN):
-            for j in range(colN):
-                if self.isWord(board, visited, i, j, word):
+        M = len(board)
+        N = len(board[0])
+        for i in range(M):
+            for j in range(N):
+                if board[i][j] == word[0] and self.isWord(board, i, j, 0, word):
                     return True
         return False
 
-    def isWord(self, board, visited, i, j, word):
-        if len(word) == 0:
+    def isWord(self, board, i, j, index, word):
+        if index == len(word):
             return True
-        rowN = len(board)
-        colN = len(board[0])
-        if i < 0 or i >= rowN or j < 0 or j >= colN or visited[i][j] or board[i][j] != word[0]:
+
+        M = len(board)
+        N = len(board[0])
+
+        if i < 0 or i >= M or j < 0 or j >= N or board[i][j] != word[index]:
             return False
 
-        visited[i][j] = True
-        if self.isWord(board, visited, i+1, j, word[1:]) or self.isWord(board, visited, i-1, j, word[1:]) or self.isWord(board, visited, i, j+1, word[1:]) or self.isWord(board, visited, i, j-1, word[1:]):
-            return True
+        board[i][j] = '#'
+        if self.isWord(board, i+1, j, index+1, word) or \
+                self.isWord(board, i-1, j, index+1, word) or \
+                self.isWord(board, i, j+1, index+1, word) or \
+                self.isWord(board, i, j-1, index+1, word):
+           return True
 
-        visited[i][j] = False
+        board[i][j] = word[index]
 
         return False
+
+    # Note:
+    # 1. Keep in mind the declare of matrix, M, N, board, board[0]
+    # 2. Line 28 check board[i][j] == word[0]
+    # 3. Use in place make board[i][j] = '#' and recover later
+    # 4. Line 43 line break use \
+    # 5. Very important, must remark the 'visisted' part
 ```
 -----
 
