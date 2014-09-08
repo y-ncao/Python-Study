@@ -428,12 +428,14 @@ for i in range(5):
     t.start()
 ```
 
-* Current Thread  
-  ```threading.currentThread().getName()```
-* Daemon vs. Non-Daemon Threads  
-  意思就是daeomon thread will run wihtout blocking main program from exiting  
-  如果不设的话主程序会等待所有thread运行完毕
-* Subclass 应该用  
+#####Current Thread  
+```threading.currentThread().getName()```
+
+#####Daemon vs. Non-Daemon Threads
+意思就是daeomon thread will run wihtout blocking main program from exiting  
+如果不设的话主程序会等待所有thread运行完毕
+
+#####Subclass 应该用  
   ```python
   class MyThread(threading.Thread):
 
@@ -442,32 +444,35 @@ for i in range(5):
         return
   ```
   重写```run()```函数
-* Signaling Between Threads 用```threading.Event()```在thread之间传递信号
-* [Lock](http://pymotw.com/2/threading/#controlling-access-to-resources)
-  Python’s built-in data structures (lists, dictionaries, etc.) are thread-safe as a side-effect of having atomic byte-codes for manipulating them (the GIL is not released in the middle of an update). Other data structures implemented in Python, or simpler types like integers and floats, don’t have that protection. To guard against simultaneous access to an object, use a Lock object.  
-  ```python
-  lock = threading.Lock()
-  lock.acquire()
-  lock.release()
-  ```  
-  注意如果是普通的lock.acquire()就会一直等着lock release，程序就sb了  
-  但是可以用  
-  ```python
-  lock.acquire(0)
-  # or
-  lock = threading.RLock()
-  ```  
-  这样只会try一下，如果锁死就干别的去了
-* [Semaphore](http://pymotw.com/2/threading/#limiting-concurrent-access-to-resources)  
-  Allow more than one worker access to a resource at a time(其实就是一个带counter的lock)  
-  ```python
-  threading.Semaphore(2)
-  ```
 
-* [GIL](http://stackoverflow.com/questions/34020/are-python-threads-buggy) Global Interpreter Lock  
-  Cpython use OS threads. Only one thread at a time is allowed to run Python code.
-  * Use multiple python interpreters concurrently,
-  * Use different implementation of Python that does not use a GIL, like Jython and IronPython.
+#####Signaling Between Threads 用```threading.Event()```在thread之间传递信号
+
+#####[Lock](http://pymotw.com/2/threading/#controlling-access-to-resources)
+Python’s built-in data structures (lists, dictionaries, etc.) are thread-safe as a side-effect of having atomic byte-codes for manipulating them (the GIL is not released in the middle of an update). Other data structures implemented in Python, or simpler types like integers and floats, don’t have that protection. To guard against simultaneous access to an object, use a Lock object.
+```python
+lock = threading.Lock()
+lock.acquire()
+lock.release()
+```
+注意如果是普通的lock.acquire()就会一直等着lock release，程序就sb了
+但是可以用
+```python
+lock.acquire(0)
+# or
+lock = threading.RLock()
+```
+这样只会try一下，如果锁死就干别的去了
+
+#####[Semaphore](http://pymotw.com/2/threading/#limiting-concurrent-access-to-resources)
+Allow more than one worker access to a resource at a time(其实就是一个带counter的lock)
+```python
+threading.Semaphore(2)
+```
+
+#####[GIL](http://stackoverflow.com/questions/34020/are-python-threads-buggy) Global Interpreter Lock
+Cpython use OS threads. Only one thread at a time is allowed to run Python code.
+* Use multiple python interpreters concurrently,
+* Use different implementation of Python that does not use a GIL, like Jython and IronPython.
 
 ###[Class Attributes](http://www.toptal.com/python/python-class-attributes-an-overly-thorough-guide#.)
 
