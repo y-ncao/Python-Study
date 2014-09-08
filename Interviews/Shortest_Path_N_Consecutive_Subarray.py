@@ -14,7 +14,7 @@ S is the starting point
 E is the ending point
 X means you cannot traverse to that point
 
-1. #Find the shortest path from S to E given the above matrix
+1. Find the shortest path from S to E given the above matrix
 2. Find if there is a path from S to E
 
 Restriction: Move to 8 positions

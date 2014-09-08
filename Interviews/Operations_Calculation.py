@@ -1,8 +1,10 @@
 """
 ##### 9/5/2014 Elasticbox
 加减运算
+```
 string = '7 + 8 - 19 - 5 + 10'
 8 - 19 - 5
+```
 """
 
 def get_result(str):

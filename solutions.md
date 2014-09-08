@@ -7357,8 +7357,10 @@ HTTP/1.1 GET
 
 ##### 9/5/2014 Elasticbox
 加减运算
+```
 string = '7 + 8 - 19 - 5 + 10'
 8 - 19 - 5
+```
 
 ```python
 
@@ -7479,7 +7481,7 @@ S is the starting point
 E is the ending point
 X means you cannot traverse to that point
 
-1. #Find the shortest path from S to E given the above matrix
+1. Find the shortest path from S to E given the above matrix
 2. Find if there is a path from S to E
 
 Restriction: Move to 8 positions
