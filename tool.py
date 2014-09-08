@@ -86,6 +86,9 @@ if __name__ == '__main__':
     file_list = glob.glob('./Leetcode/*.py')
     file_list.remove('./Leetcode/__init__.py')
     file_list.sort()
+    interview_list = glob.glob('./Interviews/*.py')
+    interview_list.sort()
+    file_list.extend(interview_list)
 
     combiner(file_list)
     frequency_creator(file_list)

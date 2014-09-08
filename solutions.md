@@ -7262,3 +7262,427 @@ class Solution:
 ```
 -----
 
+##[152. FizzBuzz N Encode Decode](https://oj.leetcode.com/problems/fizzbuzz-n-encode-decode/)
+
+#####Interview with Twice
+1. FizzBuzz
+2. Encode and decode
+
+FizzBuzz:
+
+3 -> "Fizz"
+5 -> "Buzz"
+3 && 5 -> "FizzBuzz"
+i -> i
+
+```python
+
+def FizzBuss(n):
+    for i in range(1,101):
+        if i % 15 == 0:
+            print 'FizzBuss'
+        elif i % 5 == 0:
+            print 'Buzz'
+        elif i % 3 == 0:
+            print 'Fizz'
+        else:
+            print i
+'''
+
+# String Encoding/Decoding
+#
+# Encode: ["foo", "bar", ...] -> ________
+#                    ([a-z]+) -> ([a-z]+)
+# Decode: ______ -> ["foo", "bar", ...]
+
+foo, bar -> foobar -> foo, bar
+'|'.join(list).lower()
+split('')
+
+[]
+
+foobar
+
+foobar oofarb
+
+3 foo 3 bar
+c foo c bar
+'''
+
+def Encode(list):
+    ret = []
+    for word in list:
+        extra = ord('a' + len(word))
+        ret.append( extra + word)
+
+    return ''.join(ret)
+'''
+ 0 1 234
+# c foo c bar
+'''
+
+def Decode(string):
+    N = len(string)
+    start = 0
+    ret = []
+    while start < N:
+        length = string[start] - 'a'
+        ret.append(string[start+1: start+1+length]
+        start = start + length
+    return ret
+'''
+HTTP/1.1 GET
+
+Content-length: 80
+
+<body>
+-HTTP/1.1 GET
+
+-<headers>
+
+-<body>
+</body>
+
+
+HTTP/1.1 GET
+
+<headers>
+
+<body>
+'''
+```
+-----
+
+##[153. Operations Calculation](https://oj.leetcode.com/problems/operations-calculation/)
+
+##### 9/5/2014 Elasticbox
+加减运算
+string = '7 + 8 - 19 - 5 + 10'
+8 - 19 - 5
+
+```python
+
+def get_result(str):
+  N = len(str)
+  ret = 0
+  num = [0,1,2,3,4,5,6,7,8,9,]
+  for i in range(N):
+    if str[i] == ' ':
+      continue
+    if str[i] in num
+
+-/+
+str.split('+')
+
+# 1. digit, check previous char, 1. digit, add it to new one   2. stop, this is a num
+# 2. space, continue, don't care
+# 3. operator, -, -num, +, +num
+     sum(all number)
+
+def get_result(str):
+  plus = str.split('+')
+  sum = 0
+  minus = []
+  for el in plus:
+    try:
+      num = int(el)
+    except Error:
+      minus.append(el)
+    else:
+      sum += num
+
+  for el in minus:
+    piece = el.split('-')
+    result = piece[0]
+    for i, num in enumerate(piece, 1):
+      result
+      if i == 0:
+        sum += int(num)
+      else:
+        sum -= int(num)
+
+  return sum
+
++8
+find_next_num()
+```
+-----
+
+##[154. Print Numbers With Five](https://oj.leetcode.com/problems/print-numbers-with-five/)
+
+##### 9/7/2014 From mitbbs for Groupon http://www.mitbbs.com/article_t/JobHunting/32651839.html
+写一个function，对于参数n，输出从0到n之间所有含5的数字。
+func(30) 应该输出5，15，25
+
+```python
+
+def find_five(n):
+    ret = []
+    helper(ret, [], n)
+    return ret
+
+def helper(ret, res, n):
+    if len(res) > 0 and ( int(''.join(res)) > n or len(res) > len(str(n)) ):
+        return
+    if '5' in res and int(''.join(res)) not in ret:
+        ret.append(int(''.join(res)))
+
+    for i in range(10):
+        res.append(str(i))
+        helper(ret, res, n)
+        res.pop()
+
+print find_five(60)
+```
+-----
+
+##[155. Shortest Path](https://oj.leetcode.com/problems/shortest-path/)
+
+#####With Twitter
+
+```python
+
+M= len(map)
+N = len(map[0])
+visited = {}
+# Maybe still not the best result
+def findPath(map, current_point, end_point, length, visited):
+    if current_point == end_point:
+        return length
+    if current_point in visited:
+        return INT_MAX
+    if map[current_point] == 'x':
+        return INT_MAX
+    visited[current_point] = True
+    x, y = current_point
+    return min( findPath(map, (x+1,y  ), end_point, length+ 1, visited),
+                findPath(map, (x-1,y  ), end_point, length+ 1, visited),
+                findPath(map, (x  ,y-1), end_point, length+ 1, visited),
+                findPath(map, (x  ,y+1), end_point, length+ 1, visited) )
+```
+-----
+
+##[156. Shortest Path N Consecutive Subarray](https://oj.leetcode.com/problems/shortest-path-n-consecutive-subarray/)
+
+#####Interview With Cyan
+
+2D array of characters
+1 1 1 1 1
+S 1 X 1 1
+1 1 1 1 1
+X 1 1 E 1
+1 1 1 1 X
+
+S is the starting point
+E is the ending point
+X means you cannot traverse to that point
+
+1. #Find the shortest path from S to E given the above matrix
+2. Find if there is a path from S to E
+
+Restriction: Move to 8 positions
+
+```python
+
+# Divide and conquer
+def find_shortest_path(matrix, C, E, visited):
+    if C == E:
+        return 0
+    x, y = C
+    if x < 0 or y < 0 or x > len(matrix) or y > len(matrix[0]):
+        return INT_MAX
+    if matrix[x][y] == 'X':
+        return INT_MAX
+    # 考虑visited
+
+    return min(find_shortest_path(matrix, (x+1, y), E, visited)
+
+
+
+visited = {}
+# BFS (没考虑X路障)
+def find_shortest_path(matrix, S, E):
+    M = len(matrix)
+    N = len(matrix[0])
+    visited = {}
+    start_path = [S,]
+    queue = [(S, start_path)]
+    while len(queue) > 0:
+        cur_node, cur_path = queue.pop()
+        x, y = cur_node
+        if x < 0 or y < 0 or x >= M or y >= N or matrix[x][y] == 'X':
+            continue
+        if cur_node in visited:
+            continue
+        else:
+            visited[cur_node] = True
+        new_path = cur_path[:].append(cur_node)
+        if cur_node == E:
+            return new_path
+
+        queue.insert(0, ((x+1, y), new_path))
+        queue.insert(0, ((x+1, y+1), new_path))
+        queue.insert(0, ((x+1, y-1), new_path))
+        queue.insert(0, ((x-1, y), new_path))
+        queue.insert(0, ((x-1, y-1), new_path))
+        queue.insert(0, ((x-1, y+1), new_path))
+        queue.insert(0, ((x, y+1), new_path))
+        queue.insert(0, ((x, y-1), new_path))
+
+
+def find_shortest_path(matrix):
+    M = len(matrix)
+    N = len(matrix[0])
+    S, E = find_start_end(matrix)
+    if not S or not E:
+        return -1
+    visited = {}
+    queue = [S,]
+    while len(queue) > 0:
+        cur = queue.pop()
+        if cur == E:
+            return True
+        x, y = cur
+        if matrix[x][y] == 'X':
+            continue
+        if x < 0 or y < 0 or x >= len(matrix) or y >= len(matrix):
+            continue
+        if cur not int visited:
+            visited[cur] = True
+        else:
+            continue
+        queue.insert(0, (x+1, y))
+        queue.insert(0, (x+1, y+1))
+        queue.insert(0, (x+1, y-1))
+        queue.insert(0, (x-1, y))
+        queue.insert(0, (x-1, y-1))
+        queue.insert(0, (x-1, y+1))
+        queue.insert(0, (x, y+1))
+        queue.insert(0, (x, y-1))
+
+def find_start_end(matrix):
+    M = len(matrix)
+    N = len(matrix[0])
+    S = None
+    E = None
+    for i in range(M):
+        for j in range(N):
+            if matrix[i][j]  == 'S':
+                S = (i, j)
+            if matrix[i][j] == 'E':
+                E = (i, j)
+    return (S,E)
+
+'''
+# Prob 2:
+[1, 4, 20, 10, 3, 5, 9] # (20, 10, 3) Sum=33 Also the subarray must be consecutive
+Note: All elements are positive integers exception: array can include 0
+Note: You cannot sort the array
+1
+4
+20
+'''
+
+# This is O(n^2)
+def find_consecutive(num, sum):
+    N = len(num)
+    for i in range(N-1):
+        cur_sum = 0
+        for j in range(i, N):
+            cur_sum += num[j]
+            if cur_sum == sum:
+                return (i, j)
+            elif cur_sum > sum:
+                break
+    return -1
+
+# This is O(n), very similar to KMP
+def find_consecutive(num, sum):
+    N = len(num)
+    cur_sum = 0
+    i = 0
+    j = 0
+    while j < N:
+        if cur_sum + num[j] == sum:
+            return num[i:j+1]
+        elif cur_sum + num[j] < sum:
+            cur_sum += num[j]
+            j += 1
+        else:
+            cur_sum -= num[i]
+            i += 1
+    return -1
+
+num = [9, 1, 4, 20, 10, 3, 5]
+sum = 33
+print find_consecutive(num, sum)
+
+
+def add(x):
+    def temp(y):
+        return add(x+y)
+    return temp
+```
+-----
+
+##[157. Tubular](https://oj.leetcode.com/problems/tubular/)
+
+##### 9/4/2014 Interview with Tubular
+
+1. Subset(秒了)
+2. LCS
+
+This is the text editor interface.
+ Anything you type or change here will be seen by the other person in real time.
+ "abc", "zyabcbcyz" -> "abc"
+len(a) -> m
+len(b) -> n
+
+m!
+
+1 substring for
+1 m    m+1
+2 m-1
+3 m-2
+
+(1+m) * m / 2
+
+m^2
+
+
+
+1 ->m
+2 ->m/2
+
+0 m
+log(m)
+
+dp
+state: dp[i][j] ith char in a and jth char in b, the len of LCS is dp[][]
+function dp[i][j] = 0 if a[i-1] != b[i-1]
+                    dp[i-1][j-1] + 1
+         max(dp[i][j]) for each i and j
+
+```python
+
+def longest_common_substring(a,b):
+    m = len(a)
+    n = len(b)
+    dp = [ [ 0 for i in range(n+1)] for j in range(m+1) ]
+    res = 0
+
+    for i in range(1, m+1):
+        for j in range(1, n+1):
+            if a[i-1] == b[j-1]:
+                dp[i][j] = dp[i-1][j-1] + 1
+                res = max(res, dp[i][j])
+            else:
+                dp[i][j] = 0
+    return res
+
+# "abcdefg"
+print(longest_common_substring("abc", "abz"))
+print(longest_common_substring("abcdefgabyzzkabcde", "zzzzzzgabyzzabcabcdefg"))
+```
+-----
+
