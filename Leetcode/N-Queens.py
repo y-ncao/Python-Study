@@ -26,7 +26,7 @@ class Solution:
     # @return a list of lists of string
     def solveNQueens(self, n):
         ret = []
-        res = ['.'*n for i in range(n)]
+        res = ['.' * n for i in range(n)]
         self.solveNQueens_helper(n, res, ret, 0)
         return ret
 
@@ -48,4 +48,7 @@ class Solution:
                     return False
         return True
 
-# Remember this it's row-i == col-j
+    # Note:
+    # 1. Remember this it's row-i == col-j
+    # 2. The other way to do is use res.append() then pop()
+    # 3. In this case, is_valid, we can do str.find('Q') or [char for char in line].index('Q') to get index
