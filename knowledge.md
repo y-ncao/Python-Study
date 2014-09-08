@@ -460,7 +460,9 @@ for i in range(5):
   这样只会try一下，如果锁死就干别的去了
 * [Semaphore](http://pymotw.com/2/threading/#limiting-concurrent-access-to-resources)  
   Allow more than one worker access to a resource at a time(其实就是一个带counter的lock)  
-  ```threading.Semaphore(2)```
+  ```python
+  threading.Semaphore(2)
+  ```
 
 * [GIL](http://stackoverflow.com/questions/34020/are-python-threads-buggy) Global Interpreter Lock  
   Cpython use OS threads. Only one thread at a time is allowed to run Python code.
