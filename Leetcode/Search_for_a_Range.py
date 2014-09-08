@@ -17,18 +17,40 @@ class Solution:
     def searchRange(self, A, target):
         start = 0
         end = len(A) - 1
-        while start <= end:
+        bound = [-1, -1]
+
+        # Check for left bound
+        while start + 1 < end:
             mid = (start + end) / 2
-            if target == A[mid]:
-                start = mid - 1
-                end = mid + 1
-                while start >= 0 and A[start] == target:
-                    start -= 1
-                while end <= len(A)-1 and A[end] == target:
-                    end += 1
-                return [start+1, end-1]
-            elif target < A[mid]:
-                end = mid -1
+            if A[mid] == target:
+                end = mid
+            elif A[mid] < target:
+                start = mid
             else:
-                start = mid + 1
-        return [-1,-1]
+                end = mid
+
+        if A[start] == target:
+            bound[0] = start
+        elif A[end] == target:
+            bound[0] = end
+        else:
+            return bound
+
+        # Check right bound
+        start = 0
+        end = len(A) - 1
+        while start + 1 < end:
+            mid = (start + end) / 2
+            if A[mid] == target:
+                start = mid
+            elif A[mid] < target:
+                start = mid
+            else:
+                end = mid
+
+        if A[end] == target:
+            bound[1] = end
+        elif A[start] == target:
+            bound[1] = start
+
+        return bound
