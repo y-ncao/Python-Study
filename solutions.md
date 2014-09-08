@@ -3347,13 +3347,11 @@ There exist two distinct solutions to the 4-queens puzzle:
 
 ```python
 
-# Need another way to think about this, fill row instead of fill column
-
 class Solution:
     # @return a list of lists of string
     def solveNQueens(self, n):
         ret = []
-        res = ['.'*n for i in range(n)]
+        res = ['.' * n for i in range(n)]
         self.solveNQueens_helper(n, res, ret, 0)
         return ret
 
@@ -3375,7 +3373,10 @@ class Solution:
                     return False
         return True
 
-# Remember this it's row-i == col-j
+    # Note:
+    # 1. Remember this it's row-i == col-j
+    # 2. The other way to do is use res.append() then pop()
+    # 3. In this case, is_valid, we can do str.find('Q') or [char for char in line].index('Q') to get index
 ```
 -----
 
@@ -7353,7 +7354,45 @@ HTTP/1.1 GET
 ```
 -----
 
-##[153. Operations Calculation](https://oj.leetcode.com/problems/operations-calculation/)
+##[153. Lowest Common Ancestor](https://oj.leetcode.com/problems/lowest-common-ancestor/)
+
+#####[LCA, Lowest Common Ancestor](http://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/)Pocket Gem possible question 9/8/2014
+
+Use O(n)
+
+```python
+
+def LCA(node1, node2):
+    if node1 is None or node2 is None:
+        return None
+    path1 = get_path(node1)
+    path2 = get_path(node2)
+
+    index_1 = 0
+    index_2 = 0
+    while index_1 < len(path1) and index_2 < len(path2) and path1[index_1] == path2[index_2]:
+        index1 += 1
+        index2 += 1
+    if index_1 < len(path1) and index_2 < len(path2):
+        return path_1[index_1].parent
+    else:
+        return path_1[index_1 - 1]
+
+    # Note:
+    # 1. line 18 check if index is out of path:
+    # if out of index: means node1/node2 is node2/node1's LCA, need to get index - 1
+    # else:            we need to get parent
+
+def get_path(node):
+    path = []
+    while node is not None:
+        path.append(node)
+        node = node.parent
+    return path[::-1]
+```
+-----
+
+##[154. Operations Calculation](https://oj.leetcode.com/problems/operations-calculation/)
 
 ##### 9/5/2014 Elasticbox
 加减运算
@@ -7410,7 +7449,7 @@ find_next_num()
 ```
 -----
 
-##[154. Print Numbers With Five](https://oj.leetcode.com/problems/print-numbers-with-five/)
+##[155. Print Numbers With Five](https://oj.leetcode.com/problems/print-numbers-with-five/)
 
 ##### 9/7/2014 From mitbbs for Groupon http://www.mitbbs.com/article_t/JobHunting/32651839.html
 写一个function，对于参数n，输出从0到n之间所有含5的数字。
@@ -7438,7 +7477,7 @@ print find_five(60)
 ```
 -----
 
-##[155. Shortest Path](https://oj.leetcode.com/problems/shortest-path/)
+##[156. Shortest Path](https://oj.leetcode.com/problems/shortest-path/)
 
 #####With Twitter
 
@@ -7464,7 +7503,7 @@ def findPath(map, current_point, end_point, length, visited):
 ```
 -----
 
-##[156. Shortest Path N Consecutive Subarray](https://oj.leetcode.com/problems/shortest-path-n-consecutive-subarray/)
+##[157. Shortest Path N Consecutive Subarray](https://oj.leetcode.com/problems/shortest-path-n-consecutive-subarray/)
 
 #####Interview With Cyan
 
@@ -7629,7 +7668,7 @@ def add(x):
 ```
 -----
 
-##[157. Subsets N LCS](https://oj.leetcode.com/problems/subsets-n-lcs/)
+##[158. Subsets N LCS](https://oj.leetcode.com/problems/subsets-n-lcs/)
 
 ##### 9/4/2014 Interview with Tubular
 
