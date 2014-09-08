@@ -428,22 +428,23 @@ for i in range(5):
     t.start()
 ```
 
-#####Current Thread  
-```threading.currentThread().getName()```
+#####Current Thread
+```python
+threading.currentThread().getName()
+```
 
 #####Daemon vs. Non-Daemon Threads
-意思就是daeomon thread will run wihtout blocking main program from exiting  
+意思就是daeomon thread will run wihtout blocking main program from exiting
 如果不设的话主程序会等待所有thread运行完毕
 
-#####Subclass 应该用  
-  ```python
-  class MyThread(threading.Thread):
-
+#####Subclass 应该用
+```python
+class MyThread(threading.Thread):
     def run(self):
-        logging.debug('running')
-        return
-  ```
-  重写```run()```函数
+      logging.debug('running')
+      return
+```
+重写```run()```函数
 
 #####Signaling Between Threads 用```threading.Event()```在thread之间传递信号
 
