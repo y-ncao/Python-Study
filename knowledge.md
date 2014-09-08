@@ -87,9 +87,11 @@ Foo = f1(arg)(f2(Foo))
 ######The decorator is solving problems by avoid doing closure way
 
 ###Closure and nonlocal (说到closure就应该想到nonlocal)
-* locals()  
+* ```locals()```  
   Update and return a dictionary representing the current local symbol table. Free variables are returned by locals() when it is called in function blocks, but not in class blocks.
 太长了的[解释](https://gist.github.com/DmitrySoshnikov/700292), 但是挺好.
+
+* 另外一个[解释](http://stackoverflow.com/questions/4020419/closures-in-python)
 
 ###dir
 * dir(x) is used to find out which names does module x defines. Including variables, modules, functions, etc.
@@ -125,8 +127,8 @@ First of all, both of ```@classmethod and @staticmethod``` are decorators.
 * Metaclasses are the 'stuff' that creates classes.
 * type is the built-in metaclass Python uses, but of course, you can create your own metaclass. ```MyClass = type('MyClass', (), {})```
 ```python
-type(name of the class, 
-     tuple of the parent class (for inheritance, can be empty), 
+type(name of the class,
+     tuple of the parent class (for inheritance, can be empty),
      dictionary containing attributes names and values)
 ```
 ```python
@@ -577,7 +579,7 @@ class MyError(Exception):
   for k, v in s:
      d[k].append(v)
 
-  # Use case 2.
+  # Use case 2
   d = defaultdict(int)
   for k in s:
      d[k] += 1
