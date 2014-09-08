@@ -394,7 +394,7 @@ Also
 ###Lambda
 * ```sorted(student_tuples, key=lambda student: student[2])```
 
-###List/Dict Comprehension: 
+###List/Dict Comprehension:
 * ```[x**2 for x in range(10)]```
 * ```{str(x): x+1 for x in range(10)}```
 
@@ -441,7 +441,7 @@ for i in range(5):
         logging.debug('running')
         return
   ```
-  重写run()函数
+  重写```run()```函数
 * Signaling Between Threads 用```threading.Event()```在thread之间传递信号
 * [Lock](http://pymotw.com/2/threading/#controlling-access-to-resources)
   Python’s built-in data structures (lists, dictionaries, etc.) are thread-safe as a side-effect of having atomic byte-codes for manipulating them (the GIL is not released in the middle of an update). Other data structures implemented in Python, or simpler types like integers and floats, don’t have that protection. To guard against simultaneous access to an object, use a Lock object.  
@@ -708,9 +708,9 @@ Although fairly rare in practice, if a collection object contains a reference to
 
 * __Division method (Cormen)__ Choose a prime that isn't close to a power of 2. h(k) = k mod m. Works badly for many types of patterns in the input data.
 * __Knuth Variant__ on Division h(k) = k(k+3) mod m. Supposedly works much better than the raw division method.
-* Multiplication Method (Cormen). 
-  1. Choose m to be a power of 2. 
-  2. Let A be some random-looking real number. Knuth suggests M = 0.5*(sqrt(5) - 1). 
+* Multiplication Method (Cormen).
+  1. Choose m to be a power of 2.
+  2. Let A be some random-looking real number. Knuth suggests M = 0.5*(sqrt(5) - 1).
   3. Then do the following:
 
   ```python
@@ -865,7 +865,7 @@ Event bubbling V/s Event Capturing
 ###Misc
 Graceful Degradation V/s Progressive Enhancement
 
-###What is the difference between “==” and “===”? 
+###What is the difference between “==” and “===”?
 * __==__ checks equality only
 * __===__ checks for equality as well as the type
 
@@ -1066,10 +1066,10 @@ __两种方法__:
   * Pros: simple and relatively fast
   * Cons: doesn’t handle circular reference
 
-* Mark and sweep: two passes. 
-  1. Mark all the objects that can be accessed. 
+* Mark and sweep: two passes.
+  1. Mark all the objects that can be accessed.
   2. Unmarked objects are deallocated.
-  
+
 System.gc() method may be used to call it explicitly.
 
 ###Private Constructor
