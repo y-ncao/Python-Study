@@ -1,13 +1,15 @@
-# Interview with Twice
-# 1. FizzBuzz
-# 2. Encode and decode
+'''
+#####Interview with Twice
+1. FizzBuzz
+2. Encode and decode
 
-# FizzBuzz:
-#
-# 3 -> "Fizz"
-# 5 -> "Buzz"
-# 3 && 5 -> "FizzBuzz"
-# i -> i
+FizzBuzz:
+
+3 -> "Fizz"
+5 -> "Buzz"
+3 && 5 -> "FizzBuzz"
+i -> i
+'''
 
 def FizzBuss(n):
     for i in range(1,101):
@@ -19,7 +21,7 @@ def FizzBuss(n):
             print 'Fizz'
         else:
             print i
-            
+'''
 
 # String Encoding/Decoding
 #
@@ -39,16 +41,20 @@ foobar oofarb
 
 3 foo 3 bar
 c foo c bar
+'''
 
 def Encode(list):
     ret = []
     for word in list:
         extra = ord('a' + len(word))
         ret.append( extra + word)
-    
+
     return ''.join(ret)
+'''
  0 1 234
 # c foo c bar
+'''
+
 def Decode(string):
     N = len(string)
     start = 0
@@ -58,7 +64,7 @@ def Decode(string):
         ret.append(string[start+1: start+1+length]
         start = start + length
     return ret
-
+'''
 HTTP/1.1 GET
 
 Content-length: 80
@@ -77,3 +83,4 @@ HTTP/1.1 GET
 <headers>
 
 <body>
+'''
