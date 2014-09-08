@@ -2,11 +2,13 @@
 #####Interview With Cyan
 
 2D array of characters
+```
 1 1 1 1 1
 S 1 X 1 1
 1 1 1 1 1
 X 1 1 E 1
 1 1 1 1 X
+```
 
 S is the starting point
 E is the ending point

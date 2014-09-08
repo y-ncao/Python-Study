@@ -7467,11 +7467,13 @@ def findPath(map, current_point, end_point, length, visited):
 #####Interview With Cyan
 
 2D array of characters
+```
 1 1 1 1 1
 S 1 X 1 1
 1 1 1 1 1
 X 1 1 E 1
 1 1 1 1 X
+```
 
 S is the starting point
 E is the ending point
@@ -7625,7 +7627,7 @@ def add(x):
 ```
 -----
 
-##[157. Tubular](https://oj.leetcode.com/problems/tubular/)
+##[157. Subsets N LCS](https://oj.leetcode.com/problems/subsets-n-lcs/)
 
 ##### 9/4/2014 Interview with Tubular
 
