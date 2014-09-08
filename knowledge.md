@@ -925,7 +925,53 @@ Three ways:
 Health Check: response from a server fails with error. Fail timeout / max fail.
 
 ###[Encoding](http://kunststube.net/encoding/)
-Unicode, Ascii, UTF-8
+#####Unicode, Ascii, UTF-8
+* 1 byte = 8 bit
+* Ascii has 128 characters
+* ```2**8 = 256```
+* UTF-16 and UTF-8 are variable-length encodings. If a character can be represented using a single byte (because its code point is a very small number), UTF-8 will encode it with a single byte. If it requires two bytes, it will use two bytes and so on.
+* UTF-8 is an encoding - Unicode is a character set
+* UTF-8 and Unicode cannot be compared. UTF-8 is an encoding used to translate binary data into numbers. Unicode is a character set used to translate numbers into characters.
+* [How big is Unicdoe](http://en.wikipedia.org/wiki/Unicode) 113,021
+* In Python 3, all strings are sequences of Unicode characters. There is a bytes type that holds raw bytes.
+* In Python 2, a string may be of type str or of type unicode. You can tell which using code something like this:
+  ```
+  def whatisthis(s):
+    if isinstance(s, str):
+        print "ordinary string"
+    elif isinstance(s, unicode):
+        print "unicode string"
+    else:
+        print "not a string"
+  ```
+
+#####hex and integer
+* hex是十六进制表示方法  
+  ```
+  >>> hex(10)
+  '0xa'
+  ```
+* python会自动转换0x 十六进制的数字为integer
+  ```
+  >>> a = 0xa
+  >>> type(a)
+  <type 'int'>
+  ```
+* ord('d') 会显示这个字符的ascii数字， chr(int) 会转换int变成字符，注意这个int不能超过255
+* 于是有了chr(10) == chr(0xa)
+* ```'\xhh'```表示的是一个string(其实是一个char)， hh是两位十六进制，比如  
+  ```
+  >>> '\x29'
+  ')'
+  ```
+* ascii从0~8显示的都是'\x0i' where i in 0~8, 127过后也都是'\xhh'形式的，显示不出来字符本身。
+* 于是很逗的现象就是，有些东西只是把十进制转化成十六进制罢了。
+  ```
+  >>> chr(127)
+  '\x7f'
+  >>> ord('\x7f')
+  127
+  ```
 
 ###[Big O](http://bigocheatsheet.com/)
 * Time Complexity - The amount of time needed to finish the task
