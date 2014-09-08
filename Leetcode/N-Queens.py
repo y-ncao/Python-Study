@@ -20,8 +20,6 @@ There exist two distinct solutions to the 4-queens puzzle:
 ]
 """
 
-# Need another way to think about this, fill row instead of fill column
-
 class Solution:
     # @return a list of lists of string
     def solveNQueens(self, n):
