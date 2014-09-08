@@ -1,10 +1,9 @@
-# 9/5/2014 Elasticbox
-
-# 加减运算
-
+"""
+##### 9/5/2014 Elasticbox
+加减运算
 string = '7 + 8 - 19 - 5 + 10'
-
 8 - 19 - 5
+"""
 
 def get_result(str):
   N = len(str)
@@ -14,7 +13,7 @@ def get_result(str):
     if str[i] == ' ':
       continue
     if str[i] in num
-    
+
 -/+
 str.split('+')
 
@@ -34,19 +33,18 @@ def get_result(str):
       minus.append(el)
     else:
       sum += num
-      
+
   for el in minus:
     piece = el.split('-')
     result = piece[0]
     for i, num in enumerate(piece, 1):
-      result 
+      result
       if i == 0:
         sum += int(num)
       else:
         sum -= int(num)
-        
+
   return sum
-  
-  
-+8 
+
++8
 find_next_num()

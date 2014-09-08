@@ -1,12 +1,12 @@
-# 9/4/2014 Interview with Tubular
+"""
+##### 9/4/2014 Interview with Tubular
 
-# 1. Subset(秒了)
-# 2. LCS
+1. Subset(秒了)
+2. LCS
 
-#This is the text editor interface. 
-# Anything you type or change here will be seen by the other person in real time.
-# "abc", "zyabcbcyz" -> "abc"
-'''
+This is the text editor interface.
+ Anything you type or change here will be seen by the other person in real time.
+ "abc", "zyabcbcyz" -> "abc"
 len(a) -> m
 len(b) -> n
 
@@ -17,7 +17,7 @@ m!
 2 m-1
 3 m-2
 
-(1+m) * m / 2 
+(1+m) * m / 2
 
 m^2
 
@@ -29,12 +29,12 @@ m^2
 0 m
 log(m)
 
-dp 
-# state: dp[i][j] ith char in a and jth char in b, the len of LCS is dp[][]
-# function dp[i][j] = 0 if a[i-1] != b[i-1]
-#                     dp[i-1][j-1] + 1
-#          max(dp[i][j]) for each i and j
-'''
+dp
+state: dp[i][j] ith char in a and jth char in b, the len of LCS is dp[][]
+function dp[i][j] = 0 if a[i-1] != b[i-1]
+                    dp[i-1][j-1] + 1
+         max(dp[i][j]) for each i and j
+"""
 
 def longest_common_substring(a,b):
     m = len(a)
@@ -50,8 +50,6 @@ def longest_common_substring(a,b):
             else:
                 dp[i][j] = 0
     return res
-    
-    
 
 # "abcdefg"
 print(longest_common_substring("abc", "abz"))

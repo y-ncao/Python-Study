@@ -1,4 +1,6 @@
-'''
+"""
+#####Interview With Cyan
+
 2D array of characters
 1 1 1 1 1
 S 1 X 1 1
@@ -14,8 +16,7 @@ X means you cannot traverse to that point
 2. Find if there is a path from S to E
 
 Restriction: Move to 8 positions
-*/
-'''
+"""
 
 # Divide and conquer
 def find_shortest_path(matrix, C, E, visited):
@@ -27,7 +28,7 @@ def find_shortest_path(matrix, C, E, visited):
     if matrix[x][y] == 'X':
         return INT_MAX
     # 考虑visited
-    
+
     return min(find_shortest_path(matrix, (x+1, y), E, visited)
 
 

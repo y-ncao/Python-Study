@@ -1,4 +1,4 @@
-'''
+"""
 #####Interview with Twice
 1. FizzBuzz
 2. Encode and decode
@@ -9,7 +9,7 @@ FizzBuzz:
 5 -> "Buzz"
 3 && 5 -> "FizzBuzz"
 i -> i
-'''
+"""
 
 def FizzBuss(n):
     for i in range(1,101):
