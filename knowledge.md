@@ -635,21 +635,32 @@ class MyError(Exception):
   d.popleft()
   ```
 
-* [Priority Queue](./Leetcode/Merge_k_Sorted_Lists.py)
-  ```python
-  import heapq
-
-  heap = []
-  heapq.heappush(heap, 1)
-  heapq.heappush(heap, -5)
-  heapq.heappush(heap, 2)
-
-  heapq.heappop()
-  >>>-5
-
-  heapq.heappush(pq, (node.val, node))
-  val, node = heapq.heappop(pq)
-  ```
+* [Priority Queue](http://pymotw.com/2/heapq/)
+  * [Complexity](http://bigocheatsheet.com)
+    * heapify O(n)
+    * findMax O(1)
+    * extractMax O(log(n))
+    * insert O(log(n))
+    * delete O(log(n))
+    * merge O(m+n)
+  * heap的存放方式是由上至下由左至右
+  * ```import heapq```
+  * ```heappush(heap, (value, key))```这里的(value, key)可以只是一个value
+    ```python
+    pq = []
+    heapq.heappush(pq, 1)
+    heapq.heappush(pq, -5)
+    heapq.heappush(pq, 2)
+    # Will have pq = [-5, 1, 2]
+    ```
+  * ```heapq.heappop(heap)```这个函数本身用途不大, 如果heap是乱的pop的信息也是乱的, 因为他只是个popleft()  
+    ```python
+    heapq.heappop(pq)
+    # will get -5
+    ```
+  * ```heapq.heapify(heap)```可以用来sort heap, 其实就是一个sort
+  * ```heapq.heapreplace(heap, value)```可以用来在保持heap same size的同时, 插入一个新数, 这样会有旧数被丢掉.
+  * ```nlargest(n, data)``` and ```nsmallest(n, data)```
 
 ###Special function
 * ```str.isalnum()``` is alphanumeric
