@@ -561,7 +561,7 @@ Immutable Types Can't Be Changed in Place. Remember that you can't change an imm
 * TypeError
 * RuntimeError
 
-#######[Why are Python exceptions named “Error”?](http://stackoverflow.com/questions/2903827/why-are-python-exceptions-named-error)
+######[Why are Python exceptions named “Error”?](http://stackoverflow.com/questions/2903827/why-are-python-exceptions-named-error)
 因为名字命名要有意义...
 
 ```python
