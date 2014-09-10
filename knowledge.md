@@ -878,6 +878,39 @@ print htable.getValue("reblow")
 
 ------
 
+###NoSQL vs Relational SQL
+* NoSQL
+  * MongoDB(Document)
+  * Google Big Table (Column)
+  * Cassandra (Column)
+  * HBase (Column)
+  * Amazon DynamoDB(Key-Value Eventually Consistent)
+  * Redis(Key-Value RAM)
+  * MemcacheDB(Key-Value RAM)
+* Eventually Consistent
+
+###[Sharding](http://docs.mongodb.org/manual/core/sharding-introduction/)
+* Storing data across multiple machines
+* Purpose - horizontal scaling
+* Advantages
+  * Sharding reduces the number of operations each shard handles
+  * Sharding reduces the amount of data that each server needs to store.
+* 三个重要的structure
+  * __Shards__ store the data
+  * __Query Routers__ interface with client applications and direct operations to the appropriate shard or shards
+  * __Config servers__ store the cluster’s metadata.
+* Data Partitioning
+  * Range Based Sharding
+  * Hash Based Sharding
+* Splitting
+* Balancing
+
+###MapReduce
+
+###Consistent Hashing
+
+------
+
 #Javascript
 
 ###Javascript types
