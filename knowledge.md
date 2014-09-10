@@ -813,7 +813,7 @@ print htable.getValue("reblow")
          5. request by second   400+per second(40 shorten 360 redirects)
          6. Total url 5 years * 12 * 100M: 6Billion url in 5 years
          7. 每个url长度 500bytes: __1 char = 1 byte__ 这个太重要了(ASCII是128=2**7个, 1byte就够了, 但是UTF-8是1~4bytes一个字符)
-         8. ___url是case sensitive的__
+         8. __url是case sensitive的__
          9. 6 bytes per hash
          10. 注意, 10^3 K->kb, 10^6 M->MB, 10^9 B->GB, 10^12 ->TB
          11. New data written per second 40*(500+6)bytes = 20kb
