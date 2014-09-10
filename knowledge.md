@@ -905,9 +905,33 @@ print htable.getValue("reblow")
 * Splitting
 * Balancing
 
-###MapReduce
+###[MapReduce](http://michaelnielsen.org/blog/write-your-first-mapreduce-program-in-20-minutes/)
+拿这个link的word count作为栗子
+* Map is a step to convert each chapter to a dict  
+  * 实际栗子里是把combine这步放到这里，把多个chapter组成一个intermediate list
+  * 所以，输入是chapter，输出是list of words with count 1, a lot duplidates
+* Reduce is a step to combine each list and reduce the duplicate data
+  输入是个list，通过使用itertool.groupby()和dict来实现去重，把intermediate信息输入进去，最后得到一个新的reduced list
 
-###Consistent Hashing
+###[Consistent Hashing](http://blog.csdn.net/sparkliang/article/details/5279393)
+* four important keys
+  * Balancing
+  * Monotonicity
+  * Spread
+  * Load
+* 解决的问题：N个server， 需要增加或者减少一台，但是又不想re-hash
+* Steps:
+  1. 环形hash空间
+  2. 把数据对象Objecthash到环形空间
+  3. 把Server hash到环形空间
+  4. Map Object to Server：顺时针顺着object的key走遇到的第一个Server负责该object
+  5. 分析
+     * 移除Server
+       Server B被移除后，只需要从B出发逆时针找第一个Server，在此之间的所有object都要re-map到Server B的下一个Server
+     * 添加Server
+       同样是从新的server逆时针出发到上一个server之间object归他管了
+* 通过virtual node来提高balance
+* 正常hash就直接hash ip就行了 hash('192.168.1.1')， 如果是hash virtual node可以 hash('192.168.1.1#1')
 
 ------
 
