@@ -152,3 +152,36 @@ a();  // 6
 a();  // 7
 
 ```
+
+然后就是另一个点, 也可以不把x放在传入函数里, 虾米那的方法will work the same
+```python
+>>> def increase():
+...     x = []
+...     def inner():
+...         x.append(5)
+...         print x
+...     return inner
+...
+>>> a = increase()
+>>> a()
+[5]
+>>> a()
+[5, 5]
+```
+
+但是
+
+```python
+def increase():
+    x = 1
+    def inner():
+        x += 1
+        print x
+    return inner
+>>> a = increase()
+>>> a()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 4, in inner
+UnboundLocalError: local variable 'x' referenced before assignment
+```
