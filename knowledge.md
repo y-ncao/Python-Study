@@ -86,7 +86,7 @@ Foo = f1(arg)(f2(Foo))
 
 ######The decorator is solving problems by avoid doing closure way
 
-###Closure and nonlocal (说到closure就应该想到nonlocal)
+###[Closure](./Concept_Implement/Closures.md) and nonlocal (说到closure就应该想到nonlocal)
 * ```locals()```
 
 Update and return a dictionary representing the current local symbol table. Free variables are returned by locals() when it is called in function blocks, but not in class blocks.
