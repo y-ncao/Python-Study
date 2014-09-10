@@ -7,11 +7,39 @@ def mapper(input_key,input_value):
     return [(word,1) for word in
             remove_punctuation(input_value.lower()).split()]
 
+"""
+After Mapper, we have this
+[('the', 1), ('quick', 1), ('brown', 1), ('fox', 1),
+ ('jumped', 1), ('over', 1), ('the', 1), ('lazy', 1), ('grey', 1),
+ ('dogs', 1), ('mary', 1), ('had', 1), ('a', 1), ('little', 1),
+ ('lamb', 1), ('its', 1), ('fleece', 1), ('was', 1), ('white', 1),
+ ('as', 1), ('snow', 1), ('and', 1), ('everywhere', 1),
+ ('that', 1), ('mary', 1), ('went', 1), ('the', 1), ('lamb', 1),
+ ('was', 1), ('sure', 1), ('to', 1), ('go', 1), ('thats', 1),
+ ('one', 1), ('small', 1), ('step', 1), ('for', 1), ('a', 1),
+ ('man', 1), ('one', 1), ('giant', 1), ('leap', 1), ('for', 1),
+ ('mankind', 1)]
+"""
+
+# Used to remove ','
 def remove_punctuation(s):
     return s.translate(string.maketrans("",""), string.punctuation)
 
 def reducer(intermediate_key,intermediate_value_list):
     return (intermediate_key,sum(intermediate_value_list))
+
+"""
+After Reducer, we have this
+{'and': [1], 'fox': [1], 'over': [1], 'one': [1, 1], 'as': [1],
+ 'go': [1], 'its': [1], 'lamb': [1, 1], 'giant': [1],
+ 'for': [1, 1], 'jumped': [1], 'had': [1], 'snow': [1],
+ 'to': [1], 'leap': [1], 'white': [1], 'was': [1, 1],
+ 'mary': [1, 1], 'brown': [1], 'lazy': [1], 'sure': [1],
+ 'that': [1], 'little': [1], 'small': [1], 'step': [1],
+ 'everywhere': [1], 'mankind': [1], 'went': [1], 'man': [1],
+ 'a': [1, 1], 'fleece': [1], 'grey': [1], 'dogs': [1],
+ 'quick': [1], 'the': [1, 1, 1], 'thats': [1]}
+"""
 
 filenames = ["text\\a.txt","text\\b.txt","text\\c.txt"]
 i = {}
@@ -38,14 +66,15 @@ import itertools
 
 def map_reduce(i,mapper,reducer):
     intermediate = []
-    for (key,value) in i.items():
+    # This is processing the mapper, combine all the mapper to the same list
+    for (key,value) in i.iteritems():
         intermediate.extend(mapper(key,value))
     groups = {}
     # very important step.
-    # 1. lambda simply yeilds the first argument in the intermdediate, which is the key.
+    # 1. lambda simply yields the first argument in the intermdediate, which is the key.
     #    That is used for setup group by what
     # 2. sorted is used to get the result grouped. See the later comment
-    # 3. line 50 list comprehension is used toe get the value, which can also use x[1] I think
+    # 3. line 50 list comprehension is used to get the value, which can also use x[1] I think
     for key, group in itertools.groupby(sorted(intermediate),lambda x: x[0]):
         groups[key] = list([y for x, y in group])
     # And finally apply reducer function to each item
@@ -78,3 +107,15 @@ def groupby_even_odd(items):
 even: 4,6,8
 odd: 1,3,5,9,11
 """
+
+def map_reduce(i, mapper, reducer):
+    intermediate = []
+    for key, value in i.iteritems():
+        intermediate.extend(mapper(key, value))
+
+    groups = {}
+    for key, group in itertools.groupby(sorted(intermediate), key=lambda x: x[0]):
+        # Another way do to this
+        for inter_key, value in group:
+            groups.setdefault(key, []).append(value)
+    return [reducer(k, v for k, v in groups.iteritems())]
