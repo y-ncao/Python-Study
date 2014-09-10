@@ -831,10 +831,50 @@ print htable.getValue("reblow")
    3. ```hashed_url = convert_to_base_62(md5(original_url + random_salt))[:6]```
       * Base 62 是一种short ulr的encoding, encode之后只有62种字符0-9 a-z A-Z
 3. Understanding Bottlenecks
-   * Traffic
-   * Lots of data
+   * Traffic - not going to be very hard
+   * Lots of data - more interesting
 4. Scaling Abstract Design
+   1. Application Service Layer
+      * Start with one machine
+      * Measure how far it take us(load tests)
+      * Add a load balancer + a cluster of machines over time
+        1. to deal with spiky traffice
+        2. Also avoid single failure and increase the availability
+   2. Data Storage Layer
+      1. What's data?
+         * Billions of objects
+         * Each object is fairly small(<1k)
+         * There are no relationship between the objects
+         * Reads are 9x more frequent thant writes(360 reads, 40 writes per second)
+         * 3TBs of urls, 36GB of hashes
+      2. NoSQL vs Relation SQL
+         * MySQL:
+           * Widely used
+           * Mature technology
+           * Clear Scaling Paradimgs(sharding, master/slave replication, master/master replication)
+           * Used by Facebook, Twitter, Google etc
+           * Index lookups are very fast
+         * Mappings
+           * hash: varchar(6)
+           * original_url: varchar(512)
+      3. Create a unique index on the hash(36GB+). We want to hold it in memory to speed up lookups.
+         1. Vertical Scaling of the MySQL machine (memory is cheap) (vertical for a while)
+         2. Partition the data: 5 partitions, 600GB of data, 8GB of indexes (Eventually partiion)
+            * We can add more shards in the future. Easier for backup and replicate
+            * Default idea of this is: get the first char from the ```hash % num_of_partition```
+      4. Master/Slave replication(reading from the slave replicas, writes to the master)(如果有一天read/write不balance了的话)
 
+------
+总结:
+1. 从base开始, 最后变得复杂, 可以一开始vertical, 后面horizontal
+2. 核心是从连个方向走
+   * Traffic
+     1. More server(应该是这里体现consistent hashing, map reduce可能也是这里)
+     2. Load balancer()
+   * Data
+     1. NoSQL vs Relation SQL
+     2. 如果小的话就store in memory, 大的话就得考虑sharding(easier for replicate and backup)
+     3. 如果读写不均匀的话就分开读写, master/slave replication(reading from slaves and write to master)
 
 ------
 
