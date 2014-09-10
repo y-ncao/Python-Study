@@ -788,6 +788,56 @@ print htable.getValue("wolber")
 print htable.getValue("reblow")
 ```
 
+------
+#System Design
+1. Constrains and Use Cases
+   1. Use Cases - What do we use the system for?
+      1. Shortening: take a url => return a much shorter url
+      2. Redirection: take a short ulr => redirect to the original url
+      3. ~~Custom url~~
+      4. ~~Analytics~~
+      5. ~~Automatic link expiration~~~
+      6. ~~Manual link removal~~
+      7. ~~UI vs API~~
+      8. Highly available
+   2. Constrains:
+      1. Basic knowledge:
+         * 1.3 Billion Facebook active users
+         * 650 Million Twitter
+         * New Tweets per day 500 Million
+      2. 这道题的数据
+         1. All shortened URLs per Month: 1.5BN
+         2. Sites below the top3: 300M per month
+         3. We: 100M per month
+         4. 1BN request per month
+         5. request by second   400+per second(40 shorten 360 redirects)
+         6. Total url 5 years * 12 * 100M: 6Billion url in 5 years
+         7. 每个url长度 500bytes: __1 char = 1 byte__ 这个太重要了(ASCII是128=2**7个, 1byte就够了, 但是UTF-8是1~4bytes一个字符)
+         8. ___url是case sensitive的__
+         9. 6 bytes per hash
+         10. 注意, 10^3 K->kb, 10^6 M->MB, 10^9 B->GB, 10^12 ->TB
+         11. New data written per second 40*(500+6)bytes = 20kb
+         12. Data read per second: 360 * 506 bytes = 180k
+      3. 重要的几个点
+         1. Storage
+         2. Data written & Data Read
+
+2. Abstract Design - Finally simple the problem to per second
+   1. Application service layer(serves the requests)
+      * Shortening Service
+      * Redirection Service
+   2. Data storage layer(keep track of the hash =>url mapping)
+      * Act like a big hash table: stores new mappings and retrieves a value given a key
+   3. ```hashed_url = convert_to_base_62(md5(original_url + random_salt))[:6]```
+      * Base 62 是一种short ulr的encoding, encode之后只有62种字符0-9 a-z A-Z
+3. Understanding Bottlenecks
+   * Traffic
+   * Lots of data
+4. Scaling Abstract Design
+
+
+------
+
 #Javascript
 
 ###Javascript types
