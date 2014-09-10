@@ -61,4 +61,97 @@ my_closure();
 * Normally, the local variables within a function only exist for the duration of that function's execution.
 * Once makeFunc() has finished executing, it is reasonable to expect that the name variable will no longer be accessible.
 
+####Python的closure和javascript的closure是一样的
+
+```python
+1 def increase(x):
+2    x += 1
+3    def inner():
+4        print x
+5    return inner
+
+>>> a = increase(5)
+>>> a()
+6
+>>> a()
+6
+```
+
+这段代码有几个地方值得注意的地方
+1. line 2的 increase只能发生在outer function. 如果插在3 4 行之间, 会出现UnboundLocalError: local variable 'x' referenced before assignment  
+   分析原因是因为如果只是print x的话是没有赋值的, 所以会搜索上一层的namespace, 因为产生了closure, 所以在inner会搜到  
+   但是如果存在赋值的话, 就会找当前的namespace. 这里有个小插曲, code is 
+```python
+def increase(x):
+    def inner():
+        x.append(5)
+        print x
+    return inner
+```
+
+2. 正确的方式去证明python的closure是
+```pytyhon
+>>> def increase(x):
+...     def inner():
+...         x.append(5)
+...         print x
+...     return inner
+>>> a = increase([3])
+>>> a()
+[3, 5]
+>>> a()
+[3, 5, 5]
+>>> a()
+[3, 5, 5, 5]
+```
+
+但是
+
+```python
+>>> def increase(x):
+...     x.append(5)
+...     def inner():
+...         print x
+...     return inner
+...
+>>> a = increase([3])
+>>> a()
+[3, 5]
+>>> a()
+[3, 5]
+```
+
+因为后者不能算是closure, 它对data的modify位于outer func
+
+Same in javascript
+```javascript
+function increase(x){
+    x ++;
+    return function(){
+         alert(x);
+    }
+}
+a = increase(5);
+
+a();  // 6
+a();  // 6
+
+```
+
+但是
+```javascript
+function increase(x){
+    return function(){
+         x ++;
+         alert(x);
+    }
+}
+a = increase(5);
+
+a();  // 6
+a();  // 7
+
+```
+
+
 
