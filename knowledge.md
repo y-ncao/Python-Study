@@ -1018,6 +1018,22 @@ Like SQLAlchemy
 
 #OS Knowledge
 
+###[REST vs SOAP](http://stackoverflow.com/questions/19884295/soap-vs-rest-differences)
+* SOAP and REST can't be compared directly, since the first is a protocol (or at least tries to be) and the second is an architectural style.
+* SOAP client works like a desktop application
+  * Everything is expected to break if either side changes anything
+* [REST client works like a browser](http://en.wikipedia.org/wiki/Representational_state_transfer)
+  * Base URI
+  * An Internet media type for the data (JSON)
+  * standard HTTP methods
+  * [hypertext links to reference state](http://en.wikipedia.org/wiki/HATEOAS)
+  * hypertext links to reference related resources
+  * 还有一个没提的我觉得是cacheable
+* Diff
+  * You can cache REST but not SOAP
+  * SOAP can only do xml but REST supports many data formats
+  * stateless vs statuses
+
 ###Load Balancing
 Three ways:
   1. Round-robin 平均分配
