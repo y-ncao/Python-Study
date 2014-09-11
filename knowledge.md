@@ -511,8 +511,7 @@ def foo(kind, *args, **kwargs):
         print key, value
 ```
 
-###[Pass by Assignment]
-
+###[Pass by Assignment](http://stackoverflow.com/questions/986006/how-do-i-pass-a-variable-by-reference)
 1. If passing a mutable object, the method got an reference of the object and you can change it. But if you rebind the reference, outer scope wouldn't know
 2. Immutable object is changed by rebind, so outer scope wouldn't know.
 
