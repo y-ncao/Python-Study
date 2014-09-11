@@ -1107,8 +1107,8 @@ Health Check: response from a server fails with error. Fail timeout / max fail.
 * UTF-8 and Unicode cannot be compared. UTF-8 is an encoding used to translate binary data into numbers. Unicode is a character set used to translate numbers into characters.
 * [How big is Unicdoe](http://en.wikipedia.org/wiki/Unicode) 113,021
 * In Python 3, all strings are sequences of Unicode characters. There is a bytes type that holds raw bytes.
-* In Python 2, a string may be of type str or of type unicode. You can tell which using code something like this:
-  ```
+* In Python 2, a string may be of type str or of type unicode. You can tell which using code something like this:  
+  ```python
   def whatisthis(s):
     if isinstance(s, str):
         print "ordinary string"
