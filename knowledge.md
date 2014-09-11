@@ -1071,8 +1071,6 @@ This is important when the inner function will be called after the outer functio
 Object-relational mapping
 Like SQLAlchemy
 
-#MapReduce, Sharding
-
 #OS Knowledge
 
 ###[REST vs SOAP](http://stackoverflow.com/questions/19884295/soap-vs-rest-differences)
