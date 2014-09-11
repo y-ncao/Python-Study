@@ -911,8 +911,13 @@ print htable.getValue("reblow")
   * 所以，输入是chapter，输出是list of words with count 1, a lot duplidates
 * Reduce is a step to combine each list and reduce the duplicate data
   输入是个list，通过使用itertool.groupby()和dict来实现去重，把intermediate信息输入进去，最后得到一个新的reduced list
+* Steps
+  1. Partitioning data
+  2. Apply function to the pieces in parallel without communication to each other between the analyzers
+  3. Apply another function to combine the results
 
 ###[Consistent Hashing](http://blog.csdn.net/sparkliang/article/details/5279393)
+* Naive way to do: hash(k) % n
 * four important keys
   * Balancing
   * Monotonicity
