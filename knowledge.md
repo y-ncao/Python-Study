@@ -1108,15 +1108,15 @@ Health Check: response from a server fails with error. Fail timeout / max fail.
 * [How big is Unicdoe](http://en.wikipedia.org/wiki/Unicode) 113,021
 * In Python 3, all strings are sequences of Unicode characters. There is a bytes type that holds raw bytes.
 * In Python 2, a string may be of type str or of type unicode. You can tell which using code something like this:  
-  ```python
-  def whatisthis(s):
-    if isinstance(s, str):
-        print "ordinary string"
-    elif isinstance(s, unicode):
-        print "unicode string"
-    else:
-        print "not a string"
-  ```
+```python
+def whatisthis(s):
+  if isinstance(s, str):
+      print "ordinary string"
+  elif isinstance(s, unicode):
+      print "unicode string"
+  else:
+      print "not a string"
+```
 
 #####hex and integer
 * hex是十六进制表示方法  
