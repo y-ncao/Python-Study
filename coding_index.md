@@ -233,11 +233,10 @@ for i in range(A):
 * answer: ```dp[n-1]```
 
 ######[Climbing Stairs](./Leetcode/Climbing_Stairs.py)
-* state: dp[i]表示爬到第i个台阶时的方法数
+* state: dp[i]表示从0爬到第i-1个台阶时的方法数
 * function: ```dp[i] = dp[i-1] + dp[i-2]```
-* initialize: ```dp[0] = 1, dp[1] = 1```
-* answer: ```dp[n]```
-
+* initialize: ```dp[0] = 1, dp[1] = 2```
+* answer: ```dp[n-1]```
 
 ######[Jump Game](./Leetcode/Jump_Game.py) | [Jump Game II](./Leetcode/Jump_Game_II.py)
 * state: dp[i]表示能否跳到第i个位置 | dp[i]表示跳到这个位置最少需要多少步.
