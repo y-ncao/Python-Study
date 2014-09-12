@@ -15,14 +15,15 @@ class Solution:
     def uniquePaths(self, m, n):
         dp = [ [0 for j in range(n)] for i in range(m) ]
         for i in range(m):
-            dp[i][0] = 1
-        for j in range(n):
-            dp[0][j] = 1
-        for i in range(1, m):
-            for j in range(1, n):
-                dp[i][j] = dp[i-1][j] + dp[i][j-1]
+            for j in range(n):
+                if i == 0 or j == 0:
+                    dp[i][j] = 1
+                else:
+                    dp[i][j] = dp[i-1][j] + dp[i][j-1]
         return dp[m-1][n-1]
 
-    # For the convinience in the future, going to use m as the rows, n as the columns
-    # So dp[m][n] which is [ [ 0 for j in range(n)] for i in range(m) ]
-    # Remember this
+    # Note:
+    # 1. dp[i][j] means from (0,0) to (i, j) how many ways to finish
+    # 2. init dp[i][0] = 1, dp[0][j] = 1
+    # 3. dp[i][j] = dp[i-1][j] + dp[i][j-1]
+    # 4. result dp[m-1][n-1]
