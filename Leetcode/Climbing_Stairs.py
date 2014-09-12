@@ -25,6 +25,12 @@ class Solution:
             dp[i] = dp[i-1] + dp[i-2]
         return dp[n-1]
 
+    # Note:
+    # 1. dp[i] means from 0 to i-1 stair, how many ways to go
+    # 2. dp[0] = 1, dp[1] = 2
+    # 3. dp[i] = d[i-1] + dp[i-2]
+    # 4. dp[N-1]
+
     def climbStairs_3(self, n):
         if n <= 2:
             return n
