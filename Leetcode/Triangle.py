@@ -18,6 +18,25 @@ class Solution:
     # @param triangle, a list of lists of integers
     # @return an integer
     def minimumTotal(self, triangle):
+        M = len(triangle)
+        N = len(triangle[-1])
+        dp = [ [ 0 for j in range(N)] for i in range(M)]
+        for i in range(M)[::-1]:
+            for j in range(len(triangle[i])):
+                if i == M-1:
+                    dp[i][j] = triangle[i][j]
+                else:
+                    dp[i][j] = min(dp[i+1][j], dp[i+1][j+1]) + triangle[i][j]
+        return dp[0][0]
+    # Notes:
+    # This is not the best solution. But easier to understand
+    # 1. status: ```dp[x][y]```表示从bottom走到top每个坐标的最短路径
+    # 2. function: dp[i][j] = min(dp[i+1][j], dp[i+1][j+1]) + triangle[i][j]
+    # 3. initialize: dp[-1][j] = triangle[-1][j]
+    # 4. answer: dp[0][0]
+
+    #This is older way, but still pretty good
+    def minimumTotal_2(self, triangle):
         n = len(triangle) - 1
         dp = triangle[n]
         n -= 1

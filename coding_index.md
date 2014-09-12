@@ -197,11 +197,17 @@ for i in range(A):
 
 ###Types of DP
 
-####1. Matrix DP 20% (Triangle, Unique Path)
+####1. Matrix DP 20% (Triangle, Unique Path, ...)
 * state: ```dp[x][y]```表示从起点走到坐标 (x,y) 的xxx
 * function: 研究下一步怎么走
 * initialize: 起点
 * answer: 终点
+
+#####[Triangle](./Leetcode/Triangle.py)
+* status: ```dp[x][y]```表示从bottom走到top每个坐标的最短路径
+* function: dp[i][j] = min(dp[i+1][j], dp[i+1][j+1]) + triangle[i][j]
+* initialize: dp[-1][j] = triangle[-1][j]
+* answer: dp[0][0]
 
 #####[Unique Path](./Leetcode/Unique_Paths.py)
 * state: ```dp[x][y]```表示从起点走到 (x,y) 的path数
