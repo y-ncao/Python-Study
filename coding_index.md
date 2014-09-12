@@ -259,7 +259,6 @@ for i in range(A):
   注意j的枚举 -> 枚举单词长度
   O(NL) N: 字符串长度  L:最长单词的长度
 
-
 ######[Longest Increasing Subsequence 最长上升子序列](http://www.geeksforgeeks.org/dynamic-programming-set-3-longest-increasing-subsequence/) (Not in Leetcode)
 * state: ~~dp[i] 表示前i个数字中最长的LIS长度(错误)~~
        dp[i] 表示第i个数字结尾的LIS长度(正确)
