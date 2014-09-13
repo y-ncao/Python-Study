@@ -30,7 +30,7 @@ class Cell():
 
     def decrement_indegree(self):
         self.indegree -= 1
-        return self.indegree == 0
+        return self.indegree
 
     def get_reference(self):
         refs = []
@@ -157,7 +157,7 @@ class Graph():
             self.checked_cells += 1
             cell.solve_cell()
             for dp_cell in cell.get_dependencies():
-                if dp_cell.decrement_indegree():
+                if dp_cell.decrement_indegree() == 0:
                     self.enqueue(dp_cell)
 
         if self.checked_cells < self.size:
@@ -169,7 +169,7 @@ class Graph():
     #    i. set up dependencies
     #    ii. enqueue all zero reference cells
     # 3. use topological sorting to solve graph
-    #    i. solve the cell with reference
+    #    i. solve the cell with zero reference
     #    ii. enqueue dependency cell if cell has indegree == 1
     #    iii. repeat i, ii until nothing left in queue.
     #         if not all cells are solved, we have cyclic dependency
