@@ -1,16 +1,13 @@
 #!/usr/bin/env python
 
-class CyclicDependencyError(Exception):
-    def __init__(self, value):
-        self.value = value
-    def __str__(self):
-        return repr(self.value)
+# Author: Yan Cao
+# Date:   9/13/2014
 
 class Cell():
     def __init__(self, expression, sheet):
         self.expression = expression
-        self.dependencies = []
         self.value = None
+        self.dependencies = []
         self.sheet = sheet
 
     def get_expression(self):
@@ -19,17 +16,17 @@ class Cell():
     def get_value(self):
         return self.value
 
-    def get_dependencies(self):
-        return self.dependencies
-
-    def add_dependency(self, cell):
-        self.dependencies.append(cell)
-
     def set_indegree(self, indegree):
         self.indegree = indegree
 
     def get_indegree(self):
         return self.indegree
+
+    def get_dependencies(self):
+        return self.dependencies
+
+    def add_dependency(self, cell):
+        self.dependencies.append(cell)
 
     def decrement_indegree(self):
         self.indegree -= 1
@@ -45,10 +42,10 @@ class Cell():
         return refs
 
     def _calculate(self, num_1, num_2, operator):
-        oper_dict = { '+': lambda x, y: x+y,
-                      '-': lambda x, y: x-y,
-                      '*': lambda x, y: x*y,
-                      '/': lambda x, y: x/y,
+        oper_dict = { '+' : lambda x, y: x+y,
+                      '-' : lambda x, y: x-y,
+                      '*' : lambda x, y: x*y,
+                      '/' : lambda x, y: x/y,
                       '++': lambda x, y: x+1,
                       '--': lambda x, y: x-1,
                       }
@@ -74,10 +71,15 @@ class Cell():
 
             # el is operator
             else:
+                if len(stack) < 2:
+                    raise Exception('Cell expression error! Expression is %s' % self.expression)
                 num_2 = stack.pop()
                 num_1 = stack.pop()
                 result = self._calculate(num_1, num_2, el.strip())
                 stack.append(result)
+
+        if len(stack) > 1:
+            raise Exception('Cell expression error! Expression is %s' % self.expression)
 
         self.value = stack.pop()
 
@@ -111,23 +113,23 @@ class SpreadSheet():
         col = int(ref[1]) - 1
         return self.sheet[row][col]
 
-    def gen_top_graph(self):
-        self.top_graph = TopGraph(self.len_col * self.len_row)
+    def _gen_graph(self):
+        self.graph = Graph(self.len_col * self.len_row)
         for i in range(self.len_row):
             for j in range(self.len_col):
                 cell = self.sheet[i][j]
                 refs = cell.get_reference()
-                if len(refs) == 0:
-                    self.top_graph.enqueue(cell)
+                if not refs:
+                    self.graph.enqueue(cell)
                 else:
                     for ref in refs:
-                        cd = self.get_cell_from_ref(ref)
-                        cd.add_dependency(cell)
-        return self.top_graph
+                        ref_cell = self.get_cell_from_ref(ref)
+                        ref_cell.add_dependency(cell)
+        return self.graph
 
     def output(self):
-        self.top_graph = self.gen_top_graph()
-        self.top_graph.solve()
+        self.graph = self._gen_graph()
+        self.graph.solve()
 
         output_result = [ [None for j in range(self.len_col)] for i in range(self.len_row) ]
         for i in range(self.len_row):
@@ -136,9 +138,10 @@ class SpreadSheet():
 
         return output_result
 
-class TopGraph():
+
+class Graph():
     def __init__(self, size):
-        self.checked_cell = 0
+        self.checked_cells = 0
         self.size = size
         self.queue = []
 
@@ -151,33 +154,49 @@ class TopGraph():
     def solve(self):
         while self.queue:
             cell = self.dequeue()
-            self.checked_cell += 1
+            self.checked_cells += 1
             cell.solve_cell()
-            for depen in cell.get_dependencies():
-                if depen.decrement_indegree():
-                    self.enqueue(depen)
+            for dp_cell in cell.get_dependencies():
+                if dp_cell.decrement_indegree():
+                    self.enqueue(dp_cell)
 
-        if self.checked_cell < self.size:
-            raise CyclicDependencyError('Cannot solve due to cyclic dependency!')
+        if self.checked_cells < self.size:
+            raise Exception('Cannot solve due to cyclic dependency!')
 
     # Solving steps:
     # 1. Prepare for sheet content
-    # 2. generate topological graph
-    # 3. solve topological graph
+    # 2. generate graph
+    #    i. set up dependencies
+    #    ii. enqueue all zero reference cells
+    # 3. use topological sorting to solve graph
+    #    i. solve the cell with reference
+    #    ii. enqueue dependency cell if cell has indegree == 1
+    #    iii. repeat i, ii until nothing left in queue.
+    #         if not all cells are solved, we have cyclic dependency
     # 4. print output
 
 if __name__ == '__main__':
     test_sheet_1 = SpreadSheet(row=2, col=3,
                              sheet_array=[['A2', '4 5 *', 'A1'],
                                           ['A1 B2 / 2 +', '3', '39 B1 B2 * /']])
-
+    print '\nTest case provided by Quantcast'
     print test_sheet_1.output()
 
     test_sheet_2 = SpreadSheet(row=2, col=3,
                              sheet_array=[['A2', '-4 5 *', 'A1 ++'],
                                           ['A1 B2 / 2 +', '3 --', '39 B1 B2 * /']])
 
+    print '\n With negative numbers and ++ --'
     print test_sheet_2.output()
 
-    test_sheet_3 = SpreadSheet()
+
+    test_sheet_3 = SpreadSheet(row=2, col=3,
+                             sheet_array=[['A3', '-4 5 *', 'A1 ++'],
+                                          ['A1 B2 / 2 +', '3 --', '39 B1 B2 * /']])
+    print '\nWith cyclic dependency'
     print test_sheet_3.output()
+
+
+    print '\nFrom stdin'
+    test_sheet_4 = SpreadSheet()
+    print test_sheet_4.output()
