@@ -305,7 +305,7 @@ dp[i][j] = dp[i-1][j-1]                                    # a[i] == b[j]
          = min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1]) + 1)  # a[i] != b[j]
 ```
 * initialize: ```dp[i][0] = i, dp[0][j] = j```
-* answer: ```dp[len(a)][len(b)]
+* answer: ```dp[len(a)][len(b)]```
 
 ######[Distinct Subsequence](./Leetcode/Distinct_Subsequences.py)
 To be continued
