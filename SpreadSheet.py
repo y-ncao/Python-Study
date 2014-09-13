@@ -86,8 +86,8 @@ class SpreadSheet():
     def __init__(self, row=None, col=None, sheet_array=None):
         if not row and not col:
             size_info = raw_input("Please enter the size of SpreadSheet in format: 'col row'\n")
-            self.len_col = int(size_info.split()[1])
-            self.len_row = int(size_info.split()[0])
+            self.len_row = int(size_info.split()[1])
+            self.len_col = int(size_info.split()[0])
         else:
             self.len_row = row
             self.len_col = col
@@ -138,7 +138,7 @@ class SpreadSheet():
 
 class TopGraph():
     def __init__(self, size):
-        self.count = 0
+        self.checked_cell = 0
         self.size = size
         self.queue = []
 
@@ -151,13 +151,13 @@ class TopGraph():
     def solve(self):
         while self.queue:
             cell = self.dequeue()
-            self.count += 1
+            self.checked_cell += 1
             cell.solve_cell()
             for depen in cell.get_dependencies():
                 if depen.decrement_indegree():
                     self.enqueue(depen)
 
-        if self.count < self.size:
+        if self.checked_cell < self.size:
             raise CyclicDependencyError('Cannot solve due to cyclic dependency!')
 
     # Solving steps:
@@ -174,7 +174,10 @@ if __name__ == '__main__':
     print test_sheet_1.output()
 
     test_sheet_2 = SpreadSheet(row=2, col=3,
-                             sheet_array=[['A2', '-4 5 *', 'A1'],
-                                          ['A1 B2 / 2 +', '3', '39 B1 B2 * /']])
+                             sheet_array=[['A2', '-4 5 *', 'A1 ++'],
+                                          ['A1 B2 / 2 +', '3 --', '39 B1 B2 * /']])
 
     print test_sheet_2.output()
+
+    test_sheet_3 = SpreadSheet()
+    print test_sheet_3.output()
