@@ -20,17 +20,17 @@ class Solution:
         dp = [False for i in range(N+1)]
         dp[0] = True
         for i in range(1, N+1):
-            for k in range(0,i):
-                if dp[k] and s[k:i] in dict:
+            for j in range(i):
+                if dp[j] and s[j:i] in dict:
                     dp[i] = True
                     break
         return dp[N]
-    # DP way:
-    # Transfer function
-    # dp[i] == True only:
-    # 1. s[:i] in dict
-    # 2. dp[k] == True and s[k:i] in dict
-    # And actually, s[:i] in dict is a special case of dp[0] and s[0:i] in dict
+    # Note:
+    # 1. dp[i] means from char 0 to char i-1 can be break
+    # 2. dp[0] = 0
+    # 3. dp[i] = for j (i-1, ... 0) if dp[j] and s[j:i] in dict
+    # 4. dp[N] !!! Very important here it's N not N-1
+
 
     # Naive solution, won't pass
     def wordBreak_2(self, s, dict):
