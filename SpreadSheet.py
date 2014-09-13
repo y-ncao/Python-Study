@@ -85,11 +85,13 @@ class Cell():
 
 
 class SpreadSheet():
-    def __init__(self, row=None, col=None, sheet_array=None):
-        if not row and not col:
-            size_info = raw_input("Please enter the size of SpreadSheet in format: 'col row'\n")
-            self.len_row = int(size_info.split()[1])
-            self.len_col = int(size_info.split()[0])
+    def __init__(self, row=None, col=None, sheet_array=None, input_file=None):
+        if input_file:
+            with open(input_file, 'r') as f:
+                lines = f.readlines()
+                f.close()
+                self.len_row = int(lines[0].split()[1])
+                self.len_col = int(lines[0].split()[0])
         else:
             self.len_row = row
             self.len_col = col
@@ -98,11 +100,13 @@ class SpreadSheet():
             raise ValueError('Row should be no bigger than 26')
 
         self.sheet = [ [None for j in range(self.len_col)] for i in range(self.len_row) ]
-        if not sheet_array:
-            for i in range(self.len_row):
-                for j in range(self.len_col):
-                      cell_input = raw_input("Please enter the row %s, col %d\n" % (chr(65+i), j+1))
-                      self.sheet[i][j] = Cell(cell_input, self)
+
+        if input_file:
+            i = 1
+            while i < len(lines):
+                #print self.len_row, self.len_col
+                self.sheet[(i-1) / self.len_col][(i-1) % self.len_col] = Cell(lines[i], self)
+                i += 1
         else:
             for i in range(row):
                 for j in range(col):
@@ -193,10 +197,10 @@ if __name__ == '__main__':
     test_sheet_3 = SpreadSheet(row=2, col=3,
                              sheet_array=[['A3', '-4 5 *', 'A1 ++'],
                                           ['A1 B2 / 2 +', '3 --', '39 B1 B2 * /']])
-    print '\nWith cyclic dependency'
-    print test_sheet_3.output()
+    #print '\nWith cyclic dependency'
+    #print test_sheet_3.output()
 
 
     print '\nFrom stdin'
-    test_sheet_4 = SpreadSheet()
+    test_sheet_4 = SpreadSheet(input_file='test_case.txt')
     print test_sheet_4.output()
