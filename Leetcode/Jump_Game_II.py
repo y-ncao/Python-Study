@@ -15,6 +15,20 @@ class Solution:
     # @param A, a list of integers
     # @return an integer
     def jump(self, A):
+        N = len(A)
+        dp = [N for i in range(N)]
+        dp[0] = 0
+        for i in range(N):
+            for j in range(i)[::-1]:
+                if A[j] + j >= i:
+                    dp[i] = min(dp[i], dp[j]+1)
+        return dp[N-1]
+    # Note:
+    # 1. dp means jump to i, the min jump steps
+    # 2. dp[0] = 0
+    # 3. dp[i] = min(dp[i],dp[j]+1) if A[j] + j >= i
+
+    def jump(self, A):
         n = len(A)
         if n == 1:
             return 0

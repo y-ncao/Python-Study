@@ -11,15 +11,21 @@ class Solution:
     # @param s, a string
     # @return an integer
     def minCut(self, s):
-        dp = [0 for i in range(len(s)+1)]
-        p = [[False for i in range(len(s))] for j in range(len(s))]
-        for i in range(len(s)+1):
-            dp[i] = len(s) - i
-        for i in range(len(s)-1, -1, -1):
-            for j in range(i, len(s)):
-                if s[i] == s[j] and (((j - i) < 2) or p[i+1][j-1]):
-                    p[i][j] = True
-                    dp[i] = min(1+dp[j+1], dp[i])
-        return dp[0]-1
-    # This solution will get a TLE
-    # Need to find a better way
+        N = len(s)
+        dp = [ N for i in range(N)]
+        dp[0] = 0
+        for i in range(1, N):
+            dp[i] = sys.maxint
+            for j in range(i)[::-1]:
+                if self.isPalindrome(s[j:i]):
+                    dp[i] = min(dp[i], dp[j]+1)
+        return dp[N-1]
+
+    def isPalindrome(self, s):
+        return s == s[::-1]
+
+    # 1. dp means from 0 ... i the mean cut of palin
+    # 2. dp[0] = 0
+    # 3. dp[i] = min(dp[i], dp[j]+1) for j = i-1 ... 0 if isPalin(s[j:i])
+    # 4. dp[N-1]
+    # This idea is correct, but next thing is to reduce the cost of isPalindrome
