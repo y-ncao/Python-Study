@@ -21,7 +21,37 @@ def LIS(A):
             if A[j] <= A[i]:
                 dp[i] = max(dp[i], dp[j]+1)
                 max_len = max(max_len, dp[i])
+    sequence = []
+    for i in range(N)[::-1]:
+        if dp[i] != max_len:
+            continue
+        else:
+            sequence.insert(0, A[i])
+            max_len -= 1
+    print sequence
     return max_len
 
 A = [10, 22, 9, 33, 21, 50, 41, 60, 80]
 print LIS(A)
+
+# Using this can print one answer
+# if need to print all, would rather do a dfs
+
+def LIS(A):
+    ret = {}
+    LIS_helper(A, [], ret)
+    return ret
+
+def LIS_helper(A, res, ret):
+    if not A:
+        ret.setdefault(len(res[:]), []).append(res[:])
+        return
+    for i, num in enumerate(A):
+        if not res or num > res[-1]:
+            res.append(num)
+            LIS_helper(A[i+1:], res, ret)
+            res.pop()
+A = [10, 22, 9, 33, 21, 50, 41, 60, 80]
+d_A = LIS(A)
+
+print d_A[max(d_A.keys())]

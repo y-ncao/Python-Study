@@ -7457,6 +7457,8 @@ Normal way O(m^2 *n)
             = max(dp[i-1][j], dp[i][j-1])  # if a[i] != b[j]
 4. dp[M][N]
 
+Keep reading for [print LCS](http://www.geeksforgeeks.org/printing-longest-common-subsequence/)
+
 ```python
 
 def Longest_Common_Subsequence(a, b):
@@ -7479,6 +7481,60 @@ def Longest_Common_Subsequence(a, b):
 print Longest_Common_Subsequence('ABCDGH', 'AEDFHR')
 print Longest_Common_Subsequence('AGGTAB', 'GXTXAYB')
 print Longest_Common_Subsequence('B', 'B')
+print '-'*10
+# This is also correct, be we are storing all the results. So should do in dp way
+def LCS_recur(a, b):
+    if not a or not b:
+        return 0
+    if a[-1] == b[-1]:
+        return 1 + LCS_recur(a[:-1], b[:-1])
+    else:
+        return max(LCS_recur(a[:-1], b), LCS_recur(a, b[:-1]))
+
+print LCS_recur('ABCDGH', 'AEDFHR')
+print LCS_recur('AGGTAB', 'GXTXAYB')
+print LCS_recur('B', 'B')
+print '-'*10
+
+def LCS(a, b):
+    M = len(a)
+    N = len(b)
+    dp = [ [0 for j in range(N+1)] for i in range(M+1)]
+
+    for i in range(1, M+1):
+        for j in range(1, N+1):
+            if a[i-1] != b[j-1]:
+                dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+            else:
+                dp[i][j] = dp[i-1][j-1] + 1
+
+    res = []
+    while i > 0 and j > 0:
+        if a[i-1] == b[j-1]:
+            res.insert(0, a[i-1])
+            i -= 1
+            j -= 1
+        elif dp[i-1][j] > dp[i][j-1]:
+            i -= 1
+        else:
+            j -= 1
+    return ''.join(res)
+
+print LCS('ABCDGH', 'AEDFHR')
+print LCS('AGGTAB', 'GXTXAYB')
+
+
+                0       1       2       3       4       5       6       7
+                Ø       M       Z       J       A       W       X       U
+0       Ø       0       0       0       0       0       0       0       0
+1       X       0       0       0       0       0       0       1       1
+2       M       0       1       1       1       1       1       1       1
+3       J       0       1       1       2       2       2       2       2
+4       Y       0       1       1       2       2       2       2       2
+5       A       0       1       1       2       3       3       3       3
+6       U       0       1       1       2       3       3       3       4
+7       Z       0       1       2       2       3       3       3       4
+
 ```
 -----
 
@@ -7495,7 +7551,14 @@ the output should be 5 as longest common substring is "Geeks"
 [Solution](http://www.geeksforgeeks.org/longest-common-substring/)
 
 DP is O(n^2)
-Normal way would be O(n * m^2)
+[Naive](http://www.geeksforgeeks.org/searching-for-patterns-set-2-kmp-algorithm/) way would be O(n * m^2), similar to KMP way
+Which is for each word, we start search
+str1 == substring of str2
+Substring of str2 O(m^2)
+search str1 O(n)
+So O(n * m^2)
+
+
 
 1. dp[i][j] is LCS of first i-1 chars in a ends with char i-1 and first j-1 chars in b ends with char j-1
 2. init dp[i][j] = 0
@@ -7509,16 +7572,22 @@ def Longest_Common_Substring(a,b):
     M = len(a)
     N = len(b)
     dp = [ [ 0 for j in range(N+1)] for i in range(M+1) ]
-    res = 0
+    res = (0, None)
 
     for i in range(1, M+1):
         for j in range(1, N+1):
             if a[i-1] == b[j-1]:
                 dp[i][j] = dp[i-1][j-1] + 1
-                res = max(res, dp[i][j])
+                if dp[i][j] > res[0]:
+                    res = (dp[i][j], i)
             else:
                 dp[i][j] = 0
-    return res
+    word = []
+    i = res[1]
+    for j in range(i-res[0], i):
+        word.append(a[j])
+    print word
+    return res[0]
 
 # "abcdefg"
 print Longest_Common_Substring("abc", "abz")
@@ -7552,10 +7621,40 @@ def LIS(A):
             if A[j] <= A[i]:
                 dp[i] = max(dp[i], dp[j]+1)
                 max_len = max(max_len, dp[i])
+    sequence = []
+    for i in range(N)[::-1]:
+        if dp[i] != max_len:
+            continue
+        else:
+            sequence.insert(0, A[i])
+            max_len -= 1
+    print sequence
     return max_len
 
 A = [10, 22, 9, 33, 21, 50, 41, 60, 80]
 print LIS(A)
+
+# Using this can print one answer
+# if need to print all, would rather do a dfs
+
+def LIS(A):
+    ret = {}
+    LIS_helper(A, [], ret)
+    return ret
+
+def LIS_helper(A, res, ret):
+    if not A:
+        ret.setdefault(len(res[:]), []).append(res[:])
+        return
+    for i, num in enumerate(A):
+        if not res or num > res[-1]:
+            res.append(num)
+            LIS_helper(A[i+1:], res, ret)
+            res.pop()
+A = [10, 22, 9, 33, 21, 50, 41, 60, 80]
+d_A = LIS(A)
+
+print d_A[max(d_A.keys())]
 ```
 -----
 
