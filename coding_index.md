@@ -224,31 +224,31 @@ for i in range(A):
 -----
 
 ####2. One Sequence DP 40%
-* state: dp[i]表示前i个位置/数字/字母，以第i个为...
+* state: ```dp[i]```表示前i个位置/数字/字母，以第i个为...
 * function: ```dp[i] = dp[j] ...j``` 是i之前的一个位置
 * initialize: ```dp[0] = ...```
 * answer: ```dp[N-1]```
 
 ######[Climbing Stairs](./Leetcode/Climbing_Stairs.py)
-* state: dp[i]表示爬到前i个台阶时的方法数
+* state: ```dp[i]```表示爬到前i个台阶时的方法数
 * function: ```dp[i] = dp[i-1] + dp[i-2]```
 * initialize: ```dp[0] = 1, dp[1] = 2```
 * answer: ```dp[N-1]```
 
 ######[Jump Game](./Leetcode/Jump_Game.py) | [Jump Game II](./Leetcode/Jump_Game_II.py)
-* state: dp[i]表示能否跳到第i个位置O(n^2) (还有一种O(n)的dp, 见方法2) | dp[i]表示跳到这个位置最少需要多少步.
+* state: ```dp[i]```表示能否跳到第i个位置O(n^2) (还有一种O(n)的dp, 见方法2) | dp[i]表示跳到这个位置最少需要多少步.
 * function: ```dp[i] = for j in (i-1 ... 0) if dp[j] and j能跳到i)``` | ```min(dp[j] + 1, j < i and j能跳到i)```
 * initialize: ```dp[0] = True``` | ```dp[0] = 0```
 * answer: ```dp[N-1]```
 
 ######[Palindrom Partitioning II](./Leetcode/Palindrome_Partitioning_II.py)
-* state: dp[i]表示前i个字符组成的字符串需要最少几次cut
+* state: ```dp[i]```表示前i个字符组成的字符串需要最少几次cut
 * function: ```dp[i] = min( dp[j]+1, j<i and j+1 ~ i 这一段是一个palindrome```) (这里需要用另外一个数组来储存是否是palindrome))
 * initialize: ```dp[0] = -1``` (这里好像也不太对)
 * answer: ```dp[N]```(这里有些不一样)
 
 ######[Word Break](./Leetcode/Word_Break.py)
-* state: dp[i]表示前i个字符能否被完美切分
+* state: ```dp[i]```表示前i个字符能否被完美切分
 * function： ```dp[i] = for j in (i-1 ... 0) if dp[j] and j ~ i是一个字典中的单词)```
 * initialize: ```dp[0] = True```
 * answer: ```dp[N]``` (这里也是比较特殊)
@@ -257,8 +257,8 @@ for i in range(A):
   O(NL) N: 字符串长度  L:最长单词的长度
 
 ######[Longest Increasing Subsequence 最长上升子序列](./Interviews/Longest_Increasing_Subsequence.py) [(Not in Leetcode)](http://www.geeksforgeeks.org/dynamic-programming-set-3-longest-increasing-subsequence/)
-* state: ~~dp[i] 表示前i个数字中最长的LIS长度(错误)~~
-       dp[i] 表示第i个数字结尾的LIS长度(正确)
+* state: ~~```dp[i]```表示前i个数字中最长的LIS长度(错误)~~
+       ```dp[i]```表示第i个数字结尾的LIS长度(正确)
 * function: ```dp[i] = max(dp[j]+1, j<i and a[j] <= a[i])```
 * initialize: ```dp[0..n-1] = 1```
 * answer: ```max(dp[0..n-1])```
@@ -267,31 +267,29 @@ for i in range(A):
 -----
 
 ####3. Two Sequences DP 40%
-* state: ```dp[i][j]``` 代表了第一个sequence的前i个数字/字符配上第二个的sequence的前j个...
+* state: ```dp[i][j]```代表了第一个sequence的前i个数字/字符配上第二个的sequence的前j个...
 * function: ```dp[i][j] =``` 研究第i-1个和第j-1个的匹配关系
-* initialize: ```dp[i][0]``` and ```dp[0][j]```
+* initialize: ```dp[i][0], dp[0][j]```
 * answer: ```dp[len(s1)][len(s2)]```
 
 ######[Longest Common Subsequence](./Interviews/Longest_Common_Subsequence.py) [(Not in Leetcode)](http://www.geeksforgeeks.org/dynamic-programming-set-4-longest-common-subsequence/)
-* state: dp[i][j]表示前i个字符配上前j个字符的LCS的长度
+* state: ```dp[i][j]```表示前i个字符配上前j个字符的LCS的长度
 * function:
 ```
 dp[i][j] = dp[i-1][j-1] + 1           # if a[i-1] == b[j-1]
          = max(dp[i][j-1],dp[i-1][j]) # if a[i-1] != b[j-1]
 ```
-* initialize: ```dp[i][0] = 0```
-              ```dp[0][j] = 0```
+* initialize: ```dp[i][0] = 0, dp[0][j] = 0```
 * answer: ```dp[len(a)][len(b)]```
 
 ######[Longest Common Substring](./Interviews/Longest_Common_Substring.py) [(Not in Leetcode)](http://www.geeksforgeeks.org/longest-common-substring/)
-* state: dp[i][j]表示前i个字符配上前j个字符的LCS的长度(一定以第i个和第j个结尾的LCS)
+* state: ```dp[i][j]```表示前i个字符配上前j个字符的LCS的长度(一定以第i个和第j个结尾的LCS)
 * function:
 ```
 dp[i][j] = dp[i-1][j-1] + 1 # if a[i-1] == b[j-1]
          = 0                # if a[i-1] != b[j-1]
 ```
-* initialize: ```dp[i][j] = 0
-                 dp[0][j] = 0```
+* initialize: ```dp[i][j] = 0, dp[0][j] = 0```
 * answer: ```max(dp[0...len(a)][0...len(b)])```
 
 ######[Edit Distance](./Leetcode/Edit_Distance.py)
@@ -304,29 +302,34 @@ dp[i][j] = dp[i-1][j-1]                                    # if a[i] == b[j]
 * initialize: ```dp[i][0] = i, dp[0][j] = j```
 * answer: ```dp[len(a)][len(b)]```
 
-######[Distinct Subsequence](./Leetcode/Distinct_Subsequences.py)
-(需要再领会一下)
-1. state: dp[i][j]表示S的前i个字符配上T的前j个字符的DS
-2. function: dp[i][j] = dp[i][j-1] + dp[i-1][j-1] # if S[i-1] == T[j-1]
+######[Distinct Subsequence](./Leetcode/Distinct_Subsequences.py)(需要再领会一下)
+* state: ```dp[i][j]```表示S的前i个字符配上T的前j个字符的DS
+* function:
+```
+dp[i][j] = dp[i][j-1] + dp[i-1][j-1] # if S[i-1] == T[j-1]
                       = dp[i][j-1]                # if S[i-1] != T[j-1]
-3. initialize: dp[i][0] = 0, dp[0][j] = 1
-4. dp[M][N]
+```
+* initialize: ```dp[i][0] = 0, dp[0][j] = 1```
+* answer: ```dp[M][N]```
 
 ######[Interleaving String](./Leetcode/Interleaving_String.py)
-1. state: dp[i][j]表示s1的前i个字符配上s2的前j个字符在s3的前i+j个字符是不是IS
-2. function: dp[i][j] = True  # if dp[i-1][j] and s1[i-1] == s3[i-1+j]
+* state: ```dp[i][j]```表示s1的前i个字符配上s2的前j个字符在s3的前i+j个字符是不是IS
+* function:
+```
+dp[i][j] = True  # if dp[i-1][j] and s1[i-1] == s3[i-1+j]
                       = True  # if dp[i][j-1] and s2[j-1] == s3[i+j-1]
                       = False # else
-3. initialize: dp[0][0] = True
-4. dp[M][N]
+```
+* initialize: ```dp[0][0] = True```
+* answer: ```dp[M][N]```
 
 -----
 
 ####4. Interval DP
-* state: dp[i][j] 代表从i到j这一段区间...
-* function: dp[i][j] = max/min/sum(dp[i][k], dp[k+1][j])
-* initialize: dp[i][i] = ?
-* answer: dp[1][n]
+* state: ```dp[i][j]``` 代表从i到j这一段区间...
+* function: ```dp[i][j] = max/min/sum(dp[i][k], dp[k+1][j])```
+* initialize: ```dp[i][i] = ?```
+* answer: ```dp[1][n]```
 
 ######[Merge Stone 石子归并](http://wikioi.com/problem/1048/)
 
