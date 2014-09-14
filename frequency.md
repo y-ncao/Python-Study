@@ -54,7 +54,7 @@
 | 63 | [Unique Paths II](./Leetcode/Unique_Paths_II.py) | 3 | 3 | array | dp |
 | 64 | [Minimum Path Sum](./Leetcode/Minimum_Path_Sum.py) | 3 | 3 | array | dp |
 | 72 | [Edit Distance](./Leetcode/Edit_Distance.py) | 4 | 3 | string | dp |
-| 74 | [Search a 2D Matrix](./Leetcode/Search_a_2D_Matrix.py) | 3 | 3 | array | binary search |
+| 74 | [Search a 2D Matrix](./Interviews/Search_a_2D_Matrix.py) | 3 | 3 | array | binary search |
 | 81 | [Search in Rotated Sorted Array II](./Leetcode/Search_in_Rotated_Sorted_Array_II.py) | 5 | 3 | array | binary search |
 | 82 | [Remove Duplicates from Sorted List II](./Leetcode/Remove_Duplicates_from_Sorted_List_II.py) | 3 | 3 | linked list | recursion, two pointers |
 | 83 | [Remove Duplicates from Sorted List](./Leetcode/Remove_Duplicates_from_Sorted_List.py) | 1 | 3 | linked list |  |

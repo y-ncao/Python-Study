@@ -12,6 +12,8 @@ def combiner(file_list):
             content = file.read()
             sections = content.split("\"\"\"")
             f.write('##[%d. %s](https://oj.leetcode.com/problems/%s/)\n' % (i+1,title,address))
+            if len(sections) < 2:
+                continue
             if '\\' in sections[1]:
                 new_section = sections[1].split('\n')
                 min_index = len(new_section) - 1
@@ -92,4 +94,5 @@ if __name__ == '__main__':
 
     combiner(file_list)
     frequency_creator(file_list)
-    #type_searchor('dp', 2)
+    # type 1 == Data Structure, 2 == Algorithms
+    type_searchor('dp', 2)

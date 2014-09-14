@@ -907,6 +907,12 @@ class Solution:
             dp[i] = dp[i-1] + dp[i-2]
         return dp[n-1]
 
+    # Note:
+    # 1. dp[i] means from 0 to i-1 stair, how many ways to go
+    # 2. dp[0] = 1, dp[1] = 2
+    # 3. dp[i] = d[i-1] + dp[i-2]
+    # 4. dp[N-1]
+
     def climbStairs_3(self, n):
         if n <= 2:
             return n
@@ -1438,13 +1444,16 @@ S = "rabbbit", T = "rabbit"
 
 Return 3.
 
+Note:
+The answer is three rabbit by removing the first, second, third 'b'
+
 ```python
 
 class Solution:
     # @return an integer
     def numDistinct(self, S, T):
-        N = len(S)
         M = len(T)
+        N = len(S)
         dp = [ [0 for j in range(N+1)] for i in range(M+1)]
         for i in range(M+1):
             dp[i][0] = 0
@@ -1457,6 +1466,26 @@ class Solution:
                 else:
                     dp[i][j] = dp[i][j-1]
         return dp[M][N]
+    # !!!!分清M,i和N,j分别对应T和S哪个
+    # Note:
+    # dp[i][j]表示S的前i个字符配上T的前j个字符的DS
+    # [i][0] = 0, dp[0][j] = 1
+    # dp[i][j] = dp[i][j-1] + dp[i-1][j-1] # if T[i-1] == S[j-1]
+    #          = dp[i][j-1]                # if T[i-1] != S[j-1]
+    # dp[M][N]
+    # Need to draw this pic when solving this problem
+    # 大概意思就是， 因为算的是S的子串和T匹配的方法， 所以一旦S[:j-1]和T[:i]有x种匹配方法时
+    # S[:j]必定也至少和T[:i]有x种匹配方法，但尤其当S[j-1]==T[i-1]的时候，需要再加上S[:j-1]和T[:i-1]的匹配方法数
+    #     r a b b b i t
+    #   1 1 1 1 1 1 1 1
+    # r 0 1 1 1 1 1 1 1
+    # a 0 0 1 1 1 1 1 1
+    # b 0 0 0 1 2 3 3 3
+    # b 0 0 0 0 1 3 3 3
+    # i 0 0 0 0 0 0 3 3
+    # t 0 0 0 0 0 0 0 3
+    # No matter T[i-1] ?= S[j-1],  dp[i][j] = dp[i][j-1]
+    # But    if T[i-1] == S[j-1], we can add another one which is dp[i-1][j-1]
 ```
 -----
 
@@ -1503,20 +1532,25 @@ c) Replace a character
 class Solution:
     # @return an integer
     def minDistance(self, word1, word2):
-        A = len(word1)
-        B = len(word2)
-        dp = [ [ 0 for j in range(B+1)] for i in range(A+1)]
-        for i in range(A+1):
-            dp[i][0] = i
-        for j in range(B+1):
-            dp[0][j] = j
-        for i in range(1, A+1):
-            for j in range(1, B+1):
-                if word1[i-1] == word2[j-1]:
+        M = len(word1)
+        N = len(word2)
+        dp = [ [ 0 for j in range(N+1)] for i in range(M+1)]
+        for i in range(M+1):
+            for j in range(N+1):
+                if i == 0:
+                    dp[0][j] = j
+                elif j == 0:
+                    dp[i][0] = i
+                elif word1[i-1] == word2[j-1]:
                     dp[i][j] = dp[i-1][j-1]
                 else:
                     dp[i][j] = min( dp[i][j-1], dp[i-1][j], dp[i-1][j-1]) + 1
-        return dp[A][B]
+        return dp[M][N]
+    # Note:
+    # 1. dp[i][j] is Edit Distance of first i-1 chars in word1 with first j-1 chars in word2
+    # 2. dp[0][j] = j, dp[i][0] = i
+    # 3. dp[i][j] = dp[i-1][j-1]                                   # if word[i-1] == word[j-1]
+    #             = min( dp[i][j-1], dp[i-1][j], dp[i-1][j-1]) + 1 # if word[i-1] != word[j-1]
 
     # Note:
     # 1. This dp is a bit diff, the length of dp is A+1, B+1
@@ -2068,7 +2102,6 @@ class Solution:
     def isInterleave(self, s1, s2, s3):
         return self.isInterleave_1(s1, s2, s3)
 
-    # dp[i][j] means s1[1:i] and s2[1:j] is interleave with s3[1:i+j]
     def isInterleave_1(self, s1, s2, s3):
         M = len(s1)
         N = len(s2)
@@ -2080,13 +2113,21 @@ class Solution:
             for j in range(N+1):
                 if i == 0 and j == 0:
                     dp[i][j] = True
-                elif i > 0 and dp[i-1][j] and s1[i-1] == s3[i+j-1]:
+                elif i > 0 and dp[i-1][j] and s1[i-1] == s3[i-1+j]:
                     dp[i][j] = True
                 elif j > 0 and dp[i][j-1] and s2[j-1] == s3[i+j-1]:
                     dp[i][j] = True
                 else:
                     dp[i][j] = False
         return dp[M][N]
+
+    # Note:
+    # 1. dp[i][j] means whether s1[:i] and s2[:j] is interleave with s3[:i+j]
+    # 2. dp[0...M][0...N] = False
+    # 3. dp[i][j] = True   # if dp[i-1][j] == True and s1[i-1] == s3[i-1+j] or
+    #                           dp[i][j-1] == True and s2[j-1] == s3[i+j-1]
+    #             = False  # else
+    # 4. dp[M][N]
 
     # Will TLE
     def isInterleave_2(self, s1, s2, s3):
@@ -2127,6 +2168,25 @@ class Solution:
     def canJump(self, A):
         return self.canJump_1(A)
 
+    # Real DP way, but TLE. This is a O(n^2)'s solution
+    def canJump_3(self, A):
+        if A[0] == 0:
+            return False
+        N = len(A)
+        dp = [False for i in range(N)]
+        dp[0] = True
+        for i in range(1, N):
+            for j in range(i)[::-1]:
+                if dp[j] and j + A[j] >= i:
+                    dp[i] = True
+                    break
+        return dp[N-1]
+    # Note:
+    # 1. dp[i] means whether we can jump to i
+    # 2. dp[0] = True
+    # 3. dp[i] = True if from i-1 ... 0 if we can jump to i
+    # 4. dp[N-1]
+
     # Constant DP
     def canJump_1(self, A):
         pre_max = A[0]
@@ -2137,7 +2197,7 @@ class Solution:
             pre_max = max_jump
         return True
 
-    # 1D DP
+    # Another DP
     def canJump_2(self, A):
         dp = [0 for i in range(len(A))]
         dp[0] = A[0]
@@ -2146,6 +2206,11 @@ class Solution:
             if dp[i] < 0:
                 return False
         return True
+    # Note:
+    # 1. dp[i] means at i, we can jump to where
+    # 2. dp[0] = A[0]
+    # 3. dp[i] = max(A[i-1]-1, dp[i-1]-1), if dp[i] < 0: then return False
+    # return True if we can finish the loop
 ```
 -----
 
@@ -2167,6 +2232,20 @@ The minimum number of jumps to reach the last index is 2. (Jump 1 step from inde
 class Solution:
     # @param A, a list of integers
     # @return an integer
+    def jump(self, A):
+        N = len(A)
+        dp = [N for i in range(N)]
+        dp[0] = 0
+        for i in range(N):
+            for j in range(i)[::-1]:
+                if A[j] + j >= i:
+                    dp[i] = min(dp[i], dp[j]+1)
+        return dp[N-1]
+    # Note:
+    # 1. dp means jump to i, the min jump steps
+    # 2. dp[0] = 0
+    # 3. dp[i] = min(dp[i],dp[j]+1) if A[j] + j >= i
+
     def jump(self, A):
         n = len(A)
         if n == 1:
@@ -3187,8 +3266,28 @@ class Solution:
     # @param grid, a list of lists of integers
     # @return an integer
     def minPathSum(self, grid):
-        return self.minPathSum_2(grid)
+        M = len(grid)
+        N = len(grid[0])
+        dp = [ [0 for j in range(N)] for i in range(M)]
+        for i in range(M):
+            for j in range(N):
+                if i == 0 and j == 0:
+                    dp[i][j] = grid[i][j]
+                elif i == 0:
+                    dp[i][j] = dp[i][j-1] + grid[i][j]
+                elif j == 0:
+                    dp[i][j] = dp[i-1][j] + grid[i][j]
+                else:
+                    dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j]
+        return dp[M-1][N-1]
 
+    # Note:
+    # 1. dp[i][j] means from (0, 0) to (i, j) the min path sum
+    # 2. init: dp[i][0] = dp[i-1][0]+grid[i][j], dp[0][j] += dp[0][j-1]+grid[i][j]
+    # 3. func: dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j]
+    # 4. ret: dp[m-1][n-1]
+
+All Previous work. No need to worry
     def minPathSum_1(self, grid):
         M = len(grid)
         N = len(grid[0])
@@ -3211,13 +3310,13 @@ class Solution:
     # M = len(grid)
     # N = len(grid[0])
 
-    
+
     Given the dynamic programming formula f[i][j]=min(f[i-1][j],f[i][j-1])+grid[i][j]:
 
     Assume that you are populating the table row by row, the current value (f[i][j]) will be used immediately in the calculation of f[i][j+1], so there is no need to store all the previous column values.
 
     Therefore, you can do it in linear space complexity.
-    
+
     def minPathSum_2(self, grid):
         M = len(grid)
         N = len(grid[0])
@@ -3234,6 +3333,7 @@ class Solution:
 
     # This is a bit tricky. Read the above how to simplify this
     # The key is we are doing this for j ... so we can just j-1
+
 ```
 -----
 
@@ -3559,18 +3659,24 @@ class Solution:
     # @param s, a string
     # @return an integer
     def minCut(self, s):
-        dp = [0 for i in range(len(s)+1)]
-        p = [[False for i in range(len(s))] for j in range(len(s))]
-        for i in range(len(s)+1):
-            dp[i] = len(s) - i
-        for i in range(len(s)-1, -1, -1):
-            for j in range(i, len(s)):
-                if s[i] == s[j] and (((j - i) < 2) or p[i+1][j-1]):
-                    p[i][j] = True
-                    dp[i] = min(1+dp[j+1], dp[i])
-        return dp[0]-1
-    # This solution will get a TLE
-    # Need to find a better way
+        N = len(s)
+        dp = [ N for i in range(N)]
+        dp[0] = 0
+        for i in range(1, N):
+            dp[i] = sys.maxint
+            for j in range(i)[::-1]:
+                if self.isPalindrome(s[j:i]):
+                    dp[i] = min(dp[i], dp[j]+1)
+        return dp[N-1]
+
+    def isPalindrome(self, s):
+        return s == s[::-1]
+
+    # 1. dp means from 0 ... i the mean cut of palin
+    # 2. dp[0] = 0
+    # 3. dp[i] = min(dp[i], dp[j]+1) for j = i-1 ... 0 if isPalin(s[j:i])
+    # 4. dp[N-1]
+    # This idea is correct, but next thing is to reduce the cost of isPalindrome
 ```
 -----
 
@@ -6410,6 +6516,25 @@ class Solution:
     # @param triangle, a list of lists of integers
     # @return an integer
     def minimumTotal(self, triangle):
+        M = len(triangle)
+        N = len(triangle[-1])
+        dp = [ [ 0 for j in range(N)] for i in range(M)]
+        for i in range(M)[::-1]:
+            for j in range(len(triangle[i])):
+                if i == M-1:
+                    dp[i][j] = triangle[i][j]
+                else:
+                    dp[i][j] = min(dp[i+1][j], dp[i+1][j+1]) + triangle[i][j]
+        return dp[0][0]
+    # Notes:
+    # This is not the best solution. But easier to understand
+    # 1. status: ```dp[x][y]```表示从bottom走到top每个坐标的最短路径
+    # 2. function: dp[i][j] = min(dp[i+1][j], dp[i+1][j+1]) + triangle[i][j]
+    # 3. initialize: dp[-1][j] = triangle[-1][j]
+    # 4. answer: dp[0][0]
+
+    #This is older way, but still pretty good
+    def minimumTotal_2(self, triangle):
         n = len(triangle) - 1
         dp = triangle[n]
         n -= 1
@@ -6575,17 +6700,18 @@ class Solution:
     def uniquePaths(self, m, n):
         dp = [ [0 for j in range(n)] for i in range(m) ]
         for i in range(m):
-            dp[i][0] = 1
-        for j in range(n):
-            dp[0][j] = 1
-        for i in range(1, m):
-            for j in range(1, n):
-                dp[i][j] = dp[i-1][j] + dp[i][j-1]
+            for j in range(n):
+                if i == 0 or j == 0:
+                    dp[i][j] = 1
+                else:
+                    dp[i][j] = dp[i-1][j] + dp[i][j-1]
         return dp[m-1][n-1]
 
-    # For the convinience in the future, going to use m as the rows, n as the columns
-    # So dp[m][n] which is [ [ 0 for j in range(n)] for i in range(m) ]
-    # Remember this
+    # Note:
+    # 1. dp[i][j] means from (0,0) to (i, j) how many ways to finish
+    # 2. init dp[i][0] = 1, dp[0][j] = 1
+    # 3. dp[i][j] = dp[i-1][j] + dp[i][j-1]
+    # 4. result dp[m-1][n-1]
 ```
 -----
 
@@ -6620,26 +6746,23 @@ class Solution:
         M = len(obstacleGrid)
         N = len(obstacleGrid[0])
 
-        dp = [[0 for j in range(N)] for i in range(M)]
-        dp[0][0] = 1
-        for i in range(1, M):
-            if dp[i-1][0] == 0 or obstacleGrid[i][0] == 1:
-                dp[i][0] = 0
-            else:
-                dp[i][0] = 1
-        for j in range(1, N):
-            if dp[0][j-1] == 0 or obstacleGrid[0][j] == 1:
-                dp[0][j] = 0
-            else:
-                dp[0][j] = 1
-
-        for i in range(1, M):
-            for j in range(1, N):
+        dp = [ [0 for j in range(N)] for i in range(M) ]
+        for i in range(M):
+            for j in range(N):
                 if obstacleGrid[i][j] == 1:
                     dp[i][j] = 0
+                elif i == 0 and j == 0:
+                    dp[i][j] = 1
+                elif i == 0:
+                    dp[i][j] = dp[i][j-1]
+                elif j == 0:
+                    dp[i][j] = dp[i-1][j]
                 else:
                     dp[i][j] = dp[i-1][j] + dp[i][j-1]
         return dp[M-1][N-1]
+
+    # Note:
+    # Same to unique path I but more steps to initialize
 ```
 -----
 
@@ -6978,17 +7101,17 @@ class Solution:
         dp = [False for i in range(N+1)]
         dp[0] = True
         for i in range(1, N+1):
-            for k in range(0,i):
-                if dp[k] and s[k:i] in dict:
+            for j in range(i):
+                if dp[j] and s[j:i] in dict:
                     dp[i] = True
                     break
         return dp[N]
-    # DP way:
-    # Transfer function
-    # dp[i] == True only:
-    # 1. s[:i] in dict
-    # 2. dp[k] == True and s[k:i] in dict
-    # And actually, s[:i] in dict is a special case of dp[0] and s[0:i] in dict
+    # Note:
+    # 1. dp[i] means from first i-1 chars can be break
+    # 2. dp[0] = True
+    # 3. dp[i] = for j in (i-1, ... 0) if dp[j] and s[j:i] in dict
+    # 4. dp[N] !!! Very important here it's N not N-1
+
 
     # Naive solution, won't pass
     def wordBreak_2(self, s, dict):
@@ -7263,98 +7386,351 @@ class Solution:
 ```
 -----
 
-##[152. FizzBuzz N Encode Decode](https://oj.leetcode.com/problems/fizzbuzz-n-encode-decode/)
+##[152. Alternating Positive N Negative](https://oj.leetcode.com/problems/alternating-positive-n-negative/)
 
-#####Interview with Twice
-1. FizzBuzz
-2. Encode and decode
+####Alternating Positive and Negative
+or Rearrange Array Alternating Positive Negative Items
+Given an array of positive and negative numbers, arrange them in an alternate fashion such that every positive number is followed by negative and vice-versa maintaining the order of appearance.
+Number of positive and negative numbers need not be equal. If there are more positive numbers they appear at the end of the array. If there are more negative numbers, they too appear in the end of the array.
 
-FizzBuzz:
+Example:
 
-3 -> "Fizz"
-5 -> "Buzz"
-3 && 5 -> "FizzBuzz"
-i -> i
+Input:  arr[] = {1, 2, 3, -4, -1, 4}
+Output: arr[] = {-4, 1, -1, 2, 3, 4}
+
+Input:  arr[] = {-5, -2, 5, 2, 4, 7, 1, 8, 0, -8}
+output: arr[] = {-5, 5, -2, 2, -8, 4, 7, 1, 8, 0}
+
+Found online, also NC has marked this to high frequency
+
+[Solution](http://www.geeksforgeeks.org/rearrange-array-alternating-positive-negative-items-o1-extra-space/)
 
 ```python
 
-def FizzBuss(n):
-    for i in range(1,101):
-        if i % 15 == 0:
-            print 'FizzBuss'
-        elif i % 5 == 0:
-            print 'Buzz'
-        elif i % 3 == 0:
-            print 'Fizz'
+def rearrange_array(A):
+    start  = 0
+    while start < len(A) - 1:
+        if start % 2 == 0 and A[start] > 0:
+            i = start + 1
+            while i < len(A) and A[i] >= 0:
+                i += 1
+            if i == len(A):
+                break
+            value = A[i]
+            del A[i]
+            A.insert(start, value)
+        elif start % 2 == 1 and A[start] < 0:
+            i = start + 1
+            while i < len(A) and A[i] <= 0:
+                i += 1
+            if i == len(A):
+                break
+            value = A[i]
+            del A[i]
+            A.insert(start, value)
+        start += 1
+    return A
+
+A = [1, 2, 3, -4, -1, 4]
+print rearrange_array(A)
+B = [-5, -2, 5, 2, 4, 7, 1, 8, 0, -8]
+print rearrange_array(B)```
+-----
+
+##[153. Construct Max Tree](https://oj.leetcode.com/problems/construct-max-tree/)
+##[154. Delete a Node in BST](https://oj.leetcode.com/problems/delete-a-node-in-bst/)
+
+RT
+[Solution](http://answer.ninechapter.com/solutions/delete-a-node-in-binary-search-tree/)
+
+```python```
+-----
+
+##[155. Find a Peak](https://oj.leetcode.com/problems/find-a-peak/)
+
+Given an array of integers. Find a peak element in it. An array element is peak if it is NOT smaller than its neighbors. For corner elements, we need to consider only one neighbor. For example, for input array {5, 10, 20, 15}, 20 is the only peak element. For input array {10, 20, 15, 2, 23, 90, 67}, there are two peak elements: 20 and 90. Note that we need to return any one peak element.
+
+Following corner cases give better idea about the problem.
+1) If input array is sorted in strictly increasing order, the last element is always a peak element. For example, 50 is peak element in {10, 20, 30, 40, 50}.
+2) If input array is sorted in strictly decreasing order, the first element is always a peak element. 100 is the peak element in {100, 80, 60, 50, 20}.
+3) If all elements of input array are same, every element is a peak element.
+
+NC Class 2, slides 25
+
+[Solution](http://www.geeksforgeeks.org/find-a-peak-in-a-given-array/)
+
+```python```
+-----
+
+##[156. Find first K Ocurrence](https://oj.leetcode.com/problems/find-first-k-ocurrence/)
+
+#####Interview with Pocket Gem 9/15/2014
+1. strstr
+2. Find Highest K Occurrence
+
+```python
+
+
+strstr
+
+input:
+   basestring,
+   patternstring
+
+output
+  index in basestring where pattern occurs first
+  else -1
+
+
+example:
+  'pineapple', 'eap'-> 3
+  'pineapple', 'orange' -> -1
+
+  'pineapple', 'apple'
+
+    pineappl   apple
+
+  ppppppSppppppSpppppp.....     ppppppp
+   |
+str1.find(str2)
+
+O(B*P)
+
+
+def strstr(basestring, patternstring):
+    B = len(basestring)     # B = 9
+    P = len(patternstring)  # P = 5
+    if P > B:
+        return -1
+    for i, char in enumerate(basestring[:B-P+1]): # 9-5+1 = 5 p i n e a
+        if patternstring[0] == char:              # a 
+            start_b = i+1                         # basestring[start_b] = 'p'
+            start_p = 1                           # 'p'
+            while start_p < P and patternstring[start_p] == basestring[start_b]:
+                start_b += 1
+                start_p += 1
+            if start_p == P:
+                return i
+
+    return -1
+
+
+List of integers and value of K,
+return K most occurring numbers from list
+
+example :
+  [1,5,3,2,6,6,2,2,2,6,1,2,89]
+k = 1
+[2]
+k = 2
+[2, 6]
+k = 3
+[2, 6, 1]
+
+priorityQueue( (ocurr, value) )
+sort by ocurr
+
+(ocurr, value) update ocurr push again.
+
+
+def findKmost(list, K):
+    pq = []
+    d = {}
+    for el in list:
+        if get_ocurr(pq, el) > 0:
+            ocurr = get_ocurr(pq,el)
+            update(pq, el)
+            # removeEl(pq, el)
+            # heappush(pq, (ocurr+1, el)) /// what is heappush?
         else:
-            print i
-'''
-
-# String Encoding/Decoding
-#
-# Encode: ["foo", "bar", ...] -> ________
-#                    ([a-z]+) -> ([a-z]+)
-# Decode: ______ -> ["foo", "bar", ...]
-
-foo, bar -> foobar -> foo, bar
-'|'.join(list).lower()
-split('')
-
-[]
-
-foobar
-
-foobar oofarb
-
-3 foo 3 bar
-c foo c bar
-'''
-
-def Encode(list):
+            heappush(pq, (1, el))
     ret = []
-    for word in list:
-        extra = ord('a' + len(word))
-        ret.append( extra + word)
-
-    return ''.join(ret)
-'''
- 0 1 234
-# c foo c bar
-'''
-
-def Decode(string):
-    N = len(string)
-    start = 0
-    ret = []
-    while start < N:
-        length = string[start] - 'a'
-        ret.append(string[start+1: start+1+length]
-        start = start + length
+    for i in range(k):
+        ocurr, el = heappop(pq)
+        ret.append(el)
     return ret
-'''
-HTTP/1.1 GET
 
-Content-length: 80
+list = []
+                key   value
+heappush(list, (arg1, arg2))
 
-<body>
--HTTP/1.1 GET
+list = [1,2,3,4,1]
 
--<headers>
+maxheap
+             (2,1)
+         (1,4)  (1,2)
+       (1,3)
+O(nlg(n)+K)
 
--<body>
-</body>
 
+def update(pq, el):
+    for i in pq:
+        if i[1] == el:
+            i[0] +=1
 
-HTTP/1.1 GET
+def get_ocurr(pq, el):
+    for i in pq:
+        if i[1] == el:
+            return i[0]
+    return 0
 
-<headers>
+def removeEl(pq, el):
+    for i in pq:
+        if i[1] == el:
+            del i
 
-<body>
-'''
+# Should do:
+def find_k_ocurrance(list, k):
+    d = {}
+    for el in list:
+        if el not in d:
+            d[el] = 0
+        d[el] += 1
+    occur_list = []
+    for el, occur in d.iteritems():
+        occur_list.append((occur, el))
+
+    occur_list.sort(key=lambda x: x[0], reverse=True)    # WO ZHEN SHI SHA BI. Use list.sort instead of sorted(list). sorted(list) wont sort in place. need to assign
+
+    ret = []
+    for i in range(k):
+        ret.append(occur_list[i][1])
+    return ret
+
+a = [1,5,3,2,6,6,2,2,2,6,1,2,89]
+print find_k_ocurrance(a, 2)
+
+# Note
+# import heapq
+# 1. heappush(pq, (value, key))
+# 2. heappop()
+# 3. Don't think too complicated
+# 4. the way to sort, and use lambda
+# 5. sorted(key=lambda x: x[0], reverse=True)
 ```
 -----
 
-##[153. Lowest Common Ancestor](https://oj.leetcode.com/problems/lowest-common-ancestor/)
+##[157. Longest Common Subsequence](https://oj.leetcode.com/problems/longest-common-subsequence/)
+
+####Longest Common Subsequence
+Need to distinguish from Longest Common Substring
+
+Examples:
+LCS for input Sequences "ABCDGH" and "AEDFHR" is "ADH" of length 3.
+LCS for input Sequences "AGGTAB" and "GXTXAYB" is "GTAB" of length 4.
+
+[Solution](http://www.geeksforgeeks.org/dynamic-programming-set-4-longest-common-subsequence/)
+
+DP way is O(m*n)
+Normal way O(m^2 *n)
+
+1. dp[i][j] is LCS for first i chars of a and first j chars of b
+2. dp[i][j] = 0
+3. dp[i][j] = dp[i-1][j-1] + 1             # if a[i] == b[j]
+            = max(dp[i-1][j], dp[i][j-1])  # if a[i] != b[j]
+4. dp[M][N]
+
+```python
+
+def Longest_Common_Subsequence(a, b):
+    M = len(a)
+    N = len(b)
+    dp = [ [0 for j in range(N+1)] for i in range(M+1)]
+
+    for i in range(1, M+1):
+        for j in range(1, N+1):
+            if a[i-1] != b[j-1]:
+                dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+            else:
+                dp[i][j] = dp[i-1][j-1] + 1
+
+    return dp[M][N]
+
+# Note
+# 1. Very important, line 25 and 26 is range(1, X+1)
+
+print Longest_Common_Subsequence('ABCDGH', 'AEDFHR')
+print Longest_Common_Subsequence('AGGTAB', 'GXTXAYB')
+print Longest_Common_Subsequence('B', 'B')
+```
+-----
+
+##[158. Longest Common Substring](https://oj.leetcode.com/problems/longest-common-substring/)
+
+##### 9/4/2014 Interview with Tubular
+1. Subset(second le)
+2. LCS
+
+Given two strings 'X' and 'Y', find the length of the longest common substring.
+For example, if the given strings are "GeeksforGeeks" and "GeeksQuiz",
+the output should be 5 as longest common substring is "Geeks"
+
+[Solution](http://www.geeksforgeeks.org/longest-common-substring/)
+
+DP is O(n^2)
+Normal way would be O(n * m^2)
+
+1. dp[i][j] is LCS of first i-1 chars in a ends with char i-1 and first j-1 chars in b ends with char j-1
+2. init dp[i][j] = 0
+3. dp[i][j] = dp[i-1][j-1] + 1 # if a[i] == b[j]
+              0                # if a[i] != b[j]
+4. max(dp[0...M][0...N])
+
+```python
+
+def Longest_Common_Substring(a,b):
+    M = len(a)
+    N = len(b)
+    dp = [ [ 0 for j in range(N+1)] for i in range(M+1) ]
+    res = 0
+
+    for i in range(1, M+1):
+        for j in range(1, N+1):
+            if a[i-1] == b[j-1]:
+                dp[i][j] = dp[i-1][j-1] + 1
+                res = max(res, dp[i][j])
+            else:
+                dp[i][j] = 0
+    return res
+
+# "abcdefg"
+print Longest_Common_Substring("abc", "abz")
+print Longest_Common_Substring("abcdefgabyzzkabcde", "zzzzzzgabyzzabcabcdefg")
+print Longest_Common_Substring("GeeksforGeeks", "GeeksQuiz")
+```
+-----
+
+##[159. Longest Increasing Subsequence](https://oj.leetcode.com/problems/longest-increasing-subsequence/)
+
+#####NC Class 5, slides 17
+
+The longest Increasing Subsequence (LIS) problem is to find the length of the longest subsequence of a given sequence such that all elements of the subsequence are sorted in increasing order. For example, length of LIS for { 10, 22, 9, 33, 21, 50, 41, 60, 80 } is 6 and LIS is {10, 22, 33, 50, 60, 80}.
+
+1. dp[i] is length of LIS ends with char i
+2. dp[0...N] = 1
+3. dp[i] = for j in range(i): if A[j] <= A[i], max(dp[i], dp[j]+1)
+4. dp[N-1]
+5. O(n^2)
+
+```python
+
+def LIS(A):
+    N = len(A)
+    dp = [1 for i in range(N)]
+    max_len = 1
+    for i in range(1, N):
+        for j in range(i)[::-1]:
+            if A[j] <= A[i]:
+                dp[i] = max(dp[i], dp[j]+1)
+                max_len = max(max_len, dp[i])
+    return max_len
+
+A = [10, 22, 9, 33, 21, 50, 41, 60, 80]
+print LIS(A)
+```
+-----
+
+##[160. Lowest Common Ancestor](https://oj.leetcode.com/problems/lowest-common-ancestor/)
 
 #####[LCA, Lowest Common Ancestor](http://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/)Pocket Gem possible question 9/8/2014
 
@@ -7392,7 +7768,15 @@ def get_path(node):
 ```
 -----
 
-##[154. Operations Calculation](https://oj.leetcode.com/problems/operations-calculation/)
+##[161. Min Stack](https://oj.leetcode.com/problems/min-stack/)
+
+see http://www.geeksforgeeks.org/design-and-implement-special-stack-data-structure/
+
+
+```python```
+-----
+
+##[162. Operations Calculation](https://oj.leetcode.com/problems/operations-calculation/)
 
 ##### 9/5/2014 Elasticbox
 加减运算
@@ -7449,7 +7833,7 @@ find_next_num()
 ```
 -----
 
-##[155. Print Numbers With Five](https://oj.leetcode.com/problems/print-numbers-with-five/)
+##[163. Print Numbers With Five](https://oj.leetcode.com/problems/print-numbers-with-five/)
 
 ##### 9/7/2014 From mitbbs for Groupon http://www.mitbbs.com/article_t/JobHunting/32651839.html
 写一个function，对于参数n，输出从0到n之间所有含5的数字。
@@ -7477,7 +7861,74 @@ print find_five(60)
 ```
 -----
 
-##[156. Shortest Path](https://oj.leetcode.com/problems/shortest-path/)
+##[164. Queue by Two Stacks](https://oj.leetcode.com/problems/queue-by-two-stacks/)
+
+Implement a Queue by using two stacks. Support O(1) push, pop, top
+
+```python```
+-----
+
+##[165. Recover Rotated Sorted Array](https://oj.leetcode.com/problems/recover-rotated-sorted-array/)
+
+Given a rotated sorted array, recover it to sorted array in-place.
+
+Example
+[4, 5, 1, 2, 3] -> [1, 2, 3, 4, 5]
+
+NC Class 2, slides 32
+Solution three way reverse
+
+```python```
+-----
+
+##[166. Search a 2D Matrix](https://oj.leetcode.com/problems/search-a-2d-matrix/)
+
+Write an efficient algorithm that searches for a value in an m x n matrix.
+
+This matrix has the following properties:
+
+    * Integers in each row are sorted from left to right.
+
+    * The first integer of each row is greater than the last integer of the previous row.
+
+Example
+Consider the following matrix:
+
+[
+
+    [1, 3, 5, 7],
+
+    [10, 11, 16, 20],
+
+    [23, 30, 34, 50]
+
+]
+
+Given target = 3, return true.
+
+Appeared in NC Class 2, slide 18
+[Solution](http://answer.ninechapter.com/solutions/search-a-2d-matrix/)
+
+```python```
+-----
+
+##[167. Search a 2D Matrix II](https://oj.leetcode.com/problems/search-a-2d-matrix-ii/)
+
+Same to the 2D Matrix I, but both row and columns are sorted
+
+```python```
+-----
+
+##[168. Search a Range in BST](https://oj.leetcode.com/problems/search-a-range-in-bst/)
+
+Given two values k1 and k2 (where k1 < k2) and a root pointer to a Binary Search Tree. Print all the keys of tree in range k1 to k2. i.e. print all x such that k1<=x<=k2 and x is a key of given BST. Print all the keys in increasing order.
+
+[Solution](http://www.geeksforgeeks.org/print-bst-keys-in-the-given-range/)
+
+```python```
+-----
+
+##[169. Shortest Path](https://oj.leetcode.com/problems/shortest-path/)
 
 #####With Twitter
 
@@ -7503,7 +7954,7 @@ def findPath(map, current_point, end_point, length, visited):
 ```
 -----
 
-##[157. Shortest Path N Consecutive Subarray](https://oj.leetcode.com/problems/shortest-path-n-consecutive-subarray/)
+##[170. Shortest Path N Consecutive Subarray](https://oj.leetcode.com/problems/shortest-path-n-consecutive-subarray/)
 
 #####Interview With Cyan
 
@@ -7668,64 +8119,32 @@ def add(x):
 ```
 -----
 
-##[158. Subsets N LCS](https://oj.leetcode.com/problems/subsets-n-lcs/)
+##[171. Shuffle](https://oj.leetcode.com/problems/shuffle/)
 
-##### 9/4/2014 Interview with Tubular
+###Shuffle a given array
+Saw it from FiveStar's interview.
 
-1. Subset(秒了)
-2. LCS
-
-This is the text editor interface.
- Anything you type or change here will be seen by the other person in real time.
- "abc", "zyabcbcyz" -> "abc"
-len(a) -> m
-len(b) -> n
-
-m!
-
-1 substring for
-1 m    m+1
-2 m-1
-3 m-2
-
-(1+m) * m / 2
-
-m^2
-
-
-
-1 ->m
-2 ->m/2
-
-0 m
-log(m)
-
-dp
-state: dp[i][j] ith char in a and jth char in b, the len of LCS is dp[][]
-function dp[i][j] = 0 if a[i-1] != b[i-1]
-                    dp[i-1][j-1] + 1
-         max(dp[i][j]) for each i and j
+Solution is from Geeksforgeesk
+Fisher-Yates shuffle Algorithm works in O(n) time complexity.
 
 ```python
 
-def longest_common_substring(a,b):
-    m = len(a)
-    n = len(b)
-    dp = [ [ 0 for i in range(n+1)] for j in range(m+1) ]
-    res = 0
+def shuffle_array(A):
+    from random import random
+    N = len(A)
+    for i in range(N):
+        random_num = int(random() * (N-i))
+        A[N-i-1], A[random_num] = A[random_num], A[N-i-1]
+    return A
 
-    for i in range(1, m+1):
-        for j in range(1, n+1):
-            if a[i-1] == b[j-1]:
-                dp[i][j] = dp[i-1][j-1] + 1
-                res = max(res, dp[i][j])
-            else:
-                dp[i][j] = 0
-    return res
 
-# "abcdefg"
-print(longest_common_substring("abc", "abz"))
-print(longest_common_substring("abcdefgabyzzkabcde", "zzzzzzgabyzzabcabcdefg"))
+A = [ i + 1 for i in range(52)]
+
+print shuffle_array(A)
+
+# Note
+# 1. from random import random
+# 2. from random import randint. randint(start, end), include start and end
 ```
 -----
 
