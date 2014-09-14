@@ -207,22 +207,19 @@ for i in range(A):
 * status: ```dp[x][y]```表示从bottom走到top每个坐标的最短路径
 * function: dp[i][j] = min(dp[i+1][j], dp[i+1][j+1]) + triangle[i][j]
 * initialize: dp[-1][j] = triangle[-1][j]
-* answer: dp[0][0]
+* answer: dp[0][0] (比较奇怪，因为是由下至上)
 
-#####[Unique Path](./Leetcode/Unique_Paths.py)
+#####[Unique Path](./Leetcode/Unique_Paths.py) | [Unique Path II](./Leetcode/Unique_Paths_II.py)
 * state: ```dp[x][y]```表示从起点走到 (x,y) 的path数
-* function: ```dp[x][y] = dp[x-1][y] + dp[x][y-1]```
+* function: ```dp[x][y] = dp[x-1][y] + dp[x][y-1]``` | ```if 障碍, dp[x][y] = 0```
 * initialize: ```dp[0][y] = 1, dp[x][0] = 1```
-* answer: ```dp[n-1][m-1]```
-
-#####[Unique Path II](./Leetcode/Unique_Paths_II.py)
-* function: ```if 障碍, dp[x][y] = 0```
+* answer: ```dp[M-1][N-1]```
 
 #####[Minimum Path Sum](./Leetcode/Minimum_Path_Sum.py)
 * state: ```dp[x][y]```表示从起点走到x,y的minimum path sum
 * function: ```dp[x][y] = min(dp[x-1][y], dp[x][y-1]) + grid[x][y]```
 * initialize: ```dp[0][0] = grid[0][0], dp[x][0] = dp[x-1][0] + grid[x][0], dp[0][y] = dp[0][y-1] + grid[0][y]```
-* answer: ```dp[m-1][n-1]```
+* answer: ```dp[M-1][N-1]```
 
 -----
 
@@ -230,31 +227,31 @@ for i in range(A):
 * state: dp[i]表示前i个位置/数字/字母，以第i个为...
 * function: ```dp[i] = dp[j] ...j``` 是i之前的一个位置
 * initialize: ```dp[0] = ...```
-* answer: ```dp[n-1]```
+* answer: ```dp[N-1]```
 
 ######[Climbing Stairs](./Leetcode/Climbing_Stairs.py)
-* state: dp[i]表示从0爬到第i-1个台阶时的方法数
+* state: dp[i]表示爬到前i个台阶时的方法数
 * function: ```dp[i] = dp[i-1] + dp[i-2]```
 * initialize: ```dp[0] = 1, dp[1] = 2```
-* answer: ```dp[n-1]```
+* answer: ```dp[N-1]```
 
 ######[Jump Game](./Leetcode/Jump_Game.py) | [Jump Game II](./Leetcode/Jump_Game_II.py)
-* state: dp[i]表示能否跳到第i个位置 | dp[i]表示跳到这个位置最少需要多少步.
+* state: dp[i]表示能否跳到第i个位置O(n^2) (还有一种O(n)的dp, 见方法2) | dp[i]表示跳到这个位置最少需要多少步.
 * function: ```dp[i] = or(dp[j], j < i and j能跳到i)``` | ```min(dp[j] + 1, j < i and j能跳到i)```
 * initialize: ```dp[0] = True``` | ```dp[0] = 0```
-* answer: ```dp[n-1]```
+* answer: ```dp[N-1]```
 
 ######[Palindrom Partitioning II](./Leetcode/Palindrome_Partitioning_II.py)
 * state: dp[i]表示前i个字符组成的字符串需要最少几次cut
 * function: ```dp[i] = min( dp[j]+1, j<i and j+1 ~ i 这一段是一个palindrome```) (这里需要用另外一个数组来储存是否是palindrome))
-* initialize: ```dp[0] = -1```
-* answer: ```dp[len(s)]```
+* initialize: ```dp[0] = -1``` (这里好像也不太对)
+* answer: ```dp[N]```(这里有些不一样)
 
 ######[Word Break](./Leetcode/Word_Break.py)
 * state: dp[i]表示前i个字符能否被完美切分
 * function： ```dp[i] = or( dp[j], j<1 ,j+1 ~ i是一个字典中的单词)```
 * initialize: ```dp[0] = True```
-* answer: ```dp[len(s)]```
+* answer: ```dp[N]``` (这里也是比较特殊)
 
   注意j的枚举 -> 枚举单词长度
   O(NL) N: 字符串长度  L:最长单词的长度
@@ -270,10 +267,10 @@ for i in range(A):
 -----
 
 ####3. Two Sequences DP 40%
-* state: dp[i][j] 代表了第一个sequence的前i个数字/字符配上第二个的sequence的前j个...
-* function: dp[i][j] = 研究第i个和第j个的匹配关系
-* initialize: dp[i][0] and dp[0][j]
-* answer: dp[len(s1)][len(s2)]
+* state: ```dp[i][j]``` 代表了第一个sequence的前i个数字/字符配上第二个的sequence的前j个...
+* function: ```dp[i][j] =``` 研究第i个和第j个的匹配关系
+* initialize: ```dp[i][0]``` and ```dp[0][j]```
+* answer: ```dp[len(s1)][len(s2)]```
 
 ######[Longest Common Subsequence](./Interviews/Longest_Common_Subsequence.py) [(Not in Leetcode)](http://www.geeksforgeeks.org/dynamic-programming-set-4-longest-common-subsequence/)
 * state: dp[i][j]表示前i个字符配上前j个字符的LCS的长度
