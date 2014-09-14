@@ -19,7 +19,7 @@ Normal way would be O(n * m^2)
 4. max(dp[0...M][0...N])
 """
 
-def longest_common_substring(a,b):
+def Longest_Common_Substring(a,b):
     M = len(a)
     N = len(b)
     dp = [ [ 0 for j in range(N+1)] for i in range(M+1) ]
@@ -35,6 +35,6 @@ def longest_common_substring(a,b):
     return res
 
 # "abcdefg"
-print longest_common_substring("abc", "abz")
-print longest_common_substring("abcdefgabyzzkabcde", "zzzzzzgabyzzabcabcdefg")
-print longest_common_substring("GeeksforGeeks", "GeeksQuiz")
+print Longest_Common_Substring("abc", "abz")
+print Longest_Common_Substring("abcdefgabyzzkabcde", "zzzzzzgabyzzabcabcdefg")
+print Longest_Common_Substring("GeeksforGeeks", "GeeksQuiz")
