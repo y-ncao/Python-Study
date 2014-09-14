@@ -202,6 +202,7 @@ for i in range(A):
 * function: 研究下一步怎么走
 * initialize: 起点
 * answer: 终点
+* 复杂度一般为O(N^2)
 
 #####[Triangle](./Leetcode/Triangle.py)
 * status: ```dp[x][y]```表示从bottom走到top每个坐标的最短路径
@@ -228,6 +229,7 @@ for i in range(A):
 * function: ```dp[i] = dp[j] ...j``` 是i之前的一个位置
 * initialize: ```dp[0] = ...```
 * answer: ```dp[N-1]```
+* 复杂度一般为O(N^2)
 
 ######[Climbing Stairs](./Leetcode/Climbing_Stairs.py)
 * state: ```dp[i]```表示爬到前i个台阶时的方法数
@@ -263,6 +265,17 @@ for i in range(A):
 * answer: ```max(dp[0..n-1])```
 任何一个位置都可能为开始, 所以所有都要初始化为1, 因为最少LIS是1
 
+######[Decode Ways](./Leetcode/Decode_Ways.py)
+* state: ```dp[i]```表示前i个数字的DW
+* function:  
+
+  ```python
+  dp[i]   = 0        # if A[i] == 0 and A[i-1] not in [1,2]
+         += dp[i-1]  # if A[i] != 0
+         += dp[i-2]  # if 10 <= int(A[i-2:i]) <= 26
+* initialize: ```dp[0] = 1```
+* answer: ```dp[N]```(这里比较特殊)
+
 -----
 
 ####3. Two Sequences DP 40%
@@ -270,6 +283,7 @@ for i in range(A):
 * function: ```dp[i][j] =``` 研究第i-1个和第j-1个的匹配关系
 * initialize: ```dp[i][0], dp[0][j]```
 * answer: ```dp[len(s1)][len(s2)]```
+* 复杂度一般为O(M*N)
 
 ######[Longest Common Subsequence](./Interviews/Longest_Common_Subsequence.py) [(Not in Leetcode)](http://www.geeksforgeeks.org/dynamic-programming-set-4-longest-common-subsequence/)
 * state: ```dp[i][j]```表示前i个字符配上前j个字符的LCS的长度
@@ -316,7 +330,7 @@ for i in range(A):
 * answer: ```dp[M][N]```
 
   大概意思就是， 因为算的是S的子串和T匹配的方法， 所以一旦S[:j-1]和T[:i]有x种匹配方法时  
-  S[:j]必定也至少和T[:i]有x种匹配方法，但尤其当S[j-1]==T[i-1]的时候，需要再加上S[:j-1]和T[:i-1]的匹配方法数
+  S[:j]必定也至少和T[:i]有x种匹配方法，但尤其当S[j-1]==T[i-1]的时候，需要再加上S[:j-1]和T[:i-1]的匹配方法数  
   注意分清M,i和N,j对应T和S，这个很特殊因为必须是S的子串和T相同
 
 ######[Interleaving String](./Leetcode/Interleaving_String.py)
@@ -340,8 +354,6 @@ for i in range(A):
 * answer: ```dp[1][n]```
 
 ######[Merge Stone 石子归并](http://wikioi.com/problem/1048/)
-
-重点必须把握__LIS__, __LCS__
 
 -----
 
