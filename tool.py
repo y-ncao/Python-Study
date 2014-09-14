@@ -11,7 +11,7 @@ def combiner(file_list):
             folder = answer.split('/')[1]
             content = file.read()
             sections = content.split("\"\"\"")
-            if len(sections) < 2:
+            if len(sections) < 3 or len(sections[2]) < 10:
                 continue
             if folder == 'Leetcode':
                 address = title.lower().replace(' ', '-')
