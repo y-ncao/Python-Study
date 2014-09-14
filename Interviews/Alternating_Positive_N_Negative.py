@@ -15,3 +15,31 @@ Found online, also NC has marked this to high frequency
 [Solution](http://www.geeksforgeeks.org/rearrange-array-alternating-positive-negative-items-o1-extra-space/)
 """
 
+def rearrange_array(A):
+    start  = 0
+    while start < len(A) - 1:
+        if start % 2 == 0 and A[start] > 0:
+            i = start + 1
+            while i < len(A) and A[i] >= 0:
+                i += 1
+            if i == len(A):
+                break
+            value = A[i]
+            del A[i]
+            A.insert(start, value)
+        elif start % 2 == 1 and A[start] < 0:
+            i = start + 1
+            while i < len(A) and A[i] <= 0:
+                i += 1
+            if i == len(A):
+                break
+            value = A[i]
+            del A[i]
+            A.insert(start, value)
+        start += 1
+    return A
+
+A = [1, 2, 3, -4, -1, 4]
+print rearrange_array(A)
+B = [-5, -2, 5, 2, 4, 7, 1, 8, 0, -8]
+print rearrange_array(B)
