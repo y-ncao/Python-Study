@@ -4,6 +4,7 @@
 Use O(n)
 """
 
+# With Parent
 def LCA(node1, node2):
     if node1 is None or node2 is None:
         return None
@@ -31,3 +32,38 @@ def get_path(node):
         path.append(node)
         node = node.parent
     return path[::-1]
+
+def get_path(root, node, current, path):
+    if not root:
+        return
+
+    if root == node:
+        path.append(current[:])
+        return
+
+    current.append(root)
+    get_path(root.left, node, current, path)
+    get_path(root.right, node, current, path)
+    current.pop()
+
+# Divdie and Conquer
+def LCA(root, node1, node2):
+    if not node1 or not node2:
+        return None
+
+    return get_LCA(root, node1, node2)
+
+def get_LCA(root, node1, node2):
+    if not root or node1 == root or node2 == root:
+        return root
+
+    left = get_LCA(root.left, node1, node2)
+    right = get_LCA(root.right, node1, node2)
+
+    if left and right:
+        return root
+    if left:
+        return left
+    if right:
+        return right
+    return None
