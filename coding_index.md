@@ -259,7 +259,7 @@ for i in range(A):
   注意j的枚举 -> 枚举单词长度
   O(NL) N: 字符串长度  L:最长单词的长度
 
-######[Longest Increasing Subsequence 最长上升子序列](./Interivew/Longest_Common_Subsequence.py) [(Not in Leetcode)](http://www.geeksforgeeks.org/dynamic-programming-set-3-longest-increasing-subsequence/)
+######[Longest Increasing Subsequence 最长上升子序列](./Interivews/Longest_Common_Subsequence.py) [(Not in Leetcode)](http://www.geeksforgeeks.org/dynamic-programming-set-3-longest-increasing-subsequence/)
 * state: ~~dp[i] 表示前i个数字中最长的LIS长度(错误)~~
        dp[i] 表示第i个数字结尾的LIS长度(正确)
 * function: ```dp[i] = max(dp[j]+1, j<i and a[j] <= a[i])```
@@ -275,7 +275,7 @@ for i in range(A):
 * initialize: dp[i][0] and dp[0][j]
 * answer: dp[len(s1)][len(s2)]
 
-######[Longest Common Subsequence](./Interivew/Longest_Common_Subsequence.py) [(Not in Leetcode)](http://www.geeksforgeeks.org/dynamic-programming-set-4-longest-common-subsequence/)
+######[Longest Common Subsequence](./Interivews/Longest_Common_Subsequence.py) [(Not in Leetcode)](http://www.geeksforgeeks.org/dynamic-programming-set-4-longest-common-subsequence/)
 * state: dp[i][j]表示前i个字符配上前j个字符的LCS的长度
 * function:
 ```
@@ -286,7 +286,7 @@ dp[i][j] = dp[i-1][j-1] + 1          # if a[i] == b[j]
               ```dp[0][j] = 0```
 * answer: ```dp[len(a)][len(b)]```
 
-######[Longest Common Substring](./Interivew/Longest_Common_Substring.py) [(Not in Leetcode)](http://www.geeksforgeeks.org/longest-common-substring/) 
+######[Longest Common Substring](./Interivews/Longest_Common_Substring.py) [(Not in Leetcode)](http://www.geeksforgeeks.org/longest-common-substring/)
 * state: dp[i][j]表示前i个字符配上前j个字符的LCS的长度(一定以第i个和第j个结尾的LCS)
 * function:
 ```
@@ -299,7 +299,7 @@ dp[i][j] = dp[i-1][j-1] + 1 # a[i] == b[j]
 
 ######[Edit Distance](./Leetcode/Edit_Distance.py)
 * state: dp[i][j] a的前i个字符配上b的前j个字符最少要用几次编辑使得他们相等
-* function: 
+* function:
 ```
 dp[i][j] = dp[i-1][j-1]                                    # a[i] == b[j]
          = min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1]) + 1)  # a[i] != b[j]
