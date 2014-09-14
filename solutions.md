@@ -7388,7 +7388,6 @@ class Solution:
 
 ##152. Alternating Positive N Negative
 
-####Alternating Positive and Negative
 or Rearrange Array Alternating Positive Negative Items
 Given an array of positive and negative numbers, arrange them in an alternate fashion such that every positive number is followed by negative and vice-versa maintaining the order of appearance.
 Number of positive and negative numbers need not be equal. If there are more positive numbers they appear at the end of the array. If there are more negative numbers, they too appear in the end of the array.
@@ -7532,6 +7531,8 @@ print Longest_Common_Substring("GeeksforGeeks", "GeeksQuiz")
 #####NC Class 5, slides 17
 
 The longest Increasing Subsequence (LIS) problem is to find the length of the longest subsequence of a given sequence such that all elements of the subsequence are sorted in increasing order. For example, length of LIS for { 10, 22, 9, 33, 21, 50, 41, 60, 80 } is 6 and LIS is {10, 22, 33, 50, 60, 80}.
+
+[Solution](http://www.geeksforgeeks.org/dynamic-programming-set-3-longest-increasing-subsequence/)
 
 1. dp[i] is length of LIS ends with char i
 2. dp[0...N] = 1
