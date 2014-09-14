@@ -257,8 +257,8 @@ for i in range(A):
   O(NL) N: 字符串长度  L:最长单词的长度
 
 ######[Longest Increasing Subsequence 最长上升子序列](./Interviews/Longest_Increasing_Subsequence.py) [(Not in Leetcode)](http://www.geeksforgeeks.org/dynamic-programming-set-3-longest-increasing-subsequence/)
-* state: ~~```dp[i]```表示前i个数字中最长的LIS长度(错误)~~
-       ```dp[i]```表示第i个数字结尾的LIS长度(正确)
+* state: ~~```dp[i]```表示前i个数字中最长的LIS长度(错误)~~  
+         ```dp[i]```表示第i个数字结尾的LIS长度(正确)
 * function: ```dp[i] = max(dp[j]+1, j<i and a[j] <= a[i])```
 * initialize: ```dp[0..n-1] = 1```
 * answer: ```max(dp[0..n-1])```
@@ -275,7 +275,7 @@ for i in range(A):
 ######[Longest Common Subsequence](./Interviews/Longest_Common_Subsequence.py) [(Not in Leetcode)](http://www.geeksforgeeks.org/dynamic-programming-set-4-longest-common-subsequence/)
 * state: ```dp[i][j]```表示前i个字符配上前j个字符的LCS的长度
 * function:  
-  
+
   ```python
   dp[i][j] = dp[i-1][j-1] + 1           # if a[i-1] == b[j-1]
            = max(dp[i][j-1],dp[i-1][j]) # if a[i-1] != b[j-1]
@@ -285,42 +285,46 @@ for i in range(A):
 
 ######[Longest Common Substring](./Interviews/Longest_Common_Substring.py) [(Not in Leetcode)](http://www.geeksforgeeks.org/longest-common-substring/)
 * state: ```dp[i][j]```表示前i个字符配上前j个字符的LCS的长度(一定以第i个和第j个结尾的LCS)
-* function:
-```
-dp[i][j] = dp[i-1][j-1] + 1 # if a[i-1] == b[j-1]
-         = 0                # if a[i-1] != b[j-1]
-```
+* function:  
+
+  ```python
+  dp[i][j] = dp[i-1][j-1] + 1 # if a[i-1] == b[j-1]
+           = 0                # if a[i-1] != b[j-1]
+  ```
 * initialize: ```dp[i][j] = 0, dp[0][j] = 0```
 * answer: ```max(dp[0...len(a)][0...len(b)])```
 
 ######[Edit Distance](./Leetcode/Edit_Distance.py)
 * state: dp[i][j] a的前i个字符配上b的前j个字符最少要用几次编辑使得他们相等
 * function:
-```
-dp[i][j] = dp[i-1][j-1]                                    # if a[i] == b[j]
-         = min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1])) + 1  # if a[i] != b[j]
-```
+
+  ```python
+  dp[i][j] = dp[i-1][j-1]                                    # if a[i] == b[j]
+           = min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1])) + 1  # if a[i] != b[j]
+  ```
 * initialize: ```dp[i][0] = i, dp[0][j] = j```
 * answer: ```dp[len(a)][len(b)]```
 
 ######[Distinct Subsequence](./Leetcode/Distinct_Subsequences.py)(需要再领会一下)
 * state: ```dp[i][j]```表示S的前i个字符配上T的前j个字符的DS
-* function:
-```
-dp[i][j] = dp[i][j-1] + dp[i-1][j-1] # if S[i-1] == T[j-1]
-                      = dp[i][j-1]                # if S[i-1] != T[j-1]
-```
+* function:  
+
+  ```python
+  dp[i][j] = dp[i][j-1] + dp[i-1][j-1] # if S[i-1] == T[j-1]
+           = dp[i][j-1]                # if S[i-1] != T[j-1]
+  ```
 * initialize: ```dp[i][0] = 0, dp[0][j] = 1```
 * answer: ```dp[M][N]```
 
 ######[Interleaving String](./Leetcode/Interleaving_String.py)
 * state: ```dp[i][j]```表示s1的前i个字符配上s2的前j个字符在s3的前i+j个字符是不是IS
-* function:
-```
-dp[i][j] = True  # if dp[i-1][j] and s1[i-1] == s3[i-1+j]
-                      = True  # if dp[i][j-1] and s2[j-1] == s3[i+j-1]
-                      = False # else
-```
+* function:  
+
+  ```python
+  dp[i][j] = True  # if dp[i-1][j] and s1[i-1] == s3[i-1+j]
+           = True  # if dp[i][j-1] and s2[j-1] == s3[i+j-1]
+           = False # else
+  ```
 * initialize: ```dp[0][0] = True```
 * answer: ```dp[M][N]```
 
