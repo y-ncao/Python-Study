@@ -259,12 +259,12 @@ for i in range(A):
   注意j的枚举 -> 枚举单词长度
   O(NL) N: 字符串长度  L:最长单词的长度
 
-######[Longest Increasing Subsequence 最长上升子序列](http://www.geeksforgeeks.org/dynamic-programming-set-3-longest-increasing-subsequence/) (Not in Leetcode)
+######[Longest Increasing Subsequence 最长上升子序列](./Interivew/Longest_Common_Subsequence.py) [(Not in Leetcode)](http://www.geeksforgeeks.org/dynamic-programming-set-3-longest-increasing-subsequence/)
 * state: ~~dp[i] 表示前i个数字中最长的LIS长度(错误)~~
        dp[i] 表示第i个数字结尾的LIS长度(正确)
 * function: ```dp[i] = max(dp[j]+1, j<i and a[j] <= a[i])```
-* initialize: ```f[0..n-1] = 1```
-* answer: ```max(f[0..n-1])```
+* initialize: ```dp[0..n-1] = 1```
+* answer: ```max(dp[0..n-1])```
 任何一个位置都可能为开始, 所以所有都要初始化为1, 因为最少LIS是1
 
 -----
@@ -275,27 +275,27 @@ for i in range(A):
 * initialize: dp[i][0] and dp[0][j]
 * answer: dp[len(s1)][len(s2)]
 
-######[Longest Common Subsequence](http://www.geeksforgeeks.org/dynamic-programming-set-4-longest-common-subsequence/)
+######[Longest Common Subsequence](./Interivew/Longest_Common_Subsequence.py) [(Not in Leetcode)](http://www.geeksforgeeks.org/dynamic-programming-set-4-longest-common-subsequence/)
 * state: dp[i][j]表示前i个字符配上前j个字符的LCS的长度
-* function: 
+* function:
 ```
-dp[i][j] = dp[i-1][j-1]              # if a[i]  = b[j]
+dp[i][j] = dp[i-1][j-1] + 1          # if a[i] == b[j]
          = max(dp[i][j-1],dp[i-1][j] # if a[i] != b[j]
 ```
 * initialize: ```dp[i][0] = 0```
               ```dp[0][j] = 0```
 * answer: ```dp[len(a)][len(b)]```
 
-######[Longest Common Substring](http://www.geeksforgeeks.org/longest-common-substring/) (Not in Leetcode)
+######[Longest Common Substring](./Interivew/Longest_Common_Substring.py) [(Not in Leetcode)](http://www.geeksforgeeks.org/longest-common-substring/) 
 * state: dp[i][j]表示前i个字符配上前j个字符的LCS的长度(一定以第i个和第j个结尾的LCS)
-* function: 
+* function:
 ```
 dp[i][j] = dp[i-1][j-1] + 1 # a[i] == b[j]
          = 0                # a[i] != b[j]
 ```
 * initialize: ```dp[i][j] = 0
                  dp[0][j] = 0```
-* answer: ```max(dp[0...len(a)][0...len(b)])
+* answer: ```max(dp[0...len(a)][0...len(b)])```
 
 ######[Edit Distance](./Leetcode/Edit_Distance.py)
 * state: dp[i][j] a的前i个字符配上b的前j个字符最少要用几次编辑使得他们相等
