@@ -26,9 +26,9 @@ class Solution:
                     break
         return dp[N]
     # Note:
-    # 1. dp[i] means from char 0 to char i-1 can be break
-    # 2. dp[0] = 0
-    # 3. dp[i] = for j (i-1, ... 0) if dp[j] and s[j:i] in dict
+    # 1. dp[i] means from first i-1 chars can be break
+    # 2. dp[0] = True
+    # 3. dp[i] = for j in (i-1, ... 0) if dp[j] and s[j:i] in dict
     # 4. dp[N] !!! Very important here it's N not N-1
 
 

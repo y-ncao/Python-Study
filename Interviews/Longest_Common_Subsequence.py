@@ -11,7 +11,7 @@ LCS for input Sequences "AGGTAB" and "GXTXAYB" is "GTAB" of length 4.
 DP way is O(m*n)
 Normal way O(m^2 *n)
 
-1. dp[i][j] LCS for first i chars of a and first j chars of b
+1. dp[i][j] is LCS for first i chars of a and first j chars of b
 2. dp[i][j] = 0
 3. dp[i][j] = dp[i-1][j-1] + 1             # if a[i] == b[j]
             = max(dp[i-1][j], dp[i][j-1])  # if a[i] != b[j]

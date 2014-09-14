@@ -7,6 +7,9 @@ Here is an example:
 S = "rabbbit", T = "rabbit"
 
 Return 3.
+
+Note:
+The answer is three rabbit by removing the first, second, third 'b'
 """
 
 class Solution:
@@ -26,3 +29,9 @@ class Solution:
                 else:
                     dp[i][j] = dp[i][j-1]
         return dp[M][N]
+    # Note
+    # dp[i][j]表示S的前i个字符配上T的前j个字符的DS
+    # [i][0] = 0, dp[0][j] = 1
+    # dp[i][j] = dp[i][j-1] + dp[i-1][j-1] # if S[i-1] == T[j-1]
+    #          = dp[i][j-1]                # if S[i-1] != T[j-1]
+    # dp[M][N]

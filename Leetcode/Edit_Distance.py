@@ -15,8 +15,8 @@ class Solution:
         M = len(word1)
         N = len(word2)
         dp = [ [ 0 for j in range(N+1)] for i in range(M+1)]
-        for i in range(A+1):
-            for j in range(B+1):
+        for i in range(M+1):
+            for j in range(N+1):
                 if i == 0:
                     dp[0][j] = j
                 elif j == 0:
@@ -25,7 +25,12 @@ class Solution:
                     dp[i][j] = dp[i-1][j-1]
                 else:
                     dp[i][j] = min( dp[i][j-1], dp[i-1][j], dp[i-1][j-1]) + 1
-        return dp[A][B]
+        return dp[M][N]
+    # Note:
+    # 1. dp[i][j] is Edit Distance of first i-1 chars in word1 with first j-1 chars in word2
+    # 2. dp[0][j] = j, dp[i][0] = i
+    # 3. dp[i][j] = dp[i-1][j-1]                                   # if word[i-1] == word[j-1]
+    #             = min( dp[i][j-1], dp[i-1][j], dp[i-1][j-1]) + 1 # if word[i-1] != word[j-1]
 
     # Note:
     # 1. This dp is a bit diff, the length of dp is A+1, B+1

@@ -237,7 +237,7 @@ for i in range(A):
 
 ######[Jump Game](./Leetcode/Jump_Game.py) | [Jump Game II](./Leetcode/Jump_Game_II.py)
 * state: dp[i]表示能否跳到第i个位置O(n^2) (还有一种O(n)的dp, 见方法2) | dp[i]表示跳到这个位置最少需要多少步.
-* function: ```dp[i] = or(dp[j], j < i and j能跳到i)``` | ```min(dp[j] + 1, j < i and j能跳到i)```
+* function: ```dp[i] = for j in (i-1 ... 0) if dp[j] and j能跳到i)``` | ```min(dp[j] + 1, j < i and j能跳到i)```
 * initialize: ```dp[0] = True``` | ```dp[0] = 0```
 * answer: ```dp[N-1]```
 
@@ -249,7 +249,7 @@ for i in range(A):
 
 ######[Word Break](./Leetcode/Word_Break.py)
 * state: dp[i]表示前i个字符能否被完美切分
-* function： ```dp[i] = or( dp[j], j<1 ,j+1 ~ i是一个字典中的单词)```
+* function： ```dp[i] = for j in (i-1 ... 0) if dp[j] and j ~ i是一个字典中的单词)```
 * initialize: ```dp[0] = True```
 * answer: ```dp[N]``` (这里也是比较特殊)
 
@@ -268,7 +268,7 @@ for i in range(A):
 
 ####3. Two Sequences DP 40%
 * state: ```dp[i][j]``` 代表了第一个sequence的前i个数字/字符配上第二个的sequence的前j个...
-* function: ```dp[i][j] =``` 研究第i个和第j个的匹配关系
+* function: ```dp[i][j] =``` 研究第i-1个和第j-1个的匹配关系
 * initialize: ```dp[i][0]``` and ```dp[0][j]```
 * answer: ```dp[len(s1)][len(s2)]```
 
@@ -276,8 +276,8 @@ for i in range(A):
 * state: dp[i][j]表示前i个字符配上前j个字符的LCS的长度
 * function:
 ```
-dp[i][j] = dp[i-1][j-1] + 1           # if a[i] == b[j]
-         = max(dp[i][j-1],dp[i-1][j]) # if a[i] != b[j]
+dp[i][j] = dp[i-1][j-1] + 1           # if a[i-1] == b[j-1]
+         = max(dp[i][j-1],dp[i-1][j]) # if a[i-1] != b[j-1]
 ```
 * initialize: ```dp[i][0] = 0```
               ```dp[0][j] = 0```
@@ -287,8 +287,8 @@ dp[i][j] = dp[i-1][j-1] + 1           # if a[i] == b[j]
 * state: dp[i][j]表示前i个字符配上前j个字符的LCS的长度(一定以第i个和第j个结尾的LCS)
 * function:
 ```
-dp[i][j] = dp[i-1][j-1] + 1 # a[i] == b[j]
-         = 0                # a[i] != b[j]
+dp[i][j] = dp[i-1][j-1] + 1 # if a[i-1] == b[j-1]
+         = 0                # if a[i-1] != b[j-1]
 ```
 * initialize: ```dp[i][j] = 0
                  dp[0][j] = 0```
@@ -298,17 +298,27 @@ dp[i][j] = dp[i-1][j-1] + 1 # a[i] == b[j]
 * state: dp[i][j] a的前i个字符配上b的前j个字符最少要用几次编辑使得他们相等
 * function:
 ```
-dp[i][j] = dp[i-1][j-1]                                    # a[i] == b[j]
-         = min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1]) + 1)  # a[i] != b[j]
+dp[i][j] = dp[i-1][j-1]                                    # if a[i] == b[j]
+         = min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1])) + 1  # if a[i] != b[j]
 ```
 * initialize: ```dp[i][0] = i, dp[0][j] = j```
 * answer: ```dp[len(a)][len(b)]```
 
 ######[Distinct Subsequence](./Leetcode/Distinct_Subsequences.py)
-To be continued
+(需要再领会一下)
+1. state: dp[i][j]表示S的前i个字符配上T的前j个字符的DS
+2. function: dp[i][j] = dp[i][j-1] + dp[i-1][j-1] # if S[i-1] == T[j-1]
+                      = dp[i][j-1]                # if S[i-1] != T[j-1]
+3. initialize: dp[i][0] = 0, dp[0][j] = 1
+4. dp[M][N]
 
 ######[Interleaving String](./Leetcode/Interleaving_String.py)
-To be continued
+1. state: dp[i][j]表示s1的前i个字符配上s2的前j个字符在s3的前i+j个字符是不是IS
+2. function: dp[i][j] = True  # if dp[i-1][j] and s1[i-1] == s3[i-1+j]
+                      = True  # if dp[i][j-1] and s2[j-1] == s3[i+j-1]
+                      = False # else
+3. initialize: dp[0][0] = True
+4. dp[M][N]
 
 -----
 

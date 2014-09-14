@@ -12,7 +12,7 @@ the output should be 5 as longest common substring is "Geeks"
 DP is O(n^2)
 Normal way would be O(n * m^2)
 
-1. dp is LCS of first i-1 chars in a ends with char i-1 and first j-1 chars in b ends with char j-1
+1. dp[i][j] is LCS of first i-1 chars in a ends with char i-1 and first j-1 chars in b ends with char j-1
 2. init dp[i][j] = 0
 3. dp[i][j] = dp[i-1][j-1] + 1 # if a[i] == b[j]
               0                # if a[i] != b[j]
