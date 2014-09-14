@@ -7434,7 +7434,8 @@ def rearrange_array(A):
 A = [1, 2, 3, -4, -1, 4]
 print rearrange_array(A)
 B = [-5, -2, 5, 2, 4, 7, 1, 8, 0, -8]
-print rearrange_array(B)```
+print rearrange_array(B)
+```
 -----
 
 ##157. Longest Common Subsequence
