@@ -887,6 +887,15 @@ print htable.getValue("reblow")
   * Redis(Key-Value RAM)
   * MemcacheDB(Key-Value RAM)
 * Eventually Consistent
+* Pros:
+  * Scalable
+  * Flexible
+  * It’s Administrator-Friendly
+  * It’s Cost-Effective and Open-Source
+  * The Cloud’s the Limit
+* Cons:
+  * A General Lack of Maturity
+  * Performance and Scaling > Consistency - Performance and Scaling is good, lack of Consistency
 
 ###[Sharding](http://docs.mongodb.org/manual/core/sharding-introduction/)
 * Storing data across multiple machines
