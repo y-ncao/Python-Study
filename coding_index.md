@@ -276,8 +276,8 @@ for i in range(A):
 * state: dp[i][j]表示前i个字符配上前j个字符的LCS的长度
 * function:
 ```
-dp[i][j] = dp[i-1][j-1] + 1          # if a[i] == b[j]
-         = max(dp[i][j-1],dp[i-1][j] # if a[i] != b[j]
+dp[i][j] = dp[i-1][j-1] + 1           # if a[i] == b[j]
+         = max(dp[i][j-1],dp[i-1][j]) # if a[i] != b[j]
 ```
 * initialize: ```dp[i][0] = 0```
               ```dp[0][j] = 0```
