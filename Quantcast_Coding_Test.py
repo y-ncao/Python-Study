@@ -102,9 +102,11 @@ class SpreadSheet():
         self.sheet = [ [None for j in range(self.len_col)] for i in range(self.len_row) ]
 
         if input_file:
+            if len(lines) -1 != self.len_row * self.len_col:
+                raise Exception('Input file length error! Should be %d, but has %d lines' % \
+                                (self.len_row * self.len_col, len(lines)))
             i = 1
             while i < len(lines):
-                #print self.len_row, self.len_col
                 self.sheet[(i-1) / self.len_col][(i-1) % self.len_col] = Cell(lines[i], self)
                 i += 1
         else:
@@ -172,12 +174,27 @@ class Graph():
     # 2. generate graph
     #    i. set up dependencies
     #    ii. enqueue all zero reference cells
-    # 3. use topological sorting to solve graph
+    # 3. use topological sort to solve graph
     #    i. solve the cell with zero reference
     #    ii. enqueue dependency cell if cell has indegree == 1
     #    iii. repeat i, ii until nothing left in queue.
     #         if not all cells are solved, we have cyclic dependency
     # 4. print output
+
+    # Some thoughts about scale:
+    # 1. To scale, basically should use some MapReduce to split spreadsheet to several small spreadsheets
+    # 2. Map: try to solve all the cells within each small spreadsheet, however
+    #    i.  if the small spreadsheet is solvable(no cell referencing cells outside this sheet),
+    #        mark it as complete.
+    #    ii. if there's a cell referencing cells in other small spreadsheet,
+    #        mark it as incomplete and need to keep it for the reduce function
+    # 3. Reduce: combine each small spreadsheet, if any spreadsheet is not solved yet, solve it.
+    #            if still have unsolvable cells, we are having cyclic dependency.
+    # 4. The tricky part would be, how small do we want to split the spreadsheet.
+    #    Key factors:
+    #    i.  size of data (larger amount of data, more splits)
+    #    ii. how many cells are referencing each other(less referencing can do more splits)
+    # But basically I just want to say, this design is scalable.
 
 if __name__ == '__main__':
     test_sheet_1 = SpreadSheet(row=2, col=3,
@@ -193,14 +210,13 @@ if __name__ == '__main__':
     print '\n With negative numbers and ++ --'
     print test_sheet_2.output()
 
+    print '\nFrom stdin'
+    test_sheet_3 = SpreadSheet(input_file='test_case.txt')
+    print test_sheet_3.output()
 
-    test_sheet_3 = SpreadSheet(row=2, col=3,
+
+    test_sheet_4 = SpreadSheet(row=2, col=3,
                              sheet_array=[['A3', '-4 5 *', 'A1 ++'],
                                           ['A1 B2 / 2 +', '3 --', '39 B1 B2 * /']])
-    #print '\nWith cyclic dependency'
-    #print test_sheet_3.output()
-
-
-    print '\nFrom stdin'
-    test_sheet_4 = SpreadSheet(input_file='test_case.txt')
+    print '\nWith cyclic dependency'
     print test_sheet_4.output()
