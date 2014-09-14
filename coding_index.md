@@ -274,11 +274,11 @@ for i in range(A):
 
 ######[Longest Common Subsequence](./Interviews/Longest_Common_Subsequence.py) [(Not in Leetcode)](http://www.geeksforgeeks.org/dynamic-programming-set-4-longest-common-subsequence/)
 * state: ```dp[i][j]```表示前i个字符配上前j个字符的LCS的长度
-* function:
-```
-dp[i][j] = dp[i-1][j-1] + 1           # if a[i-1] == b[j-1]
-         = max(dp[i][j-1],dp[i-1][j]) # if a[i-1] != b[j-1]
-```
+* function:  
+  ```python
+  dp[i][j] = dp[i-1][j-1] + 1           # if a[i-1] == b[j-1]
+           = max(dp[i][j-1],dp[i-1][j]) # if a[i-1] != b[j-1]
+  ```
 * initialize: ```dp[i][0] = 0, dp[0][j] = 0```
 * answer: ```dp[len(a)][len(b)]```
 
