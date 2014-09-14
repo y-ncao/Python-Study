@@ -7,7 +7,7 @@ Given two strings 'X' and 'Y', find the length of the longest common substring.
 For example, if the given strings are "GeeksforGeeks" and "GeeksQuiz",
 the output should be 5 as longest common substring is "Geeks"
 
-Solution see http://www.geeksforgeeks.org/longest-common-substring/
+[Solution](http://www.geeksforgeeks.org/longest-common-substring/)
 
 DP is O(n^2)
 Normal way would be O(n * m^2)

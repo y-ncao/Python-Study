@@ -6,7 +6,7 @@ Examples:
 LCS for input Sequences "ABCDGH" and "AEDFHR" is "ADH" of length 3.
 LCS for input Sequences "AGGTAB" and "GXTXAYB" is "GTAB" of length 4.
 
-Solution is here http://www.geeksforgeeks.org/dynamic-programming-set-4-longest-common-subsequence/
+[Solution](http://www.geeksforgeeks.org/dynamic-programming-set-4-longest-common-subsequence/)
 
 DP way is O(m*n)
 Normal way O(m^2 *n)
