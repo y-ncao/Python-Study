@@ -1,5 +1,4 @@
 """
-####Longest Common Subsequence
 Need to distinguish from Longest Common Substring
 
 Examples:

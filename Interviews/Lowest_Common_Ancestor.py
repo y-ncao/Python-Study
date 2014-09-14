@@ -1,5 +1,5 @@
 """
-#####[LCA, Lowest Common Ancestor](http://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/)Pocket Gem possible question 9/8/2014
+#####[LCA, Lowest Common Ancestor](http://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/) Pocket Gem possible question 9/8/2014
 
 Use O(n)
 """

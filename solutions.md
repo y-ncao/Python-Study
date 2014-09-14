@@ -7386,7 +7386,7 @@ class Solution:
 ```
 -----
 
-##[152. Alternating Positive N Negative](https://oj.leetcode.com/problems/alternating-positive-n-negative/)
+##152. Alternating Positive N Negative
 
 ####Alternating Positive and Negative
 or Rearrange Array Alternating Positive Negative Items
@@ -7437,8 +7437,7 @@ B = [-5, -2, 5, 2, 4, 7, 1, 8, 0, -8]
 print rearrange_array(B)```
 -----
 
-##[153. Construct Max Tree](https://oj.leetcode.com/problems/construct-max-tree/)
-##[154. Delete a Node in BST](https://oj.leetcode.com/problems/delete-a-node-in-bst/)
+##154. Delete a Node in BST
 
 RT
 [Solution](http://answer.ninechapter.com/solutions/delete-a-node-in-binary-search-tree/)
@@ -7446,7 +7445,7 @@ RT
 ```python```
 -----
 
-##[155. Find a Peak](https://oj.leetcode.com/problems/find-a-peak/)
+##155. Find a Peak
 
 Given an array of integers. Find a peak element in it. An array element is peak if it is NOT smaller than its neighbors. For corner elements, we need to consider only one neighbor. For example, for input array {5, 10, 20, 15}, 20 is the only peak element. For input array {10, 20, 15, 2, 23, 90, 67}, there are two peak elements: 20 and 90. Note that we need to return any one peak element.
 
@@ -7462,7 +7461,7 @@ NC Class 2, slides 25
 ```python```
 -----
 
-##[156. Find first K Ocurrence](https://oj.leetcode.com/problems/find-first-k-ocurrence/)
+##156. Find first K Ocurrence
 
 #####Interview with Pocket Gem 9/15/2014
 1. strstr
@@ -7610,9 +7609,8 @@ print find_k_ocurrance(a, 2)
 ```
 -----
 
-##[157. Longest Common Subsequence](https://oj.leetcode.com/problems/longest-common-subsequence/)
+##157. Longest Common Subsequence
 
-####Longest Common Subsequence
 Need to distinguish from Longest Common Substring
 
 Examples:
@@ -7655,7 +7653,7 @@ print Longest_Common_Subsequence('B', 'B')
 ```
 -----
 
-##[158. Longest Common Substring](https://oj.leetcode.com/problems/longest-common-substring/)
+##158. Longest Common Substring
 
 ##### 9/4/2014 Interview with Tubular
 1. Subset(second le)
@@ -7700,7 +7698,7 @@ print Longest_Common_Substring("GeeksforGeeks", "GeeksQuiz")
 ```
 -----
 
-##[159. Longest Increasing Subsequence](https://oj.leetcode.com/problems/longest-increasing-subsequence/)
+##159. Longest Increasing Subsequence
 
 #####NC Class 5, slides 17
 
@@ -7730,9 +7728,9 @@ print LIS(A)
 ```
 -----
 
-##[160. Lowest Common Ancestor](https://oj.leetcode.com/problems/lowest-common-ancestor/)
+##160. Lowest Common Ancestor
 
-#####[LCA, Lowest Common Ancestor](http://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/)Pocket Gem possible question 9/8/2014
+#####[LCA, Lowest Common Ancestor](http://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/) Pocket Gem possible question 9/8/2014
 
 Use O(n)
 
@@ -7768,7 +7766,7 @@ def get_path(node):
 ```
 -----
 
-##[161. Min Stack](https://oj.leetcode.com/problems/min-stack/)
+##161. Min Stack
 
 see http://www.geeksforgeeks.org/design-and-implement-special-stack-data-structure/
 
@@ -7776,7 +7774,7 @@ see http://www.geeksforgeeks.org/design-and-implement-special-stack-data-structu
 ```python```
 -----
 
-##[162. Operations Calculation](https://oj.leetcode.com/problems/operations-calculation/)
+##162. Operations Calculation
 
 ##### 9/5/2014 Elasticbox
 加减运算
@@ -7833,9 +7831,9 @@ find_next_num()
 ```
 -----
 
-##[163. Print Numbers With Five](https://oj.leetcode.com/problems/print-numbers-with-five/)
+##163. Print Numbers With Five
 
-##### 9/7/2014 From mitbbs for Groupon http://www.mitbbs.com/article_t/JobHunting/32651839.html
+##### 9/7/2014 From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32651839.html) for Groupon
 写一个function，对于参数n，输出从0到n之间所有含5的数字。
 func(30) 应该输出5，15，25
 
@@ -7861,14 +7859,14 @@ print find_five(60)
 ```
 -----
 
-##[164. Queue by Two Stacks](https://oj.leetcode.com/problems/queue-by-two-stacks/)
+##164. Queue by Two Stacks
 
 Implement a Queue by using two stacks. Support O(1) push, pop, top
 
 ```python```
 -----
 
-##[165. Recover Rotated Sorted Array](https://oj.leetcode.com/problems/recover-rotated-sorted-array/)
+##165. Recover Rotated Sorted Array
 
 Given a rotated sorted array, recover it to sorted array in-place.
 
@@ -7881,7 +7879,7 @@ Solution three way reverse
 ```python```
 -----
 
-##[166. Search a 2D Matrix](https://oj.leetcode.com/problems/search-a-2d-matrix/)
+##166. Search a 2D Matrix
 
 Write an efficient algorithm that searches for a value in an m x n matrix.
 
@@ -7912,14 +7910,14 @@ Appeared in NC Class 2, slide 18
 ```python```
 -----
 
-##[167. Search a 2D Matrix II](https://oj.leetcode.com/problems/search-a-2d-matrix-ii/)
+##167. Search a 2D Matrix II
 
 Same to the 2D Matrix I, but both row and columns are sorted
 
 ```python```
 -----
 
-##[168. Search a Range in BST](https://oj.leetcode.com/problems/search-a-range-in-bst/)
+##168. Search a Range in BST
 
 Given two values k1 and k2 (where k1 < k2) and a root pointer to a Binary Search Tree. Print all the keys of tree in range k1 to k2. i.e. print all x such that k1<=x<=k2 and x is a key of given BST. Print all the keys in increasing order.
 
@@ -7928,7 +7926,7 @@ Given two values k1 and k2 (where k1 < k2) and a root pointer to a Binary Search
 ```python```
 -----
 
-##[169. Shortest Path](https://oj.leetcode.com/problems/shortest-path/)
+##169. Shortest Path
 
 #####With Twitter
 
@@ -7954,7 +7952,7 @@ def findPath(map, current_point, end_point, length, visited):
 ```
 -----
 
-##[170. Shortest Path N Consecutive Subarray](https://oj.leetcode.com/problems/shortest-path-n-consecutive-subarray/)
+##170. Shortest Path N Consecutive Subarray
 
 #####Interview With Cyan
 
@@ -8119,7 +8117,7 @@ def add(x):
 ```
 -----
 
-##[171. Shuffle](https://oj.leetcode.com/problems/shuffle/)
+##171. Shuffle
 
 ###Shuffle a given array
 Saw it from FiveStar's interview.

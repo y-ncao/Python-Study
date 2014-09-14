@@ -8,12 +8,16 @@ def combiner(file_list):
     for i, answer in enumerate(file_list):
         with open(answer) as file:
             title = ' '.join(answer.split('/')[-1].split('.py')[0].split('_'))
-            address = title.lower().replace(' ', '-')
+            folder = answer.split('/')[1]
             content = file.read()
             sections = content.split("\"\"\"")
-            f.write('##[%d. %s](https://oj.leetcode.com/problems/%s/)\n' % (i+1,title,address))
             if len(sections) < 2:
                 continue
+            if folder == 'Leetcode':
+                address = title.lower().replace(' ', '-')
+                f.write('##[%d. %s](https://oj.leetcode.com/problems/%s/)\n' % (i+1,title,address))
+            else:
+                f.write('##%d. %s\n' % (i+1,title))
             if '\\' in sections[1]:
                 new_section = sections[1].split('\n')
                 min_index = len(new_section) - 1
