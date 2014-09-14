@@ -295,7 +295,7 @@ for i in range(A):
 
 ######[Edit Distance](./Leetcode/Edit_Distance.py)
 * state: dp[i][j] a的前i个字符配上b的前j个字符最少要用几次编辑使得他们相等
-* function:
+* function:  
 
   ```python
   dp[i][j] = dp[i-1][j-1]                                    # if a[i] == b[j]
@@ -305,15 +305,19 @@ for i in range(A):
 * answer: ```dp[len(a)][len(b)]```
 
 ######[Distinct Subsequence](./Leetcode/Distinct_Subsequences.py)(需要再领会一下)
-* state: ```dp[i][j]```表示S的前i个字符配上T的前j个字符的DS
+* state: ```dp[i][j]```表示T的前i个字符和S的前j个字符的DS个数
 * function:  
 
   ```python
-  dp[i][j] = dp[i][j-1] + dp[i-1][j-1] # if S[i-1] == T[j-1]
-           = dp[i][j-1]                # if S[i-1] != T[j-1]
+  dp[i][j] = dp[i][j-1] + dp[i-1][j-1] # if T[i-1] == S[j-1]
+           = dp[i][j-1]                # if T[i-1] != S[j-1]
   ```
 * initialize: ```dp[i][0] = 0, dp[0][j] = 1```
 * answer: ```dp[M][N]```
+
+  大概意思就是， 因为算的是S的子串和T匹配的方法， 所以一旦S[:j-1]和T[:i]有x种匹配方法时  
+  S[:j]必定也至少和T[:i]有x种匹配方法，但尤其当S[j-1]==T[i-1]的时候，需要再加上S[:j-1]和T[:i-1]的匹配方法数
+  注意分清M,i和N,j对应T和S，这个很特殊因为必须是S的子串和T相同
 
 ######[Interleaving String](./Leetcode/Interleaving_String.py)
 * state: ```dp[i][j]```表示s1的前i个字符配上s2的前j个字符在s3的前i+j个字符是不是IS

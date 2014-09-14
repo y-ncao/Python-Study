@@ -15,7 +15,6 @@ class Solution:
     def isInterleave(self, s1, s2, s3):
         return self.isInterleave_1(s1, s2, s3)
 
-    # dp[i][j] means s1[1:i] and s2[1:j] is interleave with s3[1:i+j]
     def isInterleave_1(self, s1, s2, s3):
         M = len(s1)
         N = len(s2)
@@ -27,13 +26,21 @@ class Solution:
             for j in range(N+1):
                 if i == 0 and j == 0:
                     dp[i][j] = True
-                elif i > 0 and dp[i-1][j] and s1[i-1] == s3[i+j-1]:
+                elif i > 0 and dp[i-1][j] and s1[i-1] == s3[i-1+j]:
                     dp[i][j] = True
                 elif j > 0 and dp[i][j-1] and s2[j-1] == s3[i+j-1]:
                     dp[i][j] = True
                 else:
                     dp[i][j] = False
         return dp[M][N]
+
+    # Note:
+    # 1. dp[i][j] means whether s1[:i] and s2[:j] is interleave with s3[:i+j]
+    # 2. dp[0...M][0...N] = False
+    # 3. dp[i][j] = True   # if dp[i-1][j] == True and s1[i-1] == s3[i-1+j] or
+    #                           dp[i][j-1] == True and s2[j-1] == s3[i+j-1]
+    #             = False  # else
+    # 4. dp[M][N]
 
     # Will TLE
     def isInterleave_2(self, s1, s2, s3):
