@@ -15,7 +15,7 @@ class Solution:
     def threeSumClosest_1(self, num, target):
         N = len(num)
         num = sorted(num)
-        ret = num[0]+num[1]+num[2]
+        ret = num[0] + num[1] + num[2]
         i = 0
         for i in range(N-2):
             l = i + 1

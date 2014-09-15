@@ -99,4 +99,4 @@ if __name__ == '__main__':
     combiner(file_list)
     frequency_creator(file_list)
     # type 1 == Data Structure, 2 == Algorithms
-    type_searchor('dp', 2)
+    #type_searchor('dp', 2)
