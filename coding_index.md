@@ -365,8 +365,8 @@ for i in range(A):
 ####6. States Compressing DP(不需要知道)
 ####7. Knapsack
 
------
-####复杂度
+
+###复杂度
 * 一个变量 O(n)
 * 两个变量 O(n^2)
 
@@ -616,9 +616,9 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
      end game, success/fail
 
 * Distributed System (Avoid single failure point) Majority Win
-  * __C__onsistency, eventually consistent, Amazon DynamicDB
-  * __A__vailability(尽量选)
-  * __P__artition tolerance(尽量选)  
+  * Consistency, eventually consistent, Amazon DynamicDB
+  * Availability(尽量选)
+  * Partition tolerance(尽量选)  
     2PC  
     Gossip  
     Paxos  
