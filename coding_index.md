@@ -384,20 +384,6 @@ The basic template of doing 'Sums'
 * [x] Container With Most Water (In Two pointers)
 * [x] Count and Say
 
-##Definetly Redo
-* Recover_Binary_Search_Tree
-* Validate_Binary_Search_Tree
-* Order Traversal Recover
-* __Find last ancestor__ of node x
-* Rotate List
-* Trapping Water (especially the way to think)
-* 3Sum closest
-* Sqrt(x)
-* Pow(x,n)
-* Longest Substring Without Repeating Characters
-* Largest Rectangle in Histogram (The O(n) way is the hardest one I've ever seen)
-* Maximal Rectangle (Same to above)
-* Single Number II
 
 ##### Below Two Looks Similar, seems all use DFS
 * Palindrome Partitioning
@@ -650,3 +636,16 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
         qps: 1000, router: round robin  
         storage: consistant hashing: http://www.programering.com/a/MzN2MjMwATI.html  
      4. Locale: router
+
+##Definetly Redo
+* Recover_Binary_Search_Tree
+* Validate_Binary_Search_Tree
+* Order Traversal Recover
+* __Find last ancestor__ of node x
+* Rotate List
+* Trapping Water (especially the way to think)
+* Longest Substring Without Repeating Characters
+* Largest Rectangle in Histogram (The O(n) way is the hardest one I've ever seen)
+* Maximal Rectangle (Same to above)
+* Single Number II
+* Flatten BST

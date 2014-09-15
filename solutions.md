@@ -1692,6 +1692,20 @@ If you notice carefully in the flattened tree, each node's right child points to
 class Solution:
     # @param root, a tree node
     # @return nothing, do it in place
+    last_node = None
+    def flatten(self, root):
+        if not root:
+            return
+        if self.last_node:
+            self.last_node.left = None
+            self.last_node.right = root
+        self.last_node = root
+        right = root.right              # Because root.right has changed
+        self.flatten(root.left)
+        self.flatten(right)
+    # The above way is preferred
+    # Notice line 48 need to store the state of right
+
     def flatten(self, root):
         if root is None:
             return None
@@ -1715,6 +1729,29 @@ class Solution:
         if rhead is not None:
             lend.right = rhead
         return root
+
+    # Non-recursion way
+    def flatten(self, root):
+        while root:
+            if root.left:
+                pre = root.left
+                while pre.right:
+                    pre = pre.right
+                pre.right = root.right
+                root.right = root.left
+                root.left = None
+            root = root.right
+
+    # Another diao zha way
+    # This is the reverse way of above
+    last = None
+    def flatten(self, root):
+        if root != None:
+            self.flatten(root.right)
+            self.flatten(root.left)
+            root.right = self.last
+            root.left = None
+            self.last = root
 ```
 -----
 
@@ -7438,7 +7475,122 @@ print rearrange_array(B)
 ```
 -----
 
-##157. Longest Common Subsequence
+##153. Consecutive Subarray
+
+#####Interview With Cyan
+1. Shortest Path
+2. Consecutive Subarray
+
+# Prob 2:
+[1, 4, 20, 10, 3, 5, 9] # (20, 10, 3) Sum=33 Also the subarray must be consecutive
+Note: All elements are positive integers exception: array can include 0
+Note: You cannot sort the array
+1
+4
+20
+
+```python
+
+# This is O(n^2)
+def find_consecutive(num, sum):
+    N = len(num)
+    for i in range(N-1):
+        cur_sum = 0
+        for j in range(i, N):
+            cur_sum += num[j]
+            if cur_sum == sum:
+                return (i, j)
+            elif cur_sum > sum:
+                break
+    return -1
+
+# This is O(n), very similar to KMP
+def find_consecutive(num, sum):
+    N = len(num)
+    cur_sum = 0
+    i = 0
+    j = 0
+    while j < N:
+        if cur_sum + num[j] == sum:
+            return num[i:j+1]
+        elif cur_sum + num[j] < sum:
+            cur_sum += num[j]
+            j += 1
+        else:
+            cur_sum -= num[i]
+            i += 1
+    return -1
+
+num = [9, 1, 4, 20, 10, 3, 5]
+sum = 33
+print find_consecutive(num, sum)
+```
+-----
+
+##155. Delete a Node in BST
+
+[Solution](http://answer.ninechapter.com/solutions/delete-a-node-in-binary-search-tree/)
+实际上有好几种做法
+1. replace current node with left maximum node
+2. replace current node with right minimum node
+3. 整体移动，前提是这个node只能有一边的subtree
+
+这里就直接选第一种作为解法
+但是这种也有特殊情况
+1. no left subtree (只有一边有子树，简单，直接挪大块)
+2. left maximum has a left child (不管有没有，都得把left child分配给max_node_parent，但是left maximum一定没有right child)
+3. node is root of the tree (use dummy node)
+
+
+```python
+def delete_node(root, val):
+    dummy_node = treeNode(0)
+    dummy_node.left = root
+    find_delete(dummy_node, root)
+    return dummy_node.left
+
+def find_delete(parent, node, val):
+    if node is None:
+        return
+    if node.val == val:
+        delete_node_in_BST(parent, node)
+    elif node.val < val:
+        find_delete(node, node.right, val)
+    else:
+        find_delete(node, node.left, val)
+
+def delete_node_in_BST(parent, node):
+    if not node.left:
+        if parent.left == node:
+            parent.left = node.right
+        else:
+            parent.right = node.right
+    else:
+        max_node_parent = node
+        max_node = node.left
+
+        while max_node.right:
+            max_node_parent = max_node
+            max_node = max_node.right
+
+        # Found max_node and max_node_parent, need to replace max_node_parent a new child
+        # max_node won't have a right child
+        if max_node_parent.left == max_node:
+            max_node_parent.left = max_node.left
+        else:
+            max_node_parent.right = max_node.right
+
+        # Move max_node to node
+        max_node.left = node.left
+        max_node.right = node.right
+        if parent.left == node:
+            parent.left = max_node
+        else:
+            parent.right = max_node
+```
+-----
+
+##158. Longest Common Subsequence
 
 Need to distinguish from Longest Common Substring
 
@@ -7538,7 +7690,7 @@ print LCS('AGGTAB', 'GXTXAYB')
 ```
 -----
 
-##158. Longest Common Substring
+##159. Longest Common Substring
 
 ##### 9/4/2014 Interview with Tubular
 1. Subset(second le)
@@ -7596,7 +7748,7 @@ print Longest_Common_Substring("GeeksforGeeks", "GeeksQuiz")
 ```
 -----
 
-##159. Longest Increasing Subsequence
+##160. Longest Increasing Subsequence
 
 #####NC Class 5, slides 17
 
@@ -7658,7 +7810,7 @@ print d_A[max(d_A.keys())]
 ```
 -----
 
-##160. Lowest Common Ancestor
+##161. Lowest Common Ancestor
 
 #####[LCA, Lowest Common Ancestor](http://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/) Pocket Gem possible question 9/8/2014
 
@@ -7666,6 +7818,7 @@ Use O(n)
 
 ```python
 
+# With Parent
 def LCA(node1, node2):
     if node1 is None or node2 is None:
         return None
@@ -7693,10 +7846,45 @@ def get_path(node):
         path.append(node)
         node = node.parent
     return path[::-1]
+
+def get_path(root, node, current, path):
+    if not root:
+        return
+
+    if root == node:
+        path.append(current[:])
+        return
+
+    current.append(root)
+    get_path(root.left, node, current, path)
+    get_path(root.right, node, current, path)
+    current.pop()
+
+# Divdie and Conquer
+def LCA(root, node1, node2):
+    if not node1 or not node2:
+        return None
+
+    return get_LCA(root, node1, node2)
+
+def get_LCA(root, node1, node2):
+    if not root or node1 == root or node2 == root:
+        return root
+
+    left = get_LCA(root.left, node1, node2)
+    right = get_LCA(root.right, node1, node2)
+
+    if left and right:
+        return root
+    if left:
+        return left
+    if right:
+        return right
+    return None
 ```
 -----
 
-##162. Operations Calculation
+##163. Operations Calculation
 
 ##### 9/5/2014 Elasticbox
 加减运算
@@ -7753,7 +7941,7 @@ find_next_num()
 ```
 -----
 
-##163. Print Numbers With Five
+##164. Print Numbers With Five
 
 ##### 9/7/2014 From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32651839.html) for Groupon
 写一个function，对于参数n，输出从0到n之间所有含5的数字。
@@ -7781,35 +7969,9 @@ print find_five(60)
 ```
 -----
 
-##169. Shortest Path
+##170. Shortest Path
 
-#####With Twitter
-
-```python
-
-M= len(map)
-N = len(map[0])
-visited = {}
-# Maybe still not the best result
-def findPath(map, current_point, end_point, length, visited):
-    if current_point == end_point:
-        return length
-    if current_point in visited:
-        return INT_MAX
-    if map[current_point] == 'x':
-        return INT_MAX
-    visited[current_point] = True
-    x, y = current_point
-    return min( findPath(map, (x+1,y  ), end_point, length+ 1, visited),
-                findPath(map, (x-1,y  ), end_point, length+ 1, visited),
-                findPath(map, (x  ,y-1), end_point, length+ 1, visited),
-                findPath(map, (x  ,y+1), end_point, length+ 1, visited) )
-```
------
-
-##170. Shortest Path N Consecutive Subarray
-
-#####Interview With Cyan
+#####With Twitter & Cyan
 
 2D array of characters
 ```
@@ -7824,151 +7986,69 @@ S is the starting point
 E is the ending point
 X means you cannot traverse to that point
 
-1. Find the shortest path from S to E given the above matrix
-2. Find if there is a path from S to E
+1. Find if there is a path from S to E
+2. Find the length of shortest path from S to E given the above matrix
+3. Find the shortest path from S to E given the above matrix
+
 
 Restriction: Move to 8 positions
 
 ```python
 
-# Divide and conquer
-def find_shortest_path(matrix, C, E, visited):
-    if C == E:
-        return 0
-    x, y = C
-    if x < 0 or y < 0 or x > len(matrix) or y > len(matrix[0]):
-        return INT_MAX
-    if matrix[x][y] == 'X':
-        return INT_MAX
-    # 考虑visited
-
-    return min(find_shortest_path(matrix, (x+1, y), E, visited)
-
-
-
-visited = {}
-# BFS (没考虑X路障)
-def find_shortest_path(matrix, S, E):
-    M = len(matrix)
-    N = len(matrix[0])
-    visited = {}
-    start_path = [S,]
-    queue = [(S, start_path)]
-    while len(queue) > 0:
-        cur_node, cur_path = queue.pop()
-        x, y = cur_node
-        if x < 0 or y < 0 or x >= M or y >= N or matrix[x][y] == 'X':
-            continue
-        if cur_node in visited:
-            continue
-        else:
-            visited[cur_node] = True
-        new_path = cur_path[:].append(cur_node)
-        if cur_node == E:
-            return new_path
-
-        queue.insert(0, ((x+1, y), new_path))
-        queue.insert(0, ((x+1, y+1), new_path))
-        queue.insert(0, ((x+1, y-1), new_path))
-        queue.insert(0, ((x-1, y), new_path))
-        queue.insert(0, ((x-1, y-1), new_path))
-        queue.insert(0, ((x-1, y+1), new_path))
-        queue.insert(0, ((x, y+1), new_path))
-        queue.insert(0, ((x, y-1), new_path))
-
-
-def find_shortest_path(matrix):
-    M = len(matrix)
-    N = len(matrix[0])
-    S, E = find_start_end(matrix)
-    if not S or not E:
-        return -1
-    visited = {}
-    queue = [S,]
-    while len(queue) > 0:
-        cur = queue.pop()
-        if cur == E:
-            return True
-        x, y = cur
-        if matrix[x][y] == 'X':
-            continue
-        if x < 0 or y < 0 or x >= len(matrix) or y >= len(matrix):
-            continue
-        if cur not int visited:
-            visited[cur] = True
-        else:
-            continue
-        queue.insert(0, (x+1, y))
-        queue.insert(0, (x+1, y+1))
-        queue.insert(0, (x+1, y-1))
-        queue.insert(0, (x-1, y))
-        queue.insert(0, (x-1, y-1))
-        queue.insert(0, (x-1, y+1))
-        queue.insert(0, (x, y+1))
-        queue.insert(0, (x, y-1))
-
-def find_start_end(matrix):
-    M = len(matrix)
-    N = len(matrix[0])
+def find_path(map):
+    M = len(map)
+    N = len(map[0])
     S = None
-    E = None
     for i in range(M):
+        if S:
+            break
         for j in range(N):
-            if matrix[i][j]  == 'S':
+            if map[i][j] == 'S':
                 S = (i, j)
-            if matrix[i][j] == 'E':
-                E = (i, j)
-    return (S,E)
-
-'''
-# Prob 2:
-[1, 4, 20, 10, 3, 5, 9] # (20, 10, 3) Sum=33 Also the subarray must be consecutive
-Note: All elements are positive integers exception: array can include 0
-Note: You cannot sort the array
-1
-4
-20
-'''
-
-# This is O(n^2)
-def find_consecutive(num, sum):
-    N = len(num)
-    for i in range(N-1):
-        cur_sum = 0
-        for j in range(i, N):
-            cur_sum += num[j]
-            if cur_sum == sum:
-                return (i, j)
-            elif cur_sum > sum:
                 break
-    return -1
 
-# This is O(n), very similar to KMP
-def find_consecutive(num, sum):
-    N = len(num)
-    cur_sum = 0
-    i = 0
-    j = 0
-    while j < N:
-        if cur_sum + num[j] == sum:
-            return num[i:j+1]
-        elif cur_sum + num[j] < sum:
-            cur_sum += num[j]
-            j += 1
-        else:
-            cur_sum -= num[i]
-            i += 1
-    return -1
+    queue = [ ( S, [] ) ]
 
-num = [9, 1, 4, 20, 10, 3, 5]
-sum = 33
-print find_consecutive(num, sum)
+    while len(queue) > 0:
+        current, path = queue.pop()
+        x, y = current
+        if x < 0 or y < 0 or x >= M or y >= N or map[x][y] == 'X':
+            continue
 
+        path.append(current)
+        if map[x][y] == 'E':
+            return path        # Or len(path) for question 2
 
-def add(x):
-    def temp(y):
-        return add(x+y)
-    return temp
+        map[x][y] = 'X'        # Mark as visited
+
+        queue.insert(0, ((x-1, y-1), path[:]))
+        queue.insert(0, ((x-1, y  ), path[:]))
+        queue.insert(0, ((x-1, y+1), path[:]))
+        queue.insert(0, ((x  , y-1), path[:]))
+        queue.insert(0, ((x  , y+1), path[:]))
+        queue.insert(0, ((x+1, y-1), path[:]))
+        queue.insert(0, ((x+1, y  ), path[:]))
+        queue.insert(0, ((x+1, y+1), path[:]))
+
+    return None
+
+map = [ ['1', '1', '1', '1', '1',],
+        ['S', '1', 'X', '1', '1',],
+        ['1', '1', '1', '1', '1',],
+        ['X', '1', '1', 'E', '1',],
+        ['1', '1', '1', '1', 'X',],
+        ]
+
+print find_path(map)
+
+# 讨论
+# 1. 无论用何种方法，最好的复杂度应该都是O(m*n)因为最坏情况都是要遍历完整个图
+# 2. 但是单就最好情况来说，想讨论下有没有更好的方法，主要考虑如下：
+#    因为实际已知 S 和 E 的坐标，这里用到的BFS实际是和不知道终点位置是一样的，都是BFS最先的情况就是答案
+#    但我觉得方法应该是可以向着终点方向走，遇到障碍让开走，如果能够实现这种方法，肯定是最优的解法，
+#    希望大家能给我点思路
+
+# 用DFS是没有意义的，因为最后的结果是你怎么都得遍历整个图
 ```
 -----
 
@@ -7998,6 +8078,49 @@ print shuffle_array(A)
 # Note
 # 1. from random import random
 # 2. from random import randint. randint(start, end), include start and end
+```
+-----
+
+##172. isOneEditDistance
+
+From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32760941.html) for facebook
+
+```python
+
+def is_one_edit_distance(s1, s2):
+    M = len(s1)
+    N = len(s2)
+    if abs(M-N) >= 2:
+        return False
+    if M != N:
+        if M > N:
+            longer = s1
+            shorter = s2
+        else:
+            longer = s2
+            shorter = s1
+        i = 0
+        j = 0
+        counter = 0
+        while i < len(shorter) and j < len(shorter):
+            if longer[i] != shorter[j]:
+                j += 1
+                counter += 1
+            else:
+                i += 1
+                j += 1
+            if counter > 1:
+                return False
+        return True
+
+    else:
+        counter = 0
+        for i in range(M):
+            if s1[i] != s2[i]:
+                counter += 1
+                if counter > 1:
+                    return False
+        return True
 ```
 -----
 
