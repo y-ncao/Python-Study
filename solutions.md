@@ -7475,7 +7475,118 @@ print rearrange_array(B)
 ```
 -----
 
-##153. Consecutive Subarray
+##153. BFS DFS
+
+#####Summarize all kind of ways to do Tree Traversal
+* BFS
+  * Level Order Traversal(Use double loop)
+* DFS
+  * Preorder(Recursive, Iterative)
+  * Inorder(Recursive, Iterative)
+  * Postorder(Recursive, Iterative)
+
+```python
+
+def BFS_level_order_traversal(root):
+    if not root:
+        return
+    queue = [root]
+    ret = []
+    while len(queue) > 0:
+        size = len(queue)
+        level = []
+        for i in range(size):
+            node = queue.pop()
+            level.append(node.val)
+            if node.left:
+                queue.insert(0, node.left)
+            if node.right:
+                queue.insert(0, node.right)
+        ret.append(level[:])
+    return ret
+
+# First all recursive
+def DFS_preorder(root):
+    if not root:
+        return
+    print root.val
+    DFS_preorder(root.left)
+    DFS_preorder(root.right)
+
+# Use stack
+def DFS_perorder(root):
+    if not root:
+        return
+    stack = [root]
+    while len(stack) > 0:
+        node = stack.pop()
+        print node.val
+        if node.right:
+            stack.append(node.right)
+        if node.left:
+            stack.append(node.left)
+
+# Divde and Conquer
+# Not sure how this gonna work
+def DFS_preorder(root):
+    if not root:
+        return []
+
+    left  = DFS_preorder(root.left)
+    right = DFS_preorder(root.right)
+
+    result.append(root.val)
+    result.extend(left)
+    result.extend(right)
+    return result
+
+# Recursive
+def DFS_postorder(root):
+    if not root:
+        return
+    DFS_postorder(root.left)
+    DFS_postorder(root.right)
+    print root.val
+
+# Divide and Conquer
+def DFS_postorder(root):
+    if not root:
+        return []
+
+    left = DFS_postorder(root.left)
+    right = DFS_postorder(root.right)
+
+    result.extend(left)
+    result.extend(right)
+    result.append(root.val)             # ?WTF just switch the place?
+    return result
+
+# Use stack
+def DFS_postorder(root):
+    if not root:
+        return []
+    res = []
+    stack = [root]
+    prev = None
+
+    while len(stack) > 0:
+        node = stack.pop()
+        if prev is None or prev.left == node or prev.right == node: # Traverse down the tree
+            if node.left:
+                stack.append(node.left)
+            elif node.right:
+                stack.append(node.right)
+        elif node.left == prev:
+            stack.append(node.right)
+        else:
+            res.append(node.val)
+            stack.pop()
+        prev = node
+    return res
+```
+-----
+
+##154. Consecutive Subarray
 
 #####Interview With Cyan
 1. Shortest Path
@@ -7527,7 +7638,36 @@ print find_consecutive(num, sum)
 ```
 -----
 
-##155. Delete a Node in BST
+##156. Count zeros in Factorial
+
+From mitbbs for Facebook
+
+
+```python
+
+def count_zero_for_factorial(n):
+    i = 1
+    count = 0
+    while i <= n:
+        num = i
+        while num % 5 == 0:
+            count += 1
+            num /= 5
+        i += 1
+    return count
+
+def fact(n):
+    if n == 1:
+        return n
+    return n * fact(n-1)
+
+N = 51
+print count_zero_for_factorial(N)
+print fact(N)
+```
+-----
+
+##157. Delete a Node in BST
 
 [Solution](http://answer.ninechapter.com/solutions/delete-a-node-in-binary-search-tree/)
 实际上有好几种做法
@@ -7590,7 +7730,7 @@ def delete_node_in_BST(parent, node):
 ```
 -----
 
-##158. Longest Common Subsequence
+##160. Longest Common Subsequence
 
 Need to distinguish from Longest Common Substring
 
@@ -7690,7 +7830,7 @@ print LCS('AGGTAB', 'GXTXAYB')
 ```
 -----
 
-##159. Longest Common Substring
+##161. Longest Common Substring
 
 ##### 9/4/2014 Interview with Tubular
 1. Subset(second le)
@@ -7748,7 +7888,7 @@ print Longest_Common_Substring("GeeksforGeeks", "GeeksQuiz")
 ```
 -----
 
-##160. Longest Increasing Subsequence
+##162. Longest Increasing Subsequence
 
 #####NC Class 5, slides 17
 
@@ -7810,7 +7950,7 @@ print d_A[max(d_A.keys())]
 ```
 -----
 
-##161. Lowest Common Ancestor
+##163. Lowest Common Ancestor
 
 #####[LCA, Lowest Common Ancestor](http://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/) Pocket Gem possible question 9/8/2014
 
@@ -7884,7 +8024,45 @@ def get_LCA(root, node1, node2):
 ```
 -----
 
-##163. Operations Calculation
+##164. Min Stack
+
+#####From NC Class 7 Data Structures, slides 8
+[Solution](http://www.geeksforgeeks.org/design-and-implement-special-stack-data-structure/)
+
+```python
+
+class MinStack():
+    def __init__(self, size):
+        self.data_stack = []
+        self.min_stack = []
+        self.size = size
+
+    def is_full(self):
+        return len(self.data_stack) == self.size
+
+    def is_empty(self):
+        return not self.data_stack
+
+    def push(self, data):
+        if self.is_full():
+            return False
+        self.data_stack.append(data)
+        if not self.min_stack or data <= self.min_stack[-1]:
+            self.min_stack.append(data)
+
+    def pop(self):
+        if self.is_empty():
+            return False
+        data = self.data_stack.pop()
+        if data == self.min_stack[-1]:
+            self.min_stack.pop()
+        return data
+
+    def get_min(self):
+        return self.min_stack[-1]```
+-----
+
+##165. Operations Calculation
 
 ##### 9/5/2014 Elasticbox
 加减运算
@@ -7941,7 +8119,7 @@ find_next_num()
 ```
 -----
 
-##164. Print Numbers With Five
+##166. Print Numbers With Five
 
 ##### 9/7/2014 From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32651839.html) for Groupon
 写一个function，对于参数n，输出从0到n之间所有含5的数字。
@@ -7969,7 +8147,65 @@ print find_five(60)
 ```
 -----
 
-##170. Shortest Path
+##167. Queue by Two Stacks
+
+Implement a Queue by using two stacks. Support O(1) push, pop, top
+
+```python
+
+class Queue():
+    def __init__(self):
+        self.inbox = []
+        self.outbox = []
+
+    def push(self, num):
+        self.inbox.append(num)
+
+    def pop(self):
+        if not self.outbox:
+            while len(self.inbox) > 0:
+                self.outbox.append(self.inbox.pop())
+        return self.outbox.pop()
+
+    def top(self):
+        if not self.outbox:
+            while len(self.inbox) > 0:
+                self.outbox.append(self.inbox.pop())
+        return self.outbox[-1]```
+-----
+
+##171. Search a Range in BST
+
+or Print BST Keys in the Give Range
+
+Given two values k1 and k2 (where k1 < k2) and a root pointer to a Binary Search Tree. Print all the keys of tree in range k1 to k2. i.e. print all x such that k1<=x<=k2 and x is a key of given BST. Print all the keys in increasing order.
+
+[Solution](http://www.geeksforgeeks.org/print-bst-keys-in-the-given-range/)
+
+
+
+```python
+
+def search_a_range(root, k1, k2):
+    if root is None:
+        return
+
+    if root.val > k1:
+        search_a_range(root.left, k1, k2)
+
+    if k1 <= root.val <= k2:
+        print root.val
+
+    if root.val < k2:
+        search_a_range(root.right, k1, k2)
+
+    # Note:
+    # 1. in line 15 and line 21, using > < instead of >= <= because
+    #    if k1 == root.val, no needs to check it's child since this is the left bound in it's tree
+```
+-----
+
+##172. Shortest Path
 
 #####With Twitter & Cyan
 
@@ -8052,7 +8288,7 @@ print find_path(map)
 ```
 -----
 
-##171. Shuffle
+##173. Shuffle
 
 ###Shuffle a given array
 Saw it from FiveStar's interview.
@@ -8081,7 +8317,7 @@ print shuffle_array(A)
 ```
 -----
 
-##172. isOneEditDistance
+##174. isOneEditDistance
 
 From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32760941.html) for facebook
 
