@@ -634,19 +634,19 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
   1. 大数据算法
   http://www.icourse163.org/learn/hit-10001
   2. TinyURL:  
-  1. orig url: http://collabedit.com/nt4qp  
-     tiny url: http://t.cn/12345  
-     tinyUrl->origUrl  
-     origUrl->tinyUrl  
-     2 memory tables, db table  
-     1. md5(origUrl) -> abced  
-     a-zA-Z0-9 64 differ chars  
-     num%64;  
-   2. auto increase key  
-      id++ -> 64 chars
-  2. Cache  
-     LRU, LFU, frequent from logs
-  3. Load blance:  
-     qps: 1000, router: round robin  
-     storage: consistant hashing: http://www.programering.com/a/MzN2MjMwATI.html  
-  4. Locale: router
+     1. orig url: http://collabedit.com/nt4qp  
+        tiny url: http://t.cn/12345  
+        tinyUrl->origUrl  
+        origUrl->tinyUrl  
+        2 memory tables, db table  
+        1. md5(origUrl) -> abced  
+           a-zA-Z0-9 64 differ chars  
+           num%64;  
+        2. auto increase key  
+           id++ -> 64 chars
+     2. Cache  
+        LRU, LFU, frequent from logs
+     3. Load blance:  
+        qps: 1000, router: round robin  
+        storage: consistant hashing: http://www.programering.com/a/MzN2MjMwATI.html  
+     4. Locale: router
