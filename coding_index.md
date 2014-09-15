@@ -383,8 +383,6 @@ The basic template of doing 'Sums'
 * [x] Search Insert Position
 * [x] Container With Most Water (In Two pointers)
 * [x] Count and Say
-* [x] Implement strStr() (KMP)
-
 
 ##Definetly Redo
 * Recover_Binary_Search_Tree
@@ -406,11 +404,6 @@ The basic template of doing 'Sums'
 * Binary Tree Maximum Path Sum
 
 Not good, seems I need to redo every questions AC rate below 25%
-
-##Still Cannot Understand
-* Edit Distance
-* Distinct Subsequences(I'm too bad at DP, need to find out a way to understand these)
-
 
 ##From Class
 ###Binary Search
@@ -597,7 +590,7 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
     1. DNS: 把domain name转化成ip address, use cache
     2. HTTP: 80, GET/POST, request header, response header, content-length, accept type, etag, cookie-session
     3. 7 layer, 封包 解包 过程，tcp 3次握手协议
-    4. rendering. html    
+    4. rendering. html  
     __Server Side__
     GET /index.jsp?username=xxx, cookie (client端叫cookie, server端叫session)
     static, dynamic区分
@@ -609,53 +602,51 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
   2. Book library  
      static resource, class, action->method, db table, schema, order table, 数据库设计范式 norm
   3. News Feed  
-     poll, push model
-     last visit time, 
-     cache: hot/cold 
+     poll, push model  
+     last visit time  
+     cache: hot/cold  
      count limit: 100
-  4. Amazon
-     product, customer, shopping cart, order
-     partition: veritcal, horizontal
+  4. Amazon  
+     product, customer, shopping cart, order  
+     partition: veritcal, horizontal  
      consistent hashing
-  5. Game
-     init game
-     game start, record status, feedback
-     end game, success/fail 
+  5. Game  
+     init game  
+     game start, record status, feedback  
+     end game, success/fail
 
 * Distributed System (Avoid single failure point) Majority Win
   * __C__onsistency, eventually consistent, Amazon DynamicDB
   * __A__vailability(尽量选)
-  * __P__artition tolerance(尽量选)
-    2PC
-    Gossip
-    Paxos
-    解决办法:
+  * __P__artition tolerance(尽量选)  
+    2PC  
+    Gossip  
+    Paxos  
+    解决办法:  
     1. 时间戳
     2. 你来选
 * Performance
 
-* Estimation(估算)
-  1PB = 2^10 TB = 2^20 GB .. = 2^50 B (bype)
+* Estimation(估算)  
+  1PB = 2^10 TB = 2^20 GB .. = 2^50 B (bype)  
   1 integer = 4 bytes
-* Big Data
-  # 大数据算法
+* Big Data  
+  1. 大数据算法
   http://www.icourse163.org/learn/hit-10001
-  # TinyURL:
-  1. orig url: http://collabedit.com/nt4qp 
-     tiny url: http://t.cn/12345
-     tinyUrl->origUrl
-     origUrl->tinyUrl
-     2 memory tables, db table
-     1. md5(origUrl) -> abced
-     a-zA-Z0-9 64 differ chars
-     num%64;
-   2. auto increase key
+  2. TinyURL:  
+  1. orig url: http://collabedit.com/nt4qp  
+     tiny url: http://t.cn/12345  
+     tinyUrl->origUrl  
+     origUrl->tinyUrl  
+     2 memory tables, db table  
+     1. md5(origUrl) -> abced  
+     a-zA-Z0-9 64 differ chars  
+     num%64;  
+   2. auto increase key  
       id++ -> 64 chars
-  2. Cache
+  2. Cache  
      LRU, LFU, frequent from logs
-  3. Load blance:
-     qps: 1000, router: round robin
-     storage: consistant hashing: http://www.programering.com/a/MzN2MjMwATI.html
+  3. Load blance:  
+     qps: 1000, router: round robin  
+     storage: consistant hashing: http://www.programering.com/a/MzN2MjMwATI.html  
   4. Locale: router
-
-  This will be my today's streak, from tomorrow, I need to work double hard.
