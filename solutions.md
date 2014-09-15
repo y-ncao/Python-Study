@@ -8059,7 +8059,8 @@ class MinStack():
         return data
 
     def get_min(self):
-        return self.min_stack[-1]```
+        return self.min_stack[-1]
+```
 -----
 
 ##165. Operations Calculation
@@ -8171,7 +8172,8 @@ class Queue():
         if not self.outbox:
             while len(self.inbox) > 0:
                 self.outbox.append(self.inbox.pop())
-        return self.outbox[-1]```
+        return self.outbox[-1]
+```
 -----
 
 ##171. Search a Range in BST
