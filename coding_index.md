@@ -104,18 +104,18 @@ _____
 * [x] Linked List Cycle
 * [x] Linked List Cycle II
 * [x] Remove Duplicates from Sorted List
-* [x] Remove Duplicates from Sorted List II
+* [ ] Remove Duplicates from Sorted List II
 * [x] Merge Two Sorted Lists
 * [x] Remove Nth Node From End of List
 * [x] Partition List
-* [x] Reverse Linked List II (Why only II??)
-* [x] Insertion Sort List (Insertion Sort)
+* [ ] Reverse Linked List II (Why only II??)
+* [ ] Insertion Sort List (Insertion Sort)
 * [x] Copy List with Random Pointer
 * [x] Merge k Sorted Lists
-* [x] Rotate List
-* [x] Sort List (Merge Sort)
-* [x] Reorder List
-* [x] Reverse Nodes in k-Group
+* [ ] Rotate List
+* [ ] Sort List (Merge Sort)
+* [ ] Reorder List
+* [ ] Reverse Nodes in k-Group
 
 ######Dup with tree
 * [x] Flatten Binary Tree to Linked List
@@ -638,14 +638,21 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
      4. Locale: router
 
 ##Definetly Redo
-* Recover_Binary_Search_Tree
-* Validate_Binary_Search_Tree
-* Order Traversal Recover
-* __Find last ancestor__ of node x
-* Rotate List
-* Trapping Water (especially the way to think)
-* Longest Substring Without Repeating Characters
-* Largest Rectangle in Histogram (The O(n) way is the hardest one I've ever seen)
-* Maximal Rectangle (Same to above)
-* Single Number II
-* Flatten BST
+* [ ] Recover Binary Search Tree
+* [ ] Validate Binary Search Tree
+* [ ] Order Traversal Recover
+* [ ] __Find last ancestor of node x__
+* [ ] Rotate List
+* [ ] Trapping Water (especially the way to think)
+* [ ] Longest Substring Without Repeating Characters
+* [ ] Largest Rectangle in Histogram (The O(n) way is the hardest one I've ever seen)
+* [ ] Maximal Rectangle (Same to above)
+* [ ] Single Number II
+* [ ] Flatten BST
+* [ ] BFS every traversal
+* [ ] Maximum Path Sum(BT)
+* [ ] Divde two integers
+* [ ] Word Ladder II
+* [ ] decode ways
+* [ ] Wildcard Matching
+* [ ] Median of two sorted arrays

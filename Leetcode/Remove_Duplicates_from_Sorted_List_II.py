@@ -16,25 +16,21 @@ class Solution:
     # @param head, a ListNode
     # @return a ListNode
     def deleteDuplicates(self, head):
-        if head is None:
-            return None
+        if not head or not head.next:
+            return head
         dummy = ListNode(0)
-        cur = dummy
-        while head.next is not None:
-            if head.val == head.next.val:
-                #jump here, need to find next start
-                dup = head
-                while head is not None and head.val == dup.val:
-                    head = head.next
-                # Stop if head it None or found a new head val
-                if head is None:
-                    break
-            else:
-                cur.next = head
+        dummy.next = head
+        prev = dummy
+        cur = head.next
+        while cur:
+            if prev.next.val != cur.val:
+                prev = prev.next
                 cur = cur.next
-                head = head.next
-                cur.next = None         # Clean up the last pointer
-
-        if head is not None:            # Process the last one
-            cur.next = head
+            else:
+                while cur and cur.val == prev.next.val:
+                    cur = cur.next
+                prev.next = cur
+                if cur:
+                    cur = cur.next
         return dummy.next
+    # Better way to do this

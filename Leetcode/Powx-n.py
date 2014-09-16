@@ -20,9 +20,11 @@ class Solution:
         # Notice here:
         # 1. Must checks: n < 0 and n == 0
         # 2. No need to check x, but if x == 0 or 1 will reduce calculation
+        # 3. Below the code, need to store half, if doing self.pow all the time, it's O(n) but not O(logn)
         half = self.pow(x, n/2)
         if n % 2 == 0:
             return half * half
         else:
             return half * half * x
     # Note to use the half var to make the code clean
+    # O(logn) complexity
