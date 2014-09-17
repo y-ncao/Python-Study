@@ -25,9 +25,9 @@ class Solution:
     def maxPathSum(self, root):
         if root is None:
             return 0
-        max_sum = [-9223372036854775808]
-        self.maxPathSum_helper(root, max_sum)
-        return max_sum[0]
+        self.max_sum = -9223372036854775808
+        self.maxPathSum_helper(root, self.max_sum)
+        return self.max_sum
 
     def maxPathSum_helper(self, root, max_sum):
         if root is None:
@@ -36,8 +36,7 @@ class Solution:
         left = self.maxPathSum_helper(root.left, max_sum)
         right = self.maxPathSum_helper(root.right, max_sum)
 
-        root_max = max(root.val, max(left, right)+root.val)
-        max_sum[0] = max(max_sum[0], root_max, left+right+root.val)
+        root_max = max(root.val, left + root.val, right + root.val)
+        self.max_sum = max(self.max_sum, root_max, left + right + root.val)
 
         return root_max
-    # Almost there

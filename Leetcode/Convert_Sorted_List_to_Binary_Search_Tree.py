@@ -19,24 +19,27 @@ class Solution:
     # @param head, a list node
     # @return a tree node
     def sortedListToBST(self, head):
-        if head is None:                # No need to check if head has only 1 or 2 nodes
+        cur = head
+        length = 0
+        while cur:
+            cur = cur.next
+            length += 1
+        self.head = head
+        return self.sortedRecur(0, length - 1)
+
+    def sortedRecur(self, start, end):
+        if start > end:
             return None
-        mid = head
-        end = head
-        prev = None
-        while end.next is not None and end.next.next is not None:
-            prev = mid                  # Very good way to keep record of last
-            mid = mid.next
-            end = end.next.next         # Doesn't matter what fast is, so no need to push to end
-        if head == mid:
-            head = None                 # This will ensure that we wouldn't create dup node to the left child
-        if prev is not None:
-            prev.next = None
-        root = TreeNode(mid.val)
-        root.left = self.sortedListToBST(head)
-        root.right = self.sortedListToBST(mid.next)
+
+        mid = (start + end) / 2
+        left = self.sortedRecur(start, mid - 1)
+        root = TreeNode(self.head.val)
+        root.left = left
+        self.head = self.head.next
+        root.right = self.sortedRecur(mid + 1, end)
+
         return root
 
-    # Important thing here:
-    # Actually we only care about the mid of the Node
-    # Annie is using pre-order traversal way, which is different.
+    # This is creating the tree from leaves to root
+    # Normal way(Get middle and create each half) takes O(n*logn)
+    # This way takes O(n)

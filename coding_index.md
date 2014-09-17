@@ -71,6 +71,7 @@ _____
 * [x] Symmetric Tree
 * [x] Maximum Depth of Binary Tree
 * [x] Minimum Depth of Binary Tree
+* [x] Binary Tree Maximum Path Sum
 
 ###Binary Search Tree
 * [x] Convert Sorted Array to Binary Search Tree
