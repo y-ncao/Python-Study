@@ -628,9 +628,9 @@ class Solution:
     def maxPathSum(self, root):
         if root is None:
             return 0
-        max_sum = [-9223372036854775808]
-        self.maxPathSum_helper(root, max_sum)
-        return max_sum[0]
+        self.max_sum = -9223372036854775808
+        self.maxPathSum_helper(root, self.max_sum)
+        return self.max_sum
 
     def maxPathSum_helper(self, root, max_sum):
         if root is None:
@@ -639,11 +639,10 @@ class Solution:
         left = self.maxPathSum_helper(root.left, max_sum)
         right = self.maxPathSum_helper(root.right, max_sum)
 
-        root_max = max(root.val, max(left, right)+root.val)
-        max_sum[0] = max(max_sum[0], root_max, left+right+root.val)
+        root_max = max(root.val, left + root.val, right + root.val)
+        self.max_sum = max(self.max_sum, root_max, left + right + root.val)
 
         return root_max
-    # Almost there
 ```
 -----
 
@@ -1259,27 +1258,30 @@ class Solution:
     # @param head, a list node
     # @return a tree node
     def sortedListToBST(self, head):
-        if head is None:                # No need to check if head has only 1 or 2 nodes
+        cur = head
+        length = 0
+        while cur:
+            cur = cur.next
+            length += 1
+        self.head = head
+        return self.sortedRecur(0, length - 1)
+
+    def sortedRecur(self, start, end):
+        if start > end:
             return None
-        mid = head
-        end = head
-        prev = None
-        while end.next is not None and end.next.next is not None:
-            prev = mid                  # Very good way to keep record of last
-            mid = mid.next
-            end = end.next.next         # Doesn't matter what fast is, so no need to push to end
-        if head == mid:
-            head = None                 # This will ensure that we wouldn't create dup node to the left child
-        if prev is not None:
-            prev.next = None
-        root = TreeNode(mid.val)
-        root.left = self.sortedListToBST(head)
-        root.right = self.sortedListToBST(mid.next)
+
+        mid = (start + end) / 2
+        left = self.sortedRecur(start, mid - 1)
+        root = TreeNode(self.head.val)
+        root.left = left
+        self.head = self.head.next
+        root.right = self.sortedRecur(mid + 1, end)
+
         return root
 
-    # Important thing here:
-    # Actually we only care about the mid of the Node
-    # Annie is using pre-order traversal way, which is different.
+    # This is creating the tree from leaves to root
+    # Normal way(Get middle and create each half) takes O(n*logn)
+    # This way takes O(n)
 ```
 -----
 
@@ -3254,38 +3256,16 @@ class Solution:
     # @param root, a tree node
     # @return an integer
     def minDepth(self, root):
+        if not root:
+            return 0
         return self.minDepth_rec(root)
 
     def minDepth_rec(self, root):
-        if root is None:
-            return 0
+        if not root:
+            return 9223372036854775807
         if root.left is None and root.right is None:
             return 1
-        if root.left is None:
-            return self.minDepth_rec(root.right) + 1
-        if root.right is None:
-            return self.minDepth_rec(root.left) + 1
         return min(self.minDepth_rec(root.left), self.minDepth_rec(root.right)) + 1
-
-    # Must do it in this way.
-    # It's different from the maxDepth because in max, we search for max
-    # In this min, the min depth is root to leaf node
-    # A leaf node is node does not have any child.
-    # Those has one child cannot be called leaf node
-
-    def minDepth_iter(self, root):
-        if root is None:
-            return 0
-        queue = []
-        queue.append( (root, 1) )
-        while len(queue) > 0:
-            node, depth = queue.pop(0)
-            if node.left is None and node.right is None:
-                return depth
-            if node.left is not None:
-                queue.append( (node.left, depth+1) )
-            if node.right is not None:
-                queue.append( (node.right, depth+1) )
 ```
 -----
 
@@ -5095,9 +5075,9 @@ class Solution:
     # @param q, a tree node
     # @return a boolean
     def isSameTree(self, p, q):
-        if p is None and q is None:
+        if not p and not q:
             return True
-        if p is None or q is None:
+        if not p or not q:
             return False
         if p.val != q.val:
             return False
@@ -6370,9 +6350,9 @@ class Solution:
         return self.symmetric_helper(root.left, root.right)
 
     def symmetric_helper(self, n1, n2):
-        if n1 is None and n2 is None:
+        if not n1 and not n2:
             return True
-        if n1 is None or n2 is None or n1.val != n2.val:
+        if not n1 or not n2 or n1.val != n2.val:
             return False
         return self.symmetric_helper(n1.left, n2.right) and self.symmetric_helper(n1.right, n2.left)
 

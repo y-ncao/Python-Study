@@ -37,9 +37,9 @@ class Solution:
         return self.symmetric_helper(root.left, root.right)
 
     def symmetric_helper(self, n1, n2):
-        if n1 is None and n2 is None:
+        if not n1 and not n2:
             return True
-        if n1 is None or n2 is None or n1.val != n2.val:
+        if not n1 or not n2 or n1.val != n2.val:
             return False
         return self.symmetric_helper(n1.left, n2.right) and self.symmetric_helper(n1.right, n2.left)
 

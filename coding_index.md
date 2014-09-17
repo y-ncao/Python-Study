@@ -52,17 +52,17 @@
 * [x] Palindrome Partitioning II
 
 ###Tree Traversal
-* [x] Binary Tree Inorder Traversal
-* [x] Binary Tree Preorder Traversal
-* [x] Binary Tree Postorder Traversal
+* [ ] Binary Tree Inorder Traversal
+* [ ] Binary Tree Preorder Traversal
+* [ ] Binary Tree Postorder Traversal
 * [x] Binary Tree Level Order Traversal
 * [x] Binary Tree Level Order Traversal II
 * [x] Binary Tree Zigzag Level Order Traversal
 
 _____
 
-* [x] Construct Binary Tree from Preorder and Inorder Traversal (Redo)
-* [x] Construct Binary Tree from Inorder and Postorder Traversal (Redo)
+* [x] Construct Binary Tree from Preorder and Inorder Traversal
+* [x] Construct Binary Tree from Inorder and Postorder Traversal
 
 -----
 
@@ -71,7 +71,6 @@ _____
 * [x] Symmetric Tree
 * [x] Maximum Depth of Binary Tree
 * [x] Minimum Depth of Binary Tree
-* [x] Binary Tree Maximum Path Sum
 
 ###Binary Search Tree
 * [x] Convert Sorted Array to Binary Search Tree
@@ -83,8 +82,8 @@ _____
 ###类Tree(以tree作为Data Structure的题目)
 * [x] Path Sum
 * [x] Path Sum II
-* [x] Populating Next Right Pointers in Each Node
-* [x] Populating Next Right Pointers in Each Node II
+* [ ] Populating Next Right Pointers in Each Node
+* [ ] Populating Next Right Pointers in Each Node II
 * [x] Sum Root to Leaf Numbers
 * [x] Flatten Binary Tree to Linked List
 * [x] Binary Tree Maximum Path Sum
@@ -98,7 +97,6 @@ _____
 * [x] Search in Rotated Sorted Array
 * [x] Search in Rotated Sorted Array II
 * [x] Median of Two Sorted Arrays
-
 * [x] Remove Element
 
 ###List(意义不大)
@@ -119,8 +117,8 @@ _____
 * [ ] Reverse Nodes in k-Group
 
 ######Dup with tree
-* [x] Flatten Binary Tree to Linked List
-* [x] Convert Sorted List to Binary Search Tree
+* [ ] Flatten Binary Tree to Linked List
+* [ ] Convert Sorted List to Binary Search Tree
 
 ###Matrix
 * [x] Search a 2D Matrix
@@ -140,48 +138,41 @@ _____
 -----
 
 ###Dynamic Programming
-* [x] Climbing Stairs
-* [x] Maximum Subarray
-* [x] Minimum Path Sum
-* [x] Unique Binary Search Tree
-* [x] Container With Most Water
 * [x] Unique Paths
 * [x] Unique Paths II
-* [x] Unique Binary Search Trees
-* [x] Unique Binary Search Trees II
-* [x] Best Time to Buy and Sell Stock III
+* [x] Minimum Path Sum
+* [x] Triangle
+
+-----
+* [x] Climbing Stairs
 * [x] Jump Game
 * [x] Jump Game II
-* [x] Longest Consecutive Sequence
-* [x] Triangle
-* [x] Edit Distance
-* [x] Distinct Subsequences
-* [x] Maximal Rectangle (DP isn't the best way)
-* [x] Longest Palindromic Substring
-* [x] Scramble String
 * [x] Palindrome Partitioning II
-* [x] Interleaving String
 * [x] Word Break
 * [x] Decode Ways
-
-现在对于dp的理解还是差一些，小总结下：
-
-我觉得dp的思路大概是这样的
-
-1. 思考问题，确定需要用dp解决，然后确定需要用几维的dp，dp的每个值的意思是什么
-2. 确定转移方程
-3. 思考边界条件，还有dp的长度，有的时候是N, 有的时候是N+1
-4. 看是否可以简化dp，二维简化成一维，一般来说如果是
-```python
-for i in range(A):
-    for j in range(B):
-        transfer dp[i][j] to dp[i-1][j-1]
-```
-这种情况的话， 由于j每次都在使用dp[j-1], 这种情况没必要储存dp[j-1],只需要把dp[i][0] 确认之后每行从1开始遍历前一项即可。
+* [x] Longest Palindromic Substring
+* [x] Maximum Subarray(勉强)
+* [x] LIS
 
 -----
 
-##From class
+* [x] LCS * 2
+* [x] Edit Distance
+* [x] Distinct Subsequences
+* [x] Interleaving String
+
+-----
+
+* [x] Container With Most Water
+* [x] Unique Binary Search Trees
+* [x] Unique Binary Search Trees II
+* [x] Best Time to Buy and Sell Stock III
+* [x] Maximal Rectangle (DP isn't the best way)
+* [x] Scramble String (别用)
+
+-----
+
+##From NC DP Class
 
 ###模板
 * 状态 state: 灵感, 创造力, 储存小规模问题的结果
@@ -384,13 +375,7 @@ The basic template of doing 'Sums'
 * [x] Search Insert Position
 * [x] Container With Most Water (In Two pointers)
 * [x] Count and Say
-
-
-##### Below Two Looks Similar, seems all use DFS
-* Palindrome Partitioning
-* Binary Tree Maximum Path Sum
-
-Not good, seems I need to redo every questions AC rate below 25%
+* [x] Candy
 
 ##From Class
 ###Binary Search
@@ -485,8 +470,6 @@ Check BFS and DFS template
   __无向图求最短路径用BFS, 用Level Order搜索法__
   注意, 因为是单词, 所以做搜索的时候是按字母变化来
 
-
-
 #####[Word Ladder II](./Leetcode/Word_Ladder_II.py)
 1. 最短的是什么
 2. 所有最短的是啥
@@ -513,6 +496,7 @@ while (!Q.empty()) {
     }
 }
 ```
+
 ###DFS vs BFS
 #####DFS - O(2^n), O(n!)
 1. Find all solutions
@@ -522,17 +506,15 @@ while (!Q.empty()) {
 1. Graph Traversal(每个点都遍历一次)
 2. Find shorted path in a simple graph
 
+-----
+
 ###Data Structure
 
-####Stack
-#####Min Stack
-```
-class min_stack(object):
-
-
-```
-
-#####Implement a queue by two stacks
+####Stack implement
+* [Min Stack](./Interview/Min_Stack.py)
+* [Queue by Two Stacks](./Interview/Queue_by_Two_Stacks.py)
+* Mid Stack
+* Sort Stack
 
 ####Heap
 #####Median Number(应该是CC150)里的题
@@ -657,3 +639,52 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [ ] decode ways
 * [ ] Wildcard Matching
 * [ ] Median of two sorted arrays
+* [ ] Longest Palindromic Substring
+* [ ] Regular Expression Matching
+* [ ] Wildcard Matching
+* [ ] Max Points on a Line
+* [ ] Spiral Matrix * 2
+* [ ] Largest Rectangle in Histogram
+* [ ] Maximal Rectangle
+* [ ] Next Permutation
+* [ ] Construct Binary Tree from Inorder and Postorder Traversal
+* [ ] Construct Binary Tree from Preorder and Inorder Traversal
+* [ ] Stock 系列
+* [ ] Rotate Image
+* [ ] Gray Code
+* [ ] Single Number II
+* 还有前面tree的一些
+* [x] Validate Binary Search Tree (Redo)
+* [x] Recover Binary Search Tree (Redo)
+* [ ] Populating Next Right Pointers in Each Node
+* [ ] Populating Next Right Pointers in Each Node II
+* [x] Median of Two Sorted Arrays
+
+
+New
+* [ ] Rearrange
+* [ ] min(|a-c| + |b-c| + |c-1|)
+* [ ] max product of subarray
+O(n1+n2+n3) n1,n2,n3 是三个数组的长度
+
+|a-b|+|b-c|+|c-a| 其实就是求 2*(最大数-最小数) (eg. 如果a>b>c, |a-b|+|b-c|+|
+c-a| = 2(a-c) )
+
+三个指针i, j, k
+从头开始扫, 总是移动最小的那个指针 更新当前最小的 2*(最大数-最小数) 即可
+
+
+证明正确性:
+在扫的过程中, 对于三个数组中的任意一个数, 分三种情况讨论 (下面假设取出的三个
+数 a>b>c)
+
+1. 如果他作为b, 那么永远不影响最后结果
+
+2. 如果他作为a, 在他作为a的时候, 由于一直在移动另两个指针并接近a, 肯定能扫到
+那个对于a而言最大的c
+
+3. 如果他作为c, 假设 a或者b不是自己数组中比c大的最小值, 那么肯定有在c数组还
+没扫到c的时候有移动a,b数组指针的情况, 但这和假设矛盾
+
+
+证明写的有点乱 求大神更好更清楚的证明
