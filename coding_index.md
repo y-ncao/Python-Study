@@ -3,8 +3,8 @@
 ###Permutation & Combination Type
 * [x] Permutations
 * [x] Permutations II
-* [x] Next Permutation
 * [x] Permutation Sequence
+* [x] Next Permutation
 
 -----
 
@@ -12,6 +12,11 @@
 * [x] Combination Sum
 * [x] Combination Sum II
 * [x] Letter Combination of a Phone Number
+* [ ] 找零钱
+-----
+
+* [x] Subset
+* [x] Subset II
 
 -----
 
@@ -32,11 +37,6 @@
 -----
 
 * [x] Gray Code
-
------
-
-* [x] Subset
-* [x] Subset II
 
 -----
 
@@ -629,31 +629,30 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [ ] Rotate List
 * [ ] Trapping Water (especially the way to think)
 * [ ] Longest Substring Without Repeating Characters
-* [ ] Largest Rectangle in Histogram (The O(n) way is the hardest one I've ever seen)
-* [ ] Maximal Rectangle (Same to above)
-* [ ] Single Number II
 * [ ] Flatten BST
 * [ ] BFS every traversal
 * [ ] Maximum Path Sum(BT)
-* [ ] Divde two integers
 * [ ] Word Ladder II
 * [ ] decode ways
-* [ ] Wildcard Matching
 * [ ] Median of two sorted arrays
 * [ ] Longest Palindromic Substring
 * [ ] Regular Expression Matching
 * [ ] Wildcard Matching
 * [ ] Max Points on a Line
 * [ ] Spiral Matrix * 2
-* [ ] Largest Rectangle in Histogram
-* [ ] Maximal Rectangle
 * [ ] Next Permutation
 * [ ] Construct Binary Tree from Inorder and Postorder Traversal
 * [ ] Construct Binary Tree from Preorder and Inorder Traversal
 * [ ] Stock 系列
 * [ ] Rotate Image
 * [ ] Gray Code
-* [ ] Single Number II
+* [ ] Candy
+* [ ] LRU
+* [ ] Gas Station
+* [ ] Permutation Sequence
+* [ ] Next Permutation
+
+
 * 还有前面tree的一些
 * [x] Validate Binary Search Tree (Redo)
 * [x] Recover Binary Search Tree (Redo)
@@ -661,9 +660,16 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [ ] Populating Next Right Pointers in Each Node II
 * [x] Median of Two Sorted Arrays
 
-
-New
+##Need Understand
 * [ ] Rearrange
+* [ ] Largest Rectangle in Histogram
+* [ ] Maximal Rectangle
+* [ ] Divde two integers
+* [ ] Single Number II
+
+
+##New
+
 * [ ] min(|a-c| + |b-c| + |c-1|)
 * [ ] max product of subarray
 O(n1+n2+n3) n1,n2,n3 是三个数组的长度

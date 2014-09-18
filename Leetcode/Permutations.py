@@ -12,7 +12,6 @@ class Solution:
     def permute(self, num):
         return self.permute_2(num)
 
-    # Normal way to think about this
     def permute_1(self, num):
         ret = []
         self.permute_helper([], num, ret)
@@ -22,9 +21,10 @@ class Solution:
         if len(num) == 0:
             ret.append(res[:])
             return
+
         for i, n in enumerate(num):
             res.append(n)
-            self.permute_helper(res, num[:i]+num[i+1:], ret)
+            self.permute_helper(res, num[:i] + num[i+1:], ret)
             res.pop()
 
     # Do this "inplace"

@@ -45,3 +45,36 @@ A = [1, 2, 3, -4, -1, 4]
 print rearrange_array(A)
 B = [-5, -2, 5, 2, 4, 7, 1, 8, 0, -8]
 print rearrange_array(B)
+print '-' * 10
+
+def rearrange_array_rotate(A):
+    N = len(A)
+    for i in range(N-1):
+        if (i % 2 == 0 and A[i] > 0) or (i % 2 == 1 and A[i] < 0):
+            next = find_next(i, A)
+            if next == len(A):
+                break
+            rotate(i, next, A)
+    return A
+
+def find_next(i, A):
+    if i % 2 == 0:
+        find_negative = -1
+    else:
+        find_negative = 1
+    start = i + 1
+    while start < len(A) and A[start] * find_negative <= 0:
+        start += 1
+    return start
+
+def rotate(i, next, A):
+    tmp = A[next]
+    while next > i:
+        A[next] = A[next-1]
+        next -= 1
+    A[i] = tmp
+
+A = [1, 2, 3, -4, -1, 4]
+print rearrange_array_rotate(A)
+B = [-5, -2, 5, 2, 4, 7, 1, 8, 0, -8]
+print rearrange_array_rotate(B)

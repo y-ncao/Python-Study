@@ -29,3 +29,4 @@ class Solution:
             res.append(i)
             self.combine_helper(i+1, n, k, res, ret)
             res.pop()
+    # Need to notice the i+1

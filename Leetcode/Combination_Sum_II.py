@@ -29,13 +29,12 @@ class Solution:
             ret.append(res[:])
             return
         for i, num in enumerate(candidates):
-            if target < num or ( i>0 and num == candidates[i-1] ):
+            if target < num or (i > 0 and num == candidates[i-1]):
                 continue
             res.append(num)
             self.combinationSum_helper(candidates[i+1:], target - num, res, ret)
             res.pop()
 
-    # Finally pass
-    # Serveral improvements:
-    # 1. if target < num, no need to continue
-    # 2. Need to check dup candidates
+    # Note some diffs with I:
+    # 1. line 32 check dup
+    # 2. line 35 [i+1:]

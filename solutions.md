@@ -1062,16 +1062,15 @@ class Solution:
             ret.append(res[:])
             return
         for i, num in enumerate(candidates):
-            if target < num or ( i>0 and num == candidates[i-1] ):
+            if target < num or (i > 0 and num == candidates[i-1]):
                 continue
             res.append(num)
             self.combinationSum_helper(candidates[i+1:], target - num, res, ret)
             res.pop()
 
-    # Finally pass
-    # Serveral improvements:
-    # 1. if target < num, no need to continue
-    # 2. Need to check dup candidates
+    # Note some diffs with I:
+    # 1. line 32 check dup
+    # 2. line 35 [i+1:]
 ```
 -----
 
@@ -1108,6 +1107,7 @@ class Solution:
             res.append(i)
             self.combine_helper(i+1, n, k, res, ret)
             res.pop()
+    # Need to notice the i+1
 ```
 -----
 
@@ -4012,7 +4012,6 @@ class Solution:
     def permute(self, num):
         return self.permute_2(num)
 
-    # Normal way to think about this
     def permute_1(self, num):
         ret = []
         self.permute_helper([], num, ret)
@@ -4022,9 +4021,10 @@ class Solution:
         if len(num) == 0:
             ret.append(res[:])
             return
+
         for i, n in enumerate(num):
             res.append(n)
-            self.permute_helper(res, num[:i]+num[i+1:], ret)
+            self.permute_helper(res, num[:i] + num[i+1:], ret)
             res.pop()
 
     # Do this "inplace"
@@ -4058,21 +4058,24 @@ class Solution:
 
     def permuteUnique_1(self, num):
         ret = []
-        self.permuteUnique_helper(num, [], ret)
+        self.permuteUnique_helper(sorted(num), [], ret)
         return ret
 
     def permuteUnique_helper(self, num, res, ret):
         if len(num) == 0:
             ret.append(res[:])
             return
-        unique_perm = {}
         for i, n in enumerate(num):
-            if n not in unique_perm:
-                unique_perm[n] = True
-                res.append(n)
-                self.permuteUnique_helper(num[:i]+num[i+1:], res, ret)
-                res.pop()
-        # This is miracle to do this correctly in one time
+            if i > 0 and n == num[i-1]:
+                continue
+            res.append(n)
+            self.permuteUnique_helper(num[:i] + num[i+1:], res, ret)
+            res.pop()
+    # Note:
+    # Should do it in this way
+    # 1. line 17 sorted(num)
+    # 2. line 25 check if already used as permutation
+
 
     def permuteUnique_2(self, num):
         if len(num) == 0:
@@ -7448,6 +7451,39 @@ A = [1, 2, 3, -4, -1, 4]
 print rearrange_array(A)
 B = [-5, -2, 5, 2, 4, 7, 1, 8, 0, -8]
 print rearrange_array(B)
+print '-' * 10
+
+def rearrange_array_rotate(A):
+    N = len(A)
+    for i in range(N-1):
+        if (i % 2 == 0 and A[i] > 0) or (i % 2 == 1 and A[i] < 0):
+            next = find_next(i, A)
+            if next == len(A):
+                break
+            rotate(i, next, A)
+    return A
+
+def find_next(i, A):
+    if i % 2 == 0:
+        find_negative = -1
+    else:
+        find_negative = 1
+    start = i + 1
+    while start < len(A) and A[start] * find_negative <= 0:
+        start += 1
+    return start
+
+def rotate(i, next, A):
+    tmp = A[next]
+    while next > i:
+        A[next] = A[next-1]
+        next -= 1
+    A[i] = tmp
+
+A = [1, 2, 3, -4, -1, 4]
+print rearrange_array_rotate(A)
+B = [-5, -2, 5, 2, 4, 7, 1, 8, 0, -8]
+print rearrange_array_rotate(B)
 ```
 -----
 

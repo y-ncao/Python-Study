@@ -14,21 +14,24 @@ class Solution:
 
     def permuteUnique_1(self, num):
         ret = []
-        self.permuteUnique_helper(num, [], ret)
+        self.permuteUnique_helper(sorted(num), [], ret)
         return ret
 
     def permuteUnique_helper(self, num, res, ret):
         if len(num) == 0:
             ret.append(res[:])
             return
-        unique_perm = {}
         for i, n in enumerate(num):
-            if n not in unique_perm:
-                unique_perm[n] = True
-                res.append(n)
-                self.permuteUnique_helper(num[:i]+num[i+1:], res, ret)
-                res.pop()
-        # This is miracle to do this correctly in one time
+            if i > 0 and n == num[i-1]:
+                continue
+            res.append(n)
+            self.permuteUnique_helper(num[:i] + num[i+1:], res, ret)
+            res.pop()
+    # Note:
+    # Should do it in this way
+    # 1. line 17 sorted(num)
+    # 2. line 25 check if already used as permutation
+
 
     def permuteUnique_2(self, num):
         if len(num) == 0:
