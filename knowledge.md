@@ -887,7 +887,7 @@ print htable.getValue("reblow")
    * Firewall - 只允许来自80 443 22 VPN端口的访问. 过了下面那层LB，把443转换成80就行了
      * [Principle of Least Privilege](http://en.wikipedia.org/wiki/Principle_of_least_privilege)
    * Load Balancer
-     * 分为软的和硬的
+     * 分为软的和硬的  
        1. 软的 - Elastic Load Balancing, HAProxy(TCP/HTTP), Linux Virtual Server
        2. 硬的 - Barracuda, Cisco, Citrix, F5
      * 方法
