@@ -881,6 +881,7 @@ print htable.getValue("reblow")
 ####From [Harvard Class](https://www.youtube.com/watch?v=-W9F__D3oY4)
 1. 形式: Multi-tier architecture
    ![Multi-tier architecture](./img/arch-anganguera.png)
+   Test
    ![Another Pic](./img/perfpatrol.png)
 2. 重要的几个东东西
    1. DNS - 可以通过DNS来进行geo based load balancing, ```nslookup google```
@@ -1124,13 +1125,13 @@ Like SQLAlchemy
 
 ###Language
 * Inner Join
-  [Inner Join](./img/img_fulljoin.gif)
+  ![Inner Join](./img/img_fulljoin.gif)
 * Left Join
-  [Left Join](./img/img_leftjoin.gif)
+  ![Left Join](./img/img_leftjoin.gif)
 * Right Join
-  [Right Join](./img/img_rightjoin.gif)
+  ![Right Join](./img/img_rightjoin.gif)
 * Full Join
-  [Full Join](img_fulljoin.gif)
+  ![Full Join](img_fulljoin.gif)
 
 * Distinct
 * Wildcard
