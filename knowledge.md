@@ -888,13 +888,13 @@ print htable.getValue("reblow")
      * [Principle of Least Privilege](http://en.wikipedia.org/wiki/Principle_of_least_privilege)
    * Load Balancer
      * 分为软的和硬的
-       * 软的： Elastic Load Balancing, HAProxy(TCP/HTTP), Linux Virtual Server
+       * 软的： Elastic Load Balancing, HAProxy(TCP/HTTP), Linux Virtual Server  
        * 硬的： Barracuda, Cisco, Citrix, F5
      * 方法：
-       * Round-robin 平均分配
-       * Weighted round robin
-       * Least connections
-       * Least response time
+       * Round-robin 平均分配  
+       * Weighted round robin  
+       * Least connections  
+       * Least response time  
        * Layer 7 load balancers can further distribute requests based on application specific data such as HTTP headers, cookies, or data within the application message itself, such as the value of a specific parameter.
      * Heart Beat health check
        * Active/Active - 意味着run full capacity, 如果一个跪了，整体的load balancing速度会降低
