@@ -888,9 +888,8 @@ print htable.getValue("reblow")
      * [Principle of Least Privilege](http://en.wikipedia.org/wiki/Principle_of_least_privilege)
    * Load Balancer
      * 分为软的和硬的
-     
-       * 软的： Elastic Load Balancing, HAProxy(TCP/HTTP), Linux Virtual Server
-       * 硬的： Barracuda, Cisco, Citrix, F5
+        * 软的： Elastic Load Balancing, HAProxy(TCP/HTTP), Linux Virtual Server
+        * 硬的： Barracuda, Cisco, Citrix, F5
        
      * 方法：
      
