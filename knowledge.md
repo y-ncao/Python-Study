@@ -882,10 +882,10 @@ print htable.getValue("reblow")
 1. 形式: Multi-tier architecture
    ![Multi-tier architecture](http://d0.awsstatic.com/architecture-diagrams/customers/arch-anganguera.png)
 2. 重要的几个东东西
-   * DNS - 可以通过DNS来进行geo based load balancing, ```nslookup google```
-   * Firewall - 只允许来自80 443 22 VPN端口的访问. 过了下面那层LB，把443转换成80就行了
+   1. DNS - 可以通过DNS来进行geo based load balancing, ```nslookup google```
+   2. Firewall - 只允许来自80 443 22 VPN端口的访问. 过了下面那层LB，把443转换成80就行了
      * [Principle of Least Privilege](http://en.wikipedia.org/wiki/Principle_of_least_privilege)
-   * Load Balancer
+   3. Load Balancer
      * 分为软的和硬的  
        Software - Elastic Load Balancing, HAProxy(TCP/HTTP), Linux Virtual Server  
        Hardware - Barracuda, Cisco, Citrix, F5
@@ -899,11 +899,11 @@ print htable.getValue("reblow")
        * Active/Active - 意味着run full capacity, 如果一个跪了，整体的load balancing速度会降低
        * [Active/passive](http://www.loadbalancerblog.com/blog/2013/01/understanding-active-passive-activeactive-load-balancing)
      * ip-hash 根据ip造server
-   * Web Server
+   4. Web Server
      * 可以partition，按照某种方法处理request(例如名字)
-   * 在Web Server和Storage之间还可能要有一层Load Balancer
-   * Switch - 每个server在联入网的时候都是有两个switch，需要调节好防止packet在中间形成loop
-   * Storage
+   5. 在Web Server和Storage之间还可能要有一层Load Balancer
+   6. Switch - 每个server在联入网的时候都是有两个switch，需要调节好防止packet在中间形成loop
+   7. Storage
      * NoSQL vs Relational SQL
      * Raid0, Raid1, Raid5, Raid6, Raid10
      * Master/Slave Mode (重点是replica)
