@@ -890,7 +890,7 @@ print htable.getValue("reblow")
        * Software - Elastic Load Balancing, HAProxy(TCP/HTTP), Linux Virtual Server  
        * Hardware - Barracuda, Cisco, Citrix, F5
      * 方法
-       * Round-robin 平均分配
+       * Round robin
        * Weighted round robin
        * Least connections
        * Least response time
