@@ -879,7 +879,7 @@ print htable.getValue("reblow")
 ------
 
 ####From [Harvard Class](https://www.youtube.com/watch?v=-W9F__D3oY4)
-1. 形式：Multi-tier architecture
+1. 形式: Multi-tier architecture
    ![Multi-tier architecture](http://d0.awsstatic.com/architecture-diagrams/customers/arch-anganguera.png)
 2. 重要的几个东东西
    * DNS - 可以通过DNS来进行geo based load balancing, ```nslookup google```
@@ -887,8 +887,8 @@ print htable.getValue("reblow")
      * [Principle of Least Privilege](http://en.wikipedia.org/wiki/Principle_of_least_privilege)
    * Load Balancer
      * 分为软的和硬的  
-       * Software - Elastic Load Balancing, HAProxy(TCP/HTTP), Linux Virtual Server  
-       * Hardware - Barracuda, Cisco, Citrix, F5
+       Software - Elastic Load Balancing, HAProxy(TCP/HTTP), Linux Virtual Server  
+       Hardware - Barracuda, Cisco, Citrix, F5
      * 方法
        * Round robin
        * Weighted round robin
