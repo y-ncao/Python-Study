@@ -789,6 +789,7 @@ print htable.getValue("reblow")
 
 ------
 #System Design
+####By Tiny URL
 1. Constrains and Use Cases
    1. Use Cases - What do we use the system for?
       1. Shortening: take a url => return a much shorter url
@@ -861,7 +862,7 @@ print htable.getValue("reblow")
          2. Partition the data: 5 partitions, 600GB of data, 8GB of indexes (Eventually partiion)
             * We can add more shards in the future. Easier for backup and replicate
             * Default idea of this is: get the first char from the ```hash % num_of_partition```
-      4. Master/Slave replication(reading from the slave replicas, writes to the master)(如果有一天read/write不balance了的话)
+      4. Master/Slave replication(reading from the slave replicas, writes to the master)(如果有一天read/write不balance了的话) Master/Master
 
 ------
 总结:
@@ -874,6 +875,43 @@ print htable.getValue("reblow")
      1. NoSQL vs Relation SQL
      2. 如果小的话就store in memory, 大的话就得考虑sharding(easier for replicate and backup)
      3. 如果读写不均匀的话就分开读写, master/slave replication(reading from slaves and write to master)
+
+------
+
+###From [Harvard Class](https://www.youtube.com/watch?v=-W9F__D3oY4)
+
+1. 形式：Multi-tier architecture  
+   ![Multi-tier architecture](http://d0.awsstatic.com/architecture-diagrams/customers/arch-anganguera.png)
+2. 重要的几个东东西
+   * DNS - 可以通过DNS来进行geo based load balancing, ```nslookup google```
+   * Firewall - 只允许来自80 443 22 VPN端口的访问. 过了下面那层LB，把443转换成80就行了
+     * [Principle of Least Privilege](http://en.wikipedia.org/wiki/Principle_of_least_privilege)
+   * Load Balancer
+     * 分为软的和硬的
+       * 软的： Elastic Load Balancing, HAProxy(TCP/HTTP), Linux Virtual Server
+       * 硬的： Barracuda, Cisco, Citrix, F5
+     * 方法：
+       * Round-robin 平均分配
+       * Weighted round robin
+       * Least connections
+       * Least response time
+       * Layer 7 load balancers can further distribute requests based on application specific data such as HTTP headers, cookies, or data within the application message itself, such as the value of a specific parameter.
+     * Heart Beat health check
+       * Active/Active - 意味着run full capacity, 如果一个跪了，整体的load balancing速度会降低
+       * [Active/passive](http://www.loadbalancerblog.com/blog/2013/01/understanding-active-passive-activeactive-load-balancing)
+     * ip-hash 根据ip造server
+   * Web Server
+     * 可以partition，按照某种方法处理request(例如名字)
+   * 在Web Server和Storage之间还可能要有一层Load Balancer
+   * Switch - 每个server在联入网的时候都是有两个switch，需要调节好防止packet在中间形成loop
+   * Storage
+     * NoSQL vs Relational SQL
+     * Raid0, Raid1, Raid5, Raid6, Raid10
+     * Master/Slave Mode (重点是replica)
+       * 一个Master多个Slave, 内容一样，如果Master跪了可以promote一个Slave
+       * 分开读写，Master写，Slave读，实时同步(好像有点点SPF)
+     * Master/Master Mode
+       * 两个Master多个Slave, 就不会跪了
 
 ------
 
@@ -1101,14 +1139,6 @@ Like SQLAlchemy
   * You can cache REST but not SOAP
   * SOAP can only do xml but REST supports many data formats
   * stateless vs statuses
-
-###Load Balancing
-Three ways:
-  1. Round-robin 平均分配
-  2. Least-connected 最少链接
-  3. ip-hash 根据ip造server
-
-Health Check: response from a server fails with error. Fail timeout / max fail.
 
 ###[Encoding](http://kunststube.net/encoding/)
 #####Unicode, Ascii, UTF-8
