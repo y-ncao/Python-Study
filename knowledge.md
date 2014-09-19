@@ -126,8 +126,9 @@ First of all, both of ```@classmethod and @staticmethod``` are decorators.
 
 ###[Metaclass](http://stackoverflow.com/questions/100003/what-is-a-metaclass-in-python)
 * Metaclasses are the 'stuff' that creates classes.
-* type is the built-in metaclass Python uses, but of course, you can create your own metaclass. ```MyClass = type('MyClass', (), {})```
-```python
+* type is the built-in metaclass Python uses, but of course, you can create your own metaclass.  
+  ```MyClass = type('MyClass', (), {})```
+```
 type(name of the class,
      tuple of the parent class (for inheritance, can be empty),
      dictionary containing attributes names and values)
@@ -1098,7 +1099,7 @@ A closure takes place when a function creates an environment that binds local va
 The following code returns a reference to a function:
 
 ```javascript
-function sayHello2(name) { var text = ‘Hello ‘ + name; // local variable var sayAlert = function() { alert(text); } return sayAlert; }
+function sayHello2(name) { var text = 'Hello' + name; // local variable var sayAlert = function() { alert(text); } return sayAlert; }
 ```
 Closures reduce the need to pass state around the application. The inner function has access to the variables in the outer function so there is no need to store the information somewhere that the inner function can get it.
 
