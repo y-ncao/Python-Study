@@ -889,12 +889,12 @@ print htable.getValue("reblow")
      * 分为软的和硬的  
        Software - Elastic Load Balancing, HAProxy(TCP/HTTP), Linux Virtual Server  
        Hardware - Barracuda, Cisco, Citrix, F5
-     * 方法
-       * Round robin
-       * Weighted round robin
-       * Least connections
-       * Least response time
-       * Layer 7 load balancers can further distribute requests based on application specific data such as HTTP headers, cookies, or data within the application message itself, such as the value of a specific parameter.
+     * 方法  
+       1. Round robin
+       2. Weighted round robin
+       3. Least connections
+       4. Least response time
+       5. Layer 7 load balancers can further distribute requests based on application specific data such as HTTP headers, cookies, or data within the application message itself, such as the value of a specific parameter.
      * Heart Beat health check
        * Active/Active - 意味着run full capacity, 如果一个跪了，整体的load balancing速度会降低
        * [Active/passive](http://www.loadbalancerblog.com/blog/2013/01/understanding-active-passive-activeactive-load-balancing)
