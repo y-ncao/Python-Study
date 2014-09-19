@@ -870,7 +870,7 @@ print htable.getValue("reblow")
 2. 核心是从连个方向走
    * Traffic
      1. More server(应该是这里体现consistent hashing, map reduce可能也是这里)
-     2. Load balancer()
+     2. Load balancer
    * Data
      1. NoSQL vs Relation SQL
      2. 如果小的话就store in memory, 大的话就得考虑sharding(easier for replicate and backup)
@@ -880,7 +880,8 @@ print htable.getValue("reblow")
 
 ####From [Harvard Class](https://www.youtube.com/watch?v=-W9F__D3oY4)
 1. 形式: Multi-tier architecture
-   ![Multi-tier architecture](http://d0.awsstatic.com/architecture-diagrams/customers/arch-anganguera.png)
+   ![Multi-tier architecture](./img/arch-anganguera.png)
+   ![Another Pic](./img/perfpatrol.png)
 2. 重要的几个东东西
    1. DNS - 可以通过DNS来进行geo based load balancing, ```nslookup google```
    2. Firewall - 只允许来自80 443 22 VPN端口的访问. 过了下面那层LB，把443转换成80就行了
@@ -1120,6 +1121,31 @@ This is important when the inner function will be called after the outer functio
 ###ORM
 Object-relational mapping
 Like SQLAlchemy
+
+###Language
+* Inner Join
+  [Inner Join](./img/img_fulljoin.gif)
+* Left Join
+  [Left Join](./img/img_leftjoin.gif)
+* Right Join
+  [Right Join](./img/img_rightjoin.gif)
+* Full Join
+  [Full Join](img_fulljoin.gif)
+
+* Distinct
+* Wildcard
+  * % - zero or more chars
+  * _ - single char
+* IN(就跟python的in [...]是一样的)
+* Between 可以用于数字也可以用于字母
+  ```
+  SELECT column_name(s)
+  FROM table_name
+  WHERE column_name (NOT) BETWEEN value1 AND value2;
+  ```
+* Drop
+* Alter
+* Group By
 
 #OS Knowledge
 
