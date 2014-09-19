@@ -906,11 +906,11 @@ print htable.getValue("reblow")
    7. Storage
      * NoSQL vs Relational SQL
      * Raid0, Raid1, Raid5, Raid6, Raid10
-     * Master/Slave Mode (重点是replica)
-       * 一个Master多个Slave, 内容一样，如果Master跪了可以promote一个Slave
-       * 分开读写，Master写，Slave读，实时同步(好像有点点SPF)
-     * Master/Master Mode
-       * 两个Master多个Slave, 就不会跪了
+     * Master/Slave Mode (重点是replica)  
+       一个Master多个Slave, 内容一样，如果Master跪了可以promote一个Slave  
+       分开读写，Master写，Slave读，实时同步(好像有点点SPF)
+     * Master/Master Mode  
+       两个Master多个Slave, 就不会跪了
 
 ------
 
