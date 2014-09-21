@@ -151,9 +151,9 @@ _____
 * [x] Palindrome Partitioning II
 * [x] Word Break
 * [x] Decode Ways
-* [x] Longest Palindromic Substring
 * [x] Maximum Subarray(勉强)
 * [x] LIS
+* [x] Longest Palindrome Substring(上课题没用)
 
 -----
 
@@ -236,17 +236,17 @@ _____
 * initialize: ```dp[0] = True``` | ```dp[0] = 0```
 * answer: ```dp[N-1]```
 
-######[Palindrom Partitioning II](./Leetcode/Palindrome_Partitioning_II.py)
-* state: ```dp[i]```表示前i个字符组成的字符串需要最少几次cut
+######[Palindrome Partitioning II](./Leetcode/Palindrome_Partitioning_II.py)
+* state: ```dp[i]```表示前i-1个字符组成的字符串需要最少几次cut
 * function: ```dp[i] = min( dp[j]+1, j<i and j+1 ~ i 这一段是一个palindrome```) (这里需要用另外一个数组来储存是否是palindrome))
-* initialize: ```dp[0] = -1``` (这里好像也不太对)
-* answer: ```dp[N]```(这里有些不一样)
+* initialize: ```dp[0] = N-1```最少N-1次cut就行了
+* answer: ```dp[N]-1```(这里有些不一样，主要原因是)
 
 ######[Word Break](./Leetcode/Word_Break.py)
-* state: ```dp[i]```表示前i个字符能否被完美切分
+* state: ```dp[i]```表示前i-1个字符能否被完美切分
 * function： ```dp[i] = for j in (i-1 ... 0) if dp[j] and j ~ i是一个字典中的单词)```
 * initialize: ```dp[0] = True```
-* answer: ```dp[N]``` (这里也是比较特殊)
+* answer: ```dp[N]``` (这里也是比较特殊，因为是i-1个字符，不能从0算起)
 
   注意j的枚举 -> 枚举单词长度
   O(NL) N: 字符串长度  L:最长单词的长度
@@ -259,7 +259,7 @@ _____
 任何一个位置都可能为开始, 所以所有都要初始化为1, 因为最少LIS是1
 
 ######[Decode Ways](./Leetcode/Decode_Ways.py)
-* state: ```dp[i]```表示前i个数字的DW
+* state: ```dp[i]```表示前i-1个数字的DW
 * function:  
 
   ```python
@@ -268,7 +268,7 @@ _____
          += dp[i-2]  # if 10 <= int(A[i-2:i]) <= 26
   ```
 * initialize: ```dp[0] = 1```
-* answer: ```dp[N]``` (这里比较特殊)
+* answer: ```dp[N]``` (这里比较特殊，因为是前i-1个数字，且dp[0]只是作为一个起始数字来的)
 
 -----
 
@@ -288,7 +288,7 @@ _____
            = max(dp[i][j-1],dp[i-1][j]) # if a[i-1] != b[j-1]
   ```
 * initialize: ```dp[i][0] = 0, dp[0][j] = 0```
-* answer: ```dp[len(a)][len(b)]```
+* answer: ```dp[M][N]```
 
 ######[Longest Common Substring](./Interviews/Longest_Common_Substring.py) [(Not in Leetcode)](http://www.geeksforgeeks.org/longest-common-substring/)
 * state: ```dp[i][j]```表示前i个字符配上前j个字符的LCS的长度(一定以第i个和第j个结尾的LCS)
@@ -310,7 +310,7 @@ _____
            = min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1])) + 1  # if a[i] != b[j]
   ```
 * initialize: ```dp[i][0] = i, dp[0][j] = j```
-* answer: ```dp[len(a)][len(b)]```
+* answer: ```dp[M][N]```
 
 ######[Distinct Subsequence](./Leetcode/Distinct_Subsequences.py)(需要再领会一下)
 * state: ```dp[i][j]```表示T的前i个字符和S的前j个字符的DS个数
@@ -360,9 +360,19 @@ _____
 ####7. Knapsack
 
 
-###复杂度
-* 一个变量 O(n)
-* 两个变量 O(n^2)
+###总结
+
+####复杂度
+直接看循环嵌套个数
+
+####关于取dp[N]还是dp[N-1]还有dp[N]-1
+1. 首先先分析dp维度，Matrix和Two Sequence dp都是二维，One Sequence是一维
+2. Matrix dp一般都是初始(0,0)跳到(M-1,N-1)所以取的是```dp[M-1][N-1]```
+3. 如果dp[i]或者dp[i][j]表示前i个什么的时候，需要以N/MN作为结尾，主要原因是这种情况下前0个字符串是没有意义的，至少从1开始，所以取dp的时候也是从dp[1]开始才有意义，所以dp[i]的含义是前i-1个东西的性质，而```dp[0] or dp[0][0]```需要强制赋值
+4. 至于dp[N] - 1纯粹是因为Palindrome题目比较特殊，实际我们算的cut-1才是结果
+
+####关于已知dp题然后回问方法数问题
+一般这种情况就是根据已知的dp matrix和结论，从最后开始往前回溯，满足的就挑进去，不满足的就不放来解决.
 
 -----
 
@@ -636,7 +646,7 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [ ] Word Ladder II
 * [ ] decode ways
 * [ ] Median of two sorted arrays
-* [ ] Longest Palindromic Substring
+* [ ] Longest Palindrome Substring
 * [ ] Regular Expression Matching
 * [ ] Wildcard Matching
 * [ ] Max Points on a Line
@@ -696,3 +706,7 @@ c-a| = 2(a-c) )
 
 
 证明写的有点乱 求大神更好更清楚的证明
+
+
+##Some Note
+1. 一定要看清题，比如这次就被问了find all palindrome，但是理解成palindrome partitioning了，所以错了
