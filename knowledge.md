@@ -1223,6 +1223,25 @@ def whatisthis(s):
 * Time Complexity - The amount of time needed to finish the task
 * Space Complexity - The amount of memory needed to store values/variables
 
+#####[Master Method](http://www.cs.cornell.edu/courses/cs3110/2012sp/lectures/lec20-master/lec20.html)
+```T(n) = aT(n/b) + f(n)```
+* 其中a是每次每次recursion有几次call, b是recursion的长度变为原来的n/b
+* 结论分三种情况讨论， 但核心数字是 X = n ^ (loga/logb)，需要比较指数loga/logb 和 f(n)的指数
+  * 前者大， 则结论是X
+  * 两者一样大， 则结论是 O(fn) * O(log(n^fn指数)) 化简为O(fn)*O(logn)
+  * 后者大， 则结论是O(fn)
+
+
+
+| Recurrence | Algorithm    | Big-Oh Solution |
+| --- | :---: | :---: |
+| T(n) = T(n/2) + O(1) | Binary Search | O(log n) |
+| T(n) = T(n-1) + O(1) | Sequential Search | O(n) |
+| T(n) = 2 T(n/2) + O(1) | tree traversal | O(n) |
+| T(n) = T(n-1) + O(n) | Selection Sort (other n2 sorts) | O(n2) |
+| T(n) = 2 T(n/2) + O(n) | Mergesort (average case Quicksort) | O(n log n) |
+| T(n) = n * T(n-1) + O(n) | | O(n!) |
+
 ###Lock
 __Lock__: at most one thread can hold the lock, and therefore only on thread can access the shared resource.
 

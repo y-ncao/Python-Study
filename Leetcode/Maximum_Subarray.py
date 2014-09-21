@@ -26,9 +26,6 @@ class Solution:
                 cur_sum = 0
         return max_sum
 
-    # dp way
-    # dp[i] = max(A[i], dp[i-1]+A[i])
-    # Because we don't need to store dp[i], so simplify to dp
     def maxSubArray_2(self, A):
         res = A[0]
         dp = A[0]
@@ -36,3 +33,9 @@ class Solution:
             dp = max(num, dp+num)
             res = max(res, dp)
         return res
+    # Note
+    # 1. dp[i] means maximum subarray ends with A[i]
+    # 2. dp[0] = A[0]
+    # 3. dp[i] = max(A[i], A[i] + dp[i-1])  意思就是如果end with A[i-1]的dp是负的话我们就不取，otherwise就取
+    # 4. dp[N-1]
+    # Because we don't need to store dp[i], so simplify to dp
