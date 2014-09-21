@@ -195,13 +195,13 @@ _____
 * function: 研究下一步怎么走
 * initialize: 起点
 * answer: 终点
-* 复杂度一般为O(N^2)
+* 复杂度一般为O(n^2)
 
 #####[Triangle](./Leetcode/Triangle.py)
 * status: ```dp[x][y]```表示从bottom走到top每个坐标的最短路径
-* function: dp[i][j] = min(dp[i+1][j], dp[i+1][j+1]) + triangle[i][j]
-* initialize: dp[-1][j] = triangle[-1][j]
-* answer: dp[0][0] (比较奇怪，因为是由下至上)
+* function: ```dp[i][j] = min(dp[i+1][j], dp[i+1][j+1]) + triangle[i][j]```
+* initialize: ```dp[-1][j] = triangle[-1][j]```
+* answer: ```dp[0][0]``` (比较奇怪，因为是由下至上)
 
 #####[Unique Path](./Leetcode/Unique_Paths.py) | [Unique Path II](./Leetcode/Unique_Paths_II.py)
 * state: ```dp[x][y]```表示从起点走到 (x,y) 的path数
@@ -222,7 +222,7 @@ _____
 * function: ```dp[i] = dp[j] ...j``` 是i之前的一个位置
 * initialize: ```dp[0] = ...```
 * answer: ```dp[N-1]```
-* 复杂度一般为O(N^2)
+* 复杂度一般为O(n^2)
 
 ######[Climbing Stairs](./Leetcode/Climbing_Stairs.py)
 * state: ```dp[i]```表示爬到前i个台阶时的方法数
@@ -277,7 +277,7 @@ _____
 * function: ```dp[i][j] =``` 研究第i-1个和第j-1个的匹配关系
 * initialize: ```dp[i][0], dp[0][j]```
 * answer: ```dp[len(s1)][len(s2)]```
-* 复杂度一般为O(M*N)
+* 复杂度一般为O(m*n)
 
 ######[Longest Common Subsequence](./Interviews/Longest_Common_Subsequence.py) [(Not in Leetcode)](http://www.geeksforgeeks.org/dynamic-programming-set-4-longest-common-subsequence/)
 * state: ```dp[i][j]```表示前i个字符配上前j个字符的LCS的长度
@@ -363,7 +363,7 @@ _____
 ###总结
 
 ####复杂度
-直接看循环嵌套个数
+直接看循环嵌套层数
 
 ####关于取dp[N]还是dp[N-1]还有dp[N]-1
 1. 首先先分析dp维度，Matrix和Two Sequence dp都是二维，One Sequence是一维
@@ -371,7 +371,7 @@ _____
 3. 如果dp[i]或者dp[i][j]表示前i个什么的时候，需要以N/MN作为结尾，主要原因是这种情况下前0个字符串是没有意义的，至少从1开始，所以取dp的时候也是从dp[1]开始才有意义，所以dp[i]的含义是前i-1个东西的性质，而```dp[0] or dp[0][0]```需要强制赋值
 4. 至于dp[N] - 1纯粹是因为Palindrome题目比较特殊，实际我们算的cut-1才是结果
 
-####关于已知dp题然后回问方法数问题
+####已知dp问题然后回问满足dp条件的结果
 一般这种情况就是根据已知的dp matrix和结论，从最后开始往前回溯，满足的就挑进去，不满足的就不放来解决.
 
 -----
