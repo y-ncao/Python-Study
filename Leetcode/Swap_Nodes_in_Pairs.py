@@ -22,12 +22,12 @@ class Solution:
     def swapPairs_1(self, head):
         dummy = ListNode(0)
         dummy.next = head
-        current = dummy
-        while head is not None and head.next is not None:
-          current.next = head.next
+        prev = dummy
+        while head and head.next:
+          prev.next = head.next
           head.next = head.next.next
-          current.next.next = head
-          current = head
+          prev.next.next = head
+          prev = head
           head = head.next
         return dummy.next
 

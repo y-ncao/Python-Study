@@ -104,18 +104,18 @@ _____
 * [x] Linked List Cycle
 * [x] Linked List Cycle II
 * [x] Remove Duplicates from Sorted List
-* [ ] Remove Duplicates from Sorted List II
+* [x] Remove Duplicates from Sorted List II
 * [x] Merge Two Sorted Lists
 * [x] Remove Nth Node From End of List
 * [x] Partition List
-* [ ] Reverse Linked List II (Why only II??)
+* [x] Reverse Linked List II (Why only II??)
 * [ ] Insertion Sort List (Insertion Sort)
 * [x] Copy List with Random Pointer
 * [x] Merge k Sorted Lists
-* [ ] Rotate List
+* [x] Rotate List
 * [ ] Sort List (Merge Sort)
-* [ ] Reorder List
-* [ ] Reverse Nodes in k-Group
+* [x] Reorder List
+* [x] Reverse Nodes in k-Group
 
 ######Dup with tree
 * [ ] Flatten Binary Tree to Linked List
@@ -637,14 +637,14 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [ ] Validate Binary Search Tree
 * [ ] Order Traversal Recover
 * [ ] __Find last ancestor of node x__
-* [ ] Rotate List
+* [x] Rotate List
 * [ ] Trapping Water (especially the way to think)
 * [ ] Longest Substring Without Repeating Characters
-* [ ] Flatten BST
+* [x] Flatten BST
 * [ ] BFS every traversal
-* [ ] Maximum Path Sum(BT)
+* [x] Maximum Path Sum(BT)
 * [ ] Word Ladder II
-* [ ] decode ways
+* [x] decode ways
 * [ ] Median of two sorted arrays
 * [ ] Longest Palindrome Substring
 * [ ] Regular Expression Matching
@@ -672,10 +672,9 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [x] Median of Two Sorted Arrays
 
 ##Need Understand
-* [ ] Rearrange
 * [ ] Largest Rectangle in Histogram
 * [ ] Maximal Rectangle
-* [ ] Divde two integers
+* [x] Divde two integers
 * [ ] Single Number II
 
 

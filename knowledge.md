@@ -1226,14 +1226,19 @@ def whatisthis(s):
 #####[Master Method](http://www.cs.cornell.edu/courses/cs3110/2012sp/lectures/lec20-master/lec20.html)
 ```T(n) = aT(n/b) + f(n)```
 * 其中a是每次每次recursion有几次call, b是recursion的长度变为原来的n/b
-* 结论分三种情况讨论， 但核心数字是 X = n ^ (loga/logb)，需要比较指数loga/logb 和 f(n)的指数
-  * 前者大， 则结论是X
-  * 两者一样大， 则结论是 O(fn) * O(log(n^fn指数)) 化简为O(fn)*O(logn)
-  * 后者大， 则结论是O(fn)
+* 结论分三种情况讨论，需要对比T(n-1)的复杂度和f(n)的复杂度  
+  T(n-1)复杂度算法是 O(T)= n ^ (loga/logb)， f(n)的一般比较直观，O(f) = n ^ x, 所以变形为比较loga/logb和x的大小
+  * 前者大, 则结论是O(T)
+  * 两者一样大, 则结论是 O(n^x * logn)
+  * 后者大, 则结论是O(f)
 
+####[Duke大法](http://www.cs.duke.edu/~ola/ap/recurrence.html)
+#####步骤
+1. 写出Master Method方程
+2. 写出base case T(1) = ??
+3. 将递推式转化为通项式
 
-
-| Recurrence | Algorithm    | Big-Oh Solution |
+| Recurrence | Algorithm    | Big-O Solution |
 | --- | :---: | :---: |
 | T(n) = T(n/2) + O(1) | Binary Search | O(log n) |
 | T(n) = T(n-1) + O(1) | Sequential Search | O(n) |

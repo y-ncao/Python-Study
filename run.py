@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
-file_name = 'Palindrome_Partitioning_II'
-func_name = 'minCut'
+file_name = 'Divide_Two_Integers'
+func_name = 'divide'
 
 import importlib
 module = importlib.import_module('Leetcode.%s' % file_name)
 instance = module.Solution()
 
-print getattr(instance, func_name)("bb")
+print getattr(instance, func_name)(29, 4)
