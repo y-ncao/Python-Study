@@ -128,7 +128,7 @@ Tornado is flexible and light weight. Since we are putting all the MVC part to o
 ######Blocking - Synchronous vs Non-blocking - Asynchronous
 A "blocking" call "blocks" the program that calls it until it completes. Your program has to wait for it to do (whatever) before the next statement runs.
 
-A "non-blocking" or asynchronous method usually, instead, either deposits its results in a "mailbox" or "queue" of some kind, or (more commonly) will call back a function that you provide when it completes. 
+A "non-blocking" or asynchronous method usually, instead, either deposits its results in a "mailbox" or "queue" of some kind, or (more commonly) will call back a function that you provide when it completes.
 
 ####Javascript Front-end Framework Comparison
 #####References
@@ -139,9 +139,21 @@ A "non-blocking" or asynchronous method usually, instead, either deposits its re
 * MVC
 * Asynchronous interfaces
 * Simplicity
+* Pretty easy to bind model update to backend
+* Spine stores and renders everything client-side, communicating with the server asynchronously.
+* Coffee
 
-Spine stores and renders everything client-side, communicating with the server asynchronously.
+####Reason for Spine
+Fits well with our user's workflow.
+* Most of the time, user are inputing data and choosing options. Like selecting parts, play with price. Data are changed frequently. We don't want our users wait everytime when they input anything, so doing async is the best solution, where SpineJS is good at.
+* User opens up the app, load principle models ahead, and later on do async calls to the back-end. User can't even feel that this app is talking with it's back-end because there's non-block IO.
 
+####Redesign Project
+1. Use more popular front-end, like Angular - SpineJS's documentation is neat but not enough, we have been suffered from I found a problem, don't know how to solve, so I asked my teammate who is more focused on the front-end, and helped me with that. After that, I asked him, how did you know that? He said because I had a same problem and I dived into the source code
+2. We had to worry too much about security. But since this is internal tool, we think this is not a big problem to us. But we still have to face the problem
+3. We had small team and we didn't use TDD at the beginning.
+4. For backend, there are a lot of things that we can improve, like reduce the piping to the front-end, make some of the data fetch loaded later.
+5. But not anything we need to redesign. Tornado is pretty good, python web development is pretty good. Maybe get more async funcs on back-end but I cannot come up with a great use case for async.
 
 #####Backbone.js / Ember.js / Angular.js
 
@@ -152,11 +164,6 @@ Spine stores and renders everything client-side, communicating with the server a
 
 ####Coffeescript vs Javascript
 
-
-####Reason for Spine
-Fits well with our user's workflow.
-* Most of the time, user are inputing data and choosing options. Like selecting parts, play with price. Data are changed frequently. We don't want our users wait everytime when they input anything, so doing async is the best solution, where SpineJS is good at.
-* User opens up the app, load principle models ahead, and later on do async calls to the back-end. User can't even feel that this app is talking with it's back-end because there's non-block IO.
 
 ####Grunt
 * Javascript task runner, or automation. Helps you to do automated compile, build and test.
