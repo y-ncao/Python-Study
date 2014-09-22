@@ -477,6 +477,20 @@ Cpython use OS threads. Only one thread at a time is allowed to run Python code.
 * Use multiple python interpreters concurrently,
 * Use different implementation of Python that does not use a GIL, like Jython and IronPython.
 
+#####[Multi-threading vs Multi-processing](http://stackoverflow.com/a/3046201)
+
+#####[Other Choices](http://www.slideshare.net/dabeaz/an-introduction-to-python-concurrency) (see slides 153)
+* Event-driven programming - Turn I/O handling to events
+* Coroutines - multitasking all in python
+
+#####总结
+* Python的threading不是real threading, 因为GIL. 所以会有效率问题
+* 根据这个情况, 人们想出了几种解决办法
+  * 用Multi-processing - 缺点就是process之间很难communicate
+  * Asynchronous
+    * Event-driven - 这个应该是tornado IO loop
+    * Coroutines - 利用yield/generator 在程序运行的时候活得结果, 可能要Pass in call back function
+
 ###[Class Attributes](http://www.toptal.com/python/python-class-attributes-an-overly-thorough-guide#.)
 
 ###Override and Overload
