@@ -13,22 +13,22 @@ class Solution:
     # @return an integer
     def evalRPN(self, tokens):
         stack = []
-        operators = '+-*/'
-        for i, token in enumerate(tokens):
-            if token in operators:
-                num_2 = stack.pop()
-                num_1 = stack.pop()
-                stack.append(self.calculate(num_1, num_2, token))
+        for token in tokens:
+            if token in ['+', '-', '*', '/']:
+                b = stack.pop()
+                a = stack.pop()
+                stack.append(self.calculate(a, b, token))
             else:
                 stack.append(int(token))
-        return stack[0]
+        return stack.pop()
 
-    def calculate(self, num_1, num_2, token):
-        if token == '+':\
-            return num_1 + num_2
-        if token == '-':
-            return num_1 - num_2
-        if token == '*':
-            return num_1 * num_2
-        if token == '/':
-            return int(num_1 * 1.0 / num_2) # This is the trick part, need to notice
+    def calculate(self, num_1, num_2, operator):
+        oper_dict = { '+' : lambda x, y: x + y,
+                      '-' : lambda x, y: x - y,
+                      '*' : lambda x, y: x * y,
+                      '/' : lambda x, y: int( x * 1.0 / y),
+                      }
+        return oper_dict[operator](num_1, num_2)
+
+    # Notice:
+    # Need to be very careful about line 29, need to convert float and result is in int
