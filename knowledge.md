@@ -712,8 +712,34 @@ Although fairly rare in practice, if a collection object contains a reference to
 [Reference](http://pyzh.readthedocs.org/en/latest/index.html)
 
 -----
+# System Design Data Structure
 
-#[Hashtable](./Concept_Implement/HashTable.py)
+##[Bloom Filter](http://en.wikipedia.org/wiki/Bloom_filter)
+###特点
+* Empty Bloom Filter is a bit array of m bits, all set to zero.
+* Need k different hash functions, hash element to one of the m array position with uniform random distribution
+* Add - feed to k hash functions, set those bits to 1
+* Query - feed it to k hash functions get k array position, if any bits at the position is 0, element not in the set
+* Remove element is impossible
+
+###适用范围
+数据字典，数据判重，数据求交集
+
+##Heap
+
+###适用范围
+海量数据前n大，并且n比较小，堆可以放入内存
+
+###特点
+* 最大堆求前n小， 最小堆求前n大
+* 例如前n小，应该先放n元素，然后比较当前元素和最大堆里的最大，如果比他小，就替换
+
+##双层桶划分
+
+###适用范围
+* 第k大的数，中位数，不重复或者重复的数字
+
+##[Hashtable](./Concept_Implement/HashTable.py)
 ###Using hash function is two steps
 1. Map the key to an integer
 2. Map the integer to a bucket
@@ -866,7 +892,8 @@ print htable.getValue("reblow")
       4. Master/Slave replication(reading from the slave replicas, writes to the master)(如果有一天read/write不balance了的话) Master/Master
 
 ------
-总结:
+
+####总结:
 1. 从base开始, 最后变得复杂, 可以一开始vertical, 后面horizontal
 2. 核心是从连个方向走
    * Traffic
@@ -876,6 +903,33 @@ print htable.getValue("reblow")
      1. NoSQL vs Relation SQL
      2. 如果小的话就store in memory, 大的话就得考虑sharding(easier for replicate and backup)
      3. 如果读写不均匀的话就分开读写, master/slave replication(reading from slaves and write to master)
+
+####数字
+* 一个char是1 byte, 一个int/float/long是4 bytes, 一个double是 8 bytes
+* 1 Million = 10^6, 1 Million char = 1MB, 1 Million int = 4MB, 1 Million double = 8MB
+* 1 Billion = 10^9, 1 Billion char = 1GB, 1 Billion int = 4GB, 1 Million double = 8GB
+* 综上所述，假设8G电脑很普通，一般来说如果不提memory size的话无论什么type都能放下，如果说了memory size就要对比下了
+* We choose quicksort over mergesort as mergesort requires O(n) space. Quicksort uses O(logn) space.
+* MD5 digest size 128 bits = 16 bytes
+* SHA-1 digest size 160 bits = 20 bytes
+* Max Email address = 254 char = 254 bytes
+
+| Things| 1 | 1 Thousand(2^10) | 1 Million(2^20) | 1 Billion(2^30) |
+| :---: | ---: | ---: | ---: | ---: |
+| byte | byte | KB | MB | GB |
+| char | 1 byte | 1 KB | 1 MB | 1 GB |
+| int/float/long | 4 byte | 4 KB | 4 MB | 4 GB |
+| double | 8 byte | 8 KB | 8 MB | 8 GB |
+| MD5 | 128 bits = 16 bytes| 16 KB | 16 MB | 16 GB |
+| SHA-1 | 160 bits = 20 bytes | 20 KB | 20 MB | 20 GB |
+| Email | 254 chars = 254 bytes | 254 KB | 254 MB | 254 GB |
+| IP Address(IPv4) | 2**8 * 4 = 4 bytes | 4 KB | 4 MB | 4 GB |
+| IP Address(IPv6) | 128 bits = 16 bytes | 16 KB | 16 MB | 16 GB |
+
+
+#####Note
+1. 所有IP是能放进内存的，因为一共2^32个ip地址
+
 
 ------
 
@@ -1306,6 +1360,12 @@ But Basically,
 
 #####[Memory Leak](http://en.wikipedia.org/wiki/Memory_leak)
 A memory leak may happen when an object is stored in memory but cannot be accessed by the running code.
+
+######[Cause of Memory Leak](http://www.lshift.net/blog/2008/11/14/tracing-python-memory-leaks/)
+* Some low level C library is leaking
+* Your Python code have global lists or dicts that grow over time, and you forgot to remove the objects after use
+* There are some reference cycles in your app
+
 
 #####Stack (Memory)
 When a function calls another function which calls another function, this memory goes onto the stack An int (not a pointer to an int) that is created in a function is stored on the stack

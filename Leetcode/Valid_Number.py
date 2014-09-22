@@ -71,3 +71,14 @@ class Solution:
     # 2. check each sign and dot and num and space
     # 3. Keep an eye on line 44 and line 61 using and / or. Reason is +.8 is valid.
     # 4. isNumberwoE_2 is easier to think, don't think reversely
+
+    # Steps:
+    # 1. Strip white space
+    # 2. Check if multiple E/e, split by E/e
+    # 3. Check each part of num if they are valid with/wo digit
+    # 4. Things that can pass:
+    #    i.   i == 0 and char in ['+', '-']
+    #    ii.  char.isdigit(), pass and set hasNum = True
+    #    iii. char == '.': need to check if allow_digit and
+    #         check (s[i-1].isdigit() or i == 0) or (i == len(s) - 1 or s[i+1].isdigit())
+    #    Set all the rest cases to False

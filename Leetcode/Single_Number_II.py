@@ -39,12 +39,14 @@ class Solution:
 
     def singleNumber(self, A):
         res = 0
+        bit = [0 for i in range(32)]
         for i in range(32):
-            bit = 0
             for num in A:
-                bit += num >> i & 1
-                bit %= 3
-            res += bit << i
-        return res
-    A = [1,2,3,1,2,3,1,2,3,4]
+                bit[i] += num >> i & 1
+                bit[i] %= 3
+            res += bit[i] << i
+        return res, bit
+    # A = [1,2,3,1,2,3,1,2,3,-4]
+    # print int(singleNumber('shit', A)[1])
+    # int(''.join(['0' if i==1 else '1' for i in a])[::-1], 2) + 1 真他妈爽
     # This one works fine in python if all num > 0
