@@ -1498,22 +1498,27 @@ Divide two integers without using multiplication, division and mod operator.
 class Solution:
     # @return an integer
     def divide(self, dividend, divisor):
-        if ( dividend < 0 and divisor > 0) or (dividend > 0 and divisor < 0):
+        if (dividend < 0) != (divisor < 0):
             sign = -1
         else:
             sign = 1
+
         dividend = abs(dividend)
         divisor  = abs(divisor)
-        ret = 0
+        res = 0
         while dividend >= divisor:
-            k = 0
-            tmp = divisor
-            while dividend >= tmp:
-                ret += 1 << k
-                dividend -= tmp
-                tmp <<= 1
-                k += 1
-        return ret * sign
+            shift = 0
+            while dividend >= divisor << shift:
+                shift += 1
+            #print 'res = %d, shift = %d, adding = %d, dividend = %d' % (res, shift, 1<<(shift-1), dividend)
+            res += 1 << (shift - 1)            # This is shift-1, because the top loop quit
+            dividend -= divisor << (shift - 1) # when dividend < divisor << shift, so we don't want to shift more
+        return res * sign
+
+    # How to think:
+    # Any number can be computed in binary way, like 8 = 2^3 * 1 + 2^2 * 0 + 2^1 * 0 + 2^0 * 0
+    # In this case, we calculate this num = a * (2^n * an + ... + 2^1 * a1 + 2^0 * a0)
+    # So we calculate an first, them decrease num with a * 2^an, and sum(2^i * ai)
 ```
 -----
 
@@ -1587,25 +1592,25 @@ class Solution:
     # @return an integer
     def evalRPN(self, tokens):
         stack = []
-        operators = '+-*/'
-        for i, token in enumerate(tokens):
-            if token in operators:
-                num_2 = stack.pop()
-                num_1 = stack.pop()
-                stack.append(self.calculate(num_1, num_2, token))
+        for token in tokens:
+            if token in ['+', '-', '*', '/']:
+                b = stack.pop()
+                a = stack.pop()
+                stack.append(self.calculate(a, b, token))
             else:
                 stack.append(int(token))
-        return stack[0]
+        return stack.pop()
 
-    def calculate(self, num_1, num_2, token):
-        if token == '+':\
-            return num_1 + num_2
-        if token == '-':
-            return num_1 - num_2
-        if token == '*':
-            return num_1 * num_2
-        if token == '/':
-            return int(num_1 * 1.0 / num_2) # This is the trick part, need to notice
+    def calculate(self, num_1, num_2, operator):
+        oper_dict = { '+' : lambda x, y: x + y,
+                      '-' : lambda x, y: x - y,
+                      '*' : lambda x, y: x * y,
+                      '/' : lambda x, y: int( x * 1.0 / y),
+                      }
+        return oper_dict[operator](num_1, num_2)
+
+    # Notice:
+    # Need to be very careful about line 29, need to convert float and result is in int
 ```
 -----
 
@@ -3034,9 +3039,6 @@ class Solution:
                 cur_sum = 0
         return max_sum
 
-    # dp way
-    # dp[i] = max(A[i], dp[i-1]+A[i])
-    # Because we don't need to store dp[i], so simplify to dp
     def maxSubArray_2(self, A):
         res = A[0]
         dp = A[0]
@@ -3044,6 +3046,12 @@ class Solution:
             dp = max(num, dp+num)
             res = max(res, dp)
         return res
+    # Note
+    # 1. dp[i] means maximum subarray ends with A[i]
+    # 2. dp[0] = A[0]
+    # 3. dp[i] = max(A[i], A[i] + dp[i-1])  意思就是如果end with A[i-1]的dp是负的话我们就不取，otherwise就取
+    # 4. dp[N-1]
+    # Because we don't need to store dp[i], so simplify to dp
 ```
 -----
 
@@ -3669,29 +3677,57 @@ For example, given s = "aab",
 Return 1 since the palindrome partitioning ["aa","b"] could be produced using 1 cut.
 
 ```python
-
+import sys
 class Solution:
     # @param s, a string
     # @return an integer
     def minCut(self, s):
+        is_palin = self.get_is_palindrome(s)
         N = len(s)
-        dp = [ N for i in range(N)]
+        dp = [ N-1 for i in range(N+1)]
         dp[0] = 0
-        for i in range(1, N):
-            dp[i] = sys.maxint
+        for i in range(1, N+1):
+            dp[i] = 9223372036854775807
             for j in range(i)[::-1]:
-                if self.isPalindrome(s[j:i]):
+                if is_palin[j][i-1]:
                     dp[i] = min(dp[i], dp[j]+1)
-        return dp[N-1]
+        return dp[N] - 1
 
-    def isPalindrome(self, s):
+    def get_is_palindrome(self, s):
+        N = len(s)
+        is_palin = [ [ False for j in range(N)] for i in range(N) ]
+        for i in range(N):
+            is_palin[i][i] = True
+
+        for i in range(N-1):
+            is_palin[i][i+1] = s[i] == s[i+1]
+
+        length = 2
+        while length < N:
+            start = 0
+            while start + length < N:
+                is_palin[start][start+length] = is_palin[start+1][start+length-1] and s[start] == s[start+length]
+                start += 1
+            length += 1
+        return is_palin
+
+    
+    This func is no longer used
+    def is_palin(s):
         return s == s[::-1]
-
-    # 1. dp means from 0 ... i the mean cut of palin
+    
+    # 1. dp means from 0 ... i the min cut times of palin
     # 2. dp[0] = 0
     # 3. dp[i] = min(dp[i], dp[j]+1) for j = i-1 ... 0 if isPalin(s[j:i])
-    # 4. dp[N-1]
-    # This idea is correct, but next thing is to reduce the cost of isPalindrome
+    # 4. dp[N] - 1
+
+    # get_is_palindrome is used to reduce the cost for line 21
+    # it's returning dp[N] - 1, very tricky
+    # Beacause in definition, we define as min cut times of palin
+    # But actually, we just want the min cut
+    # abbacdc
+    # dp[3] = 0 but actually dp[3] = 1. So dp[N] = 1 + 1 = 2 but should be 1
+    # We need to reduce a delete here
 ```
 -----
 
@@ -5543,19 +5579,47 @@ class Solution:
     # @param A, a list of integer
     # @return an integer
     def singleNumber(self, A):
+        res = 0
         bits = [0 for i in range(32)]
-        for num in A:
-            i = 0
-            while num > 0:
-                bits[i] += num & 1
-                i += 1
-                num >>= 1
-        for bit in bits:
-            bit %= 3
-            ret += bit
-            ret >>= 1
-        ret <<= 1
-        return ret
+        for i in range(32):
+            for num in A:
+                bits[i] += (num >> i & 1)
+                bits[i] %= 3
+        if bits[31] % 3 == 0:            # Positive
+            for i in range(31):
+                if bits[i] == 1:
+                    res += 1 << i
+        else:                            # Negative
+            for i in range(31):
+                if bits[i] == 0:
+                    res += 1 << i
+            res = -(res + 1)
+        return res
+    
+    A = [-2,-2,1,1,-3,1,-3,-3,-4,-2]
+    A = [1,2,3,1,2,3,1,2,3,-4]
+    print singleNumber('shit', A)
+    
+    # Note:
+    # Python is a little different with doing this
+    # In java, int is 32 bits, so we can just play with it
+    # But in python, need to check if number is positive or negative
+    # So need to do line 18 to 26 check
+    # Otherwise should looks like somthing
+
+    def singleNumber(self, A):
+        res = 0
+        bit = [0 for i in range(32)]
+        for i in range(32):
+            for num in A:
+                bit[i] += num >> i & 1
+                bit[i] %= 3
+            res += bit[i] << i
+        return res, bit
+    # A = [1,2,3,1,2,3,1,2,3,-4]
+    # print int(singleNumber('shit', A)[1])
+    # int(''.join(['0' if i==1 else '1' for i in a])[::-1], 2) + 1 真他妈爽
+    # This one works fine in python if all num > 0
 ```
 -----
 
@@ -6280,12 +6344,12 @@ class Solution:
     def swapPairs_1(self, head):
         dummy = ListNode(0)
         dummy.next = head
-        current = dummy
-        while head is not None and head.next is not None:
-          current.next = head.next
+        prev = dummy
+        while head and head.next:
+          prev.next = head.next
           head.next = head.next.next
-          current.next.next = head
-          current = head
+          prev.next.next = head
+          prev = head
           head = head.next
         return dummy.next
 
@@ -6857,6 +6921,17 @@ class Solution:
     # 2. check each sign and dot and num and space
     # 3. Keep an eye on line 44 and line 61 using and / or. Reason is +.8 is valid.
     # 4. isNumberwoE_2 is easier to think, don't think reversely
+
+    # Steps:
+    # 1. Strip white space
+    # 2. Check if multiple E/e, split by E/e
+    # 3. Check each part of num if they are valid with/wo digit
+    # 4. Things that can pass:
+    #    i.   i == 0 and char in ['+', '-']
+    #    ii.  char.isdigit(), pass and set hasNum = True
+    #    iii. char == '.': need to check if allow_digit and
+    #         check (s[i-1].isdigit() or i == 0) or (i == len(s) - 1 or s[i+1].isdigit())
+    #    Set all the rest cases to False
 ```
 -----
 
@@ -7742,7 +7817,93 @@ def delete_node_in_BST(parent, node):
 ```
 -----
 
-##160. Longest Common Subsequence
+##160. Flatten a Multilevel Linked List
+
+Given a linked list where in addition to the next pointer, each node has a child pointer, which may or may not point to a separate list. These child lists may have one or more children of their own, and so on, to produce a multilevel data structure, as shown in below figure.You are given the head of the first level of the list. Flatten the list so that all the nodes appear in a single-level linked list. You need to flatten the list in way that all nodes at first level should come first, then nodes of second level, and so on.
+
+Each node is a C struct with the following definition.
+
+![pic](./img/flattenList.png)
+
+```python
+
+class List():
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        self.child = None
+
+def flatten_list(head):
+    tail = head
+    while tail.next:
+        tail = tail.next
+
+    while head.next:
+        if head.child:
+            tail.next = head.child
+            while tail.next:
+                tail = tail.next
+        head = head.next
+
+# Note:
+# 题目22 23行之间用了一个tmp, 但我感觉没必要用...
+```
+-----
+
+##161. Flattening a Linked List
+
+Given a linked list where every node represents a linked list and contains two pointers of its type:
+(i) Pointer to next node in the main list (we call it ‘right’ pointer in below code)
+(ii) Pointer to a linked list where this node is head (we call it ‘down’ pointer in below code).
+All linked lists are sorted. See the following example
+```
+       5 -> 10 -> 19 -> 28
+       |    |     |     |
+       V    V     V     V
+       7    20    22    35
+       |          |     |
+       V          V     V
+       8          50    40
+       |                |
+       V                V
+       30               45
+```
+
+```python
+
+class Node():
+    def __init__(self, data):
+        self.right = None
+        self.down = None
+        self.data = data
+
+def flatten(node):
+    if not node or not node.right:
+        return node
+
+    return merge(node, flatten(node.right))
+
+def merge(node1, node2):
+    if not node1:
+        return node2
+    if not node2:
+        return node1
+
+    if node1.data < node2.data:
+        head = node1
+        head.next = merge(node1.next, node2)
+    else:
+        head = node2
+        head.next = merge(node1, node2.next)
+    return head
+
+# Notice:
+# This is very qiao miao. Using recursion is like DFS, so will first flatten from the end.
+# When we want to flatten the front part, the back parts are already flattened
+```
+-----
+
+##162. Longest Common Subsequence
 
 Need to distinguish from Longest Common Substring
 
@@ -7842,7 +8003,7 @@ print LCS('AGGTAB', 'GXTXAYB')
 ```
 -----
 
-##161. Longest Common Substring
+##163. Longest Common Substring
 
 ##### 9/4/2014 Interview with Tubular
 1. Subset(second le)
@@ -7900,7 +8061,7 @@ print Longest_Common_Substring("GeeksforGeeks", "GeeksQuiz")
 ```
 -----
 
-##162. Longest Increasing Subsequence
+##164. Longest Increasing Subsequence
 
 #####NC Class 5, slides 17
 
@@ -7962,7 +8123,7 @@ print d_A[max(d_A.keys())]
 ```
 -----
 
-##163. Lowest Common Ancestor
+##165. Lowest Common Ancestor
 
 #####[LCA, Lowest Common Ancestor](http://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/) Pocket Gem possible question 9/8/2014
 
@@ -8036,7 +8197,7 @@ def get_LCA(root, node1, node2):
 ```
 -----
 
-##164. Min Stack
+##166. Min Stack
 
 #####From NC Class 7 Data Structures, slides 8
 [Solution](http://www.geeksforgeeks.org/design-and-implement-special-stack-data-structure/)
@@ -8075,7 +8236,7 @@ class MinStack():
 ```
 -----
 
-##165. Operations Calculation
+##167. Operations Calculation
 
 ##### 9/5/2014 Elasticbox
 加减运算
@@ -8132,7 +8293,7 @@ find_next_num()
 ```
 -----
 
-##166. Print Numbers With Five
+##168. Print Numbers With Five
 
 ##### 9/7/2014 From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32651839.html) for Groupon
 写一个function，对于参数n，输出从0到n之间所有含5的数字。
@@ -8160,7 +8321,7 @@ print find_five(60)
 ```
 -----
 
-##167. Queue by Two Stacks
+##169. Queue by Two Stacks
 
 Implement a Queue by using two stacks. Support O(1) push, pop, top
 
@@ -8188,7 +8349,7 @@ class Queue():
 ```
 -----
 
-##171. Search a Range in BST
+##173. Search a Range in BST
 
 or Print BST Keys in the Give Range
 
@@ -8219,7 +8380,7 @@ def search_a_range(root, k1, k2):
 ```
 -----
 
-##172. Shortest Path
+##174. Shortest Path
 
 #####With Twitter & Cyan
 
@@ -8302,7 +8463,7 @@ print find_path(map)
 ```
 -----
 
-##173. Shuffle
+##175. Shuffle
 
 ###Shuffle a given array
 Saw it from FiveStar's interview.
@@ -8331,7 +8492,7 @@ print shuffle_array(A)
 ```
 -----
 
-##174. isOneEditDistance
+##176. isOneEditDistance
 
 From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32760941.html) for facebook
 
