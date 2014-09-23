@@ -6,40 +6,35 @@ class Solution:
     # @return a string
     def longestPalindrome(self, s):
         N = len(s)
-        dp = [ [ False for j in range(N)] for i in range(N)]
-        max_length = 0
-        ret = s[0]
-        # dp[i][j] means s[i:j] is palindrome
-        for j in range(N):
-            for i in range(j):
-                dp[i][j] == (s[i] == s[j] and ( j - i < 2 or dp[i+1][j-1]))
-                if dp[i][j] and max_length < j-i+1:
-                    if j - i + 1 > max_length:
-                        max_length = j - i + 1
-                        ret = s[i:j]
-            dp[j][j] = True
-        return ret
+        dp = [ [ False for j in range(N)] for i in range(N) ]
+        for i in range(N):
+            dp[i][i] = True
 
-"""
-    def longestPalindrome(self, s):
-        longest, mid = "", (len(s) - 1) / 2
-        i, j = mid, mid
-        while i >= 0 and j < len(s):
-            args = [(s, i, i), (s, i, i + 1), (s, j, j), (s, j, j + 1)]
-            for arg in args:
-                tmp = self.longestPalindromeByAxis(*arg)
-                if len(tmp) > len(longest):
-                    longest = tmp
-            if len(longest) >= i * 2:
-                return longest
-            i, j = i - 1, j + 1
-        return longest
+        for i in range(N-1):
+            dp[i][i+1] = s[i] == s[i+1]
 
-    def longestPalindromeByAxis(self, s, left, right):
-        while left >= 0 and right < len(s) and s[left] == s[right]:
-            left, right = left - 1, right + 1
-        return s[left + 1 : right]
+        length = 2
+        max_length = 1
 
+        while length < N:
+            start = 0
+            while start + length < N:
+                if dp[start+1][start+length-1] and s[start] == s[start+length]:
+                    dp[start][start+length] = True
+                    max_length = max(max_length, length)
+                start += 1
+            length += 1
+        return max_length
+
+    # Notice
+    # 1. dp[i][j] means if s[i:j] is a palindrome
+    # 2. dp[i][i] = True
+    #    dp[i][i+1] = True if s[i] == s[i+1]
+    # 3. dp[start][start+length] = True if s[start] == s[star+length] and dp[start+1][start+length-1]
+    # 4. Update length
+    # This dp way is O(n^2) will get TLE
+    """
+    Other Ways
     def longestPalindrome(self, s):
         arr = ['$', '#']
         for i in range(len(s)):
@@ -55,6 +50,6 @@ class Solution:
                 mx, pos = p[i] + i, i
             if p[i] > p[ansp]:
                 ansp = i
-        st = (ansp - p[ansp] + 1) // 2
+        st = (ansp - p[ansp] + 1) / 2
         return s[st:st + p[ansp] - 1]
-"""
+    """

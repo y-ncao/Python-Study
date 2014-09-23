@@ -1108,7 +1108,28 @@ If you're not doing an assignment then you need to use var:
 ```javascript
 var x; // Declare x
 ```
+###[Javascript Inheritance](http://stackoverflow.com/questions/5027045/what-is-inheritance-in-javascript)
+```javascript
+function Animal() {};
 
+Animal.prototype.eat = function(){
+    alert("I'm eating");
+}
+
+function Bird(){}
+
+Bird.prototype = new Animal();
+
+Bird.prototype.fly = function(){
+    alert("I believe I can fly");
+}
+
+var aBird = new Bird();
+aBird.fly(); // Should fly now
+aBird.eat(); // Should eat now
+
+
+```
 
 ###[this](http://stackoverflow.com/questions/133973/how-does-this-keyword-work-within-a-javascript-object-literal)
 Javascript's this keyword normally refers to the object that owns the method, but it depends on how a function is called. Basically, it points to the currently in scope object that owns where you are in the code. When working within a Web page, this usually refers to the Window object. If you are in an object created with the new keyword, the this keyword refers to the object being created. When working with event handlers, JavaScript's this keyword will point to the object that generated the event.
@@ -1124,7 +1145,44 @@ for (var i = 0, n = elements.length; i < n; i++) {
 }
 ```
 
-###JavaScript is an object-based language based on prototypes, rather than being class-based.
+###[JavaScript is an object-based language based on prototypes, rather than being class-based.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Details_of_the_Object_Model)
+* Class-based language - has class and object. Class is very abstract
+* Prototype-base language - everything is object
+
+###[CSS Box Model](http://www.w3schools.com/css/css_boxmodel.asp)
+From outer to inner: Margin, Border, Padding and Content
+
+###document.
+```javascript
+document.getElementById
+document.getElementsByTagName
+document.getElementsByName
+document.getElementsByClassName
+
+$('#ID')
+$('.Class')
+```
+
+###[Latency](Each of those requests experiences at least 20-30ms of latency. (More typically, latency is in the 75-140ms range, even for sites that use a CDN.))
+* CDN
+* Each of those requests experiences at least 20-30ms of latency. (More typically, latency is in the 75-140ms range, even for sites that use a CDN.)
+* Allow more requests to happen concurrently.
+* Shorten the server round trips by bringing content closer to users.
+* Reduce the number of round trips.
+* Improve the browser cache, so that it can (1) store files and serve them where relevant on subsequent pages in a visit and (2) store and serve files for repeat visits.
+* Closure Compiler
+* gzip
+
+
+###[HTML <!DOCTYPE> Declaration](http://www.w3schools.com/tags/tag_doctype.asp)
+* The <!DOCTYPE> declaration must be the very first thing in your HTML document, before the <html> tag.
+* Tells the browser the render mode
+* In html5, it's ```<!DOCTYPE html>```
+
+###[DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)
+Document Object Model
+
+####[涵盖了一切的神物](http://isobar-idev.github.io/code-standards/)
 
 -----
 

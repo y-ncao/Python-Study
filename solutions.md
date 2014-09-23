@@ -2726,40 +2726,35 @@ class Solution:
     # @return a string
     def longestPalindrome(self, s):
         N = len(s)
-        dp = [ [ False for j in range(N)] for i in range(N)]
-        max_length = 0
-        ret = s[0]
-        # dp[i][j] means s[i:j] is palindrome
-        for j in range(N):
-            for i in range(j):
-                dp[i][j] == (s[i] == s[j] and ( j - i < 2 or dp[i+1][j-1]))
-                if dp[i][j] and max_length < j-i+1:
-                    if j - i + 1 > max_length:
-                        max_length = j - i + 1
-                        ret = s[i:j]
-            dp[j][j] = True
-        return ret
+        dp = [ [ False for j in range(N)] for i in range(N) ]
+        for i in range(N):
+            dp[i][i] = True
 
+        for i in range(N-1):
+            dp[i][i+1] = s[i] == s[i+1]
 
-    def longestPalindrome(self, s):
-        longest, mid = "", (len(s) - 1) / 2
-        i, j = mid, mid
-        while i >= 0 and j < len(s):
-            args = [(s, i, i), (s, i, i + 1), (s, j, j), (s, j, j + 1)]
-            for arg in args:
-                tmp = self.longestPalindromeByAxis(*arg)
-                if len(tmp) > len(longest):
-                    longest = tmp
-            if len(longest) >= i * 2:
-                return longest
-            i, j = i - 1, j + 1
-        return longest
+        length = 2
+        max_length = 1
 
-    def longestPalindromeByAxis(self, s, left, right):
-        while left >= 0 and right < len(s) and s[left] == s[right]:
-            left, right = left - 1, right + 1
-        return s[left + 1 : right]
+        while length < N:
+            start = 0
+            while start + length < N:
+                if dp[start+1][start+length-1] and s[start] == s[start+length]:
+                    dp[start][start+length] = True
+                    max_length = max(max_length, length)
+                start += 1
+            length += 1
+        return max_length
 
+    # Notice
+    # 1. dp[i][j] means if s[i:j] is a palindrome
+    # 2. dp[i][i] = True
+    #    dp[i][i+1] = True if s[i] == s[i+1]
+    # 3. dp[start][start+length] = True if s[start] == s[star+length] and dp[start+1][start+length-1]
+    # 4. Update length
+    # This dp way is O(n^2) will get TLE
+    
+    Other Ways
     def longestPalindrome(self, s):
         arr = ['$', '#']
         for i in range(len(s)):
@@ -2775,9 +2770,9 @@ class Solution:
                 mx, pos = p[i] + i, i
             if p[i] > p[ansp]:
                 ansp = i
-        st = (ansp - p[ansp] + 1) // 2
+        st = (ansp - p[ansp] + 1) / 2
         return s[st:st + p[ansp] - 1]
-
+    
 ```
 -----
 
@@ -7477,7 +7472,53 @@ class Solution:
 ```
 -----
 
-##152. Alternating Positive N Negative
+##152. Absolute Minimum
+
+###From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32782345.html) for Amazon Interview
+Given three arrays A,B,C containing unsorted numbers. Find three numbers a,
+b, c from each of array A, B, C such that |a-b|, |b-c| and |c-a| are minimum
+Please provide as efficient code as you can.
+
+Note:
+if a > b > c:
+|a-b| + |b-c| + |c-a| = 2(a-c)
+so this will always equals 2(max_num - min_num)
+
+
+```python
+
+def get_min_distance(A1, A2, A3):
+    A1.sort()
+    A2.sort()
+    A3.sort()
+
+    index_1 = 0
+    index_2 = 0
+    index_3 = 0
+
+    min_distance = sys.maxint
+
+    while True:
+        min_num = min(A1[index_1], A2[index_2], A3[index_3])
+        max_num = max(A1[index_1], A2[index_2], A3[index_3])
+        distance = 2(max_num - min_num)
+        min_distance = min(min_distance, distance)
+        if min_distance == 0:
+            break
+
+        if min_num == A1[index_1] and index_1 < len(A1):
+            index_1 += 1
+        elif min_num == A2[index_2] and index_2 < len(A2):
+            index_2 += 1
+        elif min_num == A3[index_3] and index_3 < len(A3):
+            index_3 += 1
+        else:
+            break
+    return
+```
+-----
+
+##153. Alternating Positive N Negative
 
 or Rearrange Array Alternating Positive Negative Items
 Given an array of positive and negative numbers, arrange them in an alternate fashion such that every positive number is followed by negative and vice-versa maintaining the order of appearance.
@@ -7562,7 +7603,7 @@ print rearrange_array_rotate(B)
 ```
 -----
 
-##153. BFS DFS
+##154. BFS DFS
 
 #####Summarize all kind of ways to do Tree Traversal
 * BFS
@@ -7673,7 +7714,7 @@ def DFS_postorder(root):
 ```
 -----
 
-##154. Consecutive Subarray
+##155. Consecutive Subarray
 
 #####Interview With Cyan
 1. Shortest Path
@@ -7725,7 +7766,7 @@ print find_consecutive(num, sum)
 ```
 -----
 
-##156. Count zeros in Factorial
+##157. Count zeros in Factorial
 
 From mitbbs for Facebook
 
@@ -7754,7 +7795,7 @@ print fact(N)
 ```
 -----
 
-##157. Delete a Node in BST
+##158. Delete a Node in BST
 
 [Solution](http://answer.ninechapter.com/solutions/delete-a-node-in-binary-search-tree/)
 实际上有好几种做法
@@ -7817,7 +7858,7 @@ def delete_node_in_BST(parent, node):
 ```
 -----
 
-##160. Flatten a Multilevel Linked List
+##161. Flatten a Multilevel Linked List
 
 Given a linked list where in addition to the next pointer, each node has a child pointer, which may or may not point to a separate list. These child lists may have one or more children of their own, and so on, to produce a multilevel data structure, as shown in below figure.You are given the head of the first level of the list. Flatten the list so that all the nodes appear in a single-level linked list. You need to flatten the list in way that all nodes at first level should come first, then nodes of second level, and so on.
 
@@ -7850,7 +7891,7 @@ def flatten_list(head):
 ```
 -----
 
-##161. Flattening a Linked List
+##162. Flattening a Linked List
 
 Given a linked list where every node represents a linked list and contains two pointers of its type:
 (i) Pointer to next node in the main list (we call it ‘right’ pointer in below code)
@@ -7903,7 +7944,7 @@ def merge(node1, node2):
 ```
 -----
 
-##162. Longest Common Subsequence
+##163. Longest Common Subsequence
 
 Need to distinguish from Longest Common Substring
 
@@ -8003,7 +8044,7 @@ print LCS('AGGTAB', 'GXTXAYB')
 ```
 -----
 
-##163. Longest Common Substring
+##164. Longest Common Substring
 
 ##### 9/4/2014 Interview with Tubular
 1. Subset(second le)
@@ -8061,7 +8102,7 @@ print Longest_Common_Substring("GeeksforGeeks", "GeeksQuiz")
 ```
 -----
 
-##164. Longest Increasing Subsequence
+##165. Longest Increasing Subsequence
 
 #####NC Class 5, slides 17
 
@@ -8123,7 +8164,7 @@ print d_A[max(d_A.keys())]
 ```
 -----
 
-##165. Lowest Common Ancestor
+##166. Lowest Common Ancestor
 
 #####[LCA, Lowest Common Ancestor](http://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/) Pocket Gem possible question 9/8/2014
 
@@ -8197,7 +8238,7 @@ def get_LCA(root, node1, node2):
 ```
 -----
 
-##166. Min Stack
+##167. Min Stack
 
 #####From NC Class 7 Data Structures, slides 8
 [Solution](http://www.geeksforgeeks.org/design-and-implement-special-stack-data-structure/)
@@ -8236,7 +8277,7 @@ class MinStack():
 ```
 -----
 
-##167. Operations Calculation
+##168. Operations Calculation
 
 ##### 9/5/2014 Elasticbox
 加减运算
@@ -8293,7 +8334,7 @@ find_next_num()
 ```
 -----
 
-##168. Print Numbers With Five
+##169. Print Numbers With Five
 
 ##### 9/7/2014 From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32651839.html) for Groupon
 写一个function，对于参数n，输出从0到n之间所有含5的数字。
@@ -8321,7 +8362,7 @@ print find_five(60)
 ```
 -----
 
-##169. Queue by Two Stacks
+##170. Queue by Two Stacks
 
 Implement a Queue by using two stacks. Support O(1) push, pop, top
 
@@ -8349,7 +8390,7 @@ class Queue():
 ```
 -----
 
-##173. Search a Range in BST
+##174. Search a Range in BST
 
 or Print BST Keys in the Give Range
 
@@ -8380,7 +8421,7 @@ def search_a_range(root, k1, k2):
 ```
 -----
 
-##174. Shortest Path
+##175. Shortest Path
 
 #####With Twitter & Cyan
 
@@ -8463,7 +8504,7 @@ print find_path(map)
 ```
 -----
 
-##175. Shuffle
+##176. Shuffle
 
 ###Shuffle a given array
 Saw it from FiveStar's interview.
@@ -8492,7 +8533,7 @@ print shuffle_array(A)
 ```
 -----
 
-##176. isOneEditDistance
+##177. isOneEditDistance
 
 From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32760941.html) for facebook
 
