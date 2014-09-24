@@ -20,38 +20,18 @@ class Solution:
     # @param target, an integer
     # @return a boolean
     def searchMatrix(self, matrix, target):
+        M = len(matrix)
+        N = len(matrix[0])
         start = 0
-        end = len(matrix) -1            # -1 !!!
+        end = M*N - 1
         while start <= end:
-            mid = (start + end) / 2
-            if matrix[mid][0] <= target and target <= matrix[mid][-1]:
-                col = mid
-                start = 0
-                end = len(matrix[0]) -1         # -1!!!
-                while start <= end:
-                    mid = (start + end) / 2
-                    if target == matrix[row][mid]:
-                        return True
-                    elif target < matrix[row][mid]:
-                        end = mid - 1
-                    else:
-                        start = mid + 1
-                return False
-            elif target < matrix[mid][0]:
-                end = mid-1
-            else:
+            mid = (start+end) / 2
+            i = mid / N
+            j = mid % N
+            if matrix[i][j] == target:
+                return True
+            elif matrix[i][j] < target:
                 start = mid + 1
+            else:
+                end = mid - 1
         return False
-
-    # This is better, nested matrix
-"""
-Generate m*n matrix
-a = 0
-m = []
-for i in range(10):
-    row = []
-    for j in range(8):
-        row.append(a)
-        a += 1
-    m.append(row[:])
-"""
