@@ -2341,6 +2341,8 @@ class LRUCache:
             del self.cache[key]
         self.cache[key] = value
 
+    # Keep a note here, always delete the item. Cause update the key won't update the order
+
     # @param capacity, an integer
     def __init__(self, capacity):
         self.capacity = capacity
@@ -3004,7 +3006,43 @@ class Solution:
 ```
 -----
 
-##[62. Maximum Subarray](https://oj.leetcode.com/problems/maximum-subarray/)
+##[62. Maximum Product Subarray](https://oj.leetcode.com/problems/maximum-product-subarray/)
+
+Find the contiguous subarray within an array (containing at least one number) which has the largest product.
+
+For example, given the array [2,3,-2,4],
+the contiguous subarray [2,3] has the largest product = 6.
+
+```python
+
+class Solution:
+    # @param A, a list of integers
+    # @return an integer
+    def maxProduct(self, A):
+        min_product = A[0]
+        max_product = A[0]
+        largest_product = A[0]
+
+        for num in A[1:]:
+            if num > 0:
+                max_product = max(num, num * max_product)
+                min_product = min(num, num * min_product)
+            else:
+                tmp = min_product
+                min_product = min(num, num * max_product)
+                max_product = max(num, num * tmp)
+            largest_product = max(largest_product, max_product)
+
+        return largest_product
+
+    # Notice:
+    # 1. Need to remember the idea to flip the result, and keep a note the min and max
+    # 2. Be careful on line 21,
+    # 3. Check the condition, it's a list of integer, so I was thinking too much
+```
+-----
+
+##[63. Maximum Subarray](https://oj.leetcode.com/problems/maximum-subarray/)
 
 Find the contiguous subarray within an array (containing at least one number) which has the largest sum.
 
@@ -3050,7 +3088,7 @@ class Solution:
 ```
 -----
 
-##[63. Median of Two Sorted Arrays](https://oj.leetcode.com/problems/median-of-two-sorted-arrays/)
+##[64. Median of Two Sorted Arrays](https://oj.leetcode.com/problems/median-of-two-sorted-arrays/)
 
 There are two sorted arrays A and B of size m and n respectively. Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
 
@@ -3096,7 +3134,7 @@ class Solution:
 ```
 -----
 
-##[64. Merge Intervals](https://oj.leetcode.com/problems/merge-intervals/)
+##[65. Merge Intervals](https://oj.leetcode.com/problems/merge-intervals/)
 
 Given a collection of intervals, merge all overlapping intervals.
 
@@ -3133,7 +3171,7 @@ class Solution:
 ```
 -----
 
-##[65. Merge Sorted Array](https://oj.leetcode.com/problems/merge-sorted-array/)
+##[66. Merge Sorted Array](https://oj.leetcode.com/problems/merge-sorted-array/)
 
 Given two sorted integer arrays A and B, merge B into A as one sorted array.
 
@@ -3168,7 +3206,7 @@ class Solution:
 ```
 -----
 
-##[66. Merge Two Sorted Lists](https://oj.leetcode.com/problems/merge-two-sorted-lists/)
+##[67. Merge Two Sorted Lists](https://oj.leetcode.com/problems/merge-two-sorted-lists/)
 
 Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
 
@@ -3206,7 +3244,7 @@ class Solution:
 ```
 -----
 
-##[67. Merge k Sorted Lists](https://oj.leetcode.com/problems/merge-k-sorted-lists/)
+##[68. Merge k Sorted Lists](https://oj.leetcode.com/problems/merge-k-sorted-lists/)
 
 Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.
 
@@ -3240,7 +3278,7 @@ class Solution:
 ```
 -----
 
-##[68. Minimum Depth of Binary Tree](https://oj.leetcode.com/problems/minimum-depth-of-binary-tree/)
+##[69. Minimum Depth of Binary Tree](https://oj.leetcode.com/problems/minimum-depth-of-binary-tree/)
 
 Given a binary tree, find its minimum depth.
 
@@ -3272,7 +3310,7 @@ class Solution:
 ```
 -----
 
-##[69. Minimum Path Sum](https://oj.leetcode.com/problems/minimum-path-sum/)
+##[70. Minimum Path Sum](https://oj.leetcode.com/problems/minimum-path-sum/)
 
 Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.
 
@@ -3355,7 +3393,7 @@ All Previous work. No need to worry
 ```
 -----
 
-##[70. Minimum Window Substring](https://oj.leetcode.com/problems/minimum-window-substring/)
+##[71. Minimum Window Substring](https://oj.leetcode.com/problems/minimum-window-substring/)
 
 Given a string S and a string T, find the minimum window in S which will contain all the characters in T in complexity O(n).
 
@@ -3418,7 +3456,7 @@ class Solution:
 ```
 -----
 
-##[71. Multiply Strings](https://oj.leetcode.com/problems/multiply-strings/)
+##[72. Multiply Strings](https://oj.leetcode.com/problems/multiply-strings/)
 
 Given two numbers represented as strings, return multiplication of the numbers as a string.
 
@@ -3441,7 +3479,7 @@ class Solution:
 ```
 -----
 
-##[72. N-Queens](https://oj.leetcode.com/problems/n-queens/)
+##[73. N-Queens](https://oj.leetcode.com/problems/n-queens/)
 
 The n-queens puzzle is the problem of placing n queens on an n×n chessboard such that no two queens attack each other.
 
@@ -3498,7 +3536,7 @@ class Solution:
 ```
 -----
 
-##[73. N-Queens II](https://oj.leetcode.com/problems/n-queens-ii/)
+##[74. N-Queens II](https://oj.leetcode.com/problems/n-queens-ii/)
 
 Follow up for N-Queens problem.
 
@@ -3537,7 +3575,7 @@ class Solution:
 ```
 -----
 
-##[74. Next Permutation](https://oj.leetcode.com/problems/next-permutation/)
+##[75. Next Permutation](https://oj.leetcode.com/problems/next-permutation/)
 
 Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.
 
@@ -3579,7 +3617,7 @@ class Solution:
 ```
 -----
 
-##[75. Palindrome Number](https://oj.leetcode.com/problems/palindrome-number/)
+##[76. Palindrome Number](https://oj.leetcode.com/problems/palindrome-number/)
 
 Determine whether an integer is a palindrome. Do this without extra space.
 
@@ -3614,7 +3652,7 @@ class Solution:
 ```
 -----
 
-##[76. Palindrome Partitioning](https://oj.leetcode.com/problems/palindrome-partitioning/)
+##[77. Palindrome Partitioning](https://oj.leetcode.com/problems/palindrome-partitioning/)
 
 Given a string s, partition s such that every substring of the partition is a palindrome.
 
@@ -3659,10 +3697,11 @@ class Solution:
             l += 1
             r -= 1
         return True
-    # This function can use return s == s[::-1] to replace.```
+    # This function can use return s == s[::-1] to replace.
+```
 -----
 
-##[77. Palindrome Partitioning II](https://oj.leetcode.com/problems/palindrome-partitioning-ii/)
+##[78. Palindrome Partitioning II](https://oj.leetcode.com/problems/palindrome-partitioning-ii/)
 
 Given a string s, partition s such that every substring of the partition is a palindrome.
 
@@ -3726,7 +3765,7 @@ class Solution:
 ```
 -----
 
-##[78. Partition List](https://oj.leetcode.com/problems/partition-list/)
+##[79. Partition List](https://oj.leetcode.com/problems/partition-list/)
 
 Given a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.
 
@@ -3773,7 +3812,7 @@ class Solution:
 ```
 -----
 
-##[79. Pascals Triangle](https://oj.leetcode.com/problems/pascals-triangle/)
+##[80. Pascals Triangle](https://oj.leetcode.com/problems/pascals-triangle/)
 
 Given numRows, generate the first numRows of Pascal's triangle.
 
@@ -3826,7 +3865,7 @@ class Solution:
 ```
 -----
 
-##[80. Pascals Triangle II](https://oj.leetcode.com/problems/pascals-triangle-ii/)
+##[81. Pascals Triangle II](https://oj.leetcode.com/problems/pascals-triangle-ii/)
 
 Given an index k, return the kth row of the Pascal's triangle.
 
@@ -3864,7 +3903,7 @@ class Solution:
 ```
 -----
 
-##[81. Path Sum](https://oj.leetcode.com/problems/path-sum/)
+##[82. Path Sum](https://oj.leetcode.com/problems/path-sum/)
 
 Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum.
 
@@ -3906,7 +3945,7 @@ class Solution:
 ```
 -----
 
-##[82. Path Sum II](https://oj.leetcode.com/problems/path-sum-ii/)
+##[83. Path Sum II](https://oj.leetcode.com/problems/path-sum-ii/)
 
 Given a binary tree and a sum, find all root-to-leaf paths where each path's sum equals the given sum.
 
@@ -3985,7 +4024,7 @@ This way will have long run time
 ```
 -----
 
-##[83. Permutation Sequence](https://oj.leetcode.com/problems/permutation-sequence/)
+##[84. Permutation Sequence](https://oj.leetcode.com/problems/permutation-sequence/)
 
 The set [1,2,3,…,n] contains a total of n! unique permutations.
 
@@ -4027,7 +4066,7 @@ class Solution:
 ```
 -----
 
-##[84. Permutations](https://oj.leetcode.com/problems/permutations/)
+##[85. Permutations](https://oj.leetcode.com/problems/permutations/)
 
 Given a collection of numbers, return all possible permutations.
 
@@ -4071,7 +4110,7 @@ class Solution:
 ```
 -----
 
-##[85. Permutations II](https://oj.leetcode.com/problems/permutations-ii/)
+##[86. Permutations II](https://oj.leetcode.com/problems/permutations-ii/)
 
 Given a collection of numbers that might contain duplicates, return all possible unique permutations.
 
@@ -4123,7 +4162,7 @@ class Solution:
 ```
 -----
 
-##[86. Plus One](https://oj.leetcode.com/problems/plus-one/)
+##[87. Plus One](https://oj.leetcode.com/problems/plus-one/)
 
 Given a non-negative number represented as an array of digits, plus one to the number.
 
@@ -4148,7 +4187,7 @@ class Solution:
 ```
 -----
 
-##[87. Populating Next Right Pointers in Each Node](https://oj.leetcode.com/problems/populating-next-right-pointers-in-each-node/)
+##[88. Populating Next Right Pointers in Each Node](https://oj.leetcode.com/problems/populating-next-right-pointers-in-each-node/)
 
 Given a binary tree
 
@@ -4208,7 +4247,7 @@ class Solution:
 ```
 -----
 
-##[88. Populating Next Right Pointers in Each Node II](https://oj.leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/)
+##[89. Populating Next Right Pointers in Each Node II](https://oj.leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/)
 
 Follow up for problem "Populating Next Right Pointers in Each Node".
 
@@ -4277,7 +4316,7 @@ class Solution:
 ```
 -----
 
-##[89. Powx-n](https://oj.leetcode.com/problems/powx-n/)
+##[90. Powx-n](https://oj.leetcode.com/problems/powx-n/)
 
 Implement pow(x, n).
 
@@ -4312,7 +4351,7 @@ class Solution:
 ```
 -----
 
-##[90. Recover Binary Search Tree](https://oj.leetcode.com/problems/recover-binary-search-tree/)
+##[91. Recover Binary Search Tree](https://oj.leetcode.com/problems/recover-binary-search-tree/)
 
 Two elements of a binary search tree (BST) are swapped by mistake.
 
@@ -4392,7 +4431,7 @@ class Solution:
 ```
 -----
 
-##[91. Regular Expression Matching](https://oj.leetcode.com/problems/regular-expression-matching/)
+##[92. Regular Expression Matching](https://oj.leetcode.com/problems/regular-expression-matching/)
 
 Implement regular expression matching with support for '.' and '*'.
 
@@ -4466,7 +4505,7 @@ class Solution:
 ```
 -----
 
-##[92. Remove Duplicates from Sorted Array](https://oj.leetcode.com/problems/remove-duplicates-from-sorted-array/)
+##[93. Remove Duplicates from Sorted Array](https://oj.leetcode.com/problems/remove-duplicates-from-sorted-array/)
 
 Given a sorted array, remove the duplicates in place such that each element appear only once and return the new length.
 
@@ -4506,7 +4545,7 @@ class Solution:
 ```
 -----
 
-##[93. Remove Duplicates from Sorted Array II](https://oj.leetcode.com/problems/remove-duplicates-from-sorted-array-ii/)
+##[94. Remove Duplicates from Sorted Array II](https://oj.leetcode.com/problems/remove-duplicates-from-sorted-array-ii/)
 
 Follow up for "Remove Duplicates":
 What if duplicates are allowed at most twice?
@@ -4535,7 +4574,7 @@ class Solution:
 ```
 -----
 
-##[94. Remove Duplicates from Sorted List](https://oj.leetcode.com/problems/remove-duplicates-from-sorted-list/)
+##[95. Remove Duplicates from Sorted List](https://oj.leetcode.com/problems/remove-duplicates-from-sorted-list/)
 
 Given a sorted linked list, delete all duplicates such that each element appear only once.
 
@@ -4567,7 +4606,7 @@ class Solution:
 ```
 -----
 
-##[95. Remove Duplicates from Sorted List II](https://oj.leetcode.com/problems/remove-duplicates-from-sorted-list-ii/)
+##[96. Remove Duplicates from Sorted List II](https://oj.leetcode.com/problems/remove-duplicates-from-sorted-list-ii/)
 
 Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.
 
@@ -4608,7 +4647,7 @@ class Solution:
 ```
 -----
 
-##[96. Remove Element](https://oj.leetcode.com/problems/remove-element/)
+##[97. Remove Element](https://oj.leetcode.com/problems/remove-element/)
 
 Given an array and a value, remove all instances of that value in place and return the new length.
 
@@ -4632,7 +4671,7 @@ class Solution:
 ```
 -----
 
-##[97. Remove Nth Node From End of List](https://oj.leetcode.com/problems/remove-nth-node-from-end-of-list/)
+##[98. Remove Nth Node From End of List](https://oj.leetcode.com/problems/remove-nth-node-from-end-of-list/)
 
 Given a linked list, remove the nth node from the end of list and return its head.
 
@@ -4671,7 +4710,7 @@ class Solution:
 ```
 -----
 
-##[98. Reorder List](https://oj.leetcode.com/problems/reorder-list/)
+##[99. Reorder List](https://oj.leetcode.com/problems/reorder-list/)
 
 Given a singly linked list L: L0→L1→…→Ln-1→Ln,
 reorder it to: L0→Ln→L1→Ln-1→L2→Ln-2→…
@@ -4743,7 +4782,7 @@ class Solution:
 ```
 -----
 
-##[99. Restore IP Addresses](https://oj.leetcode.com/problems/restore-ip-addresses/)
+##[100. Restore IP Addresses](https://oj.leetcode.com/problems/restore-ip-addresses/)
 
 Given a string containing only digits, restore it by returning all possible valid IP address combinations.
 
@@ -4781,7 +4820,7 @@ class Solution:
 ```
 -----
 
-##[100. Reverse Integer](https://oj.leetcode.com/problems/reverse-integer/)
+##[101. Reverse Integer](https://oj.leetcode.com/problems/reverse-integer/)
 
 Reverse digits of an integer.
 
@@ -4814,7 +4853,7 @@ class Solution:
 ```
 -----
 
-##[101. Reverse Linked List II](https://oj.leetcode.com/problems/reverse-linked-list-ii/)
+##[102. Reverse Linked List II](https://oj.leetcode.com/problems/reverse-linked-list-ii/)
 
 Reverse a linked list from position m to n. Do it in-place and in one-pass.
 
@@ -4860,7 +4899,7 @@ class Solution:
 ```
 -----
 
-##[102. Reverse Nodes in k-Group](https://oj.leetcode.com/problems/reverse-nodes-in-k-group/)
+##[103. Reverse Nodes in k-Group](https://oj.leetcode.com/problems/reverse-nodes-in-k-group/)
 
 Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.
 
@@ -4918,7 +4957,7 @@ class Solution:
 ```
 -----
 
-##[103. Reverse Words in a String](https://oj.leetcode.com/problems/reverse-words-in-a-string/)
+##[104. Reverse Words in a String](https://oj.leetcode.com/problems/reverse-words-in-a-string/)
 
 Given an input string, reverse the string word by word.
 
@@ -4965,7 +5004,7 @@ class Solution:
 ```
 -----
 
-##[104. Roman to Integer](https://oj.leetcode.com/problems/roman-to-integer/)
+##[105. Roman to Integer](https://oj.leetcode.com/problems/roman-to-integer/)
 
 Given a roman numeral, convert it to an integer.
 
@@ -4996,7 +5035,7 @@ class Solution:
 ```
 -----
 
-##[105. Rotate Image](https://oj.leetcode.com/problems/rotate-image/)
+##[106. Rotate Image](https://oj.leetcode.com/problems/rotate-image/)
 
 You are given an n x n 2D matrix representing an image.
 
@@ -5045,7 +5084,7 @@ class Solution:
 ```
 -----
 
-##[106. Rotate List](https://oj.leetcode.com/problems/rotate-list/)
+##[107. Rotate List](https://oj.leetcode.com/problems/rotate-list/)
 
 Given a list, rotate the list to the right by k places, where k is non-negative.
 
@@ -5088,7 +5127,7 @@ class Solution:
 ```
 -----
 
-##[107. Same Tree](https://oj.leetcode.com/problems/same-tree/)
+##[108. Same Tree](https://oj.leetcode.com/problems/same-tree/)
 
 Given two binary trees, write a function to check if they are equal or not.
 
@@ -5119,7 +5158,7 @@ class Solution:
 ```
 -----
 
-##[108. Scramble String](https://oj.leetcode.com/problems/scramble-string/)
+##[109. Scramble String](https://oj.leetcode.com/problems/scramble-string/)
 
 Given a string s1, we may represent it as a binary tree by partitioning it to two non-empty substrings recursively.
 
@@ -5184,7 +5223,7 @@ class Solution:
 ```
 -----
 
-##[109. Search Insert Position](https://oj.leetcode.com/problems/search-insert-position/)
+##[110. Search Insert Position](https://oj.leetcode.com/problems/search-insert-position/)
 
 Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
 
@@ -5224,7 +5263,7 @@ class Solution:
 ```
 -----
 
-##[110. Search a 2D Matrix](https://oj.leetcode.com/problems/search-a-2d-matrix/)
+##[111. Search a 2D Matrix](https://oj.leetcode.com/problems/search-a-2d-matrix/)
 
 Write an efficient algorithm that searches for a value in an m x n matrix. This matrix has the following properties:
 
@@ -5248,45 +5287,76 @@ class Solution:
     # @param target, an integer
     # @return a boolean
     def searchMatrix(self, matrix, target):
+        M = len(matrix)
+        N = len(matrix[0])
         start = 0
-        end = len(matrix) -1            # -1 !!!
+        end = M*N - 1
         while start <= end:
-            mid = (start + end) / 2
-            if matrix[mid][0] <= target and target <= matrix[mid][-1]:
-                col = mid
-                start = 0
-                end = len(matrix[0]) -1         # -1!!!
-                while start <= end:
-                    mid = (start + end) / 2
-                    if target == matrix[row][mid]:
-                        return True
-                    elif target < matrix[row][mid]:
-                        end = mid - 1
-                    else:
-                        start = mid + 1
-                return False
-            elif target < matrix[mid][0]:
-                end = mid-1
-            else:
+            mid = (start+end) / 2
+            i = mid / N
+            j = mid % N
+            if matrix[i][j] == target:
+                return True
+            elif matrix[i][j] < target:
                 start = mid + 1
+            else:
+                end = mid - 1
         return False
 
-    # This is better, nested matrix
+```
+#####Search a 2D Matrix II
+What if we allow duplicate in the matrix and need to find out all the posisitons
+```
 
-Generate m*n matrix
-a = 0
-m = []
-for i in range(10):
-    row = []
-    for j in range(8):
-        row.append(a)
-        a += 1
-    m.append(row[:])
+def search_matrix_II(matrix, target):
+    lb = search_for_bound(matrix, target, True)
+    if lb == -1:
+        return False
+    rb = search_for_bound(matrix, target, False)
+    res = []
+    for i in range(lb, rb+1):
+        res.append((i/N, i%N))
+    return res
 
+def search_for_bound(matrix, target, is_lower_bound):
+    M = len(matrix)
+    N = len(matrix[0])
+    start = 0
+    end = M*N - 1
+    while start + 1 < end:
+        mid = (start+end) / 2
+        if matrix[mid/N][mid%N] == target:
+            if is_lower_bound:
+                end = mid
+            else:
+                start = mid
+        elif matrix[mid/N][mid%N] < target:
+            start = mid
+        else:
+            end = mid
+
+    if is_lower_bound:
+        if matrix[start/N][start%N] == target:
+            return start
+        elif matrix[end/N][end%N] == target:
+            return end
+    else:
+        if matrix[end/N][end%N] == target:
+            return end
+        elif matrix[start/N][start%N] == target:
+            return start
+
+    return -1
+
+```
+Note:
+1. from [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32775405.html) that answer check mid-1 == mid
+2. I don't think this is a good way. So need to discuss here.
+```
 ```
 -----
 
-##[111. Search for a Range](https://oj.leetcode.com/problems/search-for-a-range/)
+##[112. Search for a Range](https://oj.leetcode.com/problems/search-for-a-range/)
 
 Given a sorted array of integers, find the starting and ending position of a given target value.
 
@@ -5347,7 +5417,7 @@ class Solution:
 ```
 -----
 
-##[112. Search in Rotated Sorted Array](https://oj.leetcode.com/problems/search-in-rotated-sorted-array/)
+##[113. Search in Rotated Sorted Array](https://oj.leetcode.com/problems/search-in-rotated-sorted-array/)
 
 Suppose a sorted array is rotated at some pivot unknown to you beforehand.
 
@@ -5413,7 +5483,7 @@ class Solution:
 ```
 -----
 
-##[113. Search in Rotated Sorted Array II](https://oj.leetcode.com/problems/search-in-rotated-sorted-array-ii/)
+##[114. Search in Rotated Sorted Array II](https://oj.leetcode.com/problems/search-in-rotated-sorted-array-ii/)
 
 Follow up for "Search in Rotated Sorted Array":
 What if duplicates are allowed?
@@ -5451,7 +5521,7 @@ class Solution:
 ```
 -----
 
-##[114. Set Matrix Zeroes](https://oj.leetcode.com/problems/set-matrix-zeroes/)
+##[115. Set Matrix Zeroes](https://oj.leetcode.com/problems/set-matrix-zeroes/)
 
 Given a m x n matrix, if an element is 0, set its entire row and column to 0. Do it in place.
 
@@ -5499,7 +5569,7 @@ class Solution:
 ```
 -----
 
-##[115. Simplify Path](https://oj.leetcode.com/problems/simplify-path/)
+##[116. Simplify Path](https://oj.leetcode.com/problems/simplify-path/)
 
 Given an absolute path for a file (Unix-style), simplify it.
 
@@ -5542,7 +5612,7 @@ class Solution:
 ```
 -----
 
-##[116. Single Number](https://oj.leetcode.com/problems/single-number/)
+##[117. Single Number](https://oj.leetcode.com/problems/single-number/)
 
 Given an array of integers, every element appears twice except for one. Find that single one.
 
@@ -5561,7 +5631,7 @@ class Solution:
 ```
 -----
 
-##[117. Single Number II](https://oj.leetcode.com/problems/single-number-ii/)
+##[118. Single Number II](https://oj.leetcode.com/problems/single-number-ii/)
 
 Given an array of integers, every element appears three times except for one. Find that single one.
 
@@ -5618,7 +5688,7 @@ class Solution:
 ```
 -----
 
-##[118. Sort Colors](https://oj.leetcode.com/problems/sort-colors/)
+##[119. Sort Colors](https://oj.leetcode.com/problems/sort-colors/)
 
 Given an array with n objects colored red, white or blue, sort them so that objects of the same color are adjacent, with the colors in the order red, white and blue.
 
@@ -5665,7 +5735,7 @@ class Solution:
 ```
 -----
 
-##[119. Sort List](https://oj.leetcode.com/problems/sort-list/)
+##[120. Sort List](https://oj.leetcode.com/problems/sort-list/)
 
 Sort a linked list in O(n log n) time using constant space complexity.
 
@@ -5721,7 +5791,7 @@ class Solution:
 ```
 -----
 
-##[120. Spiral Matrix](https://oj.leetcode.com/problems/spiral-matrix/)
+##[121. Spiral Matrix](https://oj.leetcode.com/problems/spiral-matrix/)
 
 Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral order.
 
@@ -5775,7 +5845,7 @@ class Solution:
 ```
 -----
 
-##[121. Spiral Matrix II](https://oj.leetcode.com/problems/spiral-matrix-ii/)
+##[122. Spiral Matrix II](https://oj.leetcode.com/problems/spiral-matrix-ii/)
 
 Given an integer n, generate a square matrix filled with elements from 1 to n2 in spiral order.
 
@@ -5821,7 +5891,7 @@ class Solution:
 ```
 -----
 
-##[122. Sqrtx](https://oj.leetcode.com/problems/sqrtx/)
+##[123. Sqrtx](https://oj.leetcode.com/problems/sqrtx/)
 
 Implement int sqrt(int x).
 
@@ -5870,7 +5940,7 @@ class Solution:
 ```
 -----
 
-##[123. String to Integer atoi](https://oj.leetcode.com/problems/string-to-integer-atoi/)
+##[124. String to Integer atoi](https://oj.leetcode.com/problems/string-to-integer-atoi/)
 
 Implement atoi to convert a string to an integer.
 
@@ -5919,7 +5989,7 @@ class Solution:
 ```
 -----
 
-##[124. Subsets](https://oj.leetcode.com/problems/subsets/)
+##[125. Subsets](https://oj.leetcode.com/problems/subsets/)
 
 Given a set of distinct integers, S, return all possible subsets.
 
@@ -5979,7 +6049,7 @@ class Solution:
 ```
 -----
 
-##[125. Subsets II](https://oj.leetcode.com/problems/subsets-ii/)
+##[126. Subsets II](https://oj.leetcode.com/problems/subsets-ii/)
 
 Given a collection of integers that might contain duplicates, S, return all possible subsets.
 
@@ -6037,7 +6107,7 @@ class Solution:
 ```
 -----
 
-##[126. Substring with Concatenation of All Words](https://oj.leetcode.com/problems/substring-with-concatenation-of-all-words/)
+##[127. Substring with Concatenation of All Words](https://oj.leetcode.com/problems/substring-with-concatenation-of-all-words/)
 
 You are given a string, S, and a list of words, L, that are all of the same length. Find all starting indices of substring(s) in S that is a concatenation of each word in L exactly once and without any intervening characters.
 
@@ -6113,7 +6183,7 @@ class Solution:
 ```
 -----
 
-##[127. Sudoku Solver](https://oj.leetcode.com/problems/sudoku-solver/)
+##[128. Sudoku Solver](https://oj.leetcode.com/problems/sudoku-solver/)
 
 Write a program to solve a Sudoku puzzle by filling the empty cells.
 
@@ -6165,7 +6235,7 @@ class Solution:
 ```
 -----
 
-##[128. Sum Root to Leaf Numbers](https://oj.leetcode.com/problems/sum-root-to-leaf-numbers/)
+##[129. Sum Root to Leaf Numbers](https://oj.leetcode.com/problems/sum-root-to-leaf-numbers/)
 
 Given a binary tree containing digits from 0-9 only, each root-to-leaf path could represent a number.
 
@@ -6238,7 +6308,7 @@ class Solution:
 ```
 -----
 
-##[129. Surrounded Regions](https://oj.leetcode.com/problems/surrounded-regions/)
+##[130. Surrounded Regions](https://oj.leetcode.com/problems/surrounded-regions/)
 
 Given a 2D board containing 'X' and 'O', capture all regions surrounded by 'X'.
 
@@ -6313,7 +6383,7 @@ class Solution:
 ```
 -----
 
-##[130. Swap Nodes in Pairs](https://oj.leetcode.com/problems/swap-nodes-in-pairs/)
+##[131. Swap Nodes in Pairs](https://oj.leetcode.com/problems/swap-nodes-in-pairs/)
 
 Given a linked list, swap every two adjacent nodes and return its head.
 
@@ -6369,7 +6439,7 @@ class Solution:
 ```
 -----
 
-##[131. Symmetric Tree](https://oj.leetcode.com/problems/symmetric-tree/)
+##[132. Symmetric Tree](https://oj.leetcode.com/problems/symmetric-tree/)
 
 Given a binary tree, check whether it is a mirror of itself (ie, symmetric around its center).
 
@@ -6441,7 +6511,7 @@ class Solution:
 ```
 -----
 
-##[132. Text Justification](https://oj.leetcode.com/problems/text-justification/)
+##[133. Text Justification](https://oj.leetcode.com/problems/text-justification/)
 
 Given an array of words and a length L, format the text such that each line has exactly L characters and is fully (left and right) justified.
 
@@ -6534,7 +6604,7 @@ class Solution:
 ```
 -----
 
-##[133. Trapping Rain Water](https://oj.leetcode.com/problems/trapping-rain-water/)
+##[134. Trapping Rain Water](https://oj.leetcode.com/problems/trapping-rain-water/)
 
 Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining.
 
@@ -6569,7 +6639,7 @@ class Solution:
 ```
 -----
 
-##[134. Triangle](https://oj.leetcode.com/problems/triangle/)
+##[135. Triangle](https://oj.leetcode.com/problems/triangle/)
 
 Given a triangle, find the minimum path sum from top to bottom. Each step you may move to adjacent numbers on the row below.
 
@@ -6627,7 +6697,7 @@ class Solution:
 ```
 -----
 
-##[135. Two Sum](https://oj.leetcode.com/problems/two-sum/)
+##[136. Two Sum](https://oj.leetcode.com/problems/two-sum/)
 
 Given an array of integers, find two numbers such that they add up to a specific target number.
 
@@ -6686,7 +6756,7 @@ class Solution:
 ```
 -----
 
-##[136. Unique Binary Search Trees](https://oj.leetcode.com/problems/unique-binary-search-trees/)
+##[137. Unique Binary Search Trees](https://oj.leetcode.com/problems/unique-binary-search-trees/)
 
 Given n, how many structurally unique BST's (binary search trees) that store values 1...n?
 
@@ -6707,7 +6777,7 @@ class Solution:
 ```
 -----
 
-##[137. Unique Binary Search Trees II](https://oj.leetcode.com/problems/unique-binary-search-trees-ii/)
+##[138. Unique Binary Search Trees II](https://oj.leetcode.com/problems/unique-binary-search-trees-ii/)
 
 Given n, generate all structurally unique BST's (binary search trees) that store values 1...n.
 
@@ -6756,7 +6826,7 @@ class Solution:
 ```
 -----
 
-##[138. Unique Paths](https://oj.leetcode.com/problems/unique-paths/)
+##[139. Unique Paths](https://oj.leetcode.com/problems/unique-paths/)
 
 A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
 
@@ -6790,7 +6860,7 @@ class Solution:
 ```
 -----
 
-##[139. Unique Paths II](https://oj.leetcode.com/problems/unique-paths-ii/)
+##[140. Unique Paths II](https://oj.leetcode.com/problems/unique-paths-ii/)
 
 Follow up for "Unique Paths":
 
@@ -6841,7 +6911,7 @@ class Solution:
 ```
 -----
 
-##[140. Valid Number](https://oj.leetcode.com/problems/valid-number/)
+##[141. Valid Number](https://oj.leetcode.com/problems/valid-number/)
 
 Validate if a given string is numeric.
 
@@ -6930,7 +7000,7 @@ class Solution:
 ```
 -----
 
-##[141. Valid Palindrome](https://oj.leetcode.com/problems/valid-palindrome/)
+##[142. Valid Palindrome](https://oj.leetcode.com/problems/valid-palindrome/)
 
 Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
 
@@ -6967,7 +7037,7 @@ class Solution:
 ```
 -----
 
-##[142. Valid Parentheses](https://oj.leetcode.com/problems/valid-parentheses/)
+##[143. Valid Parentheses](https://oj.leetcode.com/problems/valid-parentheses/)
 
 Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
 
@@ -6994,7 +7064,7 @@ class Solution:
 ```
 -----
 
-##[143. Valid Sudoku](https://oj.leetcode.com/problems/valid-sudoku/)
+##[144. Valid Sudoku](https://oj.leetcode.com/problems/valid-sudoku/)
 
 Determine if a Sudoku is valid, according to: Sudoku Puzzles - The Rules.
 
@@ -7038,7 +7108,7 @@ class Solution:
 ```
 -----
 
-##[144. Validate Binary Search Tree](https://oj.leetcode.com/problems/validate-binary-search-tree/)
+##[145. Validate Binary Search Tree](https://oj.leetcode.com/problems/validate-binary-search-tree/)
 
 Given a binary tree, determine if it is a valid binary search tree (BST).
 
@@ -7093,7 +7163,7 @@ This won't pass
 ```
 -----
 
-##[145. Wildcard Matching](https://oj.leetcode.com/problems/wildcard-matching/)
+##[146. Wildcard Matching](https://oj.leetcode.com/problems/wildcard-matching/)
 
 Implement wildcard pattern matching with support for '?' and '*'.
 
@@ -7163,7 +7233,7 @@ class Solution:
 ```
 -----
 
-##[146. Word Break](https://oj.leetcode.com/problems/word-break/)
+##[147. Word Break](https://oj.leetcode.com/problems/word-break/)
 
 Given a string s and a dictionary of words dict, determine if s can be segmented into a space-separated sequence of one or more dictionary words.
 
@@ -7212,7 +7282,7 @@ class Solution:
 ```
 -----
 
-##[147. Word Break II](https://oj.leetcode.com/problems/word-break-ii/)
+##[148. Word Break II](https://oj.leetcode.com/problems/word-break-ii/)
 
 Given a string s and a dictionary of words dict, add spaces in s to construct a sentence where each word is a valid dictionary word.
 
@@ -7254,7 +7324,7 @@ class Solution:
 ```
 -----
 
-##[148. Word Ladder](https://oj.leetcode.com/problems/word-ladder/)
+##[149. Word Ladder](https://oj.leetcode.com/problems/word-ladder/)
 
 Given two words (start and end), and a dictionary, find the length of shortest transformation sequence from start to end, such that:
 
@@ -7298,7 +7368,7 @@ class Solution:
 ```
 -----
 
-##[149. Word Ladder II](https://oj.leetcode.com/problems/word-ladder-ii/)
+##[150. Word Ladder II](https://oj.leetcode.com/problems/word-ladder-ii/)
 
 Given two words (start and end), and a dictionary, find all shortest transformation sequence(s) from start to end, such that:
 
@@ -7370,7 +7440,7 @@ class Solution:
 ```
 -----
 
-##[150. Word Search](https://oj.leetcode.com/problems/word-search/)
+##[151. Word Search](https://oj.leetcode.com/problems/word-search/)
 
 Given a 2D board and a word, find if the word exists in the grid.
 
@@ -7433,7 +7503,7 @@ class Solution:
 ```
 -----
 
-##[151. ZigZag Conversion](https://oj.leetcode.com/problems/zigzag-conversion/)
+##[152. ZigZag Conversion](https://oj.leetcode.com/problems/zigzag-conversion/)
 
 The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
 
@@ -7472,7 +7542,7 @@ class Solution:
 ```
 -----
 
-##152. Absolute Minimum
+##153. Absolute Minimum
 
 ###From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32782345.html) for Amazon Interview
 Given three arrays A,B,C containing unsorted numbers. Find three numbers a,
@@ -7518,7 +7588,7 @@ def get_min_distance(A1, A2, A3):
 ```
 -----
 
-##153. Alternating Positive N Negative
+##154. Alternating Positive N Negative
 
 or Rearrange Array Alternating Positive Negative Items
 Given an array of positive and negative numbers, arrange them in an alternate fashion such that every positive number is followed by negative and vice-versa maintaining the order of appearance.
@@ -7603,7 +7673,7 @@ print rearrange_array_rotate(B)
 ```
 -----
 
-##154. BFS DFS
+##155. BFS DFS
 
 #####Summarize all kind of ways to do Tree Traversal
 * BFS
@@ -7714,7 +7784,7 @@ def DFS_postorder(root):
 ```
 -----
 
-##155. Consecutive Subarray
+##156. Consecutive Subarray
 
 #####Interview With Cyan
 1. Shortest Path
@@ -7766,7 +7836,7 @@ print find_consecutive(num, sum)
 ```
 -----
 
-##157. Count zeros in Factorial
+##158. Count zeros in Factorial
 
 From mitbbs for Facebook
 
@@ -7795,7 +7865,7 @@ print fact(N)
 ```
 -----
 
-##158. Delete a Node in BST
+##159. Delete a Node in BST
 
 [Solution](http://answer.ninechapter.com/solutions/delete-a-node-in-binary-search-tree/)
 实际上有好几种做法
@@ -7858,7 +7928,7 @@ def delete_node_in_BST(parent, node):
 ```
 -----
 
-##161. Flatten a Multilevel Linked List
+##162. Flatten a Multilevel Linked List
 
 Given a linked list where in addition to the next pointer, each node has a child pointer, which may or may not point to a separate list. These child lists may have one or more children of their own, and so on, to produce a multilevel data structure, as shown in below figure.You are given the head of the first level of the list. Flatten the list so that all the nodes appear in a single-level linked list. You need to flatten the list in way that all nodes at first level should come first, then nodes of second level, and so on.
 
@@ -7891,7 +7961,7 @@ def flatten_list(head):
 ```
 -----
 
-##162. Flattening a Linked List
+##163. Flattening a Linked List
 
 Given a linked list where every node represents a linked list and contains two pointers of its type:
 (i) Pointer to next node in the main list (we call it ‘right’ pointer in below code)
@@ -7944,7 +8014,43 @@ def merge(node1, node2):
 ```
 -----
 
-##163. Longest Common Subsequence
+##164. Largest None Close Sum
+
+###9/23/2014 Interview with Kevin from Fivestars
+
+safes = [2, 5, 4, 10, 7, 2, 6, 8, 1, 10]
+            x      x     x     x     x
+
+Given an array of numbers, choose the numbers that cannot become neighbor to each other, find out the largest sum
+
+Note:
+1. First attempt use greedy search, I think the reasult fails
+2. Second attemp use dp, but a little bit hard to find out the transfer function, here's the coding
+
+```python
+
+def find_largest_none_close_sum(A):
+    N = len(A)
+    dp = [ 0 for i in range(N)]
+
+    for i in range(N):
+        if i == 0:
+            dp[i] = A[0]
+        elif i == 1:
+            dp[i] = max(A[0], A[1])
+        else:
+            dp[i] = max(dp[i-2] + A[i], dp[i-1])
+
+    return dp[N-1]
+
+# 1. dp[i] means from 0 ... i the max sum none closing numbers
+# 2. dp[0] = A[0], dp[1] = max(A[0], A[1])
+# 3. dp[i] = dp[i] = max(dp[i-2] + A[i], dp[i-1])
+# 4. dp[N-1]
+```
+-----
+
+##166. Longest Common Subsequence
 
 Need to distinguish from Longest Common Substring
 
@@ -8044,7 +8150,7 @@ print LCS('AGGTAB', 'GXTXAYB')
 ```
 -----
 
-##164. Longest Common Substring
+##167. Longest Common Substring
 
 ##### 9/4/2014 Interview with Tubular
 1. Subset(second le)
@@ -8102,7 +8208,7 @@ print Longest_Common_Substring("GeeksforGeeks", "GeeksQuiz")
 ```
 -----
 
-##165. Longest Increasing Subsequence
+##168. Longest Increasing Subsequence
 
 #####NC Class 5, slides 17
 
@@ -8164,7 +8270,7 @@ print d_A[max(d_A.keys())]
 ```
 -----
 
-##166. Lowest Common Ancestor
+##169. Lowest Common Ancestor
 
 #####[LCA, Lowest Common Ancestor](http://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/) Pocket Gem possible question 9/8/2014
 
@@ -8238,7 +8344,52 @@ def get_LCA(root, node1, node2):
 ```
 -----
 
-##167. Min Stack
+##170. Min Num to Composite Words
+
+From [Career Cup](http://www.careercup.com/page?pid=pinterest-interview-questions) Pinterest
+
+Given an input string and a dictionary of words, find out if the input string can be segmented into a space-separated sequence of dictionary words. You need to output the minimum number of words. For example, input: "aaaisaname"
+dict: ("a", "aaa", "is", "name")
+
+output: "aaa is a name"
+
+Wrong output: "a a a is a name"
+
+```python
+import sys
+
+def print_min_num_words(str, d):
+    N = len(str)
+    dp = [ N for i in range(N+1)]
+    dp[0] = 0
+    d.append('')
+    for i in range(1, N+1):
+        if str[:i] in d:
+            dp[i] = 1
+        for j in range(i)[::-1]:
+            #print i, j, str[j:i], dp
+            if str[j:i] in d and dp[j] != sys.maxint:
+                dp[i] = min(dp[i], dp[j]+1)
+
+    # Use dp to get the min_num words
+    cur = dp[N]
+    last = N+1
+    res = []
+    for i in range(N)[::-1]:
+        if dp[i] == cur - 1:
+            res.insert(0, str[i:last])
+            last = i
+            cur -= 1
+    return res
+
+str = 'aaaisaname'
+d = ["a", "aaa", "is", "name"]
+
+print print_min_num_words(str, d)
+```
+-----
+
+##171. Min Stack
 
 #####From NC Class 7 Data Structures, slides 8
 [Solution](http://www.geeksforgeeks.org/design-and-implement-special-stack-data-structure/)
@@ -8277,7 +8428,7 @@ class MinStack():
 ```
 -----
 
-##168. Operations Calculation
+##172. Operations Calculation
 
 ##### 9/5/2014 Elasticbox
 加减运算
@@ -8334,7 +8485,52 @@ find_next_num()
 ```
 -----
 
-##169. Print Numbers With Five
+##173. Print Matrix
+
+###From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32570751.html) for Pinterest
+
+Print a N x M matrix in diagonal from the upper left to lower right. However, with the following caveat. It's easy to just show the input and expect output.
+```
+matrix:
+a b c d
+e f g h
+i j k l
+m n o p
+
+output:
+a f k p
+b g l
+c h
+d
+e j o
+i n
+m
+```
+
+```python
+
+def print_matrix(matrix):
+    N = len(matrix)
+    for i in range(N):
+        start = 0
+        while start + i < N:
+            print matrix[start][i+start],
+            start += 1
+        print '\n'
+
+    for i in range(1, N):
+        start = 0
+        while start + i < N:
+            print matrix[i+start][start],
+            start += 1
+        print '\n'
+
+matrix = ['abcd', 'efgh', 'ijkl', 'mnop']
+print_matrix(matrix)
+```
+-----
+
+##174. Print Numbers With Five
 
 ##### 9/7/2014 From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32651839.html) for Groupon
 写一个function，对于参数n，输出从0到n之间所有含5的数字。
@@ -8362,7 +8558,7 @@ print find_five(60)
 ```
 -----
 
-##170. Queue by Two Stacks
+##175. Queue by Two Stacks
 
 Implement a Queue by using two stacks. Support O(1) push, pop, top
 
@@ -8390,7 +8586,83 @@ class Queue():
 ```
 -----
 
-##174. Search a Range in BST
+##176. Recover Rotated Sorted Array
+
+Given a rotated sorted array, recover it to sorted array in-place.
+
+Example
+[4, 5, 1, 2, 3] -> [1, 2, 3, 4, 5]
+
+NC Class 2, slides 32
+Solution three way reverse
+
+```python
+
+def recover_rotated_sorted_array(A):
+    N = len(A)
+    rotate_start = -1
+    for i in range(1, N):
+        if A[i-1] > A[i]:
+            rotate_start = i
+            break
+    first_part = A[:rotate_start]
+    second_part = A[rotate_start:]
+    total = first_part[::-1] + second_part[::-1]
+    return total[::-1]
+
+A = [4, 5, 1, 2, 3]
+print recover_rotated_sorted_array(A)
+
+# I really have no idea why I need to reverse every time, but basically this works
+```
+-----
+
+##177. Rotated Mirror Number
+
+####From Alec's email, someone's onsite interview with Facebook for finding rotated mirrow number like 808 which is less than N
+
+
+```python
+
+def rotated_mirror_number(n):
+    length = 0
+    while n - 10**length > 0:
+        length += 1
+    ret = []
+    rotated_helper(n, length, [], ret)
+    return ret
+
+def rotated_helper(n, length, res, ret):
+    num = convert_to_num(res)
+    if num > n or len(res) > length:
+        return
+    if len(res) > 0 and res[0] != 0:
+        ret.append(num)
+    if len(res) == 0:
+        for i in range(10):
+            res.append(i)
+            rotated_helper(n, length, res, ret)
+            res.pop()
+
+    for i in range(10):
+        res.append(i)
+        res.insert(0,i)
+        rotated_helper(n, length, res, ret)
+        res.pop()
+        res.pop(0)
+
+def convert_to_num(int_list):
+    res = 0
+    for digit in int_list:
+        res = res*10 + digit
+    return res
+
+
+print rotated_mirror_number(10000)
+```
+-----
+
+##180. Search a Range in BST
 
 or Print BST Keys in the Give Range
 
@@ -8421,7 +8693,7 @@ def search_a_range(root, k1, k2):
 ```
 -----
 
-##175. Shortest Path
+##181. Shortest Path
 
 #####With Twitter & Cyan
 
@@ -8504,7 +8776,7 @@ print find_path(map)
 ```
 -----
 
-##176. Shuffle
+##182. Shuffle
 
 ###Shuffle a given array
 Saw it from FiveStar's interview.
@@ -8533,7 +8805,7 @@ print shuffle_array(A)
 ```
 -----
 
-##177. isOneEditDistance
+##183. isOneEditDistance
 
 From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32760941.html) for facebook
 
