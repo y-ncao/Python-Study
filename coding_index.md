@@ -636,17 +636,16 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [ ] Recover Binary Search Tree
 * [ ] Validate Binary Search Tree
 * [ ] Order Traversal Recover
-* [ ] __Find last ancestor of node x__
 * [x] Rotate List
 * [ ] Trapping Water (especially the way to think)
-* [ ] Longest Substring Without Repeating Characters
+* [x] Longest Substring Without Repeating Characters
 * [x] Flatten BST
 * [ ] BFS every traversal
 * [x] Maximum Path Sum(BT)
 * [ ] Word Ladder II
 * [x] decode ways
 * [ ] Median of two sorted arrays
-* [ ] Longest Palindrome Substring
+* [x] Longest Palindrome Substring
 * [ ] Regular Expression Matching
 * [ ] Wildcard Matching
 * [ ] Max Points on a Line
