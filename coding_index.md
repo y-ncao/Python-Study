@@ -658,10 +658,12 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [ ] Rotate Image
 * [ ] Gray Code
 * [ ] Candy
-* [ ] LRU
+* [x] LRU
+* [x] Surrounded Regions
 * [ ] Gas Station
 * [ ] Permutation Sequence
 * [ ] Next Permutation
+* [ ] Maximum Subwindow
 
 
 * 还有前面tree的一些
@@ -679,33 +681,9 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 
 
 ##New
-
-* [ ] min(|a-c| + |b-c| + |c-1|)
-* [ ] max product of subarray
-O(n1+n2+n3) n1,n2,n3 是三个数组的长度
-
-|a-b|+|b-c|+|c-a| 其实就是求 2*(最大数-最小数) (eg. 如果a>b>c, |a-b|+|b-c|+|
-c-a| = 2(a-c) )
-
-三个指针i, j, k
-从头开始扫, 总是移动最小的那个指针 更新当前最小的 2*(最大数-最小数) 即可
-
-
-证明正确性:
-在扫的过程中, 对于三个数组中的任意一个数, 分三种情况讨论 (下面假设取出的三个
-数 a>b>c)
-
-1. 如果他作为b, 那么永远不影响最后结果
-
-2. 如果他作为a, 在他作为a的时候, 由于一直在移动另两个指针并接近a, 肯定能扫到
-那个对于a而言最大的c
-
-3. 如果他作为c, 假设 a或者b不是自己数组中比c大的最小值, 那么肯定有在c数组还
-没扫到c的时候有移动a,b数组指针的情况, 但这和假设矛盾
-
-
-证明写的有点乱 求大神更好更清楚的证明
-
+* [x] [Absolut Minimum](./Interviews/Absolute_Minimum.py)
+* [ ] Max Product of Subarray
 
 ##Some Note
 1. 一定要看清题，比如这次就被问了find all palindrome，但是理解成palindrome partitioning了，所以错了
+2. 再仔细确认下怎么算recursion的big O

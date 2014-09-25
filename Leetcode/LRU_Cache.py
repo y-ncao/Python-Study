@@ -30,6 +30,8 @@ class LRUCache:
         elif key in self.cache:
             del self.cache[key]
         self.cache[key] = value
+
+    # Keep a note here, always delete the item. Cause update the key won't update the order
 """
     # @param capacity, an integer
     def __init__(self, capacity):
