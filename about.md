@@ -9,8 +9,11 @@
 * 30% dealing with front-end, working with Coffeescript or Javascript, html & less.
 
 ####3. 工作内容:
-* In Hosting System Support Team, mostly develop and support internal tools. Working full stack.
-* Build new quoting tool for our Salse Team. 
+* In Hosting System Support Team, mostly develop and support internal tools. I work with other 3 developers making full stack development.
+
+* I work with other 3 developers. We are using Python and Oracle to build a Sales application that connects with Salesforce and we are achieveing that by gathering requirements from sales team directly and build these enhancements right into the application.
+
+* Build new quoting tool for our Salse Team.  
   * SpineJS in Coffeescript handles the front-end. MVC framework on the front-end.
   * Tornado in Python handles the back-end, with Oracle Database. REST API on back-end.  
     Use Memecached to reduce the database fetch for 1. data is pretty big 2. data is used very frequently.
@@ -19,6 +22,13 @@
 * Day-to-day support issues for internal systems.  
   Become fire fighter, internal user report there's issue for systems that we support, then dive into the systems and find traceback and try to fix.
 * Working closely with our Sales Team to constantly improve and update internal systems for them.
+
+####4. Mercury特点
+* Provide our sales team a faster, more stable, more flexible platform and give them better user experience.
+1. Navisite is the king of customization. Our customer can buy whatever they want in whatever way as long as we have profit on the order. This is the goal for us. To build a tool that won't limit our sales people's creativity.
+2. A lot of procedures a data-driven, e.g. some approval rules are just a row of data in our database, we can react very fast if there's any need for us to change the rule, without touching the code base.
+3. We work closely with our Sales team and we listen to their feedback and make quick improvements based on their feedback.
+
 
 ##Detail about Mercury
 
@@ -253,3 +263,15 @@ Fits well with our user's workflow.
 * The Hacker News
 * TechCrunch
 * Web Design Inspiration
+
+###Behaviors Question
+* Give me some examples that you've worked in the past that show you are a team player.
+  * In some way to help to improve the chance to success
+  * Work in late to fix a problem.
+* Describe a situations that I you use your own judgement or own logic to solve the problem.
+* Give me an example of time that you have to become very quick to come up with a solution of a problem.
+* How you are movtivated? - Give me an example that you are above or beyond call of yor duty.
+* Give me an exmaple of situation that you positively influenced the actions other people.
+* Leadership. What have you done in the situation where you had to get others to agree with your ideas.
+* How would you describe a challenging group from which you have to gain cooperation from. You need to get to work together. How to lead them together.
+  * Use action. If I work very hard, others see me working hard and will be inspired to work hard as well.

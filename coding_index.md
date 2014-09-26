@@ -376,12 +376,18 @@ _____
 
 -----
 
-#### Two Pointer
+#### Array Two Pointers
 The basic template of doing 'Sums'
 * [x] Two Sum
 * [x] 3Sum
 * [x] 3Sum Closest
 * [x] 4Sum
+
+* [x] Trapping Water (especially the way to think)
+* [x] Container With Most Water
+* [x] Stock 系列
+* [x] Candy
+
 
 ####Cannot Classify(记住思路)
 * [x] Search Insert Position
@@ -633,31 +639,24 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
      4. Locale: router
 
 ##Definetly Redo
-* [ ] Recover Binary Search Tree
-* [ ] Validate Binary Search Tree
-* [ ] Order Traversal Recover
 * [x] Rotate List
-* [ ] Trapping Water (especially the way to think)
-* [ ] Container With Most Water
 * [x] Longest Substring Without Repeating Characters
-* [x] Flatten BST
+
 * [ ] BFS every traversal
 * [x] Maximum Path Sum(BT)
 * [ ] Word Ladder II
 * [x] decode ways
-* [ ] Median of two sorted arrays
 * [x] Longest Palindrome Substring
 * [ ] Regular Expression Matching
 * [ ] Wildcard Matching
 * [ ] Max Points on a Line
 * [x] Spiral Matrix * 2
 * [ ] Next Permutation
-* [ ] Construct Binary Tree from Inorder and Postorder Traversal
-* [ ] Construct Binary Tree from Preorder and Inorder Traversal
-* [x] Stock 系列
+
+
 * [x] Rotate Image
 * [ ] Gray Code
-* [ ] Candy
+
 * [x] LRU
 * [x] Surrounded Regions
 * [ ] Gas Station
@@ -672,7 +671,19 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [x] Recover Binary Search Tree (Redo)
 * [ ] Populating Next Right Pointers in Each Node
 * [ ] Populating Next Right Pointers in Each Node II
+* [ ] Construct Binary Tree from Inorder and Postorder Traversal
+* [ ] Construct Binary Tree from Preorder and Inorder Traversal
+* [ ] Recover Binary Search Tree
+* [ ] Validate Binary Search Tree
+* [ ] Order Traversal Recover
+* [x] Flatten BST
+
 * [x] Median of Two Sorted Arrays
+
+* [ ] Trapping Water (especially the way to think)
+* [ ] Container With Most Water
+* [x] Stock 系列
+* [ ] Candy
 
 ##Need Understand
 * [ ] Largest Rectangle in Histogram
