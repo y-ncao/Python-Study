@@ -638,6 +638,7 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [ ] Order Traversal Recover
 * [x] Rotate List
 * [ ] Trapping Water (especially the way to think)
+* [ ] Container With Most Water
 * [x] Longest Substring Without Repeating Characters
 * [x] Flatten BST
 * [ ] BFS every traversal
@@ -653,7 +654,7 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [ ] Next Permutation
 * [ ] Construct Binary Tree from Inorder and Postorder Traversal
 * [ ] Construct Binary Tree from Preorder and Inorder Traversal
-* [ ] Stock 系列
+* [x] Stock 系列
 * [x] Rotate Image
 * [ ] Gray Code
 * [ ] Candy
@@ -664,6 +665,7 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [ ] Next Permutation
 * [ ] Maximum Subwindow
 * [x] Max Product of Subarray
+* [ ] First Missing Positive
 
 * [ ] 还有前面tree的一些
 * [x] Validate Binary Search Tree (Redo)

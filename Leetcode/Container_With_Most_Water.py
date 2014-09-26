@@ -7,16 +7,15 @@ Note: You may not slant the container.
 class Solution:
     # @return an integer
     def maxArea(self, height):
-        res = 0
         l = 0
         r = len(height) - 1
+        max_water = 0
         while l < r:
+            max_water = max(max_water, (r-l) * min(height[l], height[r]))
             if height[l] <= height[r]:
-                res = max(res, (r-l) * height[l])
                 l += 1
             else:
-                res = max(res, (r-l) * height[r])
                 r -= 1
-        return res
+        return max_water
 
     # Two pointer problem

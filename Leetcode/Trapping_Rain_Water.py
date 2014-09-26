@@ -17,13 +17,13 @@ class Solution:
             return 0
         left_to_right = [0 for i in range(N)]
         right_to_left = [0 for i in range(N)]
-        max_left = A[0]
-        max_right = A[N-1]
-        for i in range(N):
-            max_left = max(max_left, A[i])
-            left_to_right[i] = max_left
-            max_right = max(max_right, A[N-1-i])
-            right_to_left[N-1-i] = max_right
+        left_to_right[0] = A[0]
+        right_to_left[-1] = A[-1]
+
+        for i in range(1, N):
+            left_to_right[i] = max(left_to_right[i-1], A[i])
+            right_to_left[-i-1] = max(right_to_left[-i], A[-i-1])
+
         water = 0
         for i in range(N):
             water += min(left_to_right[i], right_to_left[i]) - A[i] # Note here

@@ -17,7 +17,10 @@ class Solution:
         for i in range(1, N):
             if ratings[i] > ratings[i-1]:
                 candy[i] = candy[i-1] + 1
-        for i in range(N-2, -1, -1):
+        for i in range(N-1)[::-1]:
             if ratings[i] > ratings[i+1] and candy[i] <= candy[i+1]:
                 candy[i] = candy[i+1] + 1
         return sum(candy)
+
+    # Note:
+    # Need to be careful for line 21 the second and
