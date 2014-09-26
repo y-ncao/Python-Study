@@ -11,34 +11,26 @@ class Solution:
     # @param matrix, a list of lists of integers
     # @return a list of lists of integers
     def rotate(self, matrix):
-        return self.rotate_2(matrix)
-
-    def rotate_1(self, matrix):
-        n = len(matrix)
-
-        for i in range(n/2):
-            start = i
-            end   = n-1-i
-            for j in range(start, end):
-                offset = j - start
-                top = matrix[start][j]
-                matrix[start][j]          = matrix[end-offset][start]  # bottom to top
-                matrix[end-offset][start] = matrix[end][end-offset]    # right to left
-                matrix[end][end-offset]   = matrix[j][end]             # top to bottom
-                matrix[j][end]            = top
+        start = 0
+        end = len(matrix) - 1
+        while start < end:
+            for i in range(end-start):
+                tmp = matrix[start][start+i]
+                matrix[start][start+i] = matrix[end-i][start]
+                matrix[end-i][start] = matrix[end][end-i]
+                matrix[end][end-i] = matrix[start+i][end]
+                matrix[start+i][end] = tmp
+                #print matrix
+            start += 1
+            end -= 1
         return matrix
 
-    def rotate_2(self, matrix):
-        n = len(matrix)
-        for i in range(n):
-            for j in range(i+1, n):
-                self.swap(matrix, i, j , j, i)
-        for i in range(n):
-            for j in range(n/2):
-                self.swap(matrix, i, j, i, n-1-j)
-        return matrix
+    # Note:
+    # 1. Remember line 17, which is end-start
 
-    def swap(self, matrix, i1, j1, i2, j2):
-        tmp = matrix[i1][j1]
-        matrix[i1][j1] = matrix[i2][j2]
-        matrix[i2][j2] = tmp
+    """
+    matrix = [[2,29,20,26,16,28],[12,27,9,25,13,21],[32,33,32,2,28,14],[13,14,32,27,22,26],[33,1,20,7,21,7],[4,24,1,6,32,34]]
+    def rotate(matrix):
+        return [list(reversed(x)) for x in zip(*matrix)]
+    print rotate(matrix)
+    """

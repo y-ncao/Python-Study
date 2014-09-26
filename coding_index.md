@@ -649,12 +649,12 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [ ] Regular Expression Matching
 * [ ] Wildcard Matching
 * [ ] Max Points on a Line
-* [ ] Spiral Matrix * 2
+* [x] Spiral Matrix * 2
 * [ ] Next Permutation
 * [ ] Construct Binary Tree from Inorder and Postorder Traversal
 * [ ] Construct Binary Tree from Preorder and Inorder Traversal
 * [ ] Stock 系列
-* [ ] Rotate Image
+* [x] Rotate Image
 * [ ] Gray Code
 * [ ] Candy
 * [x] LRU
