@@ -20,30 +20,33 @@ class Solution:
         if len(matrix) == 0:
             return []
         N = len(matrix[0])
-        start_x = 0
-        start_y = 0
-        end_x   = N - 1
-        end_y   = M - 1
+        start_col = start_row = 0
+        end_row   = M - 1
+        end_col   = N - 1
         ret = []
+
         while True:
-            for i in range(start_x, end_x + 1):
-                ret.append(matrix[start_y][i])
-            start_y += 1
-            if start_y > end_y:
+            for i in range(start_col, end_col + 1):
+                ret.append(matrix[start_row][i])
+            start_row += 1
+            if start_row > end_row:
                 break
-            for i in range(start_y, end_y + 1):
-                ret.append(matrix[i][end_x])
-            end_x -= 1
-            if start_x > end_x:
+            for i in range(start_row, end_row + 1):
+                ret.append(matrix[i][end_col])
+            end_col -= 1
+            if start_col > end_col:
                 break
-            for i in range(start_x, end_x + 1)[::-1]:
-                ret.append(matrix[end_y][i])
-            end_y -= 1
-            if start_y > end_y:
+            for i in range(start_col, end_col + 1)[::-1]:
+                ret.append(matrix[end_row][i])
+            end_row -= 1
+            if start_row > end_row:
                 break
-            for i in range(start_y, end_y + 1)[::-1]:
-                ret.append(matrix[i][start_x])
-            start_x += 1
-            if start_x > end_x:
+            for i in range(start_row, end_row + 1)[::-1]:
+                ret.append(matrix[i][start_col])
+            start_col += 1
+            if start_col > end_col:
                 break
         return ret
+
+    # Note:
+    # This way is a lot better to memory

@@ -663,9 +663,9 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [ ] Permutation Sequence
 * [ ] Next Permutation
 * [ ] Maximum Subwindow
+* [x] Max Product of Subarray
 
-
-* 还有前面tree的一些
+* [ ] 还有前面tree的一些
 * [x] Validate Binary Search Tree (Redo)
 * [x] Recover Binary Search Tree (Redo)
 * [ ] Populating Next Right Pointers in Each Node
@@ -681,7 +681,7 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 
 ##New
 * [x] [Absolut Minimum](./Interviews/Absolute_Minimum.py)
-* [ ] Max Product of Subarray
+
 
 ##Some Note
 1. 一定要看清题，比如这次就被问了find all palindrome，但是理解成palindrome partitioning了，所以错了
