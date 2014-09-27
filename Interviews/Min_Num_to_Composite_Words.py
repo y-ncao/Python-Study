@@ -1,5 +1,5 @@
 """
-From [Career Cup](http://www.careercup.com/page?pid=pinterest-interview-questions) Pinterest
+#####From [Career Cup](http://www.careercup.com/page?pid=pinterest-interview-questions) Pinterest
 
 Given an input string and a dictionary of words, find out if the input string can be segmented into a space-separated sequence of dictionary words. You need to output the minimum number of words. For example, input: "aaaisaname"
 dict: ("a", "aaa", "is", "name")

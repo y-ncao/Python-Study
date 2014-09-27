@@ -2,7 +2,7 @@
 #####From Tango Interview Challenge
 This is pretty important design pattern, including the knowledge of thread
 
-1. Using Queue
+######Using Queue
 """
 
 from threading import Thread
@@ -38,7 +38,7 @@ ConsumerThread().start()
 
 ```
 
-2. Using Condition
+######Using Condition
 
 ```python
 from threading import Thread, Condition
@@ -86,7 +86,7 @@ ProducerThread().start()
 ConsumerThread().start()
 ```
 
-3. Helper functions
+######Helper functions
 
 ```python
 import random
@@ -110,4 +110,3 @@ def random_result():
     return result
 
 random_result()
-```

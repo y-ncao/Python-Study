@@ -1,5 +1,5 @@
 """
-###From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32782345.html) for Amazon Interview
+#####From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32782345.html) for Amazon Interview
 Given three arrays A,B,C containing unsorted numbers. Find three numbers a,
 b, c from each of array A, B, C such that |a-b|, |b-c| and |c-a| are minimum
 Please provide as efficient code as you can.
