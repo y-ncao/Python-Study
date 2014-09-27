@@ -1,5 +1,5 @@
 """
-####From Alec's email, someone's onsite interview with Facebook for finding rotated mirrow number like 808 which is less than N
+#####From Alec's email, someone's onsite interview with Facebook for finding rotated mirrow number like 808 which is less than N
 
 """
 

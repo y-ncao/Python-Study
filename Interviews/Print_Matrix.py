@@ -1,5 +1,5 @@
 """
-###From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32570751.html) for Pinterest
+#####From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32570751.html) for Pinterest
 
 Print a N x M matrix in diagonal from the upper left to lower right. However, with the following caveat. It's easy to just show the input and expect output.
 ```
