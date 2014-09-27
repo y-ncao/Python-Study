@@ -13,19 +13,17 @@ Note: The sequence of integers will be represented as a string.
 class Solution:
     # @return a string
     def countAndSay(self, n):
-        num = '1'
-        while n > 1:
-            prev = num[0]
-            count = 1
-            new_num = ''
-            for bit in num[1:]:
-                if bit == prev:
-                    count += 1
+        prev = '1'
+        for i in range(1, n):
+            counter = 1
+            cur = [prev[0]]
+            for char in prev[1:]:
+                if char == cur[-1]:
+                    counter += 1
                 else:
-                    new_num += str(count) + str(prev)
-                    count = 1
-                prev = bit
-            new_num += str(count) + str(prev)
-            num = new_num
-            n -= 1
-        return num
+                    cur.insert(-1, str(counter))
+                    cur.append(char)
+                    counter = 1
+            cur.insert(-1, str(counter))
+            prev = ''.join(cur)
+        return prev

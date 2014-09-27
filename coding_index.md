@@ -656,7 +656,6 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [ ] Insert Interval
 * [ ] Implement strStr() (KMP再写一遍)
 * [ ] Count and Say (Linkedin面经)
-* [ ] Sort Colors (忘了)
 
 * [x] Rotate List
 * [x] Longest Substring Without Repeating Characters
