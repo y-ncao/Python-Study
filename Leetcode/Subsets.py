@@ -23,7 +23,22 @@ class Solution:
     # @param S, a list of integer
     # @return a list of lists of integer
     def subsets(self, S):
-        return self.subsets_1(S)
+        return self.subsets_2(S)
+
+    # Recursion method
+    def subsets_2(self, S):
+        ret = []
+        self.subsets_helper(sorted(S), [], ret)
+        return ret
+
+    def subsets_helper(self, S, res, ret):
+        ret.append(res[:])
+
+        for i, el in enumerate(S):
+            res.append(el)
+            self.subsets_helper(S[i+1:], res, ret)
+            res.pop()
+    # Keep in mind the sorted
 
     # Iteration method
     def subsets_1(self, S):
@@ -36,20 +51,3 @@ class Solution:
                 res.append(el[:])
             ret = res[:]
         return ret
-
-    # Recursion method
-    def subsets_2(self, S):
-        ret = []
-        self.subsets_helper(0, sorted(S), [], ret)
-        return ret
-
-    def subsets_helper(self, i, S, res, ret):
-        if i == len(S):
-            ret.append(res[:])
-            return
-        self.subsets_helper(i+1, S, res, ret) # No element i
-        res.append(S[i])
-        self.subsets_helper(i+1, S, res, ret) # With element i
-        res.pop()
-
-    # Keep in mind the sorted

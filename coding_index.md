@@ -12,7 +12,7 @@
 * [x] Combination Sum
 * [x] Combination Sum II
 * [x] Letter Combination of a Phone Number
-* [ ] 找零钱
+* [x] 找零钱 == Combination Sum I
 
 -----
 
@@ -21,19 +21,32 @@
 
 -----
 
-######Note:
-做Permutation, Combination和Subset的感觉非常像，注意
+#####总结
+Permutations II,
+Combinations,
+Combinations Sum II
+和Subset II都是DFS， 区别在于
+1. 将```res```放入```ret```的条件不一样  
+   * Permu - ```len(res) = len(S)```
+   * Combin - ```len(res) == k```
+   * Combin Sum - ```target == 0```
+   * Subsets - 只要生成新的res就要存一次  
+   前三种题存过结果只后程序应该return
+2. 循环内call recursion时的输入变量不一样  
+   * Permu - ```permu_helper(num[:i] + num[i+i:], res, ret)```(除了S[i])
+   * Combin - ```comb_helper(i+1, n, k, res, ret)```(S[i+1:])
+   * Combin Sum - ```comb_sum_helper(num[i:], target - n, res, ret)```(S[i:])
+   * Subsets - ```sub_helper(S[i+1:], res, ret)```(S[i+1:])  
+   S[i+1:]决定了res内是不会有重复项的(除非S本身就有重复), S[i:]让当前元素可以重复使用
+* II类去重题相比较I类题唯一的差别就是在循环的第一行需要check```if i > 0 and S[i] == S[i-1]: continue```
+* 注意II类题都需要先```sort```, 因为去重是判断前项相等否
+* 普通题目看情况如果要求输入时```res```内的元素有序那也需要```sort```
+* Comb Sum题有一点点特殊在于在循环内需要判断```target - num < 0: continue```
+* Comb Sum II和I比题目有点点变化在于，数字不能无限重取，只能有限重取,  
+  所以是```comb_sum_II_helper(num[i+1:], target - n, res, ret)```
+* 记得尽量用```enumerate```
 
-1. 结束条件都是用完所有可用的char, 也就是i == len(n). 然后在ret.append(res[:]), 这里千万别忘了要return cancel函数
-2. 做for循环的时recursion函数的输入会有差别(记得这里用enumerate会方便好多)
-  1. Permutation传入剩余num_list 是 num[:i] + num[i+1], 因为只是除去当前数字, permute剩余
-  2. Combination传入剩余num_list 是 num[i+1:],  因为除去比当前数字之前的数, combine剩余
-  3. Subsets其实也应该是S[i+1:],除去之前可能的set. 但是与前两者不同的是循环的内容不同， Subset只有存在和不存在两种情况，所以等于是loop一个恒为2的循环，而第一种情况还有特殊条件，这个一定要仔细看好。
-  4. Permutation&Combination两者相同的地方都是
-    1. res.append(n)
-    2. do combine_rec/permute_rec
-    3. res.pop()
-3. 仔细观察这三道题就会发现, 其实I都是输入没有重复, 而II都是输入有重复,但输出不能有重复的题目.
+复杂度O(n)??
 
 -----
 

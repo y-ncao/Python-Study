@@ -27,9 +27,10 @@ class Solution:
             ret.append(res[:])
             return
         for i, num in enumerate(candidates):
-            if target >= num:
-                res.append(num)
-                self.combinationSum_helper(candidates[i:], target - num, res, ret)
-                res.pop()
+            if target - num < 0:
+                continue
+            res.append(num)
+            self.combinationSum_helper(candidates[i:], target - num, res, ret)
+            res.pop()
 
-    # Improvements: only continue when target > num ,else stop
+    # Continue when target < num

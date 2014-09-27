@@ -8,11 +8,7 @@
   * Postorder(Recursive, Iterative)
 """
 
-class TreeNode:
-    def __init__(self, x):
-        self.val = x
-        self.left = None
-        self.right = None
+from Tree_Helper.tree_helper import *
 
 def BFS_level_order_traversal(root):
     if not root:
@@ -144,23 +140,6 @@ def DFS_postorder(root):
     return result
 
 
-def create_bst_from_array(A, start=None, end=None):
-    if start is None and end is None:
-        start = 0
-        end = len(A) - 1
-
-    if start > end:
-        return None
-
-    mid = (start + end) / 2
-    root = TreeNode(A[mid])
-
-    root.left = create_bst_from_array(A, start, mid - 1)
-    root.right = create_bst_from_array(A, mid + 1, end)
-
-    return root
-
-
 A = [ i for i in range(10) ]
 new_tree = create_bst_from_array(A)
 """
@@ -248,15 +227,5 @@ preorder_doubly_flatten(new_tree)
 
 print BFS_level_order_traversal(new_tree)
 
-def print_tree(head):
-    while head:
-        print head.val,
-        if head.left:
-            print 'left', head.left.val,
-        if head.right:
-            print 'right', head.right.val,
-        print ''
-        head = head.right
-
-print_tree(head)
+print_tree_as_list(head)
 """

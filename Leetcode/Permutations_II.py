@@ -22,7 +22,7 @@ class Solution:
             ret.append(res[:])
             return
         for i, n in enumerate(num):
-            if i > 0 and n == num[i-1]:
+            if i > 0 and num[i] == num[i-1]:
                 continue
             res.append(n)
             self.permuteUnique_helper(num[:i] + num[i+1:], res, ret)

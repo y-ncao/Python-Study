@@ -29,7 +29,7 @@ class Solution:
             ret.append(res[:])
             return
         for i, num in enumerate(candidates):
-            if target < num or (i > 0 and num == candidates[i-1]):
+            if target < num or (i > 0 and candidates[i] == candidates[i-1]):
                 continue
             res.append(num)
             self.combinationSum_helper(candidates[i+1:], target - num, res, ret)

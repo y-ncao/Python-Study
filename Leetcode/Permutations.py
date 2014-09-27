@@ -14,17 +14,17 @@ class Solution:
 
     def permute_1(self, num):
         ret = []
-        self.permute_helper([], num, ret)
+        self.permute_helper(num, [], ret)
         return ret
 
-    def permute_helper(self, res, num, ret):
+    def permute_helper(self, num, res, ret):
         if len(num) == 0:
             ret.append(res[:])
             return
 
         for i, n in enumerate(num):
             res.append(n)
-            self.permute_helper(res, num[:i] + num[i+1:], ret)
+            self.permute_helper(num[:i] + num[i+1:], res, ret)
             res.pop()
 
     # Do this "inplace"

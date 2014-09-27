@@ -39,15 +39,15 @@ class Solution:
     # Recursion way
     def subsetsWithDup_2(self, S):
         ret = []
-        self.subsetsWithDup_rec(0, sorted(S), [], ret)
+        self.subsetsWithDup_rec(sorted(S), [], ret)
         return ret
 
-    def subsetsWithDup_rec(self, i, S, res, ret):
-        if i == len(S):
-            ret.append(res[:])
-            return
-        if len(res)==0 or S[i] != res[-1]: # This is tricky, but I should be careful, it's checking against
-            self.subsetsWithDup_rec(i+1, S, res, ret) # last res char, but not S[i-1]
-        res.append(S[i])
-        self.subsetsWithDup_rec(i+1, S, res, ret)
-        res.pop()
+    def subsetsWithDup_rec(self, S, res, ret):
+        ret.append(res[:])
+
+        for i, el in enumerate(S):
+            if i > 0 and S[i] == S[i-1]:
+                continue
+            res.append(el)
+            subsetsWithDup_rec(S[i+1:], res, ret)
+            res.pop()
