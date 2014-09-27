@@ -26,7 +26,7 @@ def BFS_level_order_traversal(root):
         ret.append(level[:])
     return ret
 
-# First all recursive
+# Recursive Ways
 def DFS_preorder(root):
     if not root:
         return
@@ -34,7 +34,24 @@ def DFS_preorder(root):
     DFS_preorder(root.left)
     DFS_preorder(root.right)
 
-# Use stack
+def DFS_inorder(root):
+    if not root:
+        return
+    DFS_inorder(root.left)
+    print root.val
+    DFS_inorder(root.right)
+
+def DFS_postorder(root):
+    if not root:
+        return
+    DFS_postorder(root.left)
+    DFS_postorder(root.right)
+    print root.val
+
+
+# Iterative Ways
+
+# push right first then left
 def DFS_perorder(root):
     if not root:
         return
@@ -47,8 +64,38 @@ def DFS_perorder(root):
         if node.left:
             stack.append(node.left)
 
+# if no left, move to right
+def DFS_inorder(root):
+    if not root:
+        return
+    stack = []
+    cur = root
+    while True:
+        while cur:
+            stack.append(cur)
+            cur = cur.left
+        if not stack:
+            break
+        cur = stack.pop()
+        print cur
+        cur = cur.right
+
+# reverse the reversed preorder
+def DFS_postorder(root):
+    if not root:
+        return
+    stack = []
+    ret = []
+    while len(stack) > 0:
+        node = stack.pop()
+        if node.left:
+            stack.append(node.left)
+        if node.right:
+            stack.append(node.right)
+    print ret[::-1]
+
+
 # Divde and Conquer
-# Not sure how this gonna work
 def DFS_preorder(root):
     if not root:
         return []
@@ -61,13 +108,6 @@ def DFS_preorder(root):
     result.extend(right)
     return result
 
-# Recursive
-def DFS_postorder(root):
-    if not root:
-        return
-    DFS_postorder(root.left)
-    DFS_postorder(root.right)
-    print root.val
 
 # Divide and Conquer
 def DFS_postorder(root):
@@ -81,26 +121,3 @@ def DFS_postorder(root):
     result.extend(right)
     result.append(root.val)             # ?WTF just switch the place?
     return result
-
-# Use stack
-def DFS_postorder(root):
-    if not root:
-        return []
-    res = []
-    stack = [root]
-    prev = None
-
-    while len(stack) > 0:
-        node = stack.pop()
-        if prev is None or prev.left == node or prev.right == node: # Traverse down the tree
-            if node.left:
-                stack.append(node.left)
-            elif node.right:
-                stack.append(node.right)
-        elif node.left == prev:
-            stack.append(node.right)
-        else:
-            res.append(node.val)
-            stack.pop()
-        prev = node
-    return res
