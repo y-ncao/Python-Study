@@ -1,7 +1,10 @@
-####From Tango Interview Challenge
-No need to worry this right now
+"""
+#####From Tango Interview Challenge
+This is pretty important design pattern, including the knowledge of thread
 
-```python
+1. Using Queue
+"""
+
 from threading import Thread
 import time
 import random
@@ -32,9 +35,10 @@ class ConsumerThread(Thread):
 
 ProducerThread().start()
 ConsumerThread().start()
+
 ```
 
------
+2. Using Condition
 
 ```python
 from threading import Thread, Condition
@@ -78,11 +82,11 @@ class ConsumerThread(Thread):
             condition.release()
             time.sleep(random.random())
 
-#ProducerThread().start()
-#ConsumerThread().start()
+ProducerThread().start()
+ConsumerThread().start()
 ```
 
------
+3. Helper functions
 
 ```python
 import random

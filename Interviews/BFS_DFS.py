@@ -176,14 +176,14 @@ DFS_postorder(new_tree)
 """
 
 ```
-##### Flatten BST to (Doubly) linked list
+#### Flatten BST to (Doubly) linked list
 1. Leetcode上面的原题是to single, 但是traversal是pre-order
 2. 这里的doubly用的方法是in-order traversal, pre-order也是一样的思路
 3. [网上](http://cslibrary.stanford.edu/109/TreeListRecursion.html)的题目还有点差别是要变成Circular Doubly Linked List
 4. 稍微注意一下return的问题, 这两种recursion的方法都没有return值, 所以如果需要找head的话还得再处理下
 5. 千万记得这里需要用到global declaration
 
-######Flatten思路
+#####Flatten思路
 1. 最方便的方法还是用recursion
 2. 先弄清需要的是preorder, inorder还是postorder的顺序
 3. 选择对应order的traversal模板, 重要的一点是要把

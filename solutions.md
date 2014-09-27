@@ -7851,14 +7851,14 @@ DFS_postorder(new_tree)
 
 
 ```
-##### Flatten BST to (Doubly) linked list
+#### Flatten BST to (Doubly) linked list
 1. Leetcode上面的原题是to single, 但是traversal是pre-order
 2. 这里的doubly用的方法是in-order traversal, pre-order也是一样的思路
 3. [网上](http://cslibrary.stanford.edu/109/TreeListRecursion.html)的题目还有点差别是要变成Circular Doubly Linked List
 4. 稍微注意一下return的问题, 这两种recursion的方法都没有return值, 所以如果需要找head的话还得再处理下
 5. 千万记得这里需要用到global declaration
 
-######Flatten思路
+#####Flatten思路
 1. 最方便的方法还是用recursion
 2. 先弄清需要的是preorder, inorder还是postorder的顺序
 3. 选择对应order的traversal模板, 重要的一点是要把
@@ -7938,9 +7938,127 @@ print_tree(head)
 ```
 -----
 
-##156. Consecutive Subarray
+##156. BlockingQueue
 
-####Interview With Cyan
+#####From Tango Interview Challenge
+This is pretty important design pattern, including the knowledge of thread
+
+1. Using Queue
+
+```python
+
+from threading import Thread
+import time
+import random
+from Queue import Queue
+
+queue = Queue(10)
+
+class ProducerThread(Thread):
+    def run(self):
+        nums = range(5)
+        global queue
+        while True:
+            num = random.choice(nums)
+            queue.put(num, True)
+            print "Produced", num
+            time.sleep(random.random())
+
+
+class ConsumerThread(Thread):
+    def run(self):
+        global queue
+        while True:
+            num = queue.get(True)
+            queue.task_done()
+            print "Consumed", num
+            time.sleep(random.random())
+
+
+ProducerThread().start()
+ConsumerThread().start()
+
+```
+
+2. Using Condition
+
+```python
+from threading import Thread, Condition
+import time
+import random
+
+queue = []
+MAX_NUM = 10
+condition = Condition()
+
+class ProducerThread(Thread):
+    def run(self):
+        nums = range(5)
+        global queue
+        while True:
+            condition.acquire()
+            if len(queue) == MAX_NUM:
+                print "Queue full, producer is waiting"
+                condition.wait()
+                print "Space in queue, Consumer notified the producer"
+            num = random.choice(nums)
+            queue.append(num)
+            print "Produced", num
+            condition.notify()
+            condition.release()
+            time.sleep(random.random())
+
+
+class ConsumerThread(Thread):
+    def run(self):
+        global queue
+        while True:
+            condition.acquire()
+            if not queue:
+                print "Nothing in queue, consumer is waiting"
+                condition.wait()
+                print "Producer added something to queue and notified the consumer"
+            num = queue.pop(0)
+            print "Consumed", num
+            condition.notify()
+            condition.release()
+            time.sleep(random.random())
+
+ProducerThread().start()
+ConsumerThread().start()
+```
+
+3. Helper functions
+
+```python
+import random
+
+def checker(func):
+    def wrapped():
+        value = func()
+        if value == 0:
+            print 'correct'
+        elif value == 1:
+            print 'fail'
+        else:
+            print 'exception'
+    return wrapped
+
+
+@checkergmail
+def random_result():
+    result = random.choice([0,1,2])
+    print result
+    return result
+
+random_result()
+```
+```
+-----
+
+##157. Consecutive Subarray
+
+#####Interview With Cyan
 1. Shortest Path
 2. Consecutive Subarray
 
@@ -7990,7 +8108,7 @@ print find_consecutive(num, sum)
 ```
 -----
 
-##158. Count zeros in Factorial
+##159. Count zeros in Factorial
 
 From mitbbs for Facebook
 
@@ -8019,7 +8137,7 @@ print fact(N)
 ```
 -----
 
-##159. Delete a Node in BST
+##160. Delete a Node in BST
 
 [Solution](http://answer.ninechapter.com/solutions/delete-a-node-in-binary-search-tree/)
 实际上有好几种做法
@@ -8082,7 +8200,7 @@ def delete_node_in_BST(parent, node):
 ```
 -----
 
-##162. Flatten a Multilevel Linked List
+##163. Flatten a Multilevel Linked List
 
 Given a linked list where in addition to the next pointer, each node has a child pointer, which may or may not point to a separate list. These child lists may have one or more children of their own, and so on, to produce a multilevel data structure, as shown in below figure.You are given the head of the first level of the list. Flatten the list so that all the nodes appear in a single-level linked list. You need to flatten the list in way that all nodes at first level should come first, then nodes of second level, and so on.
 
@@ -8115,7 +8233,7 @@ def flatten_list(head):
 ```
 -----
 
-##163. Flattening a Linked List
+##164. Flattening a Linked List
 
 Given a linked list where every node represents a linked list and contains two pointers of its type:
 (i) Pointer to next node in the main list (we call it ‘right’ pointer in below code)
@@ -8168,7 +8286,7 @@ def merge(node1, node2):
 ```
 -----
 
-##164. Largest None Close Sum
+##165. Largest None Close Sum
 
 #####9/23/2014 Interview with Kevin from Fivestars
 
@@ -8204,7 +8322,7 @@ def find_largest_none_close_sum(A):
 ```
 -----
 
-##166. Longest Common Subsequence
+##167. Longest Common Subsequence
 
 Need to distinguish from Longest Common Substring
 
@@ -8304,7 +8422,7 @@ print LCS('AGGTAB', 'GXTXAYB')
 ```
 -----
 
-##167. Longest Common Substring
+##168. Longest Common Substring
 
 ##### 9/4/2014 Interview with Tubular
 1. Subset(second le)
@@ -8362,7 +8480,7 @@ print Longest_Common_Substring("GeeksforGeeks", "GeeksQuiz")
 ```
 -----
 
-##168. Longest Increasing Subsequence
+##169. Longest Increasing Subsequence
 
 #####NC Class 5, slides 17
 
@@ -8424,7 +8542,7 @@ print d_A[max(d_A.keys())]
 ```
 -----
 
-##169. Lowest Common Ancestor
+##170. Lowest Common Ancestor
 
 #####[LCA, Lowest Common Ancestor](http://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/) Pocket Gem possible question 9/8/2014
 
@@ -8498,7 +8616,7 @@ def get_LCA(root, node1, node2):
 ```
 -----
 
-##170. Min Num to Composite Words
+##171. Min Num to Composite Words
 
 From [Career Cup](http://www.careercup.com/page?pid=pinterest-interview-questions) Pinterest
 
@@ -8543,7 +8661,7 @@ print print_min_num_words(str, d)
 ```
 -----
 
-##171. Min Stack
+##172. Min Stack
 
 #####From NC Class 7 Data Structures, slides 8
 [Solution](http://www.geeksforgeeks.org/design-and-implement-special-stack-data-structure/)
@@ -8582,7 +8700,7 @@ class MinStack():
 ```
 -----
 
-##172. Operations Calculation
+##173. Operations Calculation
 
 ##### 9/5/2014 Elasticbox
 加减运算
@@ -8639,9 +8757,9 @@ find_next_num()
 ```
 -----
 
-##173. Print Matrix
+##174. Print Matrix
 
-####From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32570751.html) for Pinterest
+#####From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32570751.html) for Pinterest
 
 Print a N x M matrix in diagonal from the upper left to lower right. However, with the following caveat. It's easy to just show the input and expect output.
 ```
@@ -8684,7 +8802,7 @@ print_matrix(matrix)
 ```
 -----
 
-##174. Print Numbers With Five
+##175. Print Numbers With Five
 
 ##### 9/7/2014 From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32651839.html) for Groupon
 写一个function，对于参数n，输出从0到n之间所有含5的数字。
@@ -8712,7 +8830,7 @@ print find_five(60)
 ```
 -----
 
-##175. Queue by Two Stacks
+##176. Queue by Two Stacks
 
 Implement a Queue by using two stacks. Support O(1) push, pop, top
 
@@ -8740,7 +8858,7 @@ class Queue():
 ```
 -----
 
-##176. Recover Rotated Sorted Array
+##177. Recover Rotated Sorted Array
 
 Given a rotated sorted array, recover it to sorted array in-place.
 
@@ -8771,7 +8889,7 @@ print recover_rotated_sorted_array(A)
 ```
 -----
 
-##177. Rotated Mirror Number
+##178. Rotated Mirror Number
 
 #####From Alec's email, someone's onsite interview with Facebook for finding rotated mirrow number like 808 which is less than N
 
@@ -8816,7 +8934,7 @@ print rotated_mirror_number(10000)
 ```
 -----
 
-##180. Search a Range in BST
+##181. Search a Range in BST
 
 or Print BST Keys in the Give Range
 
@@ -8847,7 +8965,7 @@ def search_a_range(root, k1, k2):
 ```
 -----
 
-##181. Shortest Path
+##182. Shortest Path
 
 #####With Twitter & Cyan
 
@@ -8930,7 +9048,7 @@ print find_path(map)
 ```
 -----
 
-##182. Shuffle
+##183. Shuffle
 
 #####Shuffle a given array
 Saw it from FiveStar's interview.
@@ -8959,7 +9077,7 @@ print shuffle_array(A)
 ```
 -----
 
-##183. isOneEditDistance
+##184. isOneEditDistance
 
 #####From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32760941.html) for facebook
 
