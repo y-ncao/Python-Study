@@ -639,27 +639,43 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
      4. Locale: router
 
 ##Definetly Redo
-* [x] Rotate List
-* [x] Longest Substring Without Repeating Characters
-
-* [ ] BFS every traversal
-* [x] Maximum Path Sum(BT)
-* [ ] Word Ladder II
-* [x] decode ways
-* [x] Longest Palindrome Substring
 * [ ] Regular Expression Matching
 * [ ] Wildcard Matching
 * [ ] Max Points on a Line
-* [x] Spiral Matrix * 2
+* [ ] Word Ladder II
+* [ ] Word Break II
+* [ ] Text Justification
+* [ ] String to Integer (atoi)
+* [ ] Substring with Concatenation of All Words
+* [ ] Minimum Window Substring
+* [ ] Sum系列
+* [ ] Longest Valid Parentheses
+* [ ] Word Search (简单)
+* [ ] Simplify Path
+* [ ] Restore IP Addresses
+* [ ] Insert Interval
+* [ ] Implement strStr() (KMP再写一遍)
+* [ ] Count and Say (Linkedin面经)
+* [ ] Sort Colors (忘了)
+
+* [x] Rotate List
+* [x] Longest Substring Without Repeating Characters
+
+
+* [x] Maximum Path Sum(BT)
+
+* [x] decode ways
+* [x] Longest Palindrome Substring
+
 * [ ] Next Permutation
 
-
 * [x] Rotate Image
+* [x] Spiral Matrix * 2
 * [ ] Gray Code
 
 * [x] LRU
 * [x] Surrounded Regions
-* [ ] Gas Station
+* [x] Gas Station
 * [ ] Permutation Sequence
 * [ ] Next Permutation
 * [ ] Maximum Subwindow
@@ -676,14 +692,15 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [ ] Recover Binary Search Tree
 * [ ] Validate Binary Search Tree
 * [ ] Order Traversal Recover
+* [ ] BFS every traversal
 * [x] Flatten BST
 
 * [x] Median of Two Sorted Arrays
 
-* [ ] Trapping Water (especially the way to think)
-* [ ] Container With Most Water
+* [x] Trapping Water (especially the way to think)
+* [x] Container With Most Water
 * [x] Stock 系列
-* [ ] Candy
+* [x] Candy
 
 ##Need Understand
 * [ ] Largest Rectangle in Histogram

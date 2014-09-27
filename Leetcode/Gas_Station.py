@@ -15,19 +15,18 @@ class Solution:
     # @return an integer
     def canCompleteCircuit(self, gas, cost):
         N = len(gas)
-        diff = []
-        for i in range(N):
-            diff.append(gas[i]-cost[i])
-        sum = 0
         start_node = 0
-        left_gas = 0
-        for i in range(0, N):
-            left_gas += diff[i]
-            sum += diff[i]
-            if sum < 0:
-                start_node = i+1
-                sum = 0
-        if left_gas < 0:
+        total_gas = 0
+        cur_gas = 0
+        for i in range(N):
+            total_gas += gas[i] - cost[i]
+            cur_gas += gas[i] - cost[i]
+            if cur_gas < 0:
+                start_node = i + 1
+                cur_gas = 0
+        if total_gas < 0:
             return -1
         else:
             return start_node
+        # Note:
+        # 1. Notice line 18 for start node and line 30 for return
