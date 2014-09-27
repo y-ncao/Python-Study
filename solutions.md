@@ -7719,8 +7719,8 @@ def DFS_helper(ret, level, root):
         return
 
     ret.setdefault(level, []).append(root.val)
-    DFS_helper(ret, level+1, root.left)
-    DFS_helper(ret, level+1, root.right)
+    DFS_helper(ret, level + 1, root.left)
+    DFS_helper(ret, level + 1, root.right)
 
 
 # Recursive Ways
@@ -7858,7 +7858,7 @@ DFS_postorder(new_tree)
 4. 稍微注意一下return的问题, 这两种recursion的方法都没有return值, 所以如果需要找head的话还得再处理下
 5. 千万记得这里需要用到global declaration
 
-#####思路
+######Flatten思路
 1. 最方便的方法还是用recursion
 2. 先弄清需要的是preorder, inorder还是postorder的顺序
 3. 选择对应order的traversal模板, 重要的一点是要把
@@ -7866,15 +7866,15 @@ DFS_postorder(new_tree)
    left = root.left
    right = root.right
    ```
-   提前存好，因为进行flatten之后可能会破坏树的结构，这步做好了之后，什么order traversal的方法都是一样的了
+   提前存好，因为进行flatten之后可能会破坏树的结构，这步做好之后，XXXorder traversal的方法都是一样的了
 4. 记得```global head, last```然后对```last```进行操作
    * Singly Linked List - 记得重置```last.left = None, last.right = root```
    * Doubly Linked List - 如果```last.right = root, root.left = last```
      这里有一点点差别就是如果是preorder的话，```head.left = None```需要单独处理下
-5. ```last = root```更新last
+5. ```last = root```更新```last```
 6. ```head```就是初始设为None, 第一个需要处理的node就赋为```head```就行了
-```
 
+```python
 #last = None
 #head = None
 def inorder_doubly_flatten(root):
@@ -7940,11 +7940,11 @@ print_tree(head)
 
 ##156. Consecutive Subarray
 
-#####Interview With Cyan
+####Interview With Cyan
 1. Shortest Path
 2. Consecutive Subarray
 
-# Prob 2:
+#####Prob 2:
 [1, 4, 20, 10, 3, 5, 9] # (20, 10, 3) Sum=33 Also the subarray must be consecutive
 Note: All elements are positive integers exception: array can include 0
 Note: You cannot sort the array
@@ -8641,7 +8641,7 @@ find_next_num()
 
 ##173. Print Matrix
 
-#####From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32570751.html) for Pinterest
+####From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32570751.html) for Pinterest
 
 Print a N x M matrix in diagonal from the upper left to lower right. However, with the following caveat. It's easy to just show the input and expect output.
 ```
