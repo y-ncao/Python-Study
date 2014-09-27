@@ -693,7 +693,7 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [ ] Order Traversal Recover
 * [ ] BFS every traversal
 * [ ] Flatten BST to doubly linkedlist
-* [x] Flatten BST
+* [ ] Flatten BST to Linked List
 
 * [x] Median of Two Sorted Arrays
 
