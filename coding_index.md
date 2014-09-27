@@ -25,7 +25,7 @@
 [Permutations](./Leetcode/Permutations.py) [II](./Leetcode/Permutations_II.py),
 [Combinations](./Leetcode/Combinations.py),
 [Combinations Sum](./Leetcode/Combination_Sum.py) [II](./Leetcode/Combination_Sum_II.py)
-和[Subset](./Leetcode/Subsets.py) [II](./Leetcode/Subsets_II.py)都是DFS， 区别在于
+和[Subset](./Leetcode/Subsets.py) [II](./Leetcode/Subsets_II.py)都是DFS， 区别在于:
 
 1. 将```res```放入```ret```的条件不一样  
    * Permu - ```len(res) = len(S)```
@@ -40,6 +40,8 @@
    * Combin Sum - ```comb_sum_helper(num[i:], target - n, res, ret)```(S[i:])
    * Subsets - ```sub_helper(S[i+1:], res, ret)```(S[i+1:])  
    S[i+1:]决定了res内是不会有重复项的(除非S本身就有重复), S[i:]让当前元素可以重复使用
+   
+######Note
 * II类去重题相比较I类题唯一的差别就是在循环的第一行需要check```if i > 0 and S[i] == S[i-1]: continue```
 * 注意II类题都需要先```sort```, 因为去重是判断前项相等否
 * 普通题目看情况如果要求输入时```res```内的元素有序那也需要```sort```
