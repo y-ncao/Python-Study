@@ -20,23 +20,15 @@ class Solution:
     # @return nothing, sort in place
     def sortColors(self, A):
         start = 0
-        end = len(A)-1
-        i = 0
-        while i <= end:
-            if A[i]==0:
-                self.swap(start, i, A)
+        end = len(A) - 1
+        cur = 0
+        while cur <= end:
+            if A[cur] == 0:
+                A[start], A[cur] = A[cur], A[start]
+                cur += 1
                 start += 1
-                i += 1
-            elif A[i]==2:
-                self.swap(end, i, A)
-                end -= 1
+            elif A[cur] == 1:
+                cur += 1
             else:
-                i += 1
-        return
-
-    def swap(self, a, b, A):
-        tmp = A[a]
-        A[a] = A[b]
-        A[b] = tmp
-
-    # Keep in mind that's i<= end
+                A[cur], A[end] = A[end], A[cur]
+                end -= 1
