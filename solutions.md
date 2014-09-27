@@ -868,10 +868,13 @@ class Solution:
         for i in range(1, N):
             if ratings[i] > ratings[i-1]:
                 candy[i] = candy[i-1] + 1
-        for i in range(N-2, -1, -1):
+        for i in range(N-1)[::-1]:
             if ratings[i] > ratings[i+1] and candy[i] <= candy[i+1]:
                 candy[i] = candy[i+1] + 1
         return sum(candy)
+
+    # Note:
+    # Need to be careful for line 21 the second and
 ```
 -----
 
@@ -1187,17 +1190,16 @@ Note: You may not slant the container.
 class Solution:
     # @return an integer
     def maxArea(self, height):
-        res = 0
         l = 0
         r = len(height) - 1
+        max_water = 0
         while l < r:
+            max_water = max(max_water, (r-l) * min(height[l], height[r]))
             if height[l] <= height[r]:
-                res = max(res, (r-l) * height[l])
                 l += 1
             else:
-                res = max(res, (r-l) * height[r])
                 r -= 1
-        return res
+        return max_water
 
     # Two pointer problem
 ```
@@ -1347,22 +1349,20 @@ Note: The sequence of integers will be represented as a string.
 class Solution:
     # @return a string
     def countAndSay(self, n):
-        num = '1'
-        while n > 1:
-            prev = num[0]
-            count = 1
-            new_num = ''
-            for bit in num[1:]:
-                if bit == prev:
-                    count += 1
+        prev = '1'
+        for i in range(1, n):
+            counter = 1
+            cur = [prev[0]]
+            for char in prev[1:]:
+                if char == cur[-1]:
+                    counter += 1
                 else:
-                    new_num += str(count) + str(prev)
-                    count = 1
-                prev = bit
-            new_num += str(count) + str(prev)
-            num = new_num
-            n -= 1
-        return num
+                    cur.insert(-1, str(counter))
+                    cur.append(char)
+                    counter = 1
+            cur.insert(-1, str(counter))
+            prev = ''.join(cur)
+        return prev
 ```
 -----
 
@@ -1779,22 +1779,21 @@ class Solution:
     # @return an integer
     def canCompleteCircuit(self, gas, cost):
         N = len(gas)
-        diff = []
-        for i in range(N):
-            diff.append(gas[i]-cost[i])
-        sum = 0
         start_node = 0
-        left_gas = 0
-        for i in range(0, N):
-            left_gas += diff[i]
-            sum += diff[i]
-            if sum < 0:
-                start_node = i+1
-                sum = 0
-        if left_gas < 0:
+        total_gas = 0
+        cur_gas = 0
+        for i in range(N):
+            total_gas += gas[i] - cost[i]
+            cur_gas += gas[i] - cost[i]
+            if cur_gas < 0:
+                start_node = i + 1
+                cur_gas = 0
+        if total_gas < 0:
             return -1
         else:
             return start_node
+        # Note:
+        # 1. Notice line 18 for start node and line 30 for return
 ```
 -----
 
@@ -5050,37 +5049,29 @@ class Solution:
     # @param matrix, a list of lists of integers
     # @return a list of lists of integers
     def rotate(self, matrix):
-        return self.rotate_2(matrix)
-
-    def rotate_1(self, matrix):
-        n = len(matrix)
-
-        for i in range(n/2):
-            start = i
-            end   = n-1-i
-            for j in range(start, end):
-                offset = j - start
-                top = matrix[start][j]
-                matrix[start][j]          = matrix[end-offset][start]  # bottom to top
-                matrix[end-offset][start] = matrix[end][end-offset]    # right to left
-                matrix[end][end-offset]   = matrix[j][end]             # top to bottom
-                matrix[j][end]            = top
+        start = 0
+        end = len(matrix) - 1
+        while start < end:
+            for i in range(end-start):
+                tmp = matrix[start][start+i]
+                matrix[start][start+i] = matrix[end-i][start]
+                matrix[end-i][start] = matrix[end][end-i]
+                matrix[end][end-i] = matrix[start+i][end]
+                matrix[start+i][end] = tmp
+                #print matrix
+            start += 1
+            end -= 1
         return matrix
 
-    def rotate_2(self, matrix):
-        n = len(matrix)
-        for i in range(n):
-            for j in range(i+1, n):
-                self.swap(matrix, i, j , j, i)
-        for i in range(n):
-            for j in range(n/2):
-                self.swap(matrix, i, j, i, n-1-j)
-        return matrix
+    # Note:
+    # 1. Remember line 17, which is end-start
 
-    def swap(self, matrix, i1, j1, i2, j2):
-        tmp = matrix[i1][j1]
-        matrix[i1][j1] = matrix[i2][j2]
-        matrix[i2][j2] = tmp
+    
+    matrix = [[2,29,20,26,16,28],[12,27,9,25,13,21],[32,33,32,2,28,14],[13,14,32,27,22,26],[33,1,20,7,21,7],[4,24,1,6,32,34]]
+    def rotate(matrix):
+        return [list(reversed(x)) for x in zip(*matrix)]
+    print rotate(matrix)
+    
 ```
 -----
 
@@ -5712,26 +5703,18 @@ class Solution:
     # @return nothing, sort in place
     def sortColors(self, A):
         start = 0
-        end = len(A)-1
-        i = 0
-        while i <= end:
-            if A[i]==0:
-                self.swap(start, i, A)
+        end = len(A) - 1
+        cur = 0
+        while cur <= end:
+            if A[cur] == 0:
+                A[start], A[cur] = A[cur], A[start]
+                cur += 1
                 start += 1
-                i += 1
-            elif A[i]==2:
-                self.swap(end, i, A)
-                end -= 1
+            elif A[cur] == 1:
+                cur += 1
             else:
-                i += 1
-        return
-
-    def swap(self, a, b, A):
-        tmp = A[a]
-        A[a] = A[b]
-        A[b] = tmp
-
-    # Keep in mind that's i<= end
+                A[cur], A[end] = A[end], A[cur]
+                end -= 1
 ```
 -----
 
@@ -5815,33 +5798,36 @@ class Solution:
         if len(matrix) == 0:
             return []
         N = len(matrix[0])
-        start_x = 0
-        start_y = 0
-        end_x   = N - 1
-        end_y   = M - 1
+        start_col = start_row = 0
+        end_row   = M - 1
+        end_col   = N - 1
         ret = []
+
         while True:
-            for i in range(start_x, end_x + 1):
-                ret.append(matrix[start_y][i])
-            start_y += 1
-            if start_y > end_y:
+            for i in range(start_col, end_col + 1):
+                ret.append(matrix[start_row][i])
+            start_row += 1
+            if start_row > end_row:
                 break
-            for i in range(start_y, end_y + 1):
-                ret.append(matrix[i][end_x])
-            end_x -= 1
-            if start_x > end_x:
+            for i in range(start_row, end_row + 1):
+                ret.append(matrix[i][end_col])
+            end_col -= 1
+            if start_col > end_col:
                 break
-            for i in range(start_x, end_x + 1)[::-1]:
-                ret.append(matrix[end_y][i])
-            end_y -= 1
-            if start_y > end_y:
+            for i in range(start_col, end_col + 1)[::-1]:
+                ret.append(matrix[end_row][i])
+            end_row -= 1
+            if start_row > end_row:
                 break
-            for i in range(start_y, end_y + 1)[::-1]:
-                ret.append(matrix[i][start_x])
-            start_x += 1
-            if start_x > end_x:
+            for i in range(start_row, end_row + 1)[::-1]:
+                ret.append(matrix[i][start_col])
+            start_col += 1
+            if start_col > end_col:
                 break
         return ret
+
+    # Note:
+    # This way is a lot better to memory
 ```
 -----
 
@@ -5864,29 +5850,41 @@ You should return the following matrix:
 class Solution:
     # @return a list of lists of integer
     def generateMatrix(self, n):
-        ret = [ [ 0 for i in range(n)] for j in range(n)]
+        ret = [ [ 0 for i in range(n)] for j in range(n) ]
         num = 1
         start_row = start_col = 0
         end_row = end_col = n - 1
-        while start_row < end_row and start_col < end_col:
+        while True:
             for i in range(start_col, end_col + 1):
                 ret[start_row][i] = num
                 num += 1
             start_row += 1
+            if start_row > end_row:
+                break
+
             for i in range(start_row, end_row + 1):
                 ret[i][end_col] = num
                 num += 1
             end_col -= 1
+            if start_col > end_col:
+                break
+
             for i in range(end_col, start_col - 1, -1):
                 ret[end_row][i] = num
                 num += 1
             end_row -= 1
+            if  start_row > end_row:
+                break
+
             for i in range(end_row, start_row -1, -1):
                 ret[i][start_col] = num
                 num += 1
             start_col += 1
-        if n%2 == 1:
-            ret[start_col][start_row] = num
+            if start_col > end_col:
+                break
+        # This is the old way
+        #if n%2 == 1:
+        #    ret[start_col][start_row] = num
         return ret
 ```
 -----
@@ -6625,13 +6623,13 @@ class Solution:
             return 0
         left_to_right = [0 for i in range(N)]
         right_to_left = [0 for i in range(N)]
-        max_left = A[0]
-        max_right = A[N-1]
-        for i in range(N):
-            max_left = max(max_left, A[i])
-            left_to_right[i] = max_left
-            max_right = max(max_right, A[N-1-i])
-            right_to_left[N-1-i] = max_right
+        left_to_right[0] = A[0]
+        right_to_left[-1] = A[-1]
+
+        for i in range(1, N):
+            left_to_right[i] = max(left_to_right[i-1], A[i])
+            right_to_left[-i-1] = max(right_to_left[-i], A[-i-1])
+
         water = 0
         for i in range(N):
             water += min(left_to_right[i], right_to_left[i]) - A[i] # Note here
@@ -7703,7 +7701,7 @@ def BFS_level_order_traversal(root):
         ret.append(level[:])
     return ret
 
-# First all recursive
+# Recursive Ways
 def DFS_preorder(root):
     if not root:
         return
@@ -7711,7 +7709,24 @@ def DFS_preorder(root):
     DFS_preorder(root.left)
     DFS_preorder(root.right)
 
-# Use stack
+def DFS_inorder(root):
+    if not root:
+        return
+    DFS_inorder(root.left)
+    print root.val
+    DFS_inorder(root.right)
+
+def DFS_postorder(root):
+    if not root:
+        return
+    DFS_postorder(root.left)
+    DFS_postorder(root.right)
+    print root.val
+
+
+# Iterative Ways
+
+# push right first then left
 def DFS_perorder(root):
     if not root:
         return
@@ -7724,8 +7739,38 @@ def DFS_perorder(root):
         if node.left:
             stack.append(node.left)
 
+# if no left, move to right
+def DFS_inorder(root):
+    if not root:
+        return
+    stack = []
+    cur = root
+    while True:
+        while cur:
+            stack.append(cur)
+            cur = cur.left
+        if not stack:
+            break
+        cur = stack.pop()
+        print cur
+        cur = cur.right
+
+# reverse the reversed preorder
+def DFS_postorder(root):
+    if not root:
+        return
+    stack = []
+    ret = []
+    while len(stack) > 0:
+        node = stack.pop()
+        if node.left:
+            stack.append(node.left)
+        if node.right:
+            stack.append(node.right)
+    print ret[::-1]
+
+
 # Divde and Conquer
-# Not sure how this gonna work
 def DFS_preorder(root):
     if not root:
         return []
@@ -7738,13 +7783,6 @@ def DFS_preorder(root):
     result.extend(right)
     return result
 
-# Recursive
-def DFS_postorder(root):
-    if not root:
-        return
-    DFS_postorder(root.left)
-    DFS_postorder(root.right)
-    print root.val
 
 # Divide and Conquer
 def DFS_postorder(root):
@@ -7758,29 +7796,6 @@ def DFS_postorder(root):
     result.extend(right)
     result.append(root.val)             # ?WTF just switch the place?
     return result
-
-# Use stack
-def DFS_postorder(root):
-    if not root:
-        return []
-    res = []
-    stack = [root]
-    prev = None
-
-    while len(stack) > 0:
-        node = stack.pop()
-        if prev is None or prev.left == node or prev.right == node: # Traverse down the tree
-            if node.left:
-                stack.append(node.left)
-            elif node.right:
-                stack.append(node.right)
-        elif node.left == prev:
-            stack.append(node.right)
-        else:
-            res.append(node.val)
-            stack.pop()
-        prev = node
-    return res
 ```
 -----
 
@@ -8016,7 +8031,7 @@ def merge(node1, node2):
 
 ##164. Largest None Close Sum
 
-###9/23/2014 Interview with Kevin from Fivestars
+#####9/23/2014 Interview with Kevin from Fivestars
 
 safes = [2, 5, 4, 10, 7, 2, 6, 8, 1, 10]
             x      x     x     x     x
@@ -8487,7 +8502,7 @@ find_next_num()
 
 ##173. Print Matrix
 
-###From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32570751.html) for Pinterest
+#####From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32570751.html) for Pinterest
 
 Print a N x M matrix in diagonal from the upper left to lower right. However, with the following caveat. It's easy to just show the input and expect output.
 ```
@@ -8619,7 +8634,7 @@ print recover_rotated_sorted_array(A)
 
 ##177. Rotated Mirror Number
 
-####From Alec's email, someone's onsite interview with Facebook for finding rotated mirrow number like 808 which is less than N
+#####From Alec's email, someone's onsite interview with Facebook for finding rotated mirrow number like 808 which is less than N
 
 
 ```python
@@ -8778,7 +8793,7 @@ print find_path(map)
 
 ##182. Shuffle
 
-###Shuffle a given array
+#####Shuffle a given array
 Saw it from FiveStar's interview.
 
 Solution is from Geeksforgeesk
@@ -8807,7 +8822,7 @@ print shuffle_array(A)
 
 ##183. isOneEditDistance
 
-From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32760941.html) for facebook
+#####From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32760941.html) for facebook
 
 ```python
 
