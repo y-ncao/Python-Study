@@ -22,16 +22,18 @@
 -----
 
 #####总结
-Permutations II,
-Combinations,
-Combinations Sum II
-和Subset II都是DFS， 区别在于
+[Permutations](./Leetcode/Permutations.py) [II](./Leetcode/Permutations_II.py),
+[Combinations](./Leetcode/Combinations.py),
+[Combinations Sum](./Leetcode/Combination_Sum.py) [II](./Leetcode/Combination_Sum_II.py)
+和[Subset](./Leetcode/Subsets.py) [II](./Leetcode/Subsets_II.py)都是DFS， 区别在于
+
 1. 将```res```放入```ret```的条件不一样  
    * Permu - ```len(res) = len(S)```
    * Combin - ```len(res) == k```
    * Combin Sum - ```target == 0```
    * Subsets - 只要生成新的res就要存一次  
    前三种题存过结果只后程序应该return
+
 2. 循环内call recursion时的输入变量不一样  
    * Permu - ```permu_helper(num[:i] + num[i+i:], res, ret)```(除了S[i])
    * Combin - ```comb_helper(i+1, n, k, res, ret)```(S[i+1:])
