@@ -33,5 +33,41 @@ class Solution:
                     dp[i-1] = False
                 res.pop()
 
-    # Use dp to reduce the duplicate
-    # Another way is follow NC use divide and conquer
+```
+
+这两种方法本质上没有区别
+* 前者是如果运行dfs之后结果没有变化，说明没有搜到，后面也不用搜了
+* 后者是预处理dp然后用在recursion之中
+
+```python
+
+    def wordBreak(self, s, dict):
+        ret = []
+        dp = self.word_break_dp(s, dict)
+        self.dfs_word_break(len(s)+1, s, dict, [], ret, dp)
+        return ret
+
+    def word_break_dp(self, s, dict):
+        N = len(s)
+        dp = [False for i in range(N+1)]
+        dp[0] = True
+        for i in range(N):
+            for j in range(i):
+                if dp[j] and s[j:i]:
+                    dp[i] = True
+                    break
+        return dp
+
+    def dfs_word_break(self, end, s, dict, res, ret, dp):
+        if end == 0:
+            ret.append(' '.join(res))
+            return
+        for i in range(end):
+            if dp[i] and s[i:end] in dict:
+                res.insert(0, s[i:end]) # Note this is insert(0)
+                self.dfs_word_break(i, s, dict, res, ret, dp)
+                res.pop(0)              # So this is pop(0)
+
+        # dict = ["cat", "cats", "and", "sand", "dog"]
+        # s = "catsanddog"
+        # print wordBreak(s, dict)

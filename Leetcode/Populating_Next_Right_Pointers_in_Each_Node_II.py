@@ -33,30 +33,30 @@ class Solution:
     # @param root, a tree node
     # @return nothing
     def connect(self, root):
-        if root is None:
+        if not root or (not root.left and not root.right):
             return
-        if root.left is not None:
-            if root.right is not None:
-                root.left.next = root.right
-            else:
-                root.left.next = self.find_next(root.next)
+        if root.left and root.right:
+            root.left.next = root.right
 
-        if root.right is not None:
-            root.right.next = self.find_next(root.next)
+        next_node = self.find_next(root.next)
+        if root.right:
+            root.right.next = next_node
+        else:
+            root.left.next = next_node
 
         self.connect(root.right)        # Do right first then left
         self.connect(root.left)
 
     def find_next(self, root):
-        if root is None:
+        if not root:
             return None
-        if root.left is None and root.right is None:
+        if not root.left and not root.right:
             return self.find_next(root.next)
-        if root.left is not None:
+        if root.left:
             return root.left
-        return root.right
-
-    # This is miracle that I can do this with one time!!!!
-    # Very simple to think
-    # One thing need to notice is that need to do connect right first and then left
-    # Because otherwise, when linking towards the right but the right isnt ready there will be error
+        else:
+            return root.right
+    # Notice:
+    # 1. Note that line 47 need to do right first then left
+    # 2. The reason that I doesn't need to process I first is it doesn't need to process
+    #    nodes of root.next.next...
