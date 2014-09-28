@@ -12,24 +12,26 @@ class Solution:
     # @param A, a list of integers
     # @return an integer
     def firstMissingPositive(self, A):
-        n = len(A)
+        N = len(A)
         i = 0
-        while i < n:
-            if A[i] != i+1 and A[i] >= 1 and A[i] <= n and A[A[i]-1] != A[i]: # The last check is important
-                self.swap(A, i, A[i]-1)
-            else:
+        while i < N:
+            if A[i] <= 0 or A[i] == i + 1 or A[i] > N:
                 i += 1
+            else:
+                x = A[i]
+                if A[i] == A[x-1]:
+                    i += 1
+                    continue
+                A[i], A[x-1] = A[x-1], A[i]
 
-        for i, num in enumerate(A):
-            if num != i+1:              # The check here is also very important
-                return i+1
-        return n + 1
+        for i in range(N):
+            if A[i] != i + 1:
+                return i + 1
 
-    def swap(self, A, i, j):
-        tmp = A[i]
-        A[i] = A[j]
-        A[j] = tmp
+        return N + 1
 
-    # Way to think
-    # O(n) imply that we need to use hashtable
-    # But it ask for constant space, so need to use the index as hashtable to store the num
+    # Note details
+    # 1. Good way to do this is name A[i] = x
+    # 2. line 22 need to check if it's already equal, like [1,1] will cause dead loop
+    # 3. line 29, return i+1 not A[i]
+    # 4. line 31 return N + 1

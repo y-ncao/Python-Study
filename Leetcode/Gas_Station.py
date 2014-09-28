@@ -27,6 +27,6 @@ class Solution:
         if total_gas < 0:
             return -1
         else:
-            return start_node
+            return start_node % N
         # Note:
         # 1. Notice line 18 for start node and line 30 for return

@@ -12,7 +12,9 @@
 * [x] Combination Sum
 * [x] Combination Sum II
 * [x] Letter Combination of a Phone Number
-* [x] 找零钱 == Combination Sum I
+* [x] 找零钱 I == Combination Sum I
+* [x] 找零钱 II 求ways最好就不要用dfs了，最好方法是O(m*n)
+
 
 -----
 
@@ -21,7 +23,7 @@
 
 -----
 
-#####总结
+####总结
 [Permutations](./Leetcode/Permutations.py) [II](./Leetcode/Permutations_II.py),
 [Combinations](./Leetcode/Combinations.py),
 [Combinations Sum](./Leetcode/Combination_Sum.py) [II](./Leetcode/Combination_Sum_II.py)
@@ -41,7 +43,7 @@
    * Subsets - ```sub_helper(S[i+1:], res, ret)```(S[i+1:])  
    ```S[i+1:]``决定了res内是不会有重复项的(除非S本身就有重复), ```S[i:]```让当前元素可以重复使用
 
-######Note
+#####Note
 * II类去重题相比较I类题唯一的差别就是在循环的第一行需要check```if i > 0 and S[i] == S[i-1]: continue```
 * 注意II类题都需要先```sort```, 因为去重是判断前项相等否
 * 普通题目看情况如果要求输入时```res```内的元素有序那也需要```sort```
@@ -50,7 +52,7 @@
   所以是```comb_sum_II_helper(num[i+1:], target - n, res, ret)```
 * 记得尽量用```enumerate```
 
-######复杂度O(n)
+#####复杂度O(n)
 * Permutation： ```T(n) = n * T(n-1) + O(1)```所以是O(n!)
 * Combination and Subsets
   运用递归公式
@@ -112,8 +114,8 @@ _____
 ###类Tree(以tree作为Data Structure的题目)
 * [x] Path Sum
 * [x] Path Sum II
-* [ ] Populating Next Right Pointers in Each Node
-* [ ] Populating Next Right Pointers in Each Node II
+* [x] Populating Next Right Pointers in Each Node
+* [x] Populating Next Right Pointers in Each Node II
 * [x] Sum Root to Leaf Numbers
 * [x] Flatten Binary Tree to Linked List
 * [x] Binary Tree Maximum Path Sum
@@ -672,7 +674,7 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [ ] Wildcard Matching
 * [ ] Max Points on a Line
 * [ ] Word Ladder II
-* [ ] Word Break II
+* [x] Word Break II
 * [ ] Text Justification
 * [ ] String to Integer (atoi)
 * [ ] Substring with Concatenation of All Words
@@ -684,7 +686,7 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [ ] Restore IP Addresses
 * [ ] Insert Interval
 * [ ] Implement strStr() (KMP再写一遍)
-* [ ] Count and Say (Linkedin面经)
+* [x] Count and Say (Linkedin面经)
 
 * [x] Rotate List
 * [x] Longest Substring Without Repeating Characters
@@ -694,8 +696,6 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 
 * [x] decode ways
 * [x] Longest Palindrome Substring
-
-* [ ] Next Permutation
 
 * [x] Rotate Image
 * [x] Spiral Matrix * 2
@@ -708,21 +708,21 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [ ] Next Permutation
 * [ ] Maximum Subwindow
 * [x] Max Product of Subarray
-* [ ] First Missing Positive
+* [x] First Missing Positive (Redo)
 
-* [ ] 还有前面tree的一些
-* [x] Validate Binary Search Tree (Redo)
+* [x] Validate Binary Search Tree
 * [x] Recover Binary Search Tree (Redo)
-* [ ] Populating Next Right Pointers in Each Node
-* [ ] Populating Next Right Pointers in Each Node II
-* [ ] Construct Binary Tree from Inorder and Postorder Traversal
-* [ ] Construct Binary Tree from Preorder and Inorder Traversal
-* [ ] Recover Binary Search Tree
-* [ ] Validate Binary Search Tree
-* [ ] Order Traversal Recover
-* [ ] BFS every traversal
-* [ ] Flatten BST to doubly linkedlist
-* [ ] Flatten BST to Linked List
+* [x] Populating Next Right Pointers in Each Node
+* [x] Populating Next Right Pointers in Each Node II
+* [x] Construct Binary Tree from Inorder and Postorder Traversal
+* [x] Construct Binary Tree from Preorder and Inorder Traversal
+* [x] BFS every traversal
+* [x] Flatten BST to doubly linkedlist
+* [x] Flatten BST to Linked List
+
+* [ ] Convert Sorted List to Binary Search Tree
+
+* [ ] Insertion Sort / Merge Sort Linked List
 
 * [x] Median of Two Sorted Arrays
 
