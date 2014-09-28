@@ -39,8 +39,8 @@
    * Combin - ```comb_helper(i+1, n, k, res, ret)```(S[i+1:])
    * Combin Sum - ```comb_sum_helper(num[i:], target - n, res, ret)```(S[i:])
    * Subsets - ```sub_helper(S[i+1:], res, ret)```(S[i+1:])  
-   S[i+1:]决定了res内是不会有重复项的(除非S本身就有重复), S[i:]让当前元素可以重复使用
-   
+   ```S[i+1:]``决定了res内是不会有重复项的(除非S本身就有重复), ```S[i:]```让当前元素可以重复使用
+
 ######Note
 * II类去重题相比较I类题唯一的差别就是在循环的第一行需要check```if i > 0 and S[i] == S[i-1]: continue```
 * 注意II类题都需要先```sort```, 因为去重是判断前项相等否
@@ -50,7 +50,19 @@
   所以是```comb_sum_II_helper(num[i+1:], target - n, res, ret)```
 * 记得尽量用```enumerate```
 
-复杂度O(n)??
+######复杂度O(n)
+* Permutation： ```T(n) = n * T(n-1) + O(1)```所以是O(n!)
+* Combination and Subsets
+  运用递归公式
+  ```
+  T(n) = T(n-1) + T(n-2) + T(n-3) + ... + T(1) + O(1)
+       = 2T(n-2) + 2T(n-3) + ... + 2T(1) + 2O(1)
+       = 4T(n-3) +4T(n-4) + 4(T1) + 4O(1)
+       = 2^(3-1)T(n-3) + ... + 2^(3-1)O(1)
+       = 2^(n-1-1) * T(n-n+1) + ... + 2^(n-1-1)O(1)
+       = 1/4 * 2^n * T(1) + 1/4 * 2^n * O(1)
+       = O(2^n)
+   ```
 
 -----
 
@@ -70,9 +82,9 @@
 * [x] Palindrome Partitioning II
 
 ###Tree Traversal
-* [ ] Binary Tree Inorder Traversal
-* [ ] Binary Tree Preorder Traversal
-* [ ] Binary Tree Postorder Traversal
+* [x] Binary Tree Inorder Traversal
+* [x] Binary Tree Preorder Traversal
+* [x] Binary Tree Postorder Traversal
 * [x] Binary Tree Level Order Traversal
 * [x] Binary Tree Level Order Traversal II
 * [x] Binary Tree Zigzag Level Order Traversal

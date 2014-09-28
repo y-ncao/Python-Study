@@ -1139,6 +1139,18 @@ def whatisthis(s):
 | T(n) = 2 T(n/2) + O(n) | Mergesort (average case Quicksort) | O(n log n) |
 | T(n) = n * T(n-1) + O(n) | | O(n!) |
 
+####手算递归
+以Subset/Combination为例，主要是主动递推然后尝试找规律，最后化简为T(1)的然后带入计算
+```
+T(n) = T(n-1) + T(n-2) + T(n-3) + ... + T(1) + O(1)
+     = 2T(n-2) + 2T(n-3) + ... + 2T(1) + 2O(1)
+     = 4T(n-3) +4T(n-4) + 4(T1) + 4O(1)
+     = 2^(3-1)T(n-3) + ... + 2^(3-1)O(1)
+     = 2^(n-1-1) * T(n-n+1) + ... + 2^(n-1-1)O(1)
+     = 1/4 * 2^n * T(1) + 1/4 * 2^n * O(1)
+     = O(2^n)
+```
+
 ###Lock
 __Lock__: at most one thread can hold the lock, and therefore only on thread can access the shared resource.
 

@@ -13,17 +13,18 @@ Several ways to ask
 def coin_change(value):
     res = [0, 0, 0]                     # [num_5, num_3, num_1]
     ret = []
-    coin_change_helper(value, res, ret, 0)
+    coin_change_helper(0, value, res, ret)
     return ret
 
-def coin_change_helper(value, res, ret, cur_face_value):
-    if value == 0:
+def coin_change_helper(cur_face_value, rest_value, res, ret):
+    if rest_value == 0:
         ret.append(res[:])
-    if value <= 0:
-        return
+
     for i in range(cur_face_value, 3):
+        if rest_value - [5, 3, 1][i] < 0:
+            continue
         res[i] += 1
-        coin_change_helper(value - [5, 3, 1][i], res, ret, i)
+        coin_change_helper(i, rest_value - [5, 3, 1][i], res, ret)
         res[i] -= 1
 
 print coin_change(5)
