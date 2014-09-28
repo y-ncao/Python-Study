@@ -24,4 +24,5 @@ class Solution:
         root.left = self.buildTree(preorder, inorder[:index])
         root.right = self.buildTree(preorder, inorder[index+1:])
         return root
-    # Too much detail, looks simple but hard to do
+    # for line 24/25, it's using preorder instead of slicing it. Because when left tree is ready
+    # all the preorder index are already poped

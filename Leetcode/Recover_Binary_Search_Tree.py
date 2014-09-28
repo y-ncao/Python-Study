@@ -18,58 +18,28 @@ class Solution:
     # @param root, a tree node
     # @return a tree node
     def recoverTree(self, root):
-        return self.recoverTree_2(root)
-
-    # This is the first attempt, several things need to note
-    # first and second need to be a list, so that it can work like pointer
-    # Since we are only comparing the last and cur, we dont't need to store the whole list,
-    # just use prev like solution 2
-    # Be careful when doing the if/else check, we can use only if here like solution 2
-    # Notice the way to determine the wrongs, always update the wrongs[1] but wrongs[0] will only updated once
-
-    def recoverTree_1(self, root):
-        nodes = []
-        wrongs = [None, None]
-        self.recoverTree_helper_1(root, nodes, wrongs)
-        tmp = wrongs[0].val
-        wrongs[0].val = wrongs[1].val
-        wrongs[1].val = tmp
+        self.last = None
+        self.wrongs = [None, None]
+        self.recover_helper(root)
+        self.wrongs[0].val, self.wrongs[1].val = self.wrongs[1].val, self.wrongs[0].val
         return root
 
-    def recoverTree_helper_1(self, root, nodes, wrongs):
-        if root is None:
+    def recover_helper(self, root):
+        if not root:
             return
-        self.recoverTree_helper_1(root.left, nodes, wrongs)
-        if len(nodes) == 0 or nodes[-1].val < root.val:
-            pass
-        else:
-            if not wrongs[0]:
-                wrongs[0] = nodes[-1]
-            wrongs[1] = root
-        nodes.append(root)
-        self.recoverTree_helper_1(root.right, nodes, wrongs)
+        self.recover_helper(root.left)
+        if self.last and self.last.val > root.val:
+            if not self.wrongs[0]:
+                self.wrongs[0] = self.last
+            self.wrongs[1] = root
+        self.last = root
 
-    # prev need to be a list inorder to use a pointer
-    def recoverTree_2(self, root):
-        wrongs = [None, None]
-        self.recoverTree_helper_2(root, [None], wrongs)
-        tmp = wrongs[0].val
-        wrongs[0].val = wrongs[1].val
-        wrongs[1].val = tmp
-        return root
+        self.recover_helper(root.right)
 
-    def recoverTree_helper_2(self, root, prev, wrongs):
-        if root is None:
-            return
-        self.recoverTree_helper_2(root.left, prev, wrongs)
-        if prev[0] is not None and prev[0].val > root.val:
-            if wrongs[0] is None:
-                wrongs[0] = prev[0]
-            wrongs[1] = root
-        prev[0] = root
-        self.recoverTree_helper_2(root.right, prev, wrongs)
-
-    """
-    The third way is mad
-    def recoverTree_3(self, root):
-    """
+    # Note:
+    # 1. Very normal inorder traversal
+    # 2. Notice link 32,33. Always update wrongs[1], but wrongs[0] will only update one time
+    #    Reason is:
+    #    Imaging [1,2,3,4,5,6], swap to [1,2,6,4,5,3]
+    #    We will find out 6 > 4 and 5 > 3
+    #    So we first update wrongs[0] = last, then update wrongs[1] = root
