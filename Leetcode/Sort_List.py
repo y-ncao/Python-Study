@@ -12,38 +12,41 @@ class Solution:
     # @param head, a ListNode
     # @return a ListNode
     def sortList(self, head):
-        if head is None or head.next is None:
+        if not head or not head.next:
+            return head
+        mid = self.find_mid(head)
+        next_node = mid.next
+        mid.next = None
+        first_half = self.sortList(head)
+        second_half = self.sortList(next_node)
+        return self.merge_list(first_half, second_half)
+
+    def merge_list(self, l1, l2):
+        dummy = ListNode(0)
+        cur = dummy
+        while l1 and l2:
+            if l1.val < l2.val:
+                cur.next = l1
+                l1 = l1.next
+            else:
+                cur.next = l2
+                l2 = l2.next
+            cur = cur.next
+        if l1:
+            cur.next = l1
+        if l2:
+            cur.next = l2
+        return dummy.next
+
+    def find_mid(self, head):
+        if not head or not head.next:
             return head
         slow = head
-        fast = head
-        prev = head
-        while fast is not None and fast.next is not None:
-            prev = slow
+        fast = head.next
+        while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
-        prev.next = None
-        head = self.sortList(head)
-        slow = self.sortList(slow)
-        return self.sortedMerge(head, slow)
-
-    def sortedMerge(self, head1, head2):
-        dummy = ListNode(0)
-        head = dummy
-        while head1 is not None or head2 is not None:
-            if head1 is None:
-                head.next = head2
-                head2 = head2.next
-            elif head2 is None:
-                head.next = head1
-                head1 = head1.next
-            elif head1.val < head2.val:
-                head.next = head1
-                head1 = head1.next
-            else:
-                head.next = head2
-                head2 = head2.next
-            head = head.next
-        return dummy.next
+        return slow
 
     # Way to think about this:
     # 1. Split the list into first half and second half

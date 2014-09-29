@@ -710,8 +710,9 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [x] Max Product of Subarray
 * [x] First Missing Positive (Redo)
 
-* [x] Validate Binary Search Tree
+
 * [x] Recover Binary Search Tree (Redo)
+* [ ] Convert Sorted List to Binary Search Tree (Redo)
 * [x] Populating Next Right Pointers in Each Node
 * [x] Populating Next Right Pointers in Each Node II
 * [x] Construct Binary Tree from Inorder and Postorder Traversal
@@ -720,22 +721,22 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [x] Flatten BST to doubly linkedlist
 * [x] Flatten BST to Linked List
 
-* [ ] Convert Sorted List to Binary Search Tree
-
+* [x] Median of Two Sorted Arrays
 * [ ] Insertion Sort / Merge Sort Linked List
 
-* [x] Median of Two Sorted Arrays
-
+##记忆思考方式
+* [x] Validate Binary Search Tree (需要记忆如何思考这题)
 * [x] Trapping Water (especially the way to think)
 * [x] Container With Most Water
 * [x] Stock 系列
 * [x] Candy
+* [x] Divde two integers
+* [x] Single Number II
+
 
 ##Need Understand
 * [ ] Largest Rectangle in Histogram
 * [ ] Maximal Rectangle
-* [x] Divde two integers
-* [x] Single Number II
 
 
 ##New
