@@ -685,14 +685,14 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [ ] Restore IP Addresses
 * [ ] Insert Interval
 * [ ] Implement strStr() (KMP再写一遍)
-* [ ] Longest Concecutive Sequence
+* [x] Longest Concecutive Sequence
 * [x] Count and Say (Linkedin面经) (Trick Part是读出来的时候是insert(0))
 
 * [x] Rotate List
 * [x] Longest Substring Without Repeating Characters
 * [x] Maximum Path Sum(BT)
 
-* [x] decode ways
+* [x] Decode ways
 * [x] Longest Palindrome Substring
 * [x] Rotate Image
 * [x] Spiral Matrix * 2
