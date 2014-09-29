@@ -26,62 +26,22 @@ class Solution:
         res = []
         inserted = False
         for inter in intervals:
-            if not inserted and inter.start > newInterval.end:
-                res.append(newInterval)
+            if newInterval.end < inter.start:
+                if not inserted:
+                    res.append(newInterval)
+                    inserted = True
                 res.append(inter)
-                inserted = True
-            elif inter.start > newInterval.end or inter.end < newInterval.start:
+            elif inter.end < newInterval.start:
                 res.append(inter)
             else:
                 newInterval.start = min(newInterval.start, inter.start)
-                newInterval.end   = max(newInterval.end, inter.end)
+                newInterval.end = max(newInterval.end, inter.end)
+
         if not inserted:
             res.append(newInterval)
         return res
-
-    # Note:
-    # 1. Line 29, the if not inserted check is very important
-    # 2. Three conditions very important
-""" This works, but leetcode require a sorted result
-    def insert(self, intervals, newInterval):
-        res = []
-        for i, inter in enumerate(intervals):
-            if inter.start > newInterval.end or inter.end < newInterval.start:
-                res.append(inter)
-                continue
-            if newInterval.start >= inter.start and newInterval.start <= inter.end:
-                newInterval.start = min(inter.start, newInterval.start)
-            if newInterval.end >= inter.start and newInterval.end <= inter.end:
-                newInterval.end = max(inter.end, newInterval.end)
-        res.append(newInterval)
-        return res
-"""
-
-
-""" To complicated
-    def insert(self, intervals, newInterval):
-        if newInterval.end < intervals[0].start:
-            intervals.insert(0, newInterval)
-            return intervals
-        elif newInterval.start > intervals[-1].end:
-            intervals.append(newInterval)
-            return intervals
-        i = 0
-        ret = []
-        while i < len(intervals):
-            if intervals[i].start <= newInterval.start and intervals[i].end >= newInterval.start:
-                break
-            else:
-                ret.append(intervals[i])
-        newInterval.start = min(intervals[i].start, newInterval.start)
-        while i < len(intervals):
-            i += 1
-            if intervals[i].start <= newInterval.end and intervals[i].end >= newInterval.end:
-                break
-        newInterval.end = max(intervals[i].end, newInterval.end)
-        ret.append(newInterval)
-        i += 1
-        while i < len(intervals):
-            ret.append(intervals[i])
-        return ret
-"""
+    # Note
+    # 分三种情况讨论
+    # 1. 插入区间在当前区间左边 - 如果没插入就插入, 添加当前区间
+    # 2. 插入区间在当前区间右边 - 插入当前区间
+    # 3. 剩余的mix情况        - 合并两个区间
