@@ -38,8 +38,10 @@ class Solution:
 
     # Note:
     # 1. Very normal inorder traversal
-    # 2. Notice link 32,33. Always update wrongs[1], but wrongs[0] will only update one time
-    #    Reason is:
-    #    Imaging [1,2,3,4,5,6], swap to [1,2,6,4,5,3]
+    # 2. Notice line 32,33. Always update wrongs[1], but wrongs[0] will only update one time
+    #    Reason is image [1,2,3,4,5,6], swap to [1,2,6,4,5,3]
     #    We will find out 6 > 4 and 5 > 3
-    #    So we first update wrongs[0] = last, then update wrongs[1] = root
+    #    So first time we should update wrongs[0] = last,
+    #       second time we should update wrongs[1] = root
+    #    But line 34 first time we also update wrong[1] because if we have [1,2,4,3,5,6]
+    #    4 is next to 3 so we need to update them at the same time

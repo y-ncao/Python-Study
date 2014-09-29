@@ -9,29 +9,6 @@ class Solution:
     # @param needle, a string
     # @return a string or None
     def strStr(self, haystack, needle):
-        return self.strStr_2(haystack, needle)
-
-    def strStr_1(self, haystack, needle):
-        M = len(haystack)
-        N = len(needle)
-        if N == 0:
-            return haystack             # Note here
-        for i in range(M-N+1):
-            if haystack[i] != needle[0]:
-                continue
-            else:
-                ret = True
-                for j in range(N):
-                    if haystack[i+j] != needle[j]:
-                        ret = False
-                        break
-                if ret:
-                    return haystack[i:]
-        return None
-    # O(m*n) way
-
-    # KMP way, which is my final way
-    def strStr_2(self, haystack, needle):
         H = len(haystack)
         N = len(needle)
         if N == 0:
@@ -41,20 +18,18 @@ class Solution:
             if haystack[i] == needle[0]:
                 start = None            # Use None here
                 j = 1
-                while j < N:
-                    if haystack[i+j] != needle[j]:
-                        break
-                    elif start is None and haystack[i+j] == needle[0]: # Find first dup occurance
+                while j < N and haystack[i+j] == needle[j]:
+                    if start == None and haystack[i+j] == needle[0]: # Find first dup occurance
                         start = i + j
                     j += 1
                 if j == N:
                     return haystack[i:]
                 if start is not None:
-                    i = start - 1       # Detail, need to check start - 1
+                    i = start
                 else:
-                    i = i + j - 1
-            i += 1
+                    i = i + j
+            else:
+                i += 1
         return None
     # Note:
-    # 1. Note line 53 and 54, minus one there, but in interview, probably do i += 1 in else will be better
-    # 2. Both ways will pass
+    # line 32, don't forget the i += 1
