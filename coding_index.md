@@ -683,8 +683,8 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [ ] Longest Valid Parentheses
 * [ ] Simplify Path
 * [ ] Restore IP Addresses
-* [ ] Insert Interval
-* [ ] Merge Interval (sort and max!!!)
+* [x] Insert Interval (Redo, 思考方式分三种情况讨论的细节)
+* [X] Merge Interval (sort and max!!!)
 * [x] Implement strStr() (KMP因为高频再小做一两次)
 * [x] Longest Concecutive Sequence
 * [x] Count and Say (Linkedin面经) (Trick Part是读出来的时候是insert(0))
@@ -703,7 +703,7 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [ ] Gray Code
 * [ ] Permutation Sequence
 * [ ] Next Permutation
-* [ ] Maximum Subarray
+* [x] Maximum Subarray
 * [x] Max Product of Subarray
 * [x] First Missing Positive (Redo) (check 死循环!!!)
 
