@@ -679,31 +679,27 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [ ] String to Integer (atoi)
 * [ ] Substring with Concatenation of All Words
 * [ ] Minimum Window Substring
-* [ ] Sum系列
+* [x] Sum系列 (细节问题，得再写一遍)
 * [ ] Longest Valid Parentheses
-* [ ] Word Search (简单)
 * [ ] Simplify Path
 * [ ] Restore IP Addresses
 * [ ] Insert Interval
 * [ ] Implement strStr() (KMP再写一遍)
-* [x] Count and Say (Linkedin面经)
+* [ ] Longest Concecutive Sequence
+* [x] Count and Say (Linkedin面经) (Trick Part是读出来的时候是insert(0))
 
 * [x] Rotate List
 * [x] Longest Substring Without Repeating Characters
-
-
 * [x] Maximum Path Sum(BT)
 
 * [x] decode ways
 * [x] Longest Palindrome Substring
-
 * [x] Rotate Image
 * [x] Spiral Matrix * 2
-* [ ] Gray Code
-
 * [x] LRU
 * [x] Surrounded Regions
 * [x] Gas Station
+* [ ] Gray Code
 * [ ] Permutation Sequence
 * [ ] Next Permutation
 * [ ] Maximum Subwindow
@@ -712,7 +708,7 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 
 
 * [x] Recover Binary Search Tree (Redo)
-* [ ] Convert Sorted List to Binary Search Tree (Redo)
+* [x] Convert Sorted List to Binary Search Tree (Redo)
 * [x] Populating Next Right Pointers in Each Node
 * [x] Populating Next Right Pointers in Each Node II
 * [x] Construct Binary Tree from Inorder and Postorder Traversal
@@ -722,7 +718,7 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [x] Flatten BST to Linked List
 
 * [x] Median of Two Sorted Arrays
-* [ ] Insertion Sort / Merge Sort Linked List
+* [x] Insertion Sort / Merge Sort Linked List
 
 ##记忆思考方式
 * [x] Validate Binary Search Tree (需要记忆如何思考这题)
@@ -737,7 +733,10 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 ##Need Understand
 * [ ] Largest Rectangle in Histogram
 * [ ] Maximal Rectangle
-
+* Construct Max Tree
+* NC DP 最小调整代价
+* MEIZUO
+* BACKPACK
 
 ##New
 * [x] [Absolut Minimum](./Interviews/Absolute_Minimum.py)

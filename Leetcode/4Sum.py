@@ -55,10 +55,10 @@ class Solution:
                 l = j + 1
                 r = N - 1
                 while l < r:
-                    sum = num[i] + num[j] + num[l] + num[r] < target
-                    if sum < target:
+                    four_sum = num[i] + num[j] + num[l] + num[r]
+                    if four_sum < target:
                         l += 1
-                    elif sum > target:
+                    elif four_sum > target:
                         r -= 1
                     else:
                         ret.append([num[i], num[j], num[l], num[r]])

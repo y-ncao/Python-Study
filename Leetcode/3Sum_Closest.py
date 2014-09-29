@@ -9,13 +9,9 @@ Given an array S of n integers, find three integers in S such that the sum is cl
 class Solution:
     # @return an integer
     def threeSumClosest(self, num, target):
-        return self.threeSumClosest_1(num, target)
-
-    # Since it assume each input only have one result, there's no need to check dup
-    def threeSumClosest_1(self, num, target):
         N = len(num)
         num = sorted(num)
-        ret = num[0] + num[1] + num[2]
+        ret = sum(num[:3])
         i = 0
         for i in range(N-2):
             l = i + 1
@@ -32,18 +28,5 @@ class Solution:
                     r -= 1
         return ret
 
-    # time exceeded
-    def threeSumClosest_2(self, num, target):
-        N = len(num)
-        if N < 3:
-            return 0
-        closest_sum = num[0]+num[1]+num[2]
-        for i in range(N-2):
-            for j in range(i+1, N-1):
-                for k in range(j+1, N):
-                    sum = num[i] + num[j] + num[k]
-                    if sum == target:
-                        return target
-                    elif abs(target-sum) < abs(closest_sum):
-                        closest_sum = sum
-        return closest_sum
+    # Note:
+    # Since it's assuming each input only have one result, there's no need to check dup
