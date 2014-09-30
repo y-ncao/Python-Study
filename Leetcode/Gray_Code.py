@@ -21,6 +21,23 @@ For now, the judge is able to judge based on one instance of gray code sequence.
 
 class Solution:
     # @return a list of integers
+    def gray_code(self, n):
+        if n == 0:
+            return [0]
+        return [int(code, 2) for code in self.graycode_helper(n)]
+
+    def graycode_helper(self, n):
+        if n == 1:
+            return ['0', '1']
+        prev_code = self.graycode_helper(n-1)
+        cur_code = []
+        for code in prev_code:
+            cur_code.append('0' + code)
+        for code in prev_code[::-1]:
+            cur_code.append('1' + code)
+        return cur_code
+
+    # Using bit
     def grayCode(self, n):
         ret = []
         i = 0
@@ -29,7 +46,7 @@ class Solution:
             i+=1
         return ret
 
-# But these two won't pass because they return binary form string not the gray code in int
+# Using generator
 """
     def grayCodeGen(self, n, reverse=False):
         if n == 1:
@@ -56,17 +73,4 @@ class Solution:
                 gcprev = self.grayCodeGen(n-1, True)
                 for code in gcprev:
                     yield "1" + code
-
-    # This is even better, no need to use iterator
-    def grayCodeGen_2(n):
-        if n == 1:
-            return ['0', '1']
-        else:
-            ret = []
-            code_list = grayCodeGen_2(n-1)
-            for code in code_list:
-                ret.append('0' + code)
-            for code in code_list[::-1]:
-                ret.append('1' + code)
-        return ret
 """
