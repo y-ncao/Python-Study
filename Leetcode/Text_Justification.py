@@ -25,64 +25,31 @@ class Solution:
     # @param L, an integer
     # @return a list of strings
     def fullJustify(self, words, L):
-        return self.fullJustify_1(words, L)
-
-    def fullJustify_1(self, words, L):
-        ret = []
-        N = len(words)
-        i = 0
-        while i < N:
-            length = len(words[i])
-            j = i + 1
-            while j < N and length + len(words[j]) + j - i < L:
-                length += len(words[j])
-                j += 1
-
-            # start to build a line
-            is_last_line = (j == N)
-            is_single = (j == i + 1)
-            if is_last_line or is_single:
-                average = 0
-                extra = L - length
-            else:
-                average = (L - length) / (j-i-1)
-                extra = (L - length) % (j-i-1)
-            for k in range(extra):       # Note its j not j+1
-                words[i+k] += ' '
-            ret.append((' '*average).join(words[i:j-1]))
-            i = j
-            print ret
-        return ret
-
-
-    def fullJustify_2(self, words, L):
-        ret = []
-        N = len(words)
-        i = 0
+        cur_len = 0
         res = []
-        counter = 0
-        while i < N:
-            if len(words[i]) + len(res) + counter <= L: # Need to consider space between words
-                res.append(words[i])
-                counter += len(words[i])
-                i += 1
+        ret = []
+        for word in words:
+            if cur_len + len(word) + len(res) <= L:
+                res.append(word)
+                cur_len += len(word)
             else:
                 if len(res) == 1:
-                    last = ' '.join(res)
-                    last += ' ' * (L - len(last))
-                    ret.append(last)
+                    ret.append(self.fill_spaces(res[0], L))
                 else:
-                    spaces = L - counter
-                    least_fill = spaces / (len(res)-1)
-                    rest = spaces % (len(res)-1)
-                    for j in range(rest):
-                        res[j] += ' '
-                    ret.append((' '*least_fill).join(res))
-                counter = 0
+                    extra_spaces = L - cur_len - (len(res) - 1)
+                    each_extra = extra_spaces / (len(res) - 1) + 1
+                    rest_spaces = extra_spaces % (len(res) - 1)
+                    for i in range(rest_spaces):
+                        res[i] += ' '
+                    line = (' ' * each_extra).join(res)
+                    ret.append(line)
                 res = []
-            #assert(len(res) < 4)
-        if len(res) > 0:
-            last = ' '.join(res)
-            last += ' ' * (L - len(last))
-            ret.append(last)
+                res.append(word)
+                cur_len = len(word)
+        ret.append(self.fill_spaces(' '.join(res), L))
         return ret
+
+    def fill_spaces(self, string, L):
+        length = len(string)
+        string += ' ' * (L - length)
+        return string
