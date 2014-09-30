@@ -682,7 +682,7 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [x] Sum系列 (细节问题，得再写一遍)
 * [ ] Longest Valid Parentheses
 * [ ] Simplify Path
-* [ ] Restore IP Addresses
+* [x] Restore IP Addresses
 * [x] Insert Interval (Redo, 思考方式分三种情况讨论的细节)
 * [X] Merge Interval (sort and max!!!)
 * [x] Implement strStr() (KMP因为高频再小做一两次)
@@ -700,8 +700,8 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [x] LRU
 * [x] Surrounded Regions
 * [x] Gas Station
-* [ ] Gray Code
-* [ ] Permutation Sequence
+* [x] Gray Code
+* [x] Permutation Sequence (小redo一下)
 * [x] Next Permutation (Redo，记住思考的方式，find, swap)
 * [x] Maximum Subarray
 * [x] Max Product of Subarray

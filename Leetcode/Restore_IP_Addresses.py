@@ -16,14 +16,13 @@ class Solution:
         return ret
 
     def restoreIpAddresses_helper(self, s, res, ret):
-        if len(res) >= 4 and len(s) != 0:
-            return
         if len(res) == 4 and len(s) == 0:
             ret.append('.'.join(res))
+        if len(res) >= 4 or len(s) == 0:
             return
+
         for i in range(1, min(3,len(s))+1):
-            # This check is a shit!
-            if (int(s[:i]) >= 0 and int(s[:i]) < 256 and s[:i][0]!= '0') or (int(s[:i])==0 and len(s[:i])==1):
+            if ( 0 <= int(s[:i]) < 256 and s[:i][0]!= '0' ) or ( int(s[:i]) == 0 and len(s[:i]) == 1):
                 res.append(s[:i])
                 self.restoreIpAddresses_helper(s[i:], res, ret)
                 res.pop()
