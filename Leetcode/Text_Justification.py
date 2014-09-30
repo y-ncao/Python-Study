@@ -53,3 +53,11 @@ class Solution:
         length = len(string)
         string += ' ' * (L - length)
         return string
+
+    # Notice:
+    # 1. 算extra_spaces的时候是len(res) - 1
+    # 2. 在each extra的后面+1算上必有的space
+    # 3. 可以用for循环做, 但是别忘了最后要reset res, cur_len
+    # 4. 最后是一定会append多余的一行的, line 49没必要再check了, 直接append
+    # 5. 把fill_space函数单独提出来比较合适
+    # 6. Line 42 43 这里的思想要记住, 比较重要

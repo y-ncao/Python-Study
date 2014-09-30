@@ -672,10 +672,10 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 ##Definetly Redo
 * [ ] Regular Expression Matching
 * [ ] Wildcard Matching
-* [ ] Max Points on a Line
+* [x] Max Points on a Line
 * [ ] Word Ladder II
 * [x] Word Break II
-* [ ] Text Justification
+* [x] Text Justification
 * [x] String to Integer (atoi) (只需要注意['+','-'] 和<-sys.maxint >sys.maxint)
 * [ ] Substring with Concatenation of All Words
 * [ ] Minimum Window Substring

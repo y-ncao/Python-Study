@@ -25,43 +25,32 @@ class Solution:
     # @param dict, a set of string
     # @return a list of lists of string
     def findLadders(self, start, end, dict):
-        ret     = []
-        prevMap = {}
-        length  = len(start)
-        for i in dict:
-            prevMap[i] = []
-        candidates = [set(),set()]
-        current    = 0
-        previous   = 1
-        candidates[current].add(start)
-        while True:
-            current, previous=previous, current
-            for i in candidates[previous]: dict.remove(i)
-            candidates[current].clear()
-            for word in candidates[previous]:
-                for i in range(length):
-                    part1=word[:i]; part2=word[i+1:]
-                    for j in 'abcdefghijklmnopqrstuvwxyz':
-                        if word[i]!=j:
-                            nextword=part1+j+part2
-                            if nextword in dict:
-                                prevMap[nextword].append(word)
-                                candidates[current].add(nextword)
-            if len(candidates[current])==0:
-                return ret
-            if end in candidates[current]: break
-        self.buildpath([], end, prevMap, ret)
-        return ret
+        trace_back = { word: [] for word in dict}
+        prev_level = set([start])
+        found = False
+        while len(prev_level) > 0 and not found:
+            cur_level = set([])
+            size = len(prev_level)
+            for word in prev_level:
+                dict.remove(word)
+            for word in prev_level:
+                if word == end:
+                    found = True
+                for i in range(len(word)):
+                    for char in 'abcdefghijklmnopqrstuvwxyz':
+                        new_word = word[:i] + char + word[i+1:]
+                        if new_word in dict:
+                            trace_back[new_word].append(word)
+                            cur_level.add(new_word)
+            prev_level = cur_level
+        paths = []
+        if found:
+            self.find_traceback(end, trace_back, [], paths)
+        return paths
 
-    def buildpath(self, path, word, prevMap, ret):
-        if len(prevMap[word])==0:
-            path.append(word)
-            currPath=path[:]
-            currPath.reverse()
-            ret.append(currPath)
-            path.pop();
+    def find_traceback(self, word, trace, cur_path, paths):
+        if len(trace[word]) == 0:
+            paths.append([word] + cur_path)
             return
-        path.append(word)
-        for prev in prevMap[word]:
-            self.buildpath(path, prev, prevMap, ret)
-        path.pop()
+        for prev_word in trace[word]:
+            self.find_traceback(prev_word, trace, [word] + cur_path, paths)

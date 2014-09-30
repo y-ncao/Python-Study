@@ -23,17 +23,20 @@ class Solution:
     # @param dict, a set of string
     # @return an integer
     def ladderLength(self, start, end, dict):
-        dict.add(end)
-        queue = collections.deque([(start, 1)])
+        queue = collections.deque([start])
         N = len(start)
+        length = 1
         while len(queue) > 0:
-            word, depth = queue.popleft()
-            if word == end:
-                return depth
-            for i in range(N):
-                for char in 'abcdefghijklmnopqrstuvwxyz':
+            size = len(queue)
+            for i in range(size):
+                word = queue.popleft()
+                if word == end:
+                    return length
+                for i in range(N):
+                    for char in 'abcdefghijklmnopqrstuvwxyz':
                         new_word = word[:i] + char + word[i+1:]
                         if new_word in dict:
-                            queue.append((new_word, depth+1))
+                            queue.append(new_word)
                             dict.remove(new_word)
+            length += 1
         return 0
