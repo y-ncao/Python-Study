@@ -702,7 +702,7 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [x] Gas Station
 * [ ] Gray Code
 * [ ] Permutation Sequence
-* [ ] Next Permutation
+* [x] Next Permutation
 * [x] Maximum Subarray
 * [x] Max Product of Subarray
 * [x] First Missing Positive (Redo) (check 死循环!!!)
