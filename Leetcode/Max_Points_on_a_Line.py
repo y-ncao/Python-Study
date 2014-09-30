@@ -15,25 +15,28 @@ class Solution:
         N = len(points)
         if N <= 2:
             return N
-        ret = 2
-        for i, p1 in enumerate(points[:-1]):
-            slots = {}
-            same = 0
-            vertical = 1
-            current_max = 0
-            for j, p2 in enumerate(points[i+1:]):
+        max_points = 2
+        for i in range(N-1):
+            p1 = points[i]
+            same = 1
+            verti = 0
+            slot = {}
+            max_slot = 0
+            for j in range(i+1, N):
+                p2 = points[j]
                 if p1.x == p2.x and p1.y == p2.y:
                     same += 1
                 elif p1.x == p2.x:
-                    vertical += 1
-                    #print vertical
+                    verti += 1
                 else:
-                    k = (p1.y - p2.y) * 1.0 / (p1.x - p2.x)
-                    if k not in slots:
-                        slots[k] = 2
-                    else:
-                        slots[k] += 1
-            for slot in slots.keys():
-                current_max = max(current_max, slots[slot] + same) # Here need to check twice
-            ret = max(ret, current_max, vertical+same)             # Cuz slot might be empty
-        return ret
+                    k = (p1.y - p2.y)*1.0 / (p1.x - p2.x) # This 1.0 is so important
+                    if k not in slot:
+                        slot[k] = 0
+                    slot[k] += 1
+                    max_slot = max(max_slot, slot[k])
+            max_points = max(max_points, same + verti, same + max_slot)
+        return max_points
+    # Note:
+    # 1. Double loop, O(n^2)
+    # 2. Need to consider same nodes, vertical nodes. final is max(cur_max, same + verti, same + slots)
+    # 3. So many things need to be initialized
