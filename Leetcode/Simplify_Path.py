@@ -28,7 +28,6 @@ class Solution:
             else:                       # p is a valid path
                 if jump > 0:
                     jump -= 1
-                    continue
                 else:
                     ret.insert(0, p)
         return '/'+'/'.join(ret)
