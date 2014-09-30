@@ -108,8 +108,8 @@ _____
 * [x] Convert Sorted Array to Binary Search Tree
 * [x] Unique Binary Search Trees
 * [x] Unique Binary Search Trees II
-* [x] Validate Binary Search Tree (Redo)
-* [x] Recover Binary Search Tree (Redo)
+* [x] Validate Binary Search Tree
+* [x] Recover Binary Search Tree
 
 ###类Tree(以tree作为Data Structure的题目)
 * [x] Path Sum
@@ -676,12 +676,12 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [ ] Word Ladder II
 * [x] Word Break II
 * [ ] Text Justification
-* [ ] String to Integer (atoi)
+* [x] String to Integer (atoi) (只需要注意['+','-'] 和<-sys.maxint >sys.maxint)
 * [ ] Substring with Concatenation of All Words
 * [ ] Minimum Window Substring
 * [x] Sum系列 (细节问题，得再写一遍)
-* [ ] Longest Valid Parentheses
-* [ ] Simplify Path
+* [x] Longest Valid Parentheses (值得redo)
+* [x] Simplify Path
 * [x] Restore IP Addresses
 * [x] Insert Interval (Redo, 思考方式分三种情况讨论的细节)
 * [X] Merge Interval (sort and max!!!)

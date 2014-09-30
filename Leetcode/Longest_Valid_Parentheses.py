@@ -15,17 +15,17 @@ class Solution:
             return 0
         ret = 0
         stack = []
-        last = -1
+        last = 0
         for i, char in enumerate(s):
             if char == '(':
                 stack.append(i)
             else:
                 if len(stack) == 0:
-                    last = i
+                    last = i + 1
                 else:
                     index = stack.pop()
                     if len(stack) == 0:
-                        ret = max(ret, i - last)
+                        ret = max(ret, i - last + 1)
                     else:
                         ret = max(ret, i - stack[-1])
         return ret
