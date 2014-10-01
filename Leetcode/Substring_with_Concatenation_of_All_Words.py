@@ -33,7 +33,9 @@ class Solution:
         return ret
 
     # Note
-    # 1. This is the best way. Can use KMP but it's too complicated.
+    # 1. The idea is to slice S to S[i: i+len_L*len_word: len_word] and compare S's substring list with L
+    #    Can improve it with i. replacing the list to dict increase search. ii. KMP
+    # 2. This is good enough. Can use KMP but it's too complicated.
     #    See http://c4fun.cn/blog/2014/03/20/leetcode-solution-02/#Substring_with_Concatenation_of_All_Words
     #    for KMP solution
-    # 2. Notice line 23, wrapping everything in the range is fast than calculate them in list comprehension
+    # 3. Notice line 23, wrapping everything in the range is fast than calculate them in list comprehension
