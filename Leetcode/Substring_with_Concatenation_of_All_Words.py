@@ -15,31 +15,25 @@ class Solution:
     # @param L, a list of string
     # @return a list of integer
     def findSubstring(self, S, L):
-        M = len(L[0])
-        N = len(S)
+        len_word = len(L[0])
+        len_L = len(L)
+        len_S = len(S)
         ret = []
-        i = 0
-        while i < N - M + 1:
-            if S[i:i+M] in L:
-                tmp = L[:]
-                tmp.remove(S[i:i+M])
-                j = i + M
-                start = None
-                while len(tmp) > 0 and j + M < N and S[j:j+M] in L:
-                    print 'start from here?', tmp
-                    if S[j:j+M] in tmp:
-                        tmp.remove(S[j:j+M])
-                        j += M
-                    elif start == None:
-
-                        start = j
-                        break
-                if len(tmp) == 0:
-                    ret.append(i)
-                if start is None:
-                    i = j
+        for i in range(len_S - len_word * len_L + 1):
+            list_S = [ S[j:j+len_word] for j in range(i, i + len_L*len_word, len_word)]
+            found = True
+            for word in L:
+                if word in list_S:
+                    list_S.remove(word)
                 else:
-                    i = start
-            else:
-                i += 1
+                    found = False
+                    break
+            if found:
+                ret.append(i)
         return ret
+
+    # Note
+    # 1. This is the best way. Can use KMP but it's too complicated.
+    #    See http://c4fun.cn/blog/2014/03/20/leetcode-solution-02/#Substring_with_Concatenation_of_All_Words
+    #    for KMP solution
+    # 2. Notice line 23, wrapping everything in the range is fast than calculate them in list comprehension
