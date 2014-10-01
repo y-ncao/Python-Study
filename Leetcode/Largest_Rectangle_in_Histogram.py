@@ -16,25 +16,10 @@ class Solution:
     # @param height, a list of integer
     # @return an integer
     def largestRectangleArea(self, height):
-        return self.largestRectangleArea_2(height)
-
-    # Only calculate when decrease
-    def largestRectangleArea_1(self, height):
-        N = len(height)
-        max_area = 0
-        for i in range(N):
-            if i+1 < N and height[i] <= height[i+1]:
-                continue
-            min_height = height[i]
-            j = i
-            while j >= 0:
-                min_height = min(min_height, height[j])
-                max_area = max(max_area, min_height * (i-j+1))
-                j -= 1
-        return max_area
+        return self.largestRectangleArea_1(height)
 
     # Use stack to merge the blocks
-    def largestRectangleArea_2(self, height):
+    def largestRectangleArea_1(self, height):
         height.append(0)                # append 0 to the end, used to find the last
         N = len(height)
         stack = []
@@ -53,3 +38,18 @@ class Solution:
                 max_area = max(max_area, width * height[index])
         return max_area
     # 维护一个递增序列
+
+    # Only calculate when decrease
+    def largestRectangleArea_2(self, height):
+        N = len(height)
+        max_area = 0
+        for i in range(N):
+            if i+1 < N and height[i] <= height[i+1]:
+                continue
+            min_height = height[i]
+            j = i
+            while j >= 0:
+                min_height = min(min_height, height[j])
+                max_area = max(max_area, min_height * (i-j+1))
+                j -= 1
+        return max_area

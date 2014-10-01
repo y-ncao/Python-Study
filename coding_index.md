@@ -670,15 +670,15 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
      4. Locale: router
 
 ##Definetly Redo
-* [ ] Regular Expression Matching
-* [ ] Wildcard Matching
-* [x] Max Points on a Line
-* [x] Word Ladder II
+* [x] Regular Expression Matching (Redo)
+* [x] Wildcard Matching (Redo)
+* [x] Max Points on a Line (Redo)
+* [x] Word Ladder II (Redo)
 * [x] Word Break II
-* [x] Text Justification
+* [x] Text Justification (Redo)
 * [x] String to Integer (atoi) (只需要注意['+','-'] 和<-sys.maxint >sys.maxint)
-* [x] Substring with Concatenation of All Words
-* [ ] Minimum Window Substring
+* [x] Substring with Concatenation of All Words (Redo)
+* [ ] Minimum Window Substring (Redo)
 * [x] Sum系列 (细节问题，得再写一遍)
 * [x] Longest Valid Parentheses (值得redo)
 * [x] Simplify Path
@@ -747,7 +747,7 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [ ] BACKPACK
 
 ##New
-* [x] [Absolut Minimum](./Interviews/Absolute_Minimum.py)
+* [x] [Absolute Minimum](./Interviews/Absolute_Minimum.py)
 
 
 ##Some Note

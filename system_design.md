@@ -224,3 +224,9 @@
 * 通过virtual node来提高balance
 * 正常hash就直接hash ip就行了 hash('192.168.1.1')， 如果是hash virtual node可以 hash('192.168.1.1#1')
 
+###OOD
+
+###TODO
+* [ ] Storm原理
+* [ ] 总结下Twitter Pinterest Facebook题目
+* [ ] 精细化数据
