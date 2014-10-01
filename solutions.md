@@ -58,13 +58,9 @@ Given an array S of n integers, find three integers in S such that the sum is cl
 class Solution:
     # @return an integer
     def threeSumClosest(self, num, target):
-        return self.threeSumClosest_1(num, target)
-
-    # Since it assume each input only have one result, there's no need to check dup
-    def threeSumClosest_1(self, num, target):
         N = len(num)
         num = sorted(num)
-        ret = num[0] + num[1] + num[2]
+        ret = sum(num[:3])
         i = 0
         for i in range(N-2):
             l = i + 1
@@ -81,21 +77,8 @@ class Solution:
                     r -= 1
         return ret
 
-    # time exceeded
-    def threeSumClosest_2(self, num, target):
-        N = len(num)
-        if N < 3:
-            return 0
-        closest_sum = num[0]+num[1]+num[2]
-        for i in range(N-2):
-            for j in range(i+1, N-1):
-                for k in range(j+1, N):
-                    sum = num[i] + num[j] + num[k]
-                    if sum == target:
-                        return target
-                    elif abs(target-sum) < abs(closest_sum):
-                        closest_sum = sum
-        return closest_sum
+    # Note:
+    # Since it's assuming each input only have one result, there's no need to check dup
 ```
 -----
 
@@ -158,10 +141,10 @@ class Solution:
                 l = j + 1
                 r = N - 1
                 while l < r:
-                    sum = num[i] + num[j] + num[l] + num[r] < target
-                    if sum < target:
+                    four_sum = num[i] + num[j] + num[l] + num[r]
+                    if four_sum < target:
                         l += 1
-                    elif sum > target:
+                    elif four_sum > target:
                         r -= 1
                     else:
                         ret.append([num[i], num[j], num[l], num[r]])
@@ -1023,12 +1006,13 @@ class Solution:
             ret.append(res[:])
             return
         for i, num in enumerate(candidates):
-            if target >= num:
-                res.append(num)
-                self.combinationSum_helper(candidates[i:], target - num, res, ret)
-                res.pop()
+            if target - num < 0:
+                continue
+            res.append(num)
+            self.combinationSum_helper(candidates[i:], target - num, res, ret)
+            res.pop()
 
-    # Improvements: only continue when target > num ,else stop
+    # Continue when target < num
 ```
 -----
 
@@ -1065,7 +1049,7 @@ class Solution:
             ret.append(res[:])
             return
         for i, num in enumerate(candidates):
-            if target < num or (i > 0 and num == candidates[i-1]):
+            if target < num or (i > 0 and candidates[i] == candidates[i-1]):
                 continue
             res.append(num)
             self.combinationSum_helper(candidates[i+1:], target - num, res, ret)
@@ -1175,7 +1159,8 @@ class Solution:
         root.left = self.buildTree(preorder, inorder[:index])
         root.right = self.buildTree(preorder, inorder[index+1:])
         return root
-    # Too much detail, looks simple but hard to do
+    # for line 24/25, it's using preorder instead of slicing it. Because when left tree is ready
+    # all the preorder index are already poped
 ```
 -----
 
@@ -1630,27 +1615,29 @@ class Solution:
     # @param A, a list of integers
     # @return an integer
     def firstMissingPositive(self, A):
-        n = len(A)
+        N = len(A)
         i = 0
-        while i < n:
-            if A[i] != i+1 and A[i] >= 1 and A[i] <= n and A[A[i]-1] != A[i]: # The last check is important
-                self.swap(A, i, A[i]-1)
-            else:
+        while i < N:
+            if A[i] <= 0 or A[i] == i + 1 or A[i] > N:
                 i += 1
+            else:
+                x = A[i]
+                if A[i] == A[x-1]:
+                    i += 1
+                    continue
+                A[i], A[x-1] = A[x-1], A[i]
 
-        for i, num in enumerate(A):
-            if num != i+1:              # The check here is also very important
-                return i+1
-        return n + 1
+        for i in range(N):
+            if A[i] != i + 1:
+                return i + 1
 
-    def swap(self, A, i, j):
-        tmp = A[i]
-        A[i] = A[j]
-        A[j] = tmp
+        return N + 1
 
-    # Way to think
-    # O(n) imply that we need to use hashtable
-    # But it ask for constant space, so need to use the index as hashtable to store the num
+    # Note details
+    # 1. Good way to do this is name A[i] = x
+    # 2. line 22 need to check if it's already equal, like [1,1] will cause dead loop
+    # 3. line 29, return i+1 not A[i]
+    # 4. line 31 return N + 1
 ```
 -----
 
@@ -1791,7 +1778,7 @@ class Solution:
         if total_gas < 0:
             return -1
         else:
-            return start_node
+            return start_node % N
         # Note:
         # 1. Notice line 18 for start node and line 30 for return
 ```
@@ -1851,6 +1838,23 @@ For now, the judge is able to judge based on one instance of gray code sequence.
 
 class Solution:
     # @return a list of integers
+    def gray_code(self, n):
+        if n == 0:
+            return [0]
+        return [int(code, 2) for code in self.graycode_helper(n)]
+
+    def graycode_helper(self, n):
+        if n == 1:
+            return ['0', '1']
+        prev_code = self.graycode_helper(n-1)
+        cur_code = []
+        for code in prev_code:
+            cur_code.append('0' + code)
+        for code in prev_code[::-1]:
+            cur_code.append('1' + code)
+        return cur_code
+
+    # Using bit
     def grayCode(self, n):
         ret = []
         i = 0
@@ -1859,7 +1863,7 @@ class Solution:
             i+=1
         return ret
 
-# But these two won't pass because they return binary form string not the gray code in int
+# Using generator
 
     def grayCodeGen(self, n, reverse=False):
         if n == 1:
@@ -1887,19 +1891,6 @@ class Solution:
                 for code in gcprev:
                     yield "1" + code
 
-    # This is even better, no need to use iterator
-    def grayCodeGen_2(n):
-        if n == 1:
-            return ['0', '1']
-        else:
-            ret = []
-            code_list = grayCodeGen_2(n-1)
-            for code in code_list:
-                ret.append('0' + code)
-            for code in code_list[::-1]:
-                ret.append('1' + code)
-        return ret
-
 ```
 -----
 
@@ -1916,29 +1907,6 @@ class Solution:
     # @param needle, a string
     # @return a string or None
     def strStr(self, haystack, needle):
-        return self.strStr_2(haystack, needle)
-
-    def strStr_1(self, haystack, needle):
-        M = len(haystack)
-        N = len(needle)
-        if N == 0:
-            return haystack             # Note here
-        for i in range(M-N+1):
-            if haystack[i] != needle[0]:
-                continue
-            else:
-                ret = True
-                for j in range(N):
-                    if haystack[i+j] != needle[j]:
-                        ret = False
-                        break
-                if ret:
-                    return haystack[i:]
-        return None
-    # O(m*n) way
-
-    # KMP way, which is my final way
-    def strStr_2(self, haystack, needle):
         H = len(haystack)
         N = len(needle)
         if N == 0:
@@ -1948,24 +1916,21 @@ class Solution:
             if haystack[i] == needle[0]:
                 start = None            # Use None here
                 j = 1
-                while j < N:
-                    if haystack[i+j] != needle[j]:
-                        break
-                    elif start is None and haystack[i+j] == needle[0]: # Find first dup occurance
+                while j < N and haystack[i+j] == needle[j]:
+                    if start == None and haystack[i+j] == needle[0]: # Find first dup occurance
                         start = i + j
                     j += 1
                 if j == N:
                     return haystack[i:]
                 if start is not None:
-                    i = start - 1       # Detail, need to check start - 1
+                    i = start
                 else:
-                    i = i + j - 1
-            i += 1
+                    i = i + j
+            else:
+                i += 1
         return None
     # Note:
-    # 1. Note line 53 and 54, minus one there, but in interview, probably do i += 1 in else will be better
-    # 2. Both ways will pass
-```
+    # line 32, don't forget the i += 1```
 -----
 
 ##[42. Insert Interval](https://oj.leetcode.com/problems/insert-interval/)
@@ -1998,66 +1963,25 @@ class Solution:
         res = []
         inserted = False
         for inter in intervals:
-            if not inserted and inter.start > newInterval.end:
-                res.append(newInterval)
+            if newInterval.end < inter.start:
+                if not inserted:
+                    res.append(newInterval)
+                    inserted = True
                 res.append(inter)
-                inserted = True
-            elif inter.start > newInterval.end or inter.end < newInterval.start:
+            elif inter.end < newInterval.start:
                 res.append(inter)
             else:
                 newInterval.start = min(newInterval.start, inter.start)
-                newInterval.end   = max(newInterval.end, inter.end)
+                newInterval.end = max(newInterval.end, inter.end)
+
         if not inserted:
             res.append(newInterval)
         return res
-
-    # Note:
-    # 1. Line 29, the if not inserted check is very important
-    # 2. Three conditions very important
- This works, but leetcode require a sorted result
-    def insert(self, intervals, newInterval):
-        res = []
-        for i, inter in enumerate(intervals):
-            if inter.start > newInterval.end or inter.end < newInterval.start:
-                res.append(inter)
-                continue
-            if newInterval.start >= inter.start and newInterval.start <= inter.end:
-                newInterval.start = min(inter.start, newInterval.start)
-            if newInterval.end >= inter.start and newInterval.end <= inter.end:
-                newInterval.end = max(inter.end, newInterval.end)
-        res.append(newInterval)
-        return res
-
-
-
- To complicated
-    def insert(self, intervals, newInterval):
-        if newInterval.end < intervals[0].start:
-            intervals.insert(0, newInterval)
-            return intervals
-        elif newInterval.start > intervals[-1].end:
-            intervals.append(newInterval)
-            return intervals
-        i = 0
-        ret = []
-        while i < len(intervals):
-            if intervals[i].start <= newInterval.start and intervals[i].end >= newInterval.start:
-                break
-            else:
-                ret.append(intervals[i])
-        newInterval.start = min(intervals[i].start, newInterval.start)
-        while i < len(intervals):
-            i += 1
-            if intervals[i].start <= newInterval.end and intervals[i].end >= newInterval.end:
-                break
-        newInterval.end = max(intervals[i].end, newInterval.end)
-        ret.append(newInterval)
-        i += 1
-        while i < len(intervals):
-            ret.append(intervals[i])
-        return ret
-
-```
+    # Note
+    # 分三种情况讨论
+    # 1. 插入区间在当前区间左边 - 如果没插入就插入, 添加当前区间
+    # 2. 插入区间在当前区间右边 - 插入当前区间
+    # 3. 剩余的mix情况        - 合并两个区间```
 -----
 
 ##[43. Insertion Sort List](https://oj.leetcode.com/problems/insertion-sort-list/)
@@ -2397,25 +2321,10 @@ class Solution:
     # @param height, a list of integer
     # @return an integer
     def largestRectangleArea(self, height):
-        return self.largestRectangleArea_2(height)
-
-    # Only calculate when decrease
-    def largestRectangleArea_1(self, height):
-        N = len(height)
-        max_area = 0
-        for i in range(N):
-            if i+1 < N and height[i] <= height[i+1]:
-                continue
-            min_height = height[i]
-            j = i
-            while j >= 0:
-                min_height = min(min_height, height[j])
-                max_area = max(max_area, min_height * (i-j+1))
-                j -= 1
-        return max_area
+        return self.largestRectangleArea_1(height)
 
     # Use stack to merge the blocks
-    def largestRectangleArea_2(self, height):
+    def largestRectangleArea_1(self, height):
         height.append(0)                # append 0 to the end, used to find the last
         N = len(height)
         stack = []
@@ -2434,6 +2343,21 @@ class Solution:
                 max_area = max(max_area, width * height[index])
         return max_area
     # 维护一个递增序列
+
+    # Only calculate when decrease
+    def largestRectangleArea_2(self, height):
+        N = len(height)
+        max_area = 0
+        for i in range(N):
+            if i+1 < N and height[i] <= height[i+1]:
+                continue
+            min_height = height[i]
+            j = i
+            while j >= 0:
+                min_height = min(min_height, height[j])
+                max_area = max(max_area, min_height * (i-j+1))
+                j -= 1
+        return max_area
 ```
 -----
 
@@ -2644,10 +2568,6 @@ class Solution:
     # @param num, a list of integer
     # @return an integer
     def longestConsecutive(self, num):
-        return self.longestConsecutive_2(num)
-
-    # Using dict
-    def longestConsecutive_1(self, num):
         num_dict = {}
         for i in num:
             if i not in num_dict:
@@ -2670,50 +2590,7 @@ class Solution:
             ret = max(ret, length)
             num_dict.pop(i, None)
         return ret
-
-    # Not using dict
-    def longestConsecutive_2(self, num):
-        ret = 1
-        for i in num[:]:
-            if i not in num:
-                continue
-            length = 1
-            j = i
-            while j+1 in num:
-                length += 1
-                num.remove(j+1)
-                j += 1
-            j = i
-            while j-1 in num:
-                length += 1
-                num.remove(j-1)
-                j -= 1
-            ret = max(ret, length)
-            num.remove(i)
-        return ret
-
-
-# This is correct but exceeded the time limit
-# This should be done in finding the num for both directions, need to remember this
-
-    def longestConsecutive_1(self, num):
-        if len(num) <= 1:
-            return len(num)
-        dp_dict = {}
-        ret = 1
-        for i in num:
-            j = i
-            length = 1
-            while j+1 in num:
-                if j+1 in dp_dict:
-                    length = length + dp_dict[j+1]
-                    break
-                length += 1
-                j += 1
-            ret = max(ret, length)
-            dp_dict[i] = length
-        return ret
-
+    # Other methods are not O(n) solution
 ```
 -----
 
@@ -2842,17 +2719,17 @@ class Solution:
             return 0
         ret = 0
         stack = []
-        last = -1
+        last = 0
         for i, char in enumerate(s):
             if char == '(':
                 stack.append(i)
             else:
                 if len(stack) == 0:
-                    last = i
+                    last = i + 1
                 else:
                     index = stack.pop()
                     if len(stack) == 0:
-                        ret = max(ret, i - last)
+                        ret = max(ret, i - last + 1)
                     else:
                         ret = max(ret, i - stack[-1])
         return ret
@@ -2878,28 +2755,31 @@ class Solution:
         N = len(points)
         if N <= 2:
             return N
-        ret = 2
-        for i, p1 in enumerate(points[:-1]):
-            slots = {}
-            same = 0
-            vertical = 1
-            current_max = 0
-            for j, p2 in enumerate(points[i+1:]):
+        max_points = 2
+        for i in range(N-1):
+            p1 = points[i]
+            same = 1
+            verti = 0
+            slot = {}
+            max_slot = 0
+            for j in range(i+1, N):
+                p2 = points[j]
                 if p1.x == p2.x and p1.y == p2.y:
                     same += 1
                 elif p1.x == p2.x:
-                    vertical += 1
-                    #print vertical
+                    verti += 1
                 else:
-                    k = (p1.y - p2.y) * 1.0 / (p1.x - p2.x)
-                    if k not in slots:
-                        slots[k] = 2
-                    else:
-                        slots[k] += 1
-            for slot in slots.keys():
-                current_max = max(current_max, slots[slot] + same) # Here need to check twice
-            ret = max(ret, current_max, vertical+same)             # Cuz slot might be empty
-        return ret
+                    k = (p1.y - p2.y)*1.0 / (p1.x - p2.x) # This 1.0 is so important
+                    if k not in slot:
+                        slot[k] = 0
+                    slot[k] += 1
+                    max_slot = max(max_slot, slot[k])
+            max_points = max(max_points, same + verti, same + max_slot)
+        return max_points
+    # Note:
+    # 1. Double loop, O(n^2)
+    # 2. Need to consider same nodes, vertical nodes. final is max(cur_max, same + verti, same + slots)
+    # 3. So many things need to be initialized
 ```
 -----
 
@@ -3224,7 +3104,7 @@ class Solution:
     def mergeTwoLists(self, l1, l2):
         dummy = ListNode(0)
         cur = dummy
-        while l1 is not None and l2 is not None:
+        while l1 and l2:
             if l1.val < l2.val:
                 cur.next = l1
                 l1 = l1.next
@@ -3232,13 +3112,10 @@ class Solution:
                 cur.next = l2
                 l2 = l2.next
             cur = cur.next
-
-        if l1 is not None:
+        if l1:
             cur.next = l1
-
-        if l2 is not None:
+        if l2:
             cur.next = l2
-
         return dummy.next
 ```
 -----
@@ -3583,9 +3460,9 @@ If such arrangement is not possible, it must rearrange it as the lowest possible
 The replacement must be in-place, do not allocate extra memory.
 
 Here are some examples. Inputs are in the left-hand column and its corresponding outputs are in the right-hand column.
-1,2,3 → 1,3,2
-3,2,1 → 1,2,3
-1,1,5 → 1,5,1
+1,2,3 -> 1,3,2
+3,2,1 -> 1,2,3
+1,1,5 -> 1,5,1
 
 ```python
 
@@ -3593,26 +3470,30 @@ class Solution:
     # @param num, a list of integer
     # @return a list of integer
     def nextPermutation(self, num):
-        if len(num) <= 1:
-            return num
-        i = len(num) - 1
-        while i > 0 and num[i-1]>= num[i]: # It's >=
-            i -= 1
-        num = num[:i] + sorted(num[i:])
-        if i == 0:
-            return num
-        j = i
-        while j < len(num) and num[i-1] >= num[j]: # again >=
-            j += 1
-        self.swap(i-1, j, num)
+        N = len(num)
+        for i in range(N)[::-1]:
+            if num[i-1] < num[i]:
+                for j in range(i-1, N)[::-1]:
+                    if num[i-1] < num[j]:
+                        return self.find_next(i-1, j, num)
+        num.reverse()
         return num
 
-    def swap(self, i, j, num):
-        tmp = num[i]
-        num[i] = num[j]
-        num[j] = tmp
+    def find_next(self, i, j, num):
+        num[i], num[j] = num[j], num[i]
+        return num[:i+1] + sorted(num[i+1:])
 
-    # A little bit hard to think
+    # Way to think:
+    # [7, 8, 6, 9, 8, 7, 2] ->
+    #        |        |
+    # 1. Find 6 first
+    # 2. Find 7
+    # 3. Swap 6 and 7, sort all the nums after 6
+    
+    # Steps
+    # 1. Iterate from the back to the front, find the first element that A[i-1] < A[i]
+    # 2. Iterate from the back to the front, find the first element that A[j] > A[i-1]
+    # 3. swap A[i-1] and A[j], return A[:i+1] + sorted(A[i+1:])
 ```
 -----
 
@@ -4083,17 +3964,17 @@ class Solution:
 
     def permute_1(self, num):
         ret = []
-        self.permute_helper([], num, ret)
+        self.permute_helper(num, [], ret)
         return ret
 
-    def permute_helper(self, res, num, ret):
+    def permute_helper(self, num, res, ret):
         if len(num) == 0:
             ret.append(res[:])
             return
 
         for i, n in enumerate(num):
             res.append(n)
-            self.permute_helper(res, num[:i] + num[i+1:], ret)
+            self.permute_helper(num[:i] + num[i+1:], res, ret)
             res.pop()
 
     # Do this "inplace"
@@ -4135,7 +4016,7 @@ class Solution:
             ret.append(res[:])
             return
         for i, n in enumerate(num):
-            if i > 0 and n == num[i-1]:
+            if i > 0 and num[i] == num[i-1]:
                 continue
             res.append(n)
             self.permuteUnique_helper(num[:i] + num[i+1:], res, ret)
@@ -4285,33 +4166,33 @@ class Solution:
     # @param root, a tree node
     # @return nothing
     def connect(self, root):
-        if root is None:
+        if not root or (not root.left and not root.right):
             return
-        if root.left is not None:
-            if root.right is not None:
-                root.left.next = root.right
-            else:
-                root.left.next = self.find_next(root.next)
+        if root.left and root.right:
+            root.left.next = root.right
 
-        if root.right is not None:
-            root.right.next = self.find_next(root.next)
+        next_node = self.find_next(root.next)
+        if root.right:
+            root.right.next = next_node
+        else:
+            root.left.next = next_node
 
         self.connect(root.right)        # Do right first then left
         self.connect(root.left)
 
     def find_next(self, root):
-        if root is None:
+        if not root:
             return None
-        if root.left is None and root.right is None:
+        if not root.left and not root.right:
             return self.find_next(root.next)
-        if root.left is not None:
+        if root.left:
             return root.left
-        return root.right
-
-    # This is miracle that I can do this with one time!!!!
-    # Very simple to think
-    # One thing need to notice is that need to do connect right first and then left
-    # Because otherwise, when linking towards the right but the right isnt ready there will be error
+        else:
+            return root.right
+    # Notice:
+    # 1. Note that line 47 need to do right first then left
+    # 2. The reason that I doesn't need to process I first is it doesn't need to process
+    #    nodes of root.next.next...
 ```
 -----
 
@@ -4372,62 +4253,33 @@ class Solution:
     # @param root, a tree node
     # @return a tree node
     def recoverTree(self, root):
-        return self.recoverTree_2(root)
-
-    # This is the first attempt, several things need to note
-    # first and second need to be a list, so that it can work like pointer
-    # Since we are only comparing the last and cur, we dont't need to store the whole list,
-    # just use prev like solution 2
-    # Be careful when doing the if/else check, we can use only if here like solution 2
-    # Notice the way to determine the wrongs, always update the wrongs[1] but wrongs[0] will only updated once
-
-    def recoverTree_1(self, root):
-        nodes = []
-        wrongs = [None, None]
-        self.recoverTree_helper_1(root, nodes, wrongs)
-        tmp = wrongs[0].val
-        wrongs[0].val = wrongs[1].val
-        wrongs[1].val = tmp
+        self.last = None
+        self.wrongs = [None, None]
+        self.recover_helper(root)
+        self.wrongs[0].val, self.wrongs[1].val = self.wrongs[1].val, self.wrongs[0].val
         return root
 
-    def recoverTree_helper_1(self, root, nodes, wrongs):
-        if root is None:
+    def recover_helper(self, root):
+        if not root:
             return
-        self.recoverTree_helper_1(root.left, nodes, wrongs)
-        if len(nodes) == 0 or nodes[-1].val < root.val:
-            pass
-        else:
-            if not wrongs[0]:
-                wrongs[0] = nodes[-1]
-            wrongs[1] = root
-        nodes.append(root)
-        self.recoverTree_helper_1(root.right, nodes, wrongs)
+        self.recover_helper(root.left)
+        if self.last and self.last.val > root.val:
+            if not self.wrongs[0]:
+                self.wrongs[0] = self.last
+            self.wrongs[1] = root
+        self.last = root
 
-    # prev need to be a list inorder to use a pointer
-    def recoverTree_2(self, root):
-        wrongs = [None, None]
-        self.recoverTree_helper_2(root, [None], wrongs)
-        tmp = wrongs[0].val
-        wrongs[0].val = wrongs[1].val
-        wrongs[1].val = tmp
-        return root
+        self.recover_helper(root.right)
 
-    def recoverTree_helper_2(self, root, prev, wrongs):
-        if root is None:
-            return
-        self.recoverTree_helper_2(root.left, prev, wrongs)
-        if prev[0] is not None and prev[0].val > root.val:
-            if wrongs[0] is None:
-                wrongs[0] = prev[0]
-            wrongs[1] = root
-        prev[0] = root
-        self.recoverTree_helper_2(root.right, prev, wrongs)
-
-    
-    The third way is mad
-    def recoverTree_3(self, root):
-    
-```
+    # Note:
+    # 1. Very normal inorder traversal
+    # 2. Notice line 32,33. Always update wrongs[1], but wrongs[0] will only update one time
+    #    Reason is image [1,2,3,4,5,6], swap to [1,2,6,4,5,3]
+    #    We will find out 6 > 4 and 5 > 3
+    #    So first time we should update wrongs[0] = last,
+    #       second time we should update wrongs[1] = root
+    #    But line 34 first time we also update wrong[1] because if we have [1,2,4,3,5,6]
+    #    4 is next to 3 so we need to update them at the same time```
 -----
 
 ##[92. Regular Expression Matching](https://oj.leetcode.com/problems/regular-expression-matching/)
@@ -4456,51 +4308,29 @@ isMatch("aab", "c*a*b") → true
 class Solution:
     # @return a boolean
     def isMatch(self, s, p):
-        return self.isMatch_helper(s, p, 0, 0)
+        M = len(s)
+        N = len(p)
+        dp = [ [False for j in range(N+1)] for i in range(M+1) ]
+        dp[0][0] = True
+        pi = 2                          # Means pair increase, e.g. p = a*b*c*d*, s ='', should be true
+        while pi < N + 1 and p[pi-1] == '*':
+            dp[0][pi] = True
+            pi += 2
 
-    def isMatch_helper(self, s, p, i, j):
-        if j >= len(p):
-            return s[i] >= len(p)
+        for i in range(1, M+1):
+            for j in range(1, N+1):
+                if p[j-1] == '.' or s[i-1] == p[j-1]:
+                    dp[i][j] = dp[i-1][j-1]
+                elif p[j-1] == '*':
+                    dp[i][j] = dp[i][j-1] or \ # * is used as zero
+                               dp[i][j-2] or \ # * is removing the previous char
+                               (dp[i-1][j] and (s[i-1] == p[j-2] or p[j-2] == '.')) # * is back matching
 
-        if s[i] == p[j] or ( p[j] == '.' and i < len(s)):
-            if j+1 < len(p) and p[j+1] != '*':
-                return self.isMatch_helper(s, p, i+1, j+1)
-            else:
-                return self.isMatch_helper(s, p, i+1, j) or self.isMatch_helper(s, p, i, j+2)
+        return dp[M][N]
 
-        return j+1 < len(p) and p[j+1] == '*' and self.isMatch(s, p, i, j+2)
-
-    # Recursion
-    def isMatch(self, s, p):
-        if len(p)==0: return len(s)==0
-        if len(p)==1 or p[1]!='*':
-            if len(s)==0 or (s[0]!=p[0] and p[0]!='.'):
-                return False
-            return self.isMatch(s[1:],p[1:])
-        else:
-            i=-1; length=len(s)
-            while i<length and (i<0 or p[0]=='.' or p[0]==s[i]):
-                if self.isMatch(s[i+1:],p[2:]): return True
-                i+=1
-            return False
-
-    #dp
-    def isMatch(self, s, p):
-        dp=[[False for i in range(len(p)+1)] for j in range(len(s)+1)]
-        dp[0][0]=True
-        for i in range(1,len(p)+1):
-            if p[i-1]=='*':
-                if i>=2:
-                    dp[0][i]=dp[0][i-2]
-        for i in range(1,len(s)+1):
-            for j in range(1,len(p)+1):
-                if p[j-1]=='.':
-                    dp[i][j]=dp[i-1][j-1]
-                elif p[j-1]=='*':
-                    dp[i][j]=dp[i][j-1] or dp[i][j-2] or (dp[i-1][j] and (s[i-1]==p[j-2] or p[j-2]=='.'))
-                else:
-                    dp[i][j]=dp[i-1][j-1] and s[i-1]==p[j-1]
-        return dp[len(s)][len(p)]
+    # Notice
+    # 1. Line 30 initializing
+    # 2. Line 39 ~ 41
 ```
 -----
 
@@ -4731,53 +4561,51 @@ class Solution:
     # @param head, a ListNode
     # @return nothing
     def reorderList(self, head):
-        if head is None or head.next is None:
-            return
-        slow = head
-        fast = head.next.next                     # Let fast go one more round first then we don't need mid
-        while fast is not None and fast.next is not None:
-            slow = slow.next
-            fast = fast.next.next
-        if fast is not None:
-            slow = slow.next
-        mid = slow
-        cur = mid.next
-        while cur.next is not None:
-            move = cur.next
-            cur.next = move.next
-            move.next = mid.next
-            mid.next = move
-        left = head                     # Start to merge two lists
-        while left != mid:              # Ends when left = mid
-            right = mid.next
-            mid.next = right.next
-            right.next = left.next
-            left.next = right
-            left = right.next
+        if not head or not head.next:
+            return head
+        mid = self.find_mid(head)
+        next_node = mid.next
+        mid.next = None
+        second_half = self.reverse(next_node)
 
-    # Way to think:
-    # If we loop the list all the time, it will exceed the time limit
-    # So just find the second half, reverse the second half, and merge it with the first half, that's done
-    This way should work, but will exceed the time limit
-    def reorderList(self, head):
-        while head is not None:
-            tail = head
-            prev = tail
-            while tail.next is not None:
-                prev = tail
-                tail = tail.next
-            if prev == tail:
-                return
-            prev.next = None
-            tail.next = head.next
-            head.next = tail
-            head = tail.next
-    
-    # Should separate to 3 steps
-    # 1. Find middle
-    # 2. Reverse second half
-    # 3. Merge first half and reversed second half
-    # Will be simpler if separate these 3 step
+        self.merge(head, second_half)
+        return head
+
+    def find_mid(self, head):
+        slow = head
+        fast = head.next
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+        return slow
+
+    def reverse(self, head):
+        dummy = ListNode(0)
+        dummy.next = head
+        while head.next:
+            move = head.next
+            head.next = move.next
+            move.next = dummy.next
+            dummy.next = move
+        return dummy.next
+
+    def merge(self, l1, l2):
+        dummy = ListNode(0)
+        cur = dummy
+        i = 0
+        while l1 and l2:
+            if i % 2 == 0:
+                cur.next = l1
+                l1 = l1.next
+            else:
+                cur.next = l2
+                l2 = l2.next
+            cur = cur.next
+            i += 1
+        if l1:
+            cur.next = l1
+        if l2:
+            cur.next = l2
 ```
 -----
 
@@ -4801,14 +4629,13 @@ class Solution:
         return ret
 
     def restoreIpAddresses_helper(self, s, res, ret):
-        if len(res) >= 4 and len(s) != 0:
-            return
         if len(res) == 4 and len(s) == 0:
             ret.append('.'.join(res))
+        if len(res) >= 4 or len(s) == 0:
             return
+
         for i in range(1, min(3,len(s))+1):
-            # This check is a shit!
-            if (int(s[:i]) >= 0 and int(s[:i]) < 256 and s[:i][0]!= '0') or (int(s[:i])==0 and len(s[:i])==1):
+            if ( 0 <= int(s[:i]) < 256 and s[:i][0]!= '0' ) or ( int(s[:i]) == 0 and len(s[:i]) == 1):
                 res.append(s[:i])
                 self.restoreIpAddresses_helper(s[i:], res, ret)
                 res.pop()
@@ -5592,7 +5419,6 @@ class Solution:
             else:                       # p is a valid path
                 if jump > 0:
                     jump -= 1
-                    continue
                 else:
                     ret.insert(0, p)
         return '/'+'/'.join(ret)
@@ -5734,38 +5560,41 @@ class Solution:
     # @param head, a ListNode
     # @return a ListNode
     def sortList(self, head):
-        if head is None or head.next is None:
+        if not head or not head.next:
+            return head
+        mid = self.find_mid(head)
+        next_node = mid.next
+        mid.next = None
+        first_half = self.sortList(head)
+        second_half = self.sortList(next_node)
+        return self.merge_list(first_half, second_half)
+
+    def merge_list(self, l1, l2):
+        dummy = ListNode(0)
+        cur = dummy
+        while l1 and l2:
+            if l1.val < l2.val:
+                cur.next = l1
+                l1 = l1.next
+            else:
+                cur.next = l2
+                l2 = l2.next
+            cur = cur.next
+        if l1:
+            cur.next = l1
+        if l2:
+            cur.next = l2
+        return dummy.next
+
+    def find_mid(self, head):
+        if not head or not head.next:
             return head
         slow = head
-        fast = head
-        prev = head
-        while fast is not None and fast.next is not None:
-            prev = slow
+        fast = head.next
+        while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
-        prev.next = None
-        head = self.sortList(head)
-        slow = self.sortList(slow)
-        return self.sortedMerge(head, slow)
-
-    def sortedMerge(self, head1, head2):
-        dummy = ListNode(0)
-        head = dummy
-        while head1 is not None or head2 is not None:
-            if head1 is None:
-                head.next = head2
-                head2 = head2.next
-            elif head2 is None:
-                head.next = head1
-                head1 = head1.next
-            elif head1.val < head2.val:
-                head.next = head1
-                head1 = head1.next
-            else:
-                head.next = head2
-                head2 = head2.next
-            head = head.next
-        return dummy.next
+        return slow
 
     # Way to think about this:
     # 1. Split the list into first half and second half
@@ -6014,7 +5843,22 @@ class Solution:
     # @param S, a list of integer
     # @return a list of lists of integer
     def subsets(self, S):
-        return self.subsets_1(S)
+        return self.subsets_2(S)
+
+    # Recursion method
+    def subsets_2(self, S):
+        ret = []
+        self.subsets_helper(sorted(S), [], ret)
+        return ret
+
+    def subsets_helper(self, S, res, ret):
+        ret.append(res[:])
+
+        for i, el in enumerate(S):
+            res.append(el)
+            self.subsets_helper(S[i+1:], res, ret)
+            res.pop()
+    # Keep in mind the sorted
 
     # Iteration method
     def subsets_1(self, S):
@@ -6027,23 +5871,6 @@ class Solution:
                 res.append(el[:])
             ret = res[:]
         return ret
-
-    # Recursion method
-    def subsets_2(self, S):
-        ret = []
-        self.subsets_helper(0, sorted(S), [], ret)
-        return ret
-
-    def subsets_helper(self, i, S, res, ret):
-        if i == len(S):
-            ret.append(res[:])
-            return
-        self.subsets_helper(i+1, S, res, ret) # No element i
-        res.append(S[i])
-        self.subsets_helper(i+1, S, res, ret) # With element i
-        res.pop()
-
-    # Keep in mind the sorted
 ```
 -----
 
@@ -6090,24 +5917,25 @@ class Solution:
     # Recursion way
     def subsetsWithDup_2(self, S):
         ret = []
-        self.subsetsWithDup_rec(0, sorted(S), [], ret)
+        self.subsetsWithDup_rec(sorted(S), [], ret)
         return ret
 
-    def subsetsWithDup_rec(self, i, S, res, ret):
-        if i == len(S):
-            ret.append(res[:])
-            return
-        if len(res)==0 or S[i] != res[-1]: # This is tricky, but I should be careful, it's checking against
-            self.subsetsWithDup_rec(i+1, S, res, ret) # last res char, but not S[i-1]
-        res.append(S[i])
-        self.subsetsWithDup_rec(i+1, S, res, ret)
-        res.pop()
+    def subsetsWithDup_rec(self, S, res, ret):
+        ret.append(res[:])
+
+        for i, el in enumerate(S):
+            if i > 0 and S[i] == S[i-1]:
+                continue
+            res.append(el)
+            subsetsWithDup_rec(S[i+1:], res, ret)
+            res.pop()
 ```
 -----
 
 ##[127. Substring with Concatenation of All Words](https://oj.leetcode.com/problems/substring-with-concatenation-of-all-words/)
 
-You are given a string, S, and a list of words, L, that are all of the same length. Find all starting indices of substring(s) in S that is a concatenation of each word in L exactly once and without any intervening characters.
+You are given a string, S, and a list of words, L, that are all of the same length.
+Find all starting indices of substring(s) in S that is a concatenation of each word in L exactly once and without any intervening characters.
 
 For example, given:
 S: "barfoothefoobarman"
@@ -6123,61 +5951,30 @@ class Solution:
     # @param L, a list of string
     # @return a list of integer
     def findSubstring(self, S, L):
-        LS, LL, LL0 = len(S), len(L), len(L[0])
-        did, ids, dl = {}, 0, {}
-        for s in L:
-            id = did.get(s, -1)
-            if id == -1:
-                 ids = ids + 1
-                 id = ids
-                 did[s] = id
-            dl[id] = dl.get(id, 0) + 1
-
-        pos, ans = [0] * LS, []
-        for k, v in did.items():
-            f = S.find(k)
-            while f != -1:
-                pos[f] = v
-                f = S.find(k, f + 1)
-
-        for sp in range(LL0):
-            np, pp, tot, dt = sp, sp, 0, {}
-            while np < LS:
-                t = pos[np]
-                if t == 0:
-                    tot, dt = 0, {}
-                    pp, np = np + LL0, np + LL0
-                elif dt.get(t, 0) < dl[t]:
-                    dt[t] = dt.get(t, 0) + 1
-                    tot = tot + 1
-                    if tot == LL:
-                        ans.append(pp)
-                    np = np + LL0
+        len_word = len(L[0])
+        len_L = len(L)
+        len_S = len(S)
+        ret = []
+        for i in range(len_S - len_word * len_L + 1):
+            list_S = [ S[j:j+len_word] for j in range(i, i + len_L*len_word, len_word)]
+            found = True
+            for word in L:
+                if word in list_S:
+                    list_S.remove(word)
                 else:
-                    while pos[pp] != t:
-                        tot = tot - 1
-                        dt[pos[pp]] -= 1
-                        pp = pp + LL0
-                    pp = pp + LL0
-                    dt[t] -= 1
-                    tot = tot - 1
-        return ans
-
-
-        if len(S) == 0 or len(L) == 0:
-            return []
-        length = len(L[0])
-        N = len(S)
-        dp = [0 for i in range(N-length)]
-        ret = 0
-        for i in range(N-length):
-            if S[i:length] in L:
-                dp[i] = 1
-                if i >= length and dp[i-length] > 0:
-                    dp[i] += dp[i-length]
-                ret = max(ret, dp[i])
+                    found = False
+                    break
+            if found:
+                ret.append(i)
         return ret
 
+    # Note
+    # 1. The idea is to slice S to S[i: i+len_L*len_word: len_word] and compare S's substring list with L
+    #    Can improve it with i. replacing the list to dict increase search. ii. KMP
+    # 2. This is good enough. Can use KMP but it's too complicated.
+    #    See http://c4fun.cn/blog/2014/03/20/leetcode-solution-02/#Substring_with_Concatenation_of_All_Words
+    #    for KMP solution
+    # 3. Notice line 23, wrapping everything in the range is fast than calculate them in list comprehension
 ```
 -----
 
@@ -6538,67 +6335,42 @@ class Solution:
     # @param L, an integer
     # @return a list of strings
     def fullJustify(self, words, L):
-        return self.fullJustify_1(words, L)
-
-    def fullJustify_1(self, words, L):
-        ret = []
-        N = len(words)
-        i = 0
-        while i < N:
-            length = len(words[i])
-            j = i + 1
-            while j < N and length + len(words[j]) + j - i < L:
-                length += len(words[j])
-                j += 1
-
-            # start to build a line
-            is_last_line = (j == N)
-            is_single = (j == i + 1)
-            if is_last_line or is_single:
-                average = 0
-                extra = L - length
-            else:
-                average = (L - length) / (j-i-1)
-                extra = (L - length) % (j-i-1)
-            for k in range(extra):       # Note its j not j+1
-                words[i+k] += ' '
-            ret.append((' '*average).join(words[i:j-1]))
-            i = j
-            print ret
-        return ret
-
-
-    def fullJustify_2(self, words, L):
-        ret = []
-        N = len(words)
-        i = 0
+        cur_len = 0
         res = []
-        counter = 0
-        while i < N:
-            if len(words[i]) + len(res) + counter <= L: # Need to consider space between words
-                res.append(words[i])
-                counter += len(words[i])
-                i += 1
+        ret = []
+        for word in words:
+            if cur_len + len(word) + len(res) <= L:
+                res.append(word)
+                cur_len += len(word)
             else:
                 if len(res) == 1:
-                    last = ' '.join(res)
-                    last += ' ' * (L - len(last))
-                    ret.append(last)
+                    ret.append(self.fill_spaces(res[0], L))
                 else:
-                    spaces = L - counter
-                    least_fill = spaces / (len(res)-1)
-                    rest = spaces % (len(res)-1)
-                    for j in range(rest):
-                        res[j] += ' '
-                    ret.append((' '*least_fill).join(res))
-                counter = 0
+                    extra_spaces = L - cur_len - (len(res) - 1)
+                    each_extra = extra_spaces / (len(res) - 1) + 1
+                    rest_spaces = extra_spaces % (len(res) - 1)
+                    for i in range(rest_spaces):
+                        res[i] += ' '
+                    line = (' ' * each_extra).join(res)
+                    ret.append(line)
                 res = []
-            #assert(len(res) < 4)
-        if len(res) > 0:
-            last = ' '.join(res)
-            last += ' ' * (L - len(last))
-            ret.append(last)
+                res.append(word)
+                cur_len = len(word)
+        ret.append(self.fill_spaces(' '.join(res), L))
         return ret
+
+    def fill_spaces(self, string, L):
+        length = len(string)
+        string += ' ' * (L - length)
+        return string
+
+    # Notice:
+    # 1. 算extra_spaces的时候是len(res) - 1
+    # 2. 在each extra的后面+1算上必有的space
+    # 3. 可以用for循环做, 但是别忘了最后要reset res, cur_len
+    # 4. 最后是一定会append多余的一行的, line 49没必要再check了, 直接append
+    # 5. 把fill_space函数单独提出来比较合适
+    # 6. Line 42 43 这里的思想要记住, 比较重要
 ```
 -----
 
@@ -6932,68 +6704,34 @@ class Solution:
             return False
 
         if 'e' in s:
-            return self.isNumberwoE_2(s.split('e')[0]) and self.isNumberwoE_2(s.split('e')[1], False)
+            return self.isNumberwoE(s.split('e')[0]) and self.isNumberwoE(s.split('e')[1], False)
         elif 'E' in s:
-            return self.isNumberwoE_2(s.split('E')[0]) and self.isNumberwoE_2(s.split('E')[1], False)
+            return self.isNumberwoE(s.split('E')[0]) and self.isNumberwoE(s.split('E')[1], False)
         else:
-            return self.isNumberwoE_2(s)
+            return self.isNumberwoE(s)
 
-    def isNumberwoE_1(self, s, allow_digit = True):
-        digit = '0123456789'
-        N = len(s)
-        if N == 0:
-            return False
-        has_digit = False
-        has_num = False
-        for i, char in enumerate(s):
-            if char == '+' or char == '-':
-                if i != 0:
-                    return False
-            elif char == ' ':
-                return False
-            elif char == '.':
-                if not allow_digit or has_digit:
-                    return False
-                if (i == 0 or s[i-1] not in digit) and (i == N-1 or s[i+1] not in digit):
-                    return False
-                has_digit = True
-            elif char not in digit:
-                return False
-            else:
-                has_num = True
-        return has_num
-
-    def isNumberwoE_2(self, s, allow_digit = True):
-        digit = '0123456789'
+    def isNumberwoE(self, s, allow_digit = True):
         has_num = False
         for i, char in enumerate(s):
             if i == 0 and char in ['+', '-']:
                 continue
             if char == '.' and allow_digit:
                 allow_digit = False
-                if (i == 0 or s[i-1] in digit) or (i == len(s)-1 or s[i+1] in digit):
-                    continue
-            if char in digit:
+                continue
+            if char.isdigit():
                 has_num = True
                 continue
             return False
         return has_num
 
     # Note:
-    # 1. Before/after e/E must be a valid num
-    # 2. check each sign and dot and num and space
-    # 3. Keep an eye on line 44 and line 61 using and / or. Reason is +.8 is valid.
-    # 4. isNumberwoE_2 is easier to think, don't think reversely
-
-    # Steps:
     # 1. Strip white space
     # 2. Check if multiple E/e, split by E/e
     # 3. Check each part of num if they are valid with/wo digit
     # 4. Things that can pass:
     #    i.   i == 0 and char in ['+', '-']
     #    ii.  char.isdigit(), pass and set hasNum = True
-    #    iii. char == '.': need to check if allow_digit and
-    #         check (s[i-1].isdigit() or i == 0) or (i == len(s) - 1 or s[i+1].isdigit())
+    #    iii. char == '.': need to check if allow_digit
     #    Set all the rest cases to False
 ```
 -----
@@ -7194,40 +6932,26 @@ class Solution:
         backupS = -1
         backupP = -1
         while i < len(s):
-            if j < len(p) and (p[j] == '?' or s[i] == p[j]):
+            if j < len(p) and (p[j] == '?' or s[i] == p[j]): # Move to next if s[i] == p[j] or p[j] == '?'
                 i += 1
                 j += 1
-            elif j < len(p) and p[j] == '*':
-                while j < len(p) and p[j] == '*':
-                    j += 1
-                if j == len(p):
-                    return True
+            elif j < len(p) and p[j] == '*': # Backup if p[j] == '*'. Keep s but move p
+                j += 1
                 backupS = i
                 backupP = j
-            else:
-                if backupS == -1:
+            else:                       # No match
+                if backupP == -1:       # if no backup, return false
                     return False
-                i = backupS + 1
-                backupS += 1
+                backupS += 1            # Have a backup, move backupS, restore all the backup
+                i = backupS
                 j = backupP
+
         while j < len(p) and p[j] == '*':
             j += 1
-        return j == len(p) and i == len(s)
-
-
-    def isMatch_helper(self, s, i1, p, i2):
-        S = len(s)
-        P = len(p)
-        if i1 >= S and i2 >= P:
-            return True
-        elif i2 >= P:
-            return False
-        elif i1 >= S and p[i2] == '*':
-            return self.isMatch_helper(s, i1, p, i2+1)
-        elif p[i2] == '?':
-            return self.isMatch_helper(s, i1+1, p, i2+1)
-        elif p[i2] == '*':
-            return self.isMatch_helper(s, i1+1)
+        return j == len(p) # and i == len(s)
+    # Note
+    # 1. Line 47 can be removed because when it's out of loop, i must == len(s)
+    # 2. Line 39 doens't matter if it is backupS or backupP
 ```
 -----
 
@@ -7317,8 +7041,44 @@ class Solution:
                     dp[i-1] = False
                 res.pop()
 
-    # Use dp to reduce the duplicate
-    # Another way is follow NC use divide and conquer
+```
+
+这两种方法本质上没有区别
+* 前者是如果运行dfs之后结果没有变化，说明没有搜到，后面也不用搜了
+* 后者是预处理dp然后用在recursion之中
+
+```python
+
+    def wordBreak(self, s, dict):
+        ret = []
+        dp = self.word_break_dp(s, dict)
+        self.dfs_word_break(len(s)+1, s, dict, [], ret, dp)
+        return ret
+
+    def word_break_dp(self, s, dict):
+        N = len(s)
+        dp = [False for i in range(N+1)]
+        dp[0] = True
+        for i in range(N):
+            for j in range(i):
+                if dp[j] and s[j:i]:
+                    dp[i] = True
+                    break
+        return dp
+
+    def dfs_word_break(self, end, s, dict, res, ret, dp):
+        if end == 0:
+            ret.append(' '.join(res))
+            return
+        for i in range(end):
+            if dp[i] and s[i:end] in dict:
+                res.insert(0, s[i:end]) # Note this is insert(0)
+                self.dfs_word_break(i, s, dict, res, ret, dp)
+                res.pop(0)              # So this is pop(0)
+
+        # dict = ["cat", "cats", "and", "sand", "dog"]
+        # s = "catsanddog"
+        # print wordBreak(s, dict)
 ```
 -----
 
@@ -7349,19 +7109,22 @@ class Solution:
     # @param dict, a set of string
     # @return an integer
     def ladderLength(self, start, end, dict):
-        dict.add(end)
-        queue = collections.deque([(start, 1)])
+        queue = collections.deque([start])
         N = len(start)
+        length = 1
         while len(queue) > 0:
-            word, depth = queue.popleft()
-            if word == end:
-                return depth
-            for i in range(N):
-                for char in 'abcdefghijklmnopqrstuvwxyz':
+            size = len(queue)
+            for i in range(size):
+                word = queue.popleft()
+                if word == end:
+                    return length
+                for i in range(N):
+                    for char in 'abcdefghijklmnopqrstuvwxyz':
                         new_word = word[:i] + char + word[i+1:]
                         if new_word in dict:
-                            queue.append((new_word, depth+1))
+                            queue.append(new_word)
                             dict.remove(new_word)
+            length += 1
         return 0
 ```
 -----
@@ -7395,46 +7158,39 @@ class Solution:
     # @param dict, a set of string
     # @return a list of lists of string
     def findLadders(self, start, end, dict):
-        ret     = []
-        prevMap = {}
-        length  = len(start)
-        for i in dict:
-            prevMap[i] = []
-        candidates = [set(),set()]
-        current    = 0
-        previous   = 1
-        candidates[current].add(start)
-        while True:
-            current, previous=previous, current
-            for i in candidates[previous]: dict.remove(i)
-            candidates[current].clear()
-            for word in candidates[previous]:
-                for i in range(length):
-                    part1=word[:i]; part2=word[i+1:]
-                    for j in 'abcdefghijklmnopqrstuvwxyz':
-                        if word[i]!=j:
-                            nextword=part1+j+part2
-                            if nextword in dict:
-                                prevMap[nextword].append(word)
-                                candidates[current].add(nextword)
-            if len(candidates[current])==0:
-                return ret
-            if end in candidates[current]: break
-        self.buildpath([], end, prevMap, ret)
-        return ret
+        trace_back = { word: [] for word in dict}
+        prev_level = set([start])
+        found = False
+        while len(prev_level) > 0 and not found:
+            cur_level = set([])
+            size = len(prev_level)
+            for word in prev_level:
+                dict.remove(word)
+            for word in prev_level:
+                if word == end:
+                    found = True
+                for i in range(len(word)):
+                    for char in 'abcdefghijklmnopqrstuvwxyz':
+                        new_word = word[:i] + char + word[i+1:]
+                        if new_word in dict:
+                            trace_back[new_word].append(word)
+                            cur_level.add(new_word)
+            prev_level = cur_level
+        paths = []
+        if found:
+            self.find_traceback(end, trace_back, [], paths)
+        return paths
 
-    def buildpath(self, path, word, prevMap, ret):
-        if len(prevMap[word])==0:
-            path.append(word)
-            currPath=path[:]
-            currPath.reverse()
-            ret.append(currPath)
-            path.pop();
+    def find_traceback(self, word, trace, cur_path, paths):
+        if len(trace[word]) == 0:
+            paths.append([word] + cur_path)
             return
-        path.append(word)
-        for prev in prevMap[word]:
-            self.buildpath(path, prev, prevMap, ret)
-        path.pop()
+        for prev_word in trace[word]:
+            self.find_traceback(prev_word, trace, [word] + cur_path, paths)
+
+    # Note:
+    # 1. while loop is doing a BFS
+    # 2. find_traceback is doing a DFS from the end traceback to start
 ```
 -----
 
@@ -7542,7 +7298,7 @@ class Solution:
 
 ##153. Absolute Minimum
 
-###From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32782345.html) for Amazon Interview
+#####From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32782345.html) for Amazon Interview
 Given three arrays A,B,C containing unsorted numbers. Find three numbers a,
 b, c from each of array A, B, C such that |a-b|, |b-c| and |c-a| are minimum
 Please provide as efficient code as you can.
@@ -7683,11 +7439,7 @@ print rearrange_array_rotate(B)
 
 ```python
 
-class TreeNode:
-    def __init__(self, x):
-        self.val = x
-        self.left = None
-        self.right = None
+from Tree_Helper.tree_helper import *
 
 def BFS_level_order_traversal(root):
     if not root:
@@ -7819,23 +7571,6 @@ def DFS_postorder(root):
     return result
 
 
-def create_bst_from_array(A, start=None, end=None):
-    if start is None and end is None:
-        start = 0
-        end = len(A) - 1
-
-    if start > end:
-        return None
-
-    mid = (start + end) / 2
-    root = TreeNode(A[mid])
-
-    root.left = create_bst_from_array(A, start, mid - 1)
-    root.right = create_bst_from_array(A, mid + 1, end)
-
-    return root
-
-
 A = [ i for i in range(10) ]
 new_tree = create_bst_from_array(A)
 
@@ -7923,27 +7658,48 @@ preorder_doubly_flatten(new_tree)
 
 print BFS_level_order_traversal(new_tree)
 
-def print_tree(head):
-    while head:
-        print head.val,
-        if head.left:
-            print 'left', head.left.val,
-        if head.right:
-            print 'right', head.right.val,
-        print ''
-        head = head.right
-
-print_tree(head)
+print_tree_as_list(head)
 
 ```
 -----
 
-##156. BlockingQueue
+##156. Binary Tree Level K Nodes
+
+#####From [blog](http://blog.csdn.net/luckyxiaoqiang/article/details/7518888#topic6)
+
+Not sure if this is usefull but the code seems pretty important
+
+```python
+
+def get_kth_level_nodes(root, k):
+    if not root:
+        return 0
+    if k == 1:
+        return k
+
+    left_count = get_kth_level_nodes(root.left, k-1)
+    right_count = get_kth_level_nodes(root.right, k-1)
+
+    return left_count + right_count
+
+
+from Tree_Helper.tree_helper import *
+A = [ i for i in range(20)]
+root = create_bst_from_array(A)
+
+DFS_level_order_traversal(root)
+
+print get_kth_level_nodes(root, 5)
+
+```
+-----
+
+##157. Blocking Queue
 
 #####From Tango Interview Challenge
 This is pretty important design pattern, including the knowledge of thread
 
-1. Using Queue
+######Using Queue
 
 ```python
 
@@ -7980,7 +7736,7 @@ ConsumerThread().start()
 
 ```
 
-2. Using Condition
+######Using Condition
 
 ```python
 from threading import Thread, Condition
@@ -8028,7 +7784,7 @@ ProducerThread().start()
 ConsumerThread().start()
 ```
 
-3. Helper functions
+######Helper functions
 
 ```python
 import random
@@ -8053,10 +7809,44 @@ def random_result():
 
 random_result()
 ```
+-----
+
+##158. Coin Change
+
+#####From [Geeksforgeeks](http://www.geeksforgeeks.org/dynamic-programming-set-7-coin-change/)
+
+Similar to CC150, just allow coin with 1, 3, 5 right now
+
+Several ways to ask
+1. How many ways?
+2. What are the ways?
+3. Minimum coin number?
+
+```python
+
+# This is same to Combination Sum I
+def coin_change(value):
+    res = [0, 0, 0]                     # [num_5, num_3, num_1]
+    ret = []
+    coin_change_helper(0, value, res, ret)
+    return ret
+
+def coin_change_helper(cur_face_value, rest_value, res, ret):
+    if rest_value == 0:
+        ret.append(res[:])
+
+    for i in range(cur_face_value, 3):
+        if rest_value - [5, 3, 1][i] < 0:
+            continue
+        res[i] += 1
+        coin_change_helper(i, rest_value - [5, 3, 1][i], res, ret)
+        res[i] -= 1
+
+print coin_change(5)
 ```
 -----
 
-##157. Consecutive Subarray
+##159. Consecutive Subarray
 
 #####Interview With Cyan
 1. Shortest Path
@@ -8108,7 +7898,7 @@ print find_consecutive(num, sum)
 ```
 -----
 
-##159. Count zeros in Factorial
+##161. Count zeros in Factorial
 
 From mitbbs for Facebook
 
@@ -8137,7 +7927,7 @@ print fact(N)
 ```
 -----
 
-##160. Delete a Node in BST
+##162. Delete a Node in BST
 
 [Solution](http://answer.ninechapter.com/solutions/delete-a-node-in-binary-search-tree/)
 实际上有好几种做法
@@ -8200,7 +7990,7 @@ def delete_node_in_BST(parent, node):
 ```
 -----
 
-##163. Flatten a Multilevel Linked List
+##165. Flatten a Multilevel Linked List
 
 Given a linked list where in addition to the next pointer, each node has a child pointer, which may or may not point to a separate list. These child lists may have one or more children of their own, and so on, to produce a multilevel data structure, as shown in below figure.You are given the head of the first level of the list. Flatten the list so that all the nodes appear in a single-level linked list. You need to flatten the list in way that all nodes at first level should come first, then nodes of second level, and so on.
 
@@ -8233,7 +8023,7 @@ def flatten_list(head):
 ```
 -----
 
-##164. Flattening a Linked List
+##166. Flattening a Linked List
 
 Given a linked list where every node represents a linked list and contains two pointers of its type:
 (i) Pointer to next node in the main list (we call it ‘right’ pointer in below code)
@@ -8286,7 +8076,7 @@ def merge(node1, node2):
 ```
 -----
 
-##165. Largest None Close Sum
+##167. Largest None Close Sum
 
 #####9/23/2014 Interview with Kevin from Fivestars
 
@@ -8322,7 +8112,7 @@ def find_largest_none_close_sum(A):
 ```
 -----
 
-##167. Longest Common Subsequence
+##169. Longest Common Subsequence
 
 Need to distinguish from Longest Common Substring
 
@@ -8422,7 +8212,7 @@ print LCS('AGGTAB', 'GXTXAYB')
 ```
 -----
 
-##168. Longest Common Substring
+##170. Longest Common Substring
 
 ##### 9/4/2014 Interview with Tubular
 1. Subset(second le)
@@ -8480,7 +8270,7 @@ print Longest_Common_Substring("GeeksforGeeks", "GeeksQuiz")
 ```
 -----
 
-##169. Longest Increasing Subsequence
+##171. Longest Increasing Subsequence
 
 #####NC Class 5, slides 17
 
@@ -8542,7 +8332,7 @@ print d_A[max(d_A.keys())]
 ```
 -----
 
-##170. Lowest Common Ancestor
+##172. Lowest Common Ancestor
 
 #####[LCA, Lowest Common Ancestor](http://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/) Pocket Gem possible question 9/8/2014
 
@@ -8616,9 +8406,9 @@ def get_LCA(root, node1, node2):
 ```
 -----
 
-##171. Min Num to Composite Words
+##173. Min Num to Composite Words
 
-From [Career Cup](http://www.careercup.com/page?pid=pinterest-interview-questions) Pinterest
+#####From [Career Cup](http://www.careercup.com/page?pid=pinterest-interview-questions) Pinterest
 
 Given an input string and a dictionary of words, find out if the input string can be segmented into a space-separated sequence of dictionary words. You need to output the minimum number of words. For example, input: "aaaisaname"
 dict: ("a", "aaa", "is", "name")
@@ -8661,7 +8451,7 @@ print print_min_num_words(str, d)
 ```
 -----
 
-##172. Min Stack
+##174. Min Stack
 
 #####From NC Class 7 Data Structures, slides 8
 [Solution](http://www.geeksforgeeks.org/design-and-implement-special-stack-data-structure/)
@@ -8700,7 +8490,7 @@ class MinStack():
 ```
 -----
 
-##173. Operations Calculation
+##175. Operations Calculation
 
 ##### 9/5/2014 Elasticbox
 加减运算
@@ -8757,7 +8547,7 @@ find_next_num()
 ```
 -----
 
-##174. Print Matrix
+##176. Print Matrix
 
 #####From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32570751.html) for Pinterest
 
@@ -8802,7 +8592,7 @@ print_matrix(matrix)
 ```
 -----
 
-##175. Print Numbers With Five
+##177. Print Numbers With Five
 
 ##### 9/7/2014 From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32651839.html) for Groupon
 写一个function，对于参数n，输出从0到n之间所有含5的数字。
@@ -8830,7 +8620,7 @@ print find_five(60)
 ```
 -----
 
-##176. Queue by Two Stacks
+##178. Queue by Two Stacks
 
 Implement a Queue by using two stacks. Support O(1) push, pop, top
 
@@ -8858,7 +8648,7 @@ class Queue():
 ```
 -----
 
-##177. Recover Rotated Sorted Array
+##179. Recover Rotated Sorted Array
 
 Given a rotated sorted array, recover it to sorted array in-place.
 
@@ -8889,7 +8679,7 @@ print recover_rotated_sorted_array(A)
 ```
 -----
 
-##178. Rotated Mirror Number
+##180. Rotated Mirror Number
 
 #####From Alec's email, someone's onsite interview with Facebook for finding rotated mirrow number like 808 which is less than N
 
@@ -8934,7 +8724,7 @@ print rotated_mirror_number(10000)
 ```
 -----
 
-##181. Search a Range in BST
+##183. Search a Range in BST
 
 or Print BST Keys in the Give Range
 
@@ -8965,7 +8755,7 @@ def search_a_range(root, k1, k2):
 ```
 -----
 
-##182. Shortest Path
+##184. Shortest Path
 
 #####With Twitter & Cyan
 
@@ -9048,7 +8838,7 @@ print find_path(map)
 ```
 -----
 
-##183. Shuffle
+##185. Shuffle
 
 #####Shuffle a given array
 Saw it from FiveStar's interview.
@@ -9077,7 +8867,7 @@ print shuffle_array(A)
 ```
 -----
 
-##184. isOneEditDistance
+##186. isOneEditDistance
 
 #####From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32760941.html) for facebook
 

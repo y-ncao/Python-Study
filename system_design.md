@@ -231,6 +231,14 @@ Storm is a distributed realtime computation system. Similar to how Hadoop provid
 2. __Bolt__ processes any number of input streams and produces any number of new output streams. Most of the logic of a computation goes into bolts, such as functions, filters, streaming joins, streaming aggregations, talking to databases, and so on.
 3. __Topology__ is a network of spouts and bolts, with each edge in the network representing a bolt subscribing to the output stream of some other spout or bolt. A topology is an arbitrarily complex multi-stage stream computation.
 
+###[Hadoop Distributed File System (HDFS)](http://hortonworks.com/hadoop/hdfs/)
+* Rack awareness allows consideration of a node’s physical location, when allocating storage and scheduling tasks
+* Minimal data motion. MapReduce moves compute processes to the data on HDFS and not the other way around. Processing tasks can occur on the physical node where the data resides. This significantly reduces the network I/O patterns and keeps most of the I/O on the local disk or within the same rack and provides very high aggregate read/write bandwidth.
+* Utilities diagnose the health of the files system and can rebalance the data on different nodes
+* Rollback allows system operators to bring back the previous version of HDFS after an upgrade, in case of human or system errors
+* Standby NameNode provides redundancy and supports high availability
+* Highly operable. Hadoop handles different types of cluster that might otherwise require operator intervention. This design allows a single operator to maintain a cluster of 1000s of nodes.
+
 ###OOD
 
 ###TODO
