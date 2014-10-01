@@ -224,9 +224,18 @@
 * 通过virtual node来提高balance
 * 正常hash就直接hash ip就行了 hash('192.168.1.1')， 如果是hash virtual node可以 hash('192.168.1.1#1')
 
+###[Storm](https://storm.incubator.apache.org/documentation/Home.html)
+Storm is a distributed realtime computation system. Similar to how Hadoop provides a set of general primitives for doing batch processing, Storm provides a set of general primitives for doing realtime computation.
+
+1. __Spout__ is A source of streams in a computation. Spout implementations already exist for most queueing systems.
+2. __Bolt__ processes any number of input streams and produces any number of new output streams. Most of the logic of a computation goes into bolts, such as functions, filters, streaming joins, streaming aggregations, talking to databases, and so on.
+3. __Topology__ is a network of spouts and bolts, with each edge in the network representing a bolt subscribing to the output stream of some other spout or bolt. A topology is an arbitrarily complex multi-stage stream computation.
+
 ###OOD
 
 ###TODO
 * [ ] Storm原理
+* [ ] Hadoop
+* [ ] Spark
 * [ ] 总结下Twitter Pinterest Facebook题目
 * [ ] 精细化数据
