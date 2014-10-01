@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
-file_name = 'Word_Ladder_II'
-func_name = 'findLadders'
+file_name = 'Substring_with_Concatenation_of_All_Words'
+func_name = 'findSubstring'
 
 import importlib
 module = importlib.import_module('Leetcode.%s' % file_name)
 instance = module.Solution()
 
-print getattr(instance, func_name)("hot", "dog", ["hot","cog","dog","tot","hog","hop","pot","dot"])
+print getattr(instance, func_name)("aaa", ["a","a"])

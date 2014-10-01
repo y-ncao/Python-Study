@@ -673,7 +673,7 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [ ] Regular Expression Matching
 * [ ] Wildcard Matching
 * [x] Max Points on a Line
-* [ ] Word Ladder II
+* [x] Word Ladder II
 * [x] Word Break II
 * [x] Text Justification
 * [x] String to Integer (atoi) (只需要注意['+','-'] 和<-sys.maxint >sys.maxint)
@@ -734,7 +734,11 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 ##Need Understand
 * [ ] Largest Rectangle in Histogram
 * [ ] Maximal Rectangle
-* Construct Max Tree
+* [ ] 最大子矩阵(NC wechat)
+* [ ] 最大子矩阵乘积
+* [ ] 子数组最大差(NC wechat)
+* [ ] Majority Number 好好看看
+* Construct Max Tree (NC wechat)
 * NC DP 最小调整代价
 * MEIZUO
 * BACKPACK

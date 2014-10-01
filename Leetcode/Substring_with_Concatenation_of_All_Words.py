@@ -1,5 +1,6 @@
 """
-You are given a string, S, and a list of words, L, that are all of the same length. Find all starting indices of substring(s) in S that is a concatenation of each word in L exactly once and without any intervening characters.
+You are given a string, S, and a list of words, L, that are all of the same length.
+Find all starting indices of substring(s) in S that is a concatenation of each word in L exactly once and without any intervening characters.
 
 For example, given:
 S: "barfoothefoobarman"
@@ -14,58 +15,31 @@ class Solution:
     # @param L, a list of string
     # @return a list of integer
     def findSubstring(self, S, L):
-        LS, LL, LL0 = len(S), len(L), len(L[0])
-        did, ids, dl = {}, 0, {}
-        for s in L:
-            id = did.get(s, -1)
-            if id == -1:
-                 ids = ids + 1
-                 id = ids
-                 did[s] = id
-            dl[id] = dl.get(id, 0) + 1
-
-        pos, ans = [0] * LS, []
-        for k, v in did.items():
-            f = S.find(k)
-            while f != -1:
-                pos[f] = v
-                f = S.find(k, f + 1)
-
-        for sp in range(LL0):
-            np, pp, tot, dt = sp, sp, 0, {}
-            while np < LS:
-                t = pos[np]
-                if t == 0:
-                    tot, dt = 0, {}
-                    pp, np = np + LL0, np + LL0
-                elif dt.get(t, 0) < dl[t]:
-                    dt[t] = dt.get(t, 0) + 1
-                    tot = tot + 1
-                    if tot == LL:
-                        ans.append(pp)
-                    np = np + LL0
-                else:
-                    while pos[pp] != t:
-                        tot = tot - 1
-                        dt[pos[pp]] -= 1
-                        pp = pp + LL0
-                    pp = pp + LL0
-                    dt[t] -= 1
-                    tot = tot - 1
-        return ans
-
-"""
-        if len(S) == 0 or len(L) == 0:
-            return []
-        length = len(L[0])
+        M = len(L[0])
         N = len(S)
-        dp = [0 for i in range(N-length)]
-        ret = 0
-        for i in range(N-length):
-            if S[i:length] in L:
-                dp[i] = 1
-                if i >= length and dp[i-length] > 0:
-                    dp[i] += dp[i-length]
-                ret = max(ret, dp[i])
+        ret = []
+        i = 0
+        while i < N - M + 1:
+            if S[i:i+M] in L:
+                tmp = L[:]
+                tmp.remove(S[i:i+M])
+                j = i + M
+                start = None
+                while len(tmp) > 0 and j + M < N and S[j:j+M] in L:
+                    print 'start from here?', tmp
+                    if S[j:j+M] in tmp:
+                        tmp.remove(S[j:j+M])
+                        j += M
+                    elif start == None:
+
+                        start = j
+                        break
+                if len(tmp) == 0:
+                    ret.append(i)
+                if start is None:
+                    i = j
+                else:
+                    i = start
+            else:
+                i += 1
         return ret
-"""

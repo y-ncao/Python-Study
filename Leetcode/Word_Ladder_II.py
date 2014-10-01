@@ -54,3 +54,7 @@ class Solution:
             return
         for prev_word in trace[word]:
             self.find_traceback(prev_word, trace, [word] + cur_path, paths)
+
+    # Note:
+    # 1. while loop is doing a BFS
+    # 2. find_traceback is doing a DFS from the end traceback to start
