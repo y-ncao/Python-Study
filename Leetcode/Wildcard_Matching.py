@@ -29,37 +29,23 @@ class Solution:
         backupS = -1
         backupP = -1
         while i < len(s):
-            if j < len(p) and (p[j] == '?' or s[i] == p[j]):
+            if j < len(p) and (p[j] == '?' or s[i] == p[j]): # Move to next if s[i] == p[j] or p[j] == '?'
                 i += 1
                 j += 1
-            elif j < len(p) and p[j] == '*':
-                while j < len(p) and p[j] == '*':
-                    j += 1
-                if j == len(p):
-                    return True
+            elif j < len(p) and p[j] == '*': # Backup if p[j] == '*'. Keep s but move p
+                j += 1
                 backupS = i
                 backupP = j
-            else:
-                if backupS == -1:
+            else:                       # No match
+                if backupP == -1:       # if no backup, return false
                     return False
-                i = backupS + 1
-                backupS += 1
+                backupS += 1            # Have a backup, move backupS, restore all the backup
+                i = backupS
                 j = backupP
+
         while j < len(p) and p[j] == '*':
             j += 1
-        return j == len(p) and i == len(s)
-
-
-    def isMatch_helper(self, s, i1, p, i2):
-        S = len(s)
-        P = len(p)
-        if i1 >= S and i2 >= P:
-            return True
-        elif i2 >= P:
-            return False
-        elif i1 >= S and p[i2] == '*':
-            return self.isMatch_helper(s, i1, p, i2+1)
-        elif p[i2] == '?':
-            return self.isMatch_helper(s, i1+1, p, i2+1)
-        elif p[i2] == '*':
-            return self.isMatch_helper(s, i1+1)
+        return j == len(p) # and i == len(s)
+    # Note
+    # 1. Line 47 can be removed because when it's out of loop, i must == len(s)
+    # 2. Line 39 doens't matter if it is backupS or backupP
