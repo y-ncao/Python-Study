@@ -677,7 +677,7 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [x] Word Break II
 * [x] Text Justification
 * [x] String to Integer (atoi) (只需要注意['+','-'] 和<-sys.maxint >sys.maxint)
-* [ ] Substring with Concatenation of All Words
+* [x] Substring with Concatenation of All Words
 * [ ] Minimum Window Substring
 * [x] Sum系列 (细节问题，得再写一遍)
 * [x] Longest Valid Parentheses (值得redo)

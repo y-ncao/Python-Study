@@ -22,48 +22,26 @@ isMatch("aab", "c*a*b") → true
 class Solution:
     # @return a boolean
     def isMatch(self, s, p):
-        return self.isMatch_helper(s, p, 0, 0)
+        M = len(s)
+        N = len(p)
+        dp = [ [False for j in range(N+1)] for i in range(M+1) ]
+        dp[0][0] = True
+        pi = 2                          # Means pair increase, e.g. p = a*b*c*d*, s ='', should be true
+        while pi < N + 1 and p[pi-1] == '*':
+            dp[0][pi] = True
+            pi += 2
 
-    def isMatch_helper(self, s, p, i, j):
-        if j >= len(p):
-            return s[i] >= len(p)
+        for i in range(1, M+1):
+            for j in range(1, N+1):
+                if p[j-1] == '.' or s[i-1] == p[j-1]:
+                    dp[i][j] = dp[i-1][j-1]
+                elif p[j-1] == '*':
+                    dp[i][j] = dp[i][j-1] or \ # * is used as zero
+                               dp[i][j-2] or \ # * is removing the previous char
+                               (dp[i-1][j] and (s[i-1] == p[j-2] or p[j-2] == '.')) # * is back matching
 
-        if s[i] == p[j] or ( p[j] == '.' and i < len(s)):
-            if j+1 < len(p) and p[j+1] != '*':
-                return self.isMatch_helper(s, p, i+1, j+1)
-            else:
-                return self.isMatch_helper(s, p, i+1, j) or self.isMatch_helper(s, p, i, j+2)
+        return dp[M][N]
 
-        return j+1 < len(p) and p[j+1] == '*' and self.isMatch(s, p, i, j+2)
-
-    # Recursion
-    def isMatch(self, s, p):
-        if len(p)==0: return len(s)==0
-        if len(p)==1 or p[1]!='*':
-            if len(s)==0 or (s[0]!=p[0] and p[0]!='.'):
-                return False
-            return self.isMatch(s[1:],p[1:])
-        else:
-            i=-1; length=len(s)
-            while i<length and (i<0 or p[0]=='.' or p[0]==s[i]):
-                if self.isMatch(s[i+1:],p[2:]): return True
-                i+=1
-            return False
-
-    #dp
-    def isMatch(self, s, p):
-        dp=[[False for i in range(len(p)+1)] for j in range(len(s)+1)]
-        dp[0][0]=True
-        for i in range(1,len(p)+1):
-            if p[i-1]=='*':
-                if i>=2:
-                    dp[0][i]=dp[0][i-2]
-        for i in range(1,len(s)+1):
-            for j in range(1,len(p)+1):
-                if p[j-1]=='.':
-                    dp[i][j]=dp[i-1][j-1]
-                elif p[j-1]=='*':
-                    dp[i][j]=dp[i][j-1] or dp[i][j-2] or (dp[i-1][j] and (s[i-1]==p[j-2] or p[j-2]=='.'))
-                else:
-                    dp[i][j]=dp[i-1][j-1] and s[i-1]==p[j-1]
-        return dp[len(s)][len(p)]
+    # Notice
+    # 1. Line 30 initializing
+    # 2. Line 39 ~ 41
