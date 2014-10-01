@@ -414,6 +414,11 @@ Also
 * All strings are not unicode by default (Fixed in Python3)
 
 ###[Python's Thread](http://pymotw.com/2/threading/)
+
+#####[Cause](http://effbot.org/zone/thread-synchronization.htm)
+Operations that read a variable or attribute, modifies it, and then writes it back are not thread-safe. Another thread may update the variable after it’s been read by the current thread, but before it’s been updated.
+
+#####Example
 ```python
 # An very basic example
 import threading
@@ -452,6 +457,10 @@ class MyThread(threading.Thread):
 
 #####[Lock](http://pymotw.com/2/threading/#controlling-access-to-resources)
 Python’s built-in data structures (lists, dictionaries, etc.) are thread-safe as a side-effect of having atomic byte-codes for manipulating them (the GIL is not released in the middle of an update). Other data structures implemented in Python, or simpler types like integers and floats, don’t have that protection. To guard against simultaneous access to an object, use a Lock object.
+
+#####[Re-Entrant Locks](http://effbot.org/zone/thread-synchronization.htm#re-entrant-locks-rlock)
+The RLock class is a version of simple locking that only blocks if the lock is held by another thread.
+
 ```python
 lock = threading.Lock()
 lock.acquire()
@@ -470,6 +479,30 @@ lock = threading.RLock()
 Allow more than one worker access to a resource at a time(其实就是一个带counter的lock)
 ```python
 threading.Semaphore(2)
+```
+
+#####[Synchronization Between Threads](http://effbot.org/zone/thread-synchronization.htm#synchronization-between-threads)
+######[Event](http://effbot.org/zone/thread-synchronization.htm#events)
+######[Condition](http://effbot.org/zone/thread-synchronization.htm#conditions)
+其实Condition就是Event + Lock.
+```python
+event = threading.Event()
+
+# a client thread can wait for the flag to be set
+event.wait()
+
+# a server thread can set or reset it
+event.set()
+event.clear()
+
+# represents the addition of an item to a resource
+condition = threading.Condition()
+
+condition.acquire()
+condition.notify() # signal that a new item is available
+condition.release()
+
+condition.wait
 ```
 
 #####[GIL](http://stackoverflow.com/questions/34020/are-python-threads-buggy) Global Interpreter Lock
