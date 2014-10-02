@@ -8406,7 +8406,72 @@ def get_LCA(root, node1, node2):
 ```
 -----
 
-##173. Min Num to Composite Words
+##173. Majority Number
+
+#####From mibbs for Linkedin Interview
+Majority Element: A majority element in an array A[] of size n is an element that appears more than n/2 times (and hence there is at most one such element).
+
+Write a function which takes an array and emits the majority element (if it exists), otherwise prints NONE as follows:
+
+       I/P : 3 3 4 2 4 4 2 4 4
+       O/P : 4
+
+       I/P : 3 3 4 2 4 4 2 4
+       O/P : NONE
+[Solution](http://www.geeksforgeeks.org/majority-element/)
+
+```python
+
+def majority_i(A):
+    N = len(A)
+    candidate = None
+    count = 1
+    for i in range(N):
+        if candidate == A[i]:
+            count += 1
+        else:
+            count -= 1
+        if count == 0:
+            candidate = A[i]
+            count = 1
+
+    return candidate
+
+A = [1,2,1,2,1,2,3,2,4,2]
+
+print majority_i(A)
+
+def majority_ii(A):
+    candidate_1 = None
+    count_1 = 0
+    candidate_2 = None
+    count_2 = 0
+    for i in range(len(A)):
+        if count_1 == 0:
+            candidate_1 = A[i]
+        if count_2 == 0 and candidate_1 != A[i]:
+            candidate_2 = A[i]
+        if A[i] not in [candidate_1, candidate_2] and count_1 > 0 and count_2 > 0:
+            count_1 -= 1
+            count_2 -= 1
+        if A[i] == candidate_1:
+            count_1 += 1
+        if A[i] == candidate_2:
+            count_2 += 1
+    if count_1 > count_2:
+        return candidate_1
+    else:
+        return candidate_2
+
+
+
+
+
+
+```
+-----
+
+##174. Min Num to Composite Words
 
 #####From [Career Cup](http://www.careercup.com/page?pid=pinterest-interview-questions) Pinterest
 
@@ -8451,7 +8516,7 @@ print print_min_num_words(str, d)
 ```
 -----
 
-##174. Min Stack
+##175. Min Stack
 
 #####From NC Class 7 Data Structures, slides 8
 [Solution](http://www.geeksforgeeks.org/design-and-implement-special-stack-data-structure/)
@@ -8490,7 +8555,63 @@ class MinStack():
 ```
 -----
 
-##175. Operations Calculation
+##176. Nested Integer
+
+#####From NC QQ group and mitbbs, Linkedin Second round phone interview
+/**
+ * This is the interface that represents nested lists.
+ * You should not implement it, or speculate about its implementation.
+ */
+ ```
+public interface NestedInteger
+{
+    /** @return true if this NestedInteger holds a single integer, rather than a nested list */
+    boolean isInteger();
+
+    /** @return the single integer that this NestedInteger holds, if it holds a single integer
+     * Return null if this NestedInteger holds a nested list */
+    Integer getInteger();
+
+    /** @return the nested list that this NestedInteger holds, if it holds a nested list
+     * Return null if this NestedInteger holds a single integer */
+    List<NestedInteger> getList();
+}
+
+
+/**
+ * Given a nested list of integers, returns the sum of all integers in the list weighted by their depth
+ * For example, given the list {{1,1},2,{1,1}} the function should return 10 (four 1's at depth 2, one 2 at depth 1)
+ * Given the list {1,{4,{6}}} the function should return 27 (one 1 at depth 1, one 4 at depth 2, and one 6 at depth 3)
+ */
+
+// null || empty: 0
+//  1*2
+//
+public int depthSum (List<NestedInteger> input)
+```
+
+```python
+
+def depthSum(input):
+    if isInteger(input):
+        return getInteger(input)
+
+    return get_depth_recur(input, 1)
+
+def get_depth_recur(input, depth)
+    if isInteger(input):
+        return depth * getInteger(input)
+
+    nested_list = getList(input)
+    sum = 0
+    for element in nested_list:
+        sum += get_depth_recur(element, depth + 1)
+        
+    return sum
+```
+-----
+
+##177. Operations Calculation
 
 ##### 9/5/2014 Elasticbox
 加减运算
@@ -8547,7 +8668,7 @@ find_next_num()
 ```
 -----
 
-##176. Print Matrix
+##178. Print Matrix
 
 #####From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32570751.html) for Pinterest
 
@@ -8592,7 +8713,7 @@ print_matrix(matrix)
 ```
 -----
 
-##177. Print Numbers With Five
+##179. Print Numbers With Five
 
 ##### 9/7/2014 From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32651839.html) for Groupon
 写一个function，对于参数n，输出从0到n之间所有含5的数字。
@@ -8620,7 +8741,7 @@ print find_five(60)
 ```
 -----
 
-##178. Queue by Two Stacks
+##180. Queue by Two Stacks
 
 Implement a Queue by using two stacks. Support O(1) push, pop, top
 
@@ -8648,7 +8769,7 @@ class Queue():
 ```
 -----
 
-##179. Recover Rotated Sorted Array
+##181. Recover Rotated Sorted Array
 
 Given a rotated sorted array, recover it to sorted array in-place.
 
@@ -8679,7 +8800,7 @@ print recover_rotated_sorted_array(A)
 ```
 -----
 
-##180. Rotated Mirror Number
+##182. Rotated Mirror Number
 
 #####From Alec's email, someone's onsite interview with Facebook for finding rotated mirrow number like 808 which is less than N
 
@@ -8724,7 +8845,7 @@ print rotated_mirror_number(10000)
 ```
 -----
 
-##183. Search a Range in BST
+##185. Search a Range in BST
 
 or Print BST Keys in the Give Range
 
@@ -8755,7 +8876,7 @@ def search_a_range(root, k1, k2):
 ```
 -----
 
-##184. Shortest Path
+##186. Shortest Path
 
 #####With Twitter & Cyan
 
@@ -8838,7 +8959,7 @@ print find_path(map)
 ```
 -----
 
-##185. Shuffle
+##187. Shuffle
 
 #####Shuffle a given array
 Saw it from FiveStar's interview.
@@ -8867,7 +8988,7 @@ print shuffle_array(A)
 ```
 -----
 
-##186. isOneEditDistance
+##188. isOneEditDistance
 
 #####From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32760941.html) for facebook
 
