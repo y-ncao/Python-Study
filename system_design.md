@@ -226,12 +226,26 @@
 
 ###[Storm](https://storm.incubator.apache.org/documentation/Home.html)
 Storm is a distributed realtime computation system. Similar to how Hadoop provides a set of general primitives for doing batch processing, Storm provides a set of general primitives for doing realtime computation.
-
-1. __Spout__ is A source of streams in a computation. Spout implementations already exist for most queueing systems.
-2. __Bolt__ processes any number of input streams and produces any number of new output streams. Most of the logic of a computation goes into bolts, such as functions, filters, streaming joins, streaming aggregations, talking to databases, and so on.
+[Another introduction](http://www.slideshare.net/ptgoetz/storm-hadoop-summit2014?next_slideshow=1)
+1. __Spout__ is A source of streams in a computation. Spout implementations already exist for most queueing systems. (水龙头， 源源不断的往外送tuple)
+2. __Bolt__ processes any number of input streams and produces any number of new output streams. Most of the logic of a computation goes into bolts, such as functions, filters, streaming joins, streaming aggregations, talking to databases, and so on. (Core function of streaming computation)
 3. __Topology__ is a network of spouts and bolts, with each edge in the network representing a bolt subscribing to the output stream of some other spout or bolt. A topology is an arbitrarily complex multi-stage stream computation.
 
-###[Hadoop Distributed File System (HDFS)](http://hortonworks.com/hadoop/hdfs/)
+* Trident
+
+###[Spark](https://www.youtube.com/watch?v=cs3_3LdCny8)
+* Builds on top of HDFS
+* Not tied to two-stage Mapreduce
+* Proivde in-memory cluster computing
+* Use Cases: Machine Learning algorithms and Interactive analytics.
+
+###[Hadoop](http://www-01.ibm.com/software/data/infosphere/hadoop/)
+* 最重要的两个是YARN and HDFS
+* 其他还有HBase database, the Apache Mahout machine learning system, and the Apache Hive Data Warehouse system
+###[Yet Another Resource Negotiator(YARN)](http://www.slideshare.net/hortonworks/apache-hadoop-yarn-understanding-the-data-operating-system-of-hadoop) (Cluster Resource Mangement)
+
+####[Hadoop Distributed File System (HDFS)](http://hortonworks.com/hadoop/hdfs/) (Redundate, Reliable Storage)
+
 * Rack awareness allows consideration of a node’s physical location, when allocating storage and scheduling tasks
 * Minimal data motion. MapReduce moves compute processes to the data on HDFS and not the other way around. Processing tasks can occur on the physical node where the data resides. This significantly reduces the network I/O patterns and keeps most of the I/O on the local disk or within the same rack and provides very high aggregate read/write bandwidth.
 * Utilities diagnose the health of the files system and can rebalance the data on different nodes
@@ -239,11 +253,61 @@ Storm is a distributed realtime computation system. Similar to how Hadoop provid
 * Standby NameNode provides redundancy and supports high availability
 * Highly operable. Hadoop handles different types of cluster that might otherwise require operator intervention. This design allows a single operator to maintain a cluster of 1000s of nodes.
 
+###[ZooKeeper](http://zookeeper.apache.org/doc/trunk/zookeeperOver.html)
+A Distributed Coordination Service for Distributed Applications
+
 ###OOD
 
+
+###[DevOps](http://www.infoq.com/cn/articles/devops-is-not-equal-chef-puppet)
+
+
 ###TODO
-* [ ] Storm原理
-* [ ] Hadoop
-* [ ] Spark
 * [ ] 总结下Twitter Pinterest Facebook题目
 * [ ] 精细化数据
+
+###例题
+
+* Services
+* Dedundancy
+* Partitions
+* Handling Failure
+
+####[Image Hosting Applicaiton](http://www.aosabook.org/en/distsys.html)
+
+1. 考虑因素
+   * Cost-effective
+   * Highliy available
+   * Low latency (fast retrieval)
+2. 功能
+   * Upload image
+   * Query image
+3. Services
+   * Separate read/write (Read usually from cache, Write usually to disk eventually)  
+     Write is slower than read
+   * 由上面那个导致Apache can maintain 500 connections. Writes can quickly consume all of those，但是read可以asynchronouse and also take advantage of gzip compression or chunked transfer encoding
+   * 所以就应该Separate read/write services and scale them independently
+   * 解决办法是distribute users across different shards each shard can handle only a set of number of users, 好处是：
+     * 系统变的flexible
+     * 减小了outage带来的危害
+4. Redundancy
+   * Data redundancy
+   * Service redundancy
+     * Remove single point failure by provide backup or spare functionality
+     * Create shared-nothing architecture (Each nodes operate independently without knowing other nodes)
+
+     
+#####Fit to Pattern
+1. Constrains and Use Cases
+   1. Use Cases
+      * Upload image
+      * Query image
+   2. Constrains
+      * Storage scalability
+      * Low latency for image downloads/requests
+      * High availability
+      * Cost-effective
+
+
+#####Note
+1. Similar to web server or CDN edge server
