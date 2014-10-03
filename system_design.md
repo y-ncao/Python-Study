@@ -295,8 +295,15 @@ A Distributed Coordination Service for Distributed Applications
    * Service redundancy
      * Remove single point failure by provide backup or spare functionality
      * Create shared-nothing architecture (Each nodes operate independently without knowing other nodes)
+5. Partitions
+   * Large data - second server to store parts of the data set
+   * Computing resource - splitting the operations or load across addtion nodes
+   * Partitins or shards - each logical set of functionality is separate
+     * geographic boundaries
+     * non-paying users vs paying users
+   * Data locality (the closer the data to the operation point, the better the performance)
+   * Inconsistency
 
-     
 #####Fit to Pattern
 1. Constrains and Use Cases
    1. Use Cases
