@@ -319,7 +319,24 @@ A Distributed Coordination Service for Distributed Applications
      * Index Table - 就像目录一样
      * Many layers of indexes
      * Inverted index - 用来从word反找书页
-       
+   * Load Balancer - distribute load across a set of nodes responsible for servicing requests.
+     * Sticky Session - die了之后的解决办法 1. browser cache, cookie 2. URL Rewriting??
+     * 几种分配方式
+       * Round Robin
+       * Random
+       * Least Connection
+       * Least Response Time
+       * Layer 7 check header
+   * Queues
+     * Queues enable clients to work in an asynchronous manner, providing a strategic abstraction of a client's request and its response. On the other hand, in a synchronous system, there is no differentiation between request and reply, and they therefore cannot be managed separately.
+     * [RabbitMQ](http://www.rabbitmq.com/getstarted.html), [ActiveMQ](http://activemq.apache.org). 以RabbitMQ为例, 几种比较重要的模型, 都是Producer-Consumer模型
+       * P -> Queue -> C : Normal模型, producer-consumer
+       * P -> Queue -> CC : Work Queue, 一个Producer对应多个consumer
+       * P -> X -> QQ -> CC : Publish/Subscribe
+       * [RPC模型](http://www.rabbitmq.com/tutorials/tutorial-six-python.html)
+
+![Queue](./img/queue.png)
+
 #####Fit to Pattern
 1. Constrains and Use Cases
    1. Use Cases
