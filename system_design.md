@@ -127,18 +127,18 @@
    2. Firewall - 只允许来自80 443 22 VPN端口的访问. 过了下面那层LB，把443转换成80就行了
      * [Principle of Least Privilege](http://en.wikipedia.org/wiki/Principle_of_least_privilege)
    3. Load Balancer
-     * 分为软的和硬的  
-       Software - Elastic Load Balancing, HAProxy(TCP/HTTP), Linux Virtual Server  
-       Hardware - Barracuda, Cisco, Citrix, F5
-     * 方法  
-       Round robin 平均分配  
-       Weighted round robin  
-       Least connections  
-       Least response time  
-       Layer 7 load balancers can further distribute requests based on application specific data such as HTTP headers, cookies, or data within the application message itself, such as the value of a specific parameter.
+     * 分为软的和硬的
+        * Software - Elastic Load Balancing, HAProxy(TCP/HTTP), Linux Virtual Server
+        * Hardware - Barracuda, Cisco, Citrix, F5
+     * 方法
+        * Round robin 平均分配
+        * Weighted round robin
+        * Least connections
+        * Least response time
+        * Layer 7 load balancers can further distribute requests based on application specific data such as HTTP headers, cookies, or data within the application message itself, such as the value of a specific parameter.
      * Heart Beat health check
-       * Active/Active - 意味着run full capacity, 如果一个跪了，整体的load balancing速度会降低
-       * [Active/passive](http://www.loadbalancerblog.com/blog/2013/01/understanding-active-passive-activeactive-load-balancing)
+        * Active/Active - 意味着run full capacity, 如果一个跪了，整体的load balancing速度会降低
+        * [Active/passive](http://www.loadbalancerblog.com/blog/2013/01/understanding-active-passive-activeactive-load-balancing)
      * ip-hash 根据ip造server
    4. Web Server
      * 可以partition，按照某种方法处理request(例如名字)
@@ -147,11 +147,11 @@
    7. Storage
      * NoSQL vs Relational SQL
      * Raid0, Raid1, Raid5, Raid6, Raid10
-     * Master/Slave Mode (重点是replica)  
-       一个Master多个Slave, 内容一样，如果Master跪了可以promote一个Slave  
-       分开读写，Master写，Slave读，实时同步(好像有点点SPF)
-     * Master/Master Mode  
-       两个Master多个Slave, 就不会跪了
+     * Master/Slave Mode (重点是replica)
+        * 一个Master多个Slave, 内容一样，如果Master跪了可以promote一个Slave
+        * 分开读写，Master写，Slave读，实时同步(好像有点点SPF)
+     * Master/Master Mode
+        * 两个Master多个Slave, 就不会跪了
 
 ------
 
@@ -309,8 +309,8 @@ A Distributed Coordination Service for Distributed Applications
         1. Request Node只跟GC联系, 如果data不在GC去问database. (Majority way) (如果cache data file太大, 取就难取)  
         2. Request Node先跟GC联系, 如果data不在再自己去问database要
      * Distributed Caches (用consistent hashing)
-       * Pros - 可以通过增加Node数量来增加cache大小
-       * Cons - Remedying a missing node -> store multiple copies of data -> too complicated -> missing is no big deal
+        * Pros - 可以通过增加Node数量来增加cache大小
+        * Cons - Remedying a missing node -> store multiple copies of data -> too complicated -> missing is no big deal
    * Proxies (many proxies are also caches but not all caches act s proxies)
      * Collapsed forwarding - collaps the same or similar requests in to one request and return single result to the requesting client
      * Collapse request for data that is close together
@@ -322,18 +322,18 @@ A Distributed Coordination Service for Distributed Applications
    * Load Balancer - distribute load across a set of nodes responsible for servicing requests.
      * Sticky Session - die了之后的解决办法 1. browser cache, cookie 2. URL Rewriting??
      * 几种分配方式
-       * Round Robin
-       * Random
-       * Least Connection
-       * Least Response Time
-       * Layer 7 check header
+        * Round Robin
+        * Random
+        * Least Connection
+        * Least Response Time
+        * Layer 7 check header
    * Queues
      * Queues enable clients to work in an asynchronous manner, providing a strategic abstraction of a client's request and its response. On the other hand, in a synchronous system, there is no differentiation between request and reply, and they therefore cannot be managed separately.
      * [RabbitMQ](http://www.rabbitmq.com/getstarted.html), [ActiveMQ](http://activemq.apache.org). 以RabbitMQ为例, 几种比较重要的模型, 都是Producer-Consumer模型
-       * P -> Queue -> C : Normal模型, producer-consumer
-       * P -> Queue -> CC : Work Queue, 一个Producer对应多个consumer
-       * P -> X -> QQ -> CC : Publish/Subscribe
-       * [RPC模型](http://www.rabbitmq.com/tutorials/tutorial-six-python.html)
+        * P -> Queue -> C : Normal模型, producer-consumer
+        * P -> Queue -> CC : Work Queue, 一个Producer对应多个consumer
+        * P -> X -> QQ -> CC : Publish/Subscribe
+        * [RPC模型](http://www.rabbitmq.com/tutorials/tutorial-six-python.html)
 
 ![Queue](./img/queues.png)
 
