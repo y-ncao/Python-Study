@@ -306,7 +306,7 @@ A Distributed Coordination Service for Distributed Applications
 6. Building Blocks
    * Caches
      * Global Caches
-       1. Request Node只跟GC联系, 如果data不在GC去问database. (Majority way) (如果cache data file太大, 取就难取)
+       1. Request Node只跟GC联系, 如果data不在GC去问database. (Majority way) (如果cache data file太大, 取就难取)  
        2. Request Node先跟GC联系, 如果data不在再自己去问database要
      * Distributed Caches (用consistent hashing)
        * Pros - 可以通过增加Node数量来增加cache大小
@@ -335,7 +335,7 @@ A Distributed Coordination Service for Distributed Applications
        * P -> X -> QQ -> CC : Publish/Subscribe
        * [RPC模型](http://www.rabbitmq.com/tutorials/tutorial-six-python.html)
 
-![Queue](./img/queue.png)
+![Queue](./img/queues.png)
 
 #####Fit to Pattern
 1. Constrains and Use Cases
