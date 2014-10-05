@@ -5563,7 +5563,7 @@ Given the following matrix:
  [ 4, 5, 6 ],
  [ 7, 8, 9 ]
 ]
-You should return [1,2,3,6,9,8,7,4,5].>
+You should return [1,2,3,6,9,8,7,4,5]
 
 ```python
 
@@ -6058,16 +6058,19 @@ Given a 2D board containing 'X' and 'O', capture all regions surrounded by 'X'.
 A region is captured by flipping all 'O's into 'X's in that surrounded region.
 
 For example,
+```
 X X X X
 X O O X
 X X O X
 X O X X
+```
 After running your function, the board should be:
-
+```
 X X X X
 X X X X
 X X X X
 X O X X
+```
 
 ```python
 
