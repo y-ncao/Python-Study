@@ -1930,7 +1930,8 @@ class Solution:
                 i += 1
         return None
     # Note:
-    # line 32, don't forget the i += 1```
+    # line 32, don't forget the i += 1
+```
 -----
 
 ##[42. Insert Interval](https://oj.leetcode.com/problems/insert-interval/)
@@ -2321,10 +2322,6 @@ class Solution:
     # @param height, a list of integer
     # @return an integer
     def largestRectangleArea(self, height):
-        return self.largestRectangleArea_1(height)
-
-    # Use stack to merge the blocks
-    def largestRectangleArea_1(self, height):
         height.append(0)                # append 0 to the end, used to find the last
         N = len(height)
         stack = []
@@ -2335,28 +2332,12 @@ class Solution:
                 stack.append(i)
                 i += 1
             else:
-                index = stack.pop()
+                index = stack.pop()     # h = height[index]
                 if len(stack) == 0:
-                    width = i
+                    width = i           # left bound = 0, right bound i-1, w = (i-1) - (0) + 1 = i
                 else:
-                    width = i - stack[-1] - 1
+                    width = i - stack[-1] - 1 # left bound = stack[-1] + 1, right bound = i-1, w = (i-1) - (stack[-1] + 1) + 1 = i - stack[-1] - 1
                 max_area = max(max_area, width * height[index])
-        return max_area
-    # 维护一个递增序列
-
-    # Only calculate when decrease
-    def largestRectangleArea_2(self, height):
-        N = len(height)
-        max_area = 0
-        for i in range(N):
-            if i+1 < N and height[i] <= height[i+1]:
-                continue
-            min_height = height[i]
-            j = i
-            while j >= 0:
-                min_height = min(min_height, height[j])
-                max_area = max(max_area, min_height * (i-j+1))
-                j -= 1
         return max_area
 ```
 -----
@@ -2793,45 +2774,11 @@ class Solution:
     # @param matrix, a list of lists of 1 length string
     # @return an integer
     def maximalRectangle(self, matrix):
-        return self.maximalRectangle_2(matrix)
-
-    def maximalRectangle_1(self, matrix):
         if len(matrix) == 0 or len(matrix[0]) == 0:
             return 0
         row = len(matrix)
         col = len(matrix[0])
-        dp = [ [ (0,0) for j in range(col)] for i in range(row) ]
-        max_area = 0
-        for i in range(row):
-            for j in range(col):
-                if matrix[i][j] == '0':
-                    continue
-                if j == 0:
-                    x = 1
-                else:
-                    x = dp[i][j-1][0] + 1
-                if i == 0:
-                    y = 1
-                else:
-                    y = dp[i-1][j][1] + 1
-
-                dp[i][j] = (x, y)
-                min_width = y
-                for k in range(j-x+1,j+1)[::-1]:
-                    min_width = min(min_width, dp[i][k][1])
-                    max_area = max(max_area, min_width * (j-k+1))
-        return max_area
-    # From Annie's way
-    # Need to note that i -> y and j -> x
-    # dp[i][j] means the consecutive length to matrix[i][j]
-
-    # Use the historical problem's O(n) way to solve once we have the dp
-    def maximalRectangle_2(self, matrix):
-        row = len(matrix)
-        col = len(matrix[0])
-        if row == 0 or col == 0:
-            return 0
-        h = [0 for i in range(col+1)]
+        h = [ 0 for i in range(col+1) ]
         max_area = 0
         for i in range(row):
             for j in range(col):
@@ -2840,21 +2787,23 @@ class Solution:
                 else:
                     h[j] += 1
             max_area = max(max_area, self.largestRectangleArea(h))
-
         return max_area
 
     def largestRectangleArea(self, h):
         stack = []
         max_area = 0
-        for i in range(len(h)):
-            count = 0
-            while len(stack) > 0 and stack[-1] > h[i]:
-                count += 1
-                max_area = max(max_area, count * stack.pop())
-            count -= 1
-            while count > 0:
-                stack.append(h[i])
-            stack.append(h[i])
+        i = 0
+        while i < len(h):
+            if len(stack) == 0 or h[i] >= h[stack[-1]]:
+                stack.append(i)
+                i += 1
+            else:
+                height = h[stack.pop()]
+                if len(stack) == 0:
+                    width = i
+                else:
+                    width = i - stack[-1] - 1
+                max_area = max(max_area, width * height)
         return max_area
 ```
 -----
@@ -3290,45 +3239,43 @@ class Solution:
     def minWindow(self, S, T):
         N = len(S)
         M = len(T)
-        if N < M:
-            return ''
-        need = dict.fromkeys(T, 0)
-        find = dict.fromkeys(T, 0)
-        for i, char in enumerate(T):
-            need[char] += 1
-        start = 0
-        end = 0
-        res_start = -1
-        res_end = N
-        count = 0
-        while end < N:
-            if S[end] not in need:
-                end += 1
+        wanted = {}
+        found = {}
+        for char in T:
+            wanted[char] = wanted.get(char, 0) + 1
+            found[char] = 0
+        l = 0
+        res = ''
+        counter = 0
+        for r in range(N):
+            if S[r] not in wanted:
                 continue
-            if find[S[end]] < need[S[end]]:
-                count += 1
-            find[S[end]] += 1
-            if count != M:
-                end += 1
-                continue
-            while start < end:
-                if S[start] not in need:
-                    start += 1
-                    continue
-                if find[S[start]] == need[S[start]]:
-                    break
-                find[S[start]] -= 1
-                start += 1
-            if end - start < res_end - res_start:
-                res_end = end
-                res_start = start
-            end += 1
-        if res_start == -1:
-            return ''
-        else:
-            return S[res_start: res_end+1]
 
-    # Whole bunch of things can be improved from here
+            found[S[r]] += 1
+            if found[S[r]] <= wanted[S[r]]:
+                counter += 1
+
+            if counter == M:
+                while l < r:
+                    if S[l] not in wanted:
+                        l += 1
+                        continue
+                    if found[S[l]] > wanted[S[l]]:
+                        found[S[l]] -= 1
+                        l += 1
+                        continue
+                    break
+                if not res or len(res) > r - l + 1:
+                    res = S[l:r+1]
+        return res
+
+    # Note
+    # 1. Prepare for wo dict
+    # 2. Skip chars that we don't care, increase right bound
+    # 3. If current window contains all the chars we want(counter == M), stop and resize left bound
+    # 4. Skip chars that we don't care. If extra chars in found > wanted, skip them
+    # 5. break here
+    # 6. Calculate the current size
 ```
 -----
 
@@ -8112,7 +8059,7 @@ def find_largest_none_close_sum(A):
 ```
 -----
 
-##169. Longest Common Subsequence
+##168. Longest Common Subsequence
 
 Need to distinguish from Longest Common Substring
 
@@ -8212,7 +8159,7 @@ print LCS('AGGTAB', 'GXTXAYB')
 ```
 -----
 
-##170. Longest Common Substring
+##169. Longest Common Substring
 
 ##### 9/4/2014 Interview with Tubular
 1. Subset(second le)
@@ -8270,7 +8217,7 @@ print Longest_Common_Substring("GeeksforGeeks", "GeeksQuiz")
 ```
 -----
 
-##171. Longest Increasing Subsequence
+##170. Longest Increasing Subsequence
 
 #####NC Class 5, slides 17
 
@@ -8332,7 +8279,7 @@ print d_A[max(d_A.keys())]
 ```
 -----
 
-##172. Lowest Common Ancestor
+##171. Lowest Common Ancestor
 
 #####[LCA, Lowest Common Ancestor](http://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/) Pocket Gem possible question 9/8/2014
 
@@ -8406,7 +8353,7 @@ def get_LCA(root, node1, node2):
 ```
 -----
 
-##173. Majority Number
+##172. Majority Number
 
 #####From mibbs for Linkedin Interview
 Majority Element: A majority element in an array A[] of size n is an element that appears more than n/2 times (and hence there is at most one such element).
@@ -8471,7 +8418,7 @@ def majority_ii(A):
 ```
 -----
 
-##174. Min Num to Composite Words
+##173. Min Num to Composite Words
 
 #####From [Career Cup](http://www.careercup.com/page?pid=pinterest-interview-questions) Pinterest
 
@@ -8516,7 +8463,7 @@ print print_min_num_words(str, d)
 ```
 -----
 
-##175. Min Stack
+##174. Min Stack
 
 #####From NC Class 7 Data Structures, slides 8
 [Solution](http://www.geeksforgeeks.org/design-and-implement-special-stack-data-structure/)
@@ -8555,7 +8502,7 @@ class MinStack():
 ```
 -----
 
-##176. Nested Integer
+##175. Nested Integer
 
 #####From NC QQ group and mitbbs, Linkedin Second round phone interview
 /**
@@ -8611,7 +8558,7 @@ def get_depth_recur(input, depth)
 ```
 -----
 
-##177. Operations Calculation
+##176. Operations Calculation
 
 ##### 9/5/2014 Elasticbox
 加减运算
@@ -8668,7 +8615,7 @@ find_next_num()
 ```
 -----
 
-##178. Print Matrix
+##177. Print Matrix
 
 #####From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32570751.html) for Pinterest
 
@@ -8713,7 +8660,7 @@ print_matrix(matrix)
 ```
 -----
 
-##179. Print Numbers With Five
+##178. Print Numbers With Five
 
 ##### 9/7/2014 From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32651839.html) for Groupon
 写一个function，对于参数n，输出从0到n之间所有含5的数字。
@@ -8741,7 +8688,7 @@ print find_five(60)
 ```
 -----
 
-##180. Queue by Two Stacks
+##179. Queue by Two Stacks
 
 Implement a Queue by using two stacks. Support O(1) push, pop, top
 
@@ -8769,7 +8716,7 @@ class Queue():
 ```
 -----
 
-##181. Recover Rotated Sorted Array
+##180. Recover Rotated Sorted Array
 
 Given a rotated sorted array, recover it to sorted array in-place.
 
@@ -8800,7 +8747,7 @@ print recover_rotated_sorted_array(A)
 ```
 -----
 
-##182. Rotated Mirror Number
+##181. Rotated Mirror Number
 
 #####From Alec's email, someone's onsite interview with Facebook for finding rotated mirrow number like 808 which is less than N
 
@@ -8845,7 +8792,7 @@ print rotated_mirror_number(10000)
 ```
 -----
 
-##185. Search a Range in BST
+##184. Search a Range in BST
 
 or Print BST Keys in the Give Range
 
@@ -8876,7 +8823,7 @@ def search_a_range(root, k1, k2):
 ```
 -----
 
-##186. Shortest Path
+##185. Shortest Path
 
 #####With Twitter & Cyan
 
@@ -8959,7 +8906,7 @@ print find_path(map)
 ```
 -----
 
-##187. Shuffle
+##186. Shuffle
 
 #####Shuffle a given array
 Saw it from FiveStar's interview.
@@ -8988,7 +8935,7 @@ print shuffle_array(A)
 ```
 -----
 
-##188. isOneEditDistance
+##187. isOneEditDistance
 
 #####From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32760941.html) for facebook
 
