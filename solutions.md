@@ -1982,7 +1982,8 @@ class Solution:
     # 分三种情况讨论
     # 1. 插入区间在当前区间左边 - 如果没插入就插入, 添加当前区间
     # 2. 插入区间在当前区间右边 - 插入当前区间
-    # 3. 剩余的mix情况        - 合并两个区间```
+    # 3. 剩余的mix情况        - 合并两个区间
+```
 -----
 
 ##[43. Insertion Sort List](https://oj.leetcode.com/problems/insertion-sort-list/)
