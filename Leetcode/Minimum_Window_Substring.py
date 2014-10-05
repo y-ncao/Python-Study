@@ -17,42 +17,40 @@ class Solution:
     def minWindow(self, S, T):
         N = len(S)
         M = len(T)
-        if N < M:
-            return ''
-        need = dict.fromkeys(T, 0)
-        find = dict.fromkeys(T, 0)
-        for i, char in enumerate(T):
-            need[char] += 1
-        start = 0
-        end = 0
-        res_start = -1
-        res_end = N
-        count = 0
-        while end < N:
-            if S[end] not in need:
-                end += 1
+        wanted = {}
+        found = {}
+        for char in T:
+            wanted[char] = wanted.get(char, 0) + 1
+            found[char] = 0
+        l = 0
+        res = ''
+        counter = 0
+        for r in range(N):
+            if S[r] not in wanted:
                 continue
-            if find[S[end]] < need[S[end]]:
-                count += 1
-            find[S[end]] += 1
-            if count != M:
-                end += 1
-                continue
-            while start < end:
-                if S[start] not in need:
-                    start += 1
-                    continue
-                if find[S[start]] == need[S[start]]:
-                    break
-                find[S[start]] -= 1
-                start += 1
-            if end - start < res_end - res_start:
-                res_end = end
-                res_start = start
-            end += 1
-        if res_start == -1:
-            return ''
-        else:
-            return S[res_start: res_end+1]
 
-    # Whole bunch of things can be improved from here
+            found[S[r]] += 1
+            if found[S[r]] <= wanted[S[r]]:
+                counter += 1
+
+            if counter == M:
+                while l < r:
+                    if S[l] not in wanted:
+                        l += 1
+                        continue
+                    if found[S[l]] > wanted[S[l]]:
+                        found[S[l]] -= 1
+                        l += 1
+                        continue
+                    break
+                if not res or len(res) > r - l + 1:
+                    res = S[l:r+1]
+        return res
+
+    # Note
+    # 1. Prepare for wo dict
+    # 2. Skip chars that we don't care, increase right bound
+    # 3. If current window contains all the chars we want(counter == M), stop and resize left bound
+    # 4. Skip chars that we don't care. If extra chars in found > wanted, skip them
+    # 5. break here
+    # 6. Calculate the current size
