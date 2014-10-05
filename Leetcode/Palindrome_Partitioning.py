@@ -5,20 +5,20 @@ Return all possible palindrome partitioning of s.
 
 For example, given s = "aab",
 Return
-
+```
   [
     ["aa","b"],
     ["a","a","b"]
   ]
+```
 """
 
 class Solution:
     # @param s, a string
     # @return a list of lists of string
     def partition(self, s):
-        res = []
         ret = []
-        self.partition_helper(s, res, ret)
+        self.partition_helper(s, [], ret)
         return ret
 
     def partition_helper(self, s, res, ret):
