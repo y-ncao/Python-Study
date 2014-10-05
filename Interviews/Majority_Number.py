@@ -52,9 +52,3 @@ def majority_ii(A):
         return candidate_1
     else:
         return candidate_2
-
-
-
-
-
-

@@ -8415,12 +8415,6 @@ def majority_ii(A):
         return candidate_1
     else:
         return candidate_2
-
-
-
-
-
-
 ```
 -----
 
@@ -8511,11 +8505,10 @@ class MinStack():
 ##175. Nested Integer
 
 #####From NC QQ group and mitbbs, Linkedin Second round phone interview
-/**
- * This is the interface that represents nested lists.
- * You should not implement it, or speculate about its implementation.
- */
- ```
+This is the interface that represents nested lists.  
+You should not implement it, or speculate about its implementation.
+
+```
 public interface NestedInteger
 {
     /** @return true if this NestedInteger holds a single integer, rather than a nested list */
