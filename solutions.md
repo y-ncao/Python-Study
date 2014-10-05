@@ -3488,11 +3488,12 @@ Return all possible palindrome partitioning of s.
 
 For example, given s = "aab",
 Return
-
+```
   [
     ["aa","b"],
     ["a","a","b"]
   ]
+```
 
 ```python
 
@@ -3500,9 +3501,8 @@ class Solution:
     # @param s, a string
     # @return a list of lists of string
     def partition(self, s):
-        res = []
         ret = []
-        self.partition_helper(s, res, ret)
+        self.partition_helper(s, [], ret)
         return ret
 
     def partition_helper(self, s, res, ret):
@@ -6941,18 +6941,6 @@ class Solution:
     # 2. dp[0] = True
     # 3. dp[i] = for j in (i-1, ... 0) if dp[j] and s[j:i] in dict
     # 4. dp[N] !!! Very important here it's N not N-1
-
-
-    # Naive solution, won't pass
-    def wordBreak_2(self, s, dict):
-        N = len(s)
-        if N == 0:
-            return True
-
-        for i in range(1, N+1):
-            if s[:i] in dict and self.wordBreak(s[i:], dict):
-                return True
-        return False
 ```
 -----
 

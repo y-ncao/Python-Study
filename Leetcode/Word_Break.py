@@ -30,15 +30,3 @@ class Solution:
     # 2. dp[0] = True
     # 3. dp[i] = for j in (i-1, ... 0) if dp[j] and s[j:i] in dict
     # 4. dp[N] !!! Very important here it's N not N-1
-
-
-    # Naive solution, won't pass
-    def wordBreak_2(self, s, dict):
-        N = len(s)
-        if N == 0:
-            return True
-
-        for i in range(1, N+1):
-            if s[:i] in dict and self.wordBreak(s[i:], dict):
-                return True
-        return False
