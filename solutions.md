@@ -6637,11 +6637,12 @@ class Solution:
 Validate if a given string is numeric.
 
 Some examples:
-"0" => true
-" 0.1 " => true
-"abc" => false
-"1 a" => false
-"2e10" => true
+* "0" => true
+* " 0.1 " => true
+* "abc" => false
+* "1 a" => false
+* "2e10" => true
+
 Note: It is intended for the problem statement to be ambiguous. You should gather all requirements up front before implementing one.
 
 ```python
@@ -6854,21 +6855,21 @@ This won't pass
 
 Implement wildcard pattern matching with support for '?' and '*'.
 
-'?' Matches any single character.
+'?' Matches any single character.  
 '*' Matches any sequence of characters (including the empty sequence).
 
 The matching should cover the entire input string (not partial).
 
-The function prototype should be:
+The function prototype should be:  
 bool isMatch(const char *s, const char *p)
 
-Some examples:
-isMatch("aa","a") -> false
-isMatch("aa","aa") -> true
-isMatch("aaa","aa") -> false
-isMatch("aa", "*") -> true
-isMatch("aa", "a*") -> true
-isMatch("ab", "?*") -> true
+Some examples:  
+isMatch("aa","a") -> false  
+isMatch("aa","aa") -> true  
+isMatch("aaa","aa") -> false  
+isMatch("aa", "*") -> true  
+isMatch("aa", "a*") -> true  
+isMatch("ab", "?*") -> true  
 isMatch("aab", "c*a*b") -> false
 
 ```python
@@ -7152,15 +7153,15 @@ Given a 2D board and a word, find if the word exists in the grid.
 The word can be constructed from letters of sequentially adjacent cell, where "adjacent" cells are those horizontally or vertically neighboring. The same letter cell may not be used more than once.
 
 For example,
-Given board =
-
-[
-  ["ABCE"],
-  ["SFCS"],
-  ["ADEE"]
-]
-word = "ABCCED", -> returns true,
-word = "SEE", -> returns true,
+Given
+```
+board = [ ["ABCE"],
+          ["SFCS"],
+          ["ADEE"]
+          ]
+```
+word = "ABCCED", -> returns true,  
+word = "SEE", -> returns true,  
 word = "ABCB", -> returns false.
 
 ```python
@@ -7211,10 +7212,11 @@ class Solution:
 ##[152. ZigZag Conversion](https://oj.leetcode.com/problems/zigzag-conversion/)
 
 The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
-
+```
 P   A   H   N
 A P L S I I G
 Y   I   R
+```
 And then read line by line: "PAHNAPLSIIGYIR"
 Write the code that will take a string and make this conversion given a number of rows:
 
