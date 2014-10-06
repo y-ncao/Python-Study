@@ -89,6 +89,21 @@
      3. 如果读写不均匀的话就分开读写, master/slave replication(reading from slaves and write to master)
 
 ####数字
+
+#####公司
+######[Facebook](http://newsroom.fb.com/company-info/)
+* 1.3 billion active user per month
+* 1.07 billion mobile user per month
+* 829 million daily active user per day (远大于Monthly因为monthly的active user不能重复计算)
+
+######[Twitter](https://about.twitter.com/company)
+* 271 million monthly active users
+* 500 million Tweets are sent per day
+
+######[Amazon](http://www.statista.com/topics/846/amazon/)
+* 237 million active customer accounts worldwide
+
+#####程序内
 * 一个char是1 byte, 一个int/float/long是4 bytes, 一个double是 8 bytes
 * 1 Million = 10^6, 1 Million char = 1MB, 1 Million int = 4MB, 1 Million double = 8MB
 * 1 Billion = 10^9, 1 Billion char = 1GB, 1 Billion int = 4GB, 1 Million double = 8GB
@@ -348,6 +363,101 @@ A Distributed Coordination Service for Distributed Applications
       * High availability
       * Cost-effective
 
+#####News Feed
+* Load Test: peak/non-peak
+* Services
+  * User update - Write
+  * User query - Read (Use some ranking algorithm)
+* Approaches
+  * Push - fan-out-on-write
+     * Push the metadata to all user's friends when it occur
+     * Write O(n), Read O(1)
+     * Backlog problem
+     * Store a mother copy of metadata
+     * A lot of disk seek(我猜是因为需要搜索user's follower??)
+  * Pull - fan-out-on-read (这个是facebook的方法, 因为需要dynamic features like ranking or event aggregation)
+     * Pull your friends data when you want news
+     * Easier to keep things up-to-date
+     * May fail to generate a user's feed
+     * No inverse celebrity problem(可能会有名人有很多follower,但是大多数user不会follow太多)
+     * Must be in memory
+
+
+#####Facebook Chat
+* Client Side
+   * Regular AJAX for sending messages
+   * Regular AJAX for pull list of friends
+   * AJAX Long Polling for message
+* Server Side
+   * Communication between service: Thrift
+   * Channel - Erlang - Message queuing and delivery
+      * Queue message in each user's channel
+      * Deliverer message as long-polling HTTP request
+   * Presence - aggregation of online info in memory
+   * Chat logger - store conversation at server side
+   * Web tier
+* 过程
+  * Browser -> Web Tier -> Channel -> Browser (发信收信)
+  * 1-ajax -> 2-thrift -> 3->long poll
+  * Web Tier -> via thrift <- Chat logger
+  * Presence和Channel talk(via thrift) 用来获得在线列表
+
+#####Messaging System
+* Use HBase
+* High write throughput
+* <user_id, word, message_id>
+* Why?
+  * Elastic - add new node
+  * Automatic Failover
+     * Master will detect nodes fail
+     * Master fail, stand by will take over
+  * Eventually Consistent
+
+#####Type Head Search/Search Suggestion
+* Navigational - (用户不感兴趣其他的结果)
+* Browser Cache
+* Social Graph
+* 1st Degree Graph Connection
+
+######Services
+* FoF Friend of Friend
+* OoF Object of Friend
+* Global (Remove some sensitive stuff)
+* Aggregator - Merging, Ranking, Returning
+
+######Three Way Trade-off
+* Pre-compute
+  * Trie - Keep users first-degree connection. Waste space.
+  * 问题是如何Keep Sync
+  * Tiny Bloom Filter
+* Memory Consumption
+* Cache Bandwidth
+
+
+#####POI
+* GeoHash
+
+#####Implement second/minute/hour/day counters
+
+#####Photo Storage
+* 比较普遍的见上面Image hosting application
+* Facebook的是用Haystack
+
+#####Facebook
+* Web Tier
+  * PHP - hiphop
+* Storage Tier
+  * MySQL
+  * HBase
+  * Haystack
+* Cache Tier
+  * Memcached - fast, but do little thing
+  * TAO(The associations and object)
+     * Objects - Nodes
+     * Associations - Edges
+* Service Tier
+  * Inefficient and messy - access hundreds of machines - nightly cron jobs
+  * Build specialized services
 
 #####Note
 1. Similar to web server or CDN edge server
