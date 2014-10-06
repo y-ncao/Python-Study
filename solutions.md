@@ -4227,7 +4227,8 @@ class Solution:
     #    So first time we should update wrongs[0] = last,
     #       second time we should update wrongs[1] = root
     #    But line 34 first time we also update wrong[1] because if we have [1,2,4,3,5,6]
-    #    4 is next to 3 so we need to update them at the same time```
+    #    4 is next to 3 so we need to update them at the same time
+```
 -----
 
 ##[92. Regular Expression Matching](https://oj.leetcode.com/problems/regular-expression-matching/)

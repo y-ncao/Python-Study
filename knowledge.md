@@ -510,6 +510,11 @@ Cpython use OS threads. Only one thread at a time is allowed to run Python code.
 * Use multiple python interpreters concurrently,
 * Use different implementation of Python that does not use a GIL, like Jython and IronPython.
 
+#####[Reasons for GIL](http://en.wikipedia.org/wiki/Global_Interpreter_Lock)
+* Increased speed of single-threaded programs (no necessity to acquire or release locks on all data structures separately)
+* Easy integration of C libraries that usually are not thread-safe.
+* Ease of implementation (having a single GIL is much simpler to implement than a lock free interpreter or one using fine grained locks).
+
 #####[Multi-threading vs Multi-processing](http://stackoverflow.com/a/3046201)
 
 #####[Other Choices](http://www.slideshare.net/dabeaz/an-introduction-to-python-concurrency) (see slides 153)

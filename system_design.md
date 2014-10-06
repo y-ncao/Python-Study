@@ -125,6 +125,10 @@
 | IP Address(IPv4) | 2**8 * 4 = 4 bytes | 4 KB | 4 MB | 4 GB |
 | IP Address(IPv6) | 128 bits = 16 bytes | 16 KB | 16 MB | 16 GB |
 
+#####Computer
+* SSD 50~200MB/s
+* DRAM 2-20GB/s
+
 
 #####Note
 1. 所有IP是能放进内存的，因为一共2^32个ip地址
@@ -241,7 +245,9 @@
 
 ###[Storm](https://storm.incubator.apache.org/documentation/Home.html)
 Storm is a distributed realtime computation system. Similar to how Hadoop provides a set of general primitives for doing batch processing, Storm provides a set of general primitives for doing realtime computation.
+
 [Another introduction](http://www.slideshare.net/ptgoetz/storm-hadoop-summit2014?next_slideshow=1)
+
 1. __Spout__ is A source of streams in a computation. Spout implementations already exist for most queueing systems. (水龙头， 源源不断的往外送tuple)
 2. __Bolt__ processes any number of input streams and produces any number of new output streams. Most of the logic of a computation goes into bolts, such as functions, filters, streaming joins, streaming aggregations, talking to databases, and so on. (Core function of streaming computation)
 3. __Topology__ is a network of spouts and bolts, with each edge in the network representing a bolt subscribing to the output stream of some other spout or bolt. A topology is an arbitrarily complex multi-stage stream computation.
@@ -257,6 +263,7 @@ Storm is a distributed realtime computation system. Similar to how Hadoop provid
 ###[Hadoop](http://www-01.ibm.com/software/data/infosphere/hadoop/)
 * 最重要的两个是YARN and HDFS
 * 其他还有HBase database, the Apache Mahout machine learning system, and the Apache Hive Data Warehouse system
+
 ###[Yet Another Resource Negotiator(YARN)](http://www.slideshare.net/hortonworks/apache-hadoop-yarn-understanding-the-data-operating-system-of-hadoop) (Cluster Resource Mangement)
 
 ####[Hadoop Distributed File System (HDFS)](http://hortonworks.com/hadoop/hdfs/) (Redundate, Reliable Storage)
@@ -313,7 +320,7 @@ A Distributed Coordination Service for Distributed Applications
 5. Partitions
    * Large data - second server to store parts of the data set
    * Computing resource - splitting the operations or load across addtion nodes
-   * Partitins or shards - each logical set of functionality is separate
+   * Partitions or shards - each logical set of functionality is separate
      * geographic boundaries
      * non-paying users vs paying users
    * Data locality (the closer the data to the operation point, the better the performance)
@@ -405,7 +412,7 @@ A Distributed Coordination Service for Distributed Applications
 #####Messaging System
 * Use HBase
 * High write throughput
-* <user_id, word, message_id>
+* ```<user_id, word, message_id>```
 * Why?
   * Elastic - add new node
   * Automatic Failover
@@ -435,7 +442,8 @@ A Distributed Coordination Service for Distributed Applications
 
 
 #####POI
-* GeoHash
+* [GeoHash](http://en.wikipedia.org/wiki/Geohash)
+* 一个5位的char -> base32变成 5*5bit(包括奇数位经度偶数位纬度) -> 0表示在low~mid, 1表示mid~high转成纬度
 
 #####Implement second/minute/hour/day counters
 
