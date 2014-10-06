@@ -4271,9 +4271,8 @@ class Solution:
                 if p[j-1] == '.' or s[i-1] == p[j-1]:
                     dp[i][j] = dp[i-1][j-1]
                 elif p[j-1] == '*':
-                    dp[i][j] = dp[i][j-1] or \ # * is used as zero
-                               dp[i][j-2] or \ # * is removing the previous char
-                               (dp[i-1][j] and (s[i-1] == p[j-2] or p[j-2] == '.')) # * is back matching
+                    dp[i][j] = dp[i][j-2] or \ # * is used as previous*0 e.g. "aaa" = "ab*ac*a"
+                               (dp[i-1][j] and (s[i-1] == p[j-2] or p[j-2] == '.'))  # * is used as copy previous e.g. "aa" = "a*"
 
         return dp[M][N]
 
