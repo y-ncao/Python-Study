@@ -76,7 +76,7 @@
       4. Master/Slave replication(reading from the slave replicas, writes to the master)(如果有一天read/write不balance了的话) Master/Master
 
 ------
-[Test if this work](#By-Tiny-URL)
+[Test if this work](#by-tiny-url)
 
 ####总结:
 1. 从base开始, 最后变得复杂, 可以一开始vertical, 后面horizontal
