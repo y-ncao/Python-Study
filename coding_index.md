@@ -588,87 +588,6 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 
 -----
 
-##System Design
-
-* Concurrency
-   * Thread
-   * Deadlock
-   * Sync vs Async
-     同步: blocking
-     异步：callback，
-     AJAX，Asynchronized IO
-     Websever: nginx Linux epoll内核级别的轮训, single process 比thread pool更加高效 context switch需要很多开销
-* Network
-  * Http 协议属于applicatin，1.1版本，1.0区别：
-    1. host ，实现虚拟主机
-    2. 长链接
-    3. chunk传输
-  * 访问google
-    __Client Side__
-    1. DNS: 把domain name转化成ip address, use cache
-    2. HTTP: 80, GET/POST, request header, response header, content-length, accept type, etag, cookie-session
-    3. 7 layer, 封包 解包 过程，tcp 3次握手协议
-    4. rendering. html  
-    __Server Side__
-    GET /index.jsp?username=xxx, cookie (client端叫cookie, server端叫session)
-    static, dynamic区分
-    cdn(content delivery network)：
-    jsp, aspx, php: cgi, template + data => html
-* Abstraction, OOP
-  1. Elevator  
-     调度算法：先来先到，或者最短路径，轮训，基于人群多少计算cost
-  2. Book library  
-     static resource, class, action->method, db table, schema, order table, 数据库设计范式 norm
-  3. News Feed  
-     poll, push model  
-     last visit time  
-     cache: hot/cold  
-     count limit: 100
-  4. Amazon  
-     product, customer, shopping cart, order  
-     partition: veritcal, horizontal  
-     consistent hashing
-  5. Game  
-     init game  
-     game start, record status, feedback  
-     end game, success/fail
-
-* Distributed System (Avoid single failure point) Majority Win
-  * Consistency, eventually consistent, Amazon DynamicDB
-  * Availability(尽量选)
-  * Partition tolerance(尽量选)  
-    2PC  
-    Gossip  
-    Paxos  
-    解决办法:  
-    1. 时间戳
-    2. 你来选
-* Performance
-
-* Estimation(估算)  
-  1PB = 2^10 TB = 2^20 GB .. = 2^50 B (bype)  
-  1 integer = 4 bytes
-* Big Data  
-  1. 大数据算法
-  http://www.icourse163.org/learn/hit-10001
-  2. TinyURL:  
-     1. orig url: http://collabedit.com/nt4qp  
-        tiny url: http://t.cn/12345  
-        tinyUrl->origUrl  
-        origUrl->tinyUrl  
-        2 memory tables, db table  
-        1. md5(origUrl) -> abced  
-           a-zA-Z0-9 64 differ chars  
-           num%64;  
-        2. auto increase key  
-           id++ -> 64 chars
-     2. Cache  
-        LRU, LFU, frequent from logs
-     3. Load blance:  
-        qps: 1000, router: round robin  
-        storage: consistant hashing: http://www.programering.com/a/MzN2MjMwATI.html  
-     4. Locale: router
-
 ##Definetly Redo
 * [x] Regular Expression Matching (Redo)
 * [x] Wildcard Matching (Redo)
@@ -710,7 +629,6 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [x] Next Permutation (Redo，记住思考的方式，find, swap)
 * [x] Maximum Subarray
 * [x] Max Product of Subarray
-
 
 * [x] Populating Next Right Pointers in Each Node
 * [x] Populating Next Right Pointers in Each Node II

@@ -5,7 +5,7 @@
 ####[2. Statistic Numbers](#statistic-numbers)
 ####[3. Basic Knowledge](#basic-knowledge)
 ####[4. Topics](#topics)
-####[5. 海量数据解法](#海量数据解法)
+####[5. 海量数据](#海量数据)
 
 -----
 
@@ -299,7 +299,7 @@ A Distributed Coordination Service for Distributed Applications
 
 -----
 
-####[Image Hosting Applicaiton](http://www.aosabook.org/en/distsys.html)
+###[Image Hosting Applicaiton](http://www.aosabook.org/en/distsys.html)
 * Services
 * Dedundancy
 * Partitions
@@ -469,10 +469,10 @@ Also see [this](./img/Facebook_News_Feed.pdf)
 
 -----
 
-###[海量数据解法](http://blog.csdn.net/v_july_v/article/category/1106578)
+##[海量数据](http://blog.csdn.net/v_july_v/article/category/1106578)
 
 -----
-###Others
+##Others
 
 #####[Facebook](./img/Facebook_Architecture.pdf)
 * Web Tier
