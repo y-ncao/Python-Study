@@ -1,10 +1,10 @@
 #System Design
 
 ##Table of Content
-####[Design Process](#design-process)
-####[Statistic Numbers](#statistic-numbers)
-####[Basic Knowledge](#basic-knowledge)
-####[Topics](#topics)
+####[1. Design Process](#design-process)
+####[2. Statistic Numbers](#statistic-numbers)
+####[3. Basic Knowledge](#basic-knowledge)
+####[4. Topics](#topics)
 
 ##Design Process
 1. 按照网上的[步骤](http://www.hiredintech.com/app#system-design)走
