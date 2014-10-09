@@ -570,23 +570,9 @@ while (!Q.empty()) {
 * 要求插入一个数
 * 要求return median number
 
-
-####Interval Tree(线段树)
-
------
-
-####增加一个jumble的算法，跟permutation和combination还有subset一起做简算。
-
------
-
-#####XOR ( 不进位加法 )
-
 #####Majority Number
 __去想关于数据结构的题目的时候, 只需要考虑数据结构里处理的次数就行了__
 
-#####99%的数据处理
-
------
 
 ##Definetly Redo
 * [x] Regular Expression Matching (Redo)
