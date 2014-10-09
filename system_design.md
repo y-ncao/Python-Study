@@ -5,6 +5,9 @@
 ####[2. Statistic Numbers](#statistic-numbers)
 ####[3. Basic Knowledge](#basic-knowledge)
 ####[4. Topics](#topics)
+####[5. 海量数据解法](#海量数据解法)
+
+-----
 
 ##Design Process
 1. 按照网上的[步骤](http://www.hiredintech.com/app#system-design)走
@@ -12,12 +15,12 @@
    2. Abstract Design - 设计service/storage layer
    3. Bottlenecks - 根据估算数据分析瓶颈
    4. Scaling Abstract Design - Scale
-2. 从base开始, 最后变得复杂, 可以一开始vertical, 后面horizontal
-3. 核心是从两个方向走
-   * Traffic
-     1. More server(应该是这里体现consistent hashing, map reduce可能也是这里)
+2. 从base开始, 最后变得复杂, 可以一开始vertical, 后面horizontal, 注意中间是通过估算 + Load Test来实现的
+3. 核心是从两个方向来展开
+   * Service Layer
+     1. More server(应该是这里体现consistent hashing, map reduce应该也是这里)
      2. Load balancer
-   * Data
+   * Storage Layer
      1. NoSQL vs Relation SQL
      2. 如果小的话就store in memory, 大的话就得考虑sharding(easier for replicate and backup)
      3. 如果读写不均匀的话就分开读写, master/slave replication(reading from slaves and write to master)
@@ -396,6 +399,8 @@ A Distributed Coordination Service for Distributed Applications
      * No inverse celebrity problem(可能会有名人有很多follower,但是大多数user不会follow太多)
      * Must be in memory
 
+Also see [this](./img/Facebook_News_Feed.pdf)
+
 -----
 
 ###[Facebook Chat](./img/Facebook_Chat.pdf)
@@ -452,7 +457,7 @@ A Distributed Coordination Service for Distributed Applications
 
 -----
 
-###POI
+###[POI](http://1.znku.sinaapp.com/?p=331)
 * [GeoHash](http://en.wikipedia.org/wiki/Geohash)
 * 一个5位的char -> base32变成 5*5bit(包括奇数位经度偶数位纬度) -> 0表示在low~mid, 1表示mid~high转成纬度
 
@@ -461,6 +466,10 @@ A Distributed Coordination Service for Distributed Applications
 #####Photo Storage
 * 比较普遍的见上面[Image hosting application](#image-hosting-applicaiton)
 * Facebook的是用Haystack
+
+-----
+
+###[海量数据解法](http://blog.csdn.net/v_july_v/article/category/1106578)
 
 -----
 ###Others
@@ -484,6 +493,87 @@ A Distributed Coordination Service for Distributed Applications
 #####Note
 1. Similar to web server or CDN edge server
 
+-----
+
+###NC 笔记
+* Concurrency
+   * Thread
+   * Deadlock
+   * Sync vs Async
+     同步: blocking
+     异步：callback，
+     AJAX，Asynchronized IO
+     Websever: nginx Linux epoll内核级别的轮训, single process 比thread pool更加高效 context switch需要很多开销
+* Network
+  * Http 协议属于applicatin，1.1版本，1.0区别：
+    1. host ，实现虚拟主机
+    2. 长链接
+    3. chunk传输
+  * 访问google
+    __Client Side__
+    1. DNS: 把domain name转化成ip address, use cache
+    2. HTTP: 80, GET/POST, request header, response header, content-length, accept type, etag, cookie-session
+    3. 7 layer, 封包 解包 过程，tcp 3次握手协议
+    4. rendering. html  
+    __Server Side__
+    GET /index.jsp?username=xxx, cookie (client端叫cookie, server端叫session)
+    static, dynamic区分
+    cdn(content delivery network)：
+    jsp, aspx, php: cgi, template + data => html
+* Abstraction, OOP
+  1. Elevator  
+     调度算法：先来先到，或者最短路径，轮训，基于人群多少计算cost
+  2. Book library  
+     static resource, class, action->method, db table, schema, order table, 数据库设计范式 norm
+  3. News Feed  
+     poll, push model  
+     last visit time  
+     cache: hot/cold  
+     count limit: 100
+  4. Amazon  
+     product, customer, shopping cart, order  
+     partition: veritcal, horizontal  
+     consistent hashing
+  5. Game  
+     init game  
+     game start, record status, feedback  
+     end game, success/fail
+
+* Distributed System (Avoid single failure point) Majority Win
+  * Consistency, eventually consistent, Amazon DynamicDB
+  * Availability(尽量选)
+  * Partition tolerance(尽量选)  
+    2PC  
+    Gossip  
+    Paxos  
+    解决办法:  
+    1. 时间戳
+    2. 你来选
+* Performance
+
+* Estimation(估算)  
+  1PB = 2^10 TB = 2^20 GB .. = 2^50 B (bype)  
+  1 integer = 4 bytes
+* Big Data  
+  1. 大数据算法
+  http://www.icourse163.org/learn/hit-10001
+  2. TinyURL:  
+     1. orig url: http://collabedit.com/nt4qp  
+        tiny url: http://t.cn/12345  
+        tinyUrl->origUrl  
+        origUrl->tinyUrl  
+        2 memory tables, db table  
+        1. md5(origUrl) -> abced  
+           a-zA-Z0-9 64 differ chars  
+           num%64;  
+        2. auto increase key  
+           id++ -> 64 chars
+     2. Cache  
+        LRU, LFU, frequent from logs
+     3. Load blance:  
+        qps: 1000, router: round robin  
+        storage: consistant hashing: http://www.programering.com/a/MzN2MjMwATI.html  
+     4. Locale: router
 
 ###TODO
 * [ ] 总结下Twitter Pinterest Facebook题目
