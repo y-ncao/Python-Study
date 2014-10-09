@@ -1,6 +1,12 @@
 #System Design
 
-##Solution for All:
+##Table of Content
+####[Design Process](#design-process)
+####[Statistic Numbers](#statistic-numbers)
+####[Basic Knowledge](#basic-knowledge)
+####[Topics](#topics)
+
+##Design Process
 1. 按照网上的[步骤](http://www.hiredintech.com/app#system-design)走
    1. Constrains and use cases - 分析问题框架
    2. Abstract Design - 设计service/storage layer
@@ -63,6 +69,7 @@
 1. 所有IP是能放进内存的，因为一共2^32个ip地址
 
 ------
+
 ##Basic Knowledge
 
 ###[Harvard Class](https://www.youtube.com/watch?v=-W9F__D3oY4)
@@ -70,7 +77,7 @@
 ![Multi-tier architecture](./img/arch-anganguera.png)
 ![Another Pic](./img/perfpatrol.png)
 
-2. 重要的几个东东西
+2. 重要的几个东西
    1. DNS - 可以通过DNS来进行geo based load balancing, ```nslookup google```
    2. Firewall - 只允许来自80 443 22 VPN端口的访问. 过了下面那层LB，把443转换成80就行了
      * [Principle of Least Privilege](http://en.wikipedia.org/wiki/Principle_of_least_privilege)
@@ -132,7 +139,7 @@
 * 三个重要的structure
   * __Shards__ store the data
   * __Query Routers__ interface with client applications and direct operations to the appropriate shard or shards
-  * __Config servers__ store the cluster’s metadata.
+  * __Config Servers__ store the cluster’s metadata.
 * Data Partitioning
   * Range Based Sharding
   * Hash Based Sharding
@@ -140,7 +147,7 @@
 * Balancing
 
 ###[MapReduce](http://michaelnielsen.org/blog/write-your-first-mapreduce-program-in-20-minutes/)
-拿这个link的word count作为栗子
+拿[word count](./Concept_Implement/MapReduce.py)作为栗子
 * Map is a step to convert each chapter to a dict
   * 实际栗子里是把combine这步放到这里，把多个chapter组成一个intermediate list
   * 所以，输入是chapter，输出是list of words with count 1, a lot duplidates
@@ -171,6 +178,7 @@
        同样是从新的server逆时针出发到上一个server之间object归他管了
 * 通过virtual node来提高balance
 * 正常hash就直接hash ip就行了 hash('192.168.1.1')， 如果是hash virtual node可以 hash('192.168.1.1#1')
+![consistent_hashing](/img/consistent_hashing.jpg)
 
 ###[Storm](https://storm.incubator.apache.org/documentation/Home.html)
 Storm is a distributed realtime computation system. Similar to how Hadoop provides a set of general primitives for doing batch processing, Storm provides a set of general primitives for doing realtime computation.
