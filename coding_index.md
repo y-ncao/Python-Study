@@ -679,22 +679,27 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [x] String to Integer (atoi) (只需要注意['+','-'] 和<-sys.maxint >sys.maxint)
 * [x] Substring with Concatenation of All Words (Redo)
 * [ ] Minimum Window Substring (Redo)
+* [x] Longest Substring Without Repeating Characters
 * [x] Sum系列 (细节问题，得再写一遍)
 * [x] Longest Valid Parentheses (值得redo)
-* [x] Simplify Path
-* [x] Restore IP Addresses
 * [x] Insert Interval (Redo, 思考方式分三种情况讨论的细节)
 * [X] Merge Interval (sort and max!!!)
 * [x] Implement strStr() (KMP因为高频再小做一两次)
-* [x] Longest Concecutive Sequence
-* [x] Count and Say (Linkedin面经) (Trick Part是读出来的时候是insert(0))
-
-* [x] Rotate List
-* [x] Longest Substring Without Repeating Characters
-* [x] Maximum Path Sum(BT)
-
 * [x] Decode ways
 * [x] Longest Palindrome Substring
+* [x] First Missing Positive (Redo) (check 死循环!!!)
+* [x] Recover Binary Search Tree (Redo)
+* [x] Convert Sorted List to Binary Search Tree (Redo)
+* [x] Largest Rectangle in Histogram
+* [x] Maximal Rectangle
+
+* [x] Longest Concecutive Sequence
+* [x] Count and Say (Linkedin面经) (Trick Part是读出来的时候是insert(0))
+* [x] Simplify Path
+* [x] Restore IP Addresses
+* [x] Rotate List
+* [x] Maximum Path Sum(BT)
+
 * [x] Rotate Image
 * [x] Spiral Matrix * 2
 * [x] LRU
@@ -705,11 +710,8 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [x] Next Permutation (Redo，记住思考的方式，find, swap)
 * [x] Maximum Subarray
 * [x] Max Product of Subarray
-* [x] First Missing Positive (Redo) (check 死循环!!!)
 
 
-* [x] Recover Binary Search Tree (Redo)
-* [x] Convert Sorted List to Binary Search Tree (Redo)
 * [x] Populating Next Right Pointers in Each Node
 * [x] Populating Next Right Pointers in Each Node II
 * [x] Construct Binary Tree from Inorder and Postorder Traversal
@@ -730,10 +732,7 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 * [x] Divde two integers
 * [x] Single Number II
 
-
 ##Need Understand
-* [x] Largest Rectangle in Histogram
-* [x] Maximal Rectangle
 * [ ] 最大子矩阵(NC wechat)
 * [ ] 最大子矩阵乘积
 * [ ] 子数组最大差(NC wechat)
@@ -746,7 +745,6 @@ __去想关于数据结构的题目的时候, 只需要考虑数据结构里处�
 
 ##New
 * [x] [Absolute Minimum](./Interviews/Absolute_Minimum.py)
-
 
 ##Some Note
 1. 一定要看清题，比如这次就被问了find all palindrome，但是理解成palindrome partitioning了，所以错了
