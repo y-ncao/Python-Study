@@ -56,6 +56,7 @@
 * Permutation： ```T(n) = n * T(n-1) + O(1)```所以是O(n!)
 * Combination and Subsets  
   运用递归公式  
+
   ```python
   T(n) = T(n-1) + T(n-2) + T(n-3) + ... + T(1) + O(1)
        = 2T(n-2) + 2T(n-3) + ... + 2T(1) + 2O(1)
