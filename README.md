@@ -10,15 +10,34 @@
 
 但愿以后的我, 能够感谢现在的我, 曾经为了这些未知意义的事情而努力过.
 
+2014/08/16
+
+###后记
+
+今天早上拿到了FB的offer, 非常开心这几个月以来的辛苦没有白费, 这一路面试一路跪过来, 最终被自己最向往的公司所认可, 也算是一种缘分, 否则以现在的我的心情, 无论多小的公司要我我都可能随时从了人家, 于是也就会跟我梦寐以求的公司失之交臂, 所以也要感谢那些跪了我的公司们, 要不是你们给我的"Mock Interview", 要不是你们恰到好处的跪了我激励我不断努力, 我也不会有今天这样的结果.
+
+再感谢一下帮助过我的人.
+
+首先感谢家人GF在我最艰难的时候给我的支持, 忘不了那段跟GF边视频边做题到凌晨三点的日子.  
+感谢老板对我的支持, 知道我在骑驴找马, 但是还是告诉我放心大胆的请假面试, 公司的事儿他来搞定, 简直是感动得哭了.  
+感谢[待字闺中](http://www.mitbbs.com/bbsdoc/JobHunting.html)版上的热心人帮忙refer, 感谢老同学老朋友们给我的推荐, 也希望国人在米国能够团结互助.  
+最后还要感谢[九章算法](http://www.ninechapter.com)的黄老师和群里的朋友们, 算法课十分针对北美的面试, 即使是刷了一遍Leetcode之后再上课还是感觉收获颇丰, 听黄老师课的时候经常会有醍醐灌顶的感觉.祝九章越办越好.  
+
+2014/10/10
+
 ###My Coding
 
-[leetcode.py](./leetcode.py) is my first pass for leetcode, started from March, 2014. Code weren't submitted to OJ.
+[leetcode.py](./leetcode.py) is my first pass for leetcode, started from March, 2014. Didn't complete all of them and code weren't submitted to OJ.
 
 [Leetcode](./Leetcode) is my second pass for leetcode, started from Jun, 2014. Each submit may contain several solutions to OJ, all passed.
 
-[zz_coding_index](./zz_coding_index.md) is the summary of leetcode questions by programming solutions
+[coding_index](./coding_index.md) is my summary, also include some class notes from NC.
 
-[Whitebook](./WhiteBook) includes 150 Career Cup Questions. Very basic.
+[zz_coding_index](./zz_coding_index.md) is the summary of leetcode questions by programming solutions, copied from Peking2.
+
+[system_design](./system_design.md) is my summary to the system design questions.
+
+[Whitebook](./WhiteBook) includes some 150 Career Cup Questions. Very basic.
 
 [Concept Implement](./Concept_Implement) includes the python implementation of important CS concepts.
 
@@ -30,7 +49,7 @@
 
 
 ###Reference
-由衷的感谢这些无私分享的人, 没有你们的帮助, 我没法完成这151/151.
+由衷的感谢这些无私分享的人, 没有你们的帮助, 我没法完成这152/152.
 
 * [AnnieKim](https://github.com/AnnieKim/LeetCode) Very good and simple leetcode implementation in C.
 
@@ -57,4 +76,4 @@ If you feel my solutions are helpful, I'll be happy. If you find problems or hav
 
 You can reach me at [cyandterry at gmail.com](mailto:cyandterry@gmail.com)
 
-Please feel free to share the code for any personal use.
+Please feel free to share the code for any personal use. For other summaries, please do not repost it to anywhere else.
