@@ -24,14 +24,14 @@
 
 感谢[待字闺中](http://www.mitbbs.com/bbsdoc/JobHunting.html)版上的热心人帮忙refer, 感谢老同学老朋友们给我的推荐, 也希望国人在米国能够团结互助.
 
-最后还要感谢[九章算法](http://www.ninechapter.com)的黄老师和群里的朋友们, 算法课十分针对北美的面试, 即使是刷了一遍Leetcode之后再上课还是感觉收获颇丰, 听黄老师课的时候经常会有醍醐灌顶的感觉.祝九章越办越好.
+最后还要感谢[九章算法](http://www.ninechapter.com)的黄老师和群里的朋友们, 算法课十分针对北美的面试, 即使是刷了一遍Leetcode之后再上课还是感觉收获颇丰, 听黄老师课的时候经常会有醍醐灌顶的感觉. 祝九章越办越好.
 
 2014/10/10
 
 ###Tips
-Please click [here](./tips.md) for some tips
+Please click [here](./tips.md) for some tips to start.
 
-###My Coding
+###About This Repository
 
 [leetcode.py](./leetcode.py) is my first pass for leetcode, started from March, 2014. Didn't complete all of them and code weren't submitted to OJ.
 
@@ -46,6 +46,8 @@ Please click [here](./tips.md) for some tips
 [Whitebook](./WhiteBook) including some solutions from Career Cup 150 questions. Very basic.
 
 [Concept Implement](./Concept_Implement) includes the python implementation of important CS concepts.
+
+[Interviews](./Interviews) are real interview questions. Most of them are not in Leetcode.
 
 [run.py](./run.py) is a script to test solutions when input is not very complicated. Just update the file name and function name in Solution and run the script.
 
