@@ -26,6 +26,7 @@
 11. 面试之前做好公司background check, 如果有面试官的名字提前Linkedin查好, 准备好对应他职位的问题, 要给人一种很积极, 很了解对方公司的感(cuo)觉(jue).
     * Background check 包括公司规模, 历史, 主要产品, 如何盈利之类的.
     * 见人说人话, 见鬼说鬼话. 对HR就问general的问题, 比如Interview Process之类的(别傻呵呵让HR介绍公司, 这都是自己应该提前查好的), 对engineer就问些team, project问题.
+12. 平时没事可以来[版上](http://www.mitbbs.com/bbsdoc/JobHunting.html)看看实事和面经, 了解了解就业情况. 这里有很多面经和refer, 大家人都很好, 互相帮助.
 
 至于这个Repository, 很多总结的东西大家看到的蓝色的都是可点击的link, 点进去会有更多帮助. 上面的几个蓝的都是可点的.
 
