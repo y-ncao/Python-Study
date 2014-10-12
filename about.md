@@ -276,12 +276,14 @@ Fits well with our user's workflow.
 * How would you describe a challenging group from which you have to gain cooperation from. You need to get to work together. How to lead them together.
   * Use action. If I work very hard, others see me working hard and will be inspired to work hard as well.
 
-普适的一个例子
+####普适的一个例子
+
 Two month ago, we just released our project to production. Some of our user reporting that they are stucked at the loading bar. There were several users reporting the same problem so we think it's pretty serious and it was already 5:00PM.
 
 So we had a quick conversation about the solution. I ssh to the production box and copied the error log and search for possible error entry. The other one make phone call and write emails to the users and gather more detailed information from them, like screen shot, browser version and OS, also like their name. The other one try to login as them and see if that's a permission related problem or if he can reproduce the problem. The other front-end guy try to figure out if there's possible problem happens during the user loading files.
 
 After all, we found out this was a combination of several stuff.
+
 1. In production database, the data set is larger than our staging database. I didn't serialize one of the data object so that data object failed to store in production memcache. Make the backend call very slow.
 2. After serialized the data, still doesn't work because the data is still too big for user's local storage(Depends on the OS. For chrome it works fine on Linux but not for windows chrome. But IE works perfect since it has 10MB) (TWC blocked chrome's console so the user cannot see. We don't do much test on Windows). And also not working one mobile phone and Safari(Didn't test Mac OS stuff).
 3. So we first blocked the user's local storage save and make large data object fetched when they need. Make the website back to work.
@@ -290,7 +292,7 @@ After all, we found out this was a combination of several stuff.
 6. Front-end guy also used gzip to zip the data stored in user's local storage.
 7. We did more test on windows browser and Mac OS and iOS devices make sure it works fine.
 
-具体收获
+#####具体收获
 1. Production和Staging一定要确定data的大小一样, 最好在做这种release之前refresh staging database to make them sync.
 2. Team work, 5 of us we worked until 11 and no one left before we are sure the production is working fine.
 3. Test on different platform
