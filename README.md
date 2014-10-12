@@ -28,23 +28,26 @@
 
 2014/10/10
 
+###Tips
+Please click [here](./tips.md) for some tips
+
 ###My Coding
 
 [leetcode.py](./leetcode.py) is my first pass for leetcode, started from March, 2014. Didn't complete all of them and code weren't submitted to OJ.
 
-[Leetcode](./Leetcode) is my second pass for leetcode, started from Jun, 2014. Each submit may contain several solutions to OJ, all passed.
+[Leetcode](./Leetcode) is my second pass for leetcode, started from Jun, 2014. Each submission may contain several solutions to OJ, all passed.
 
-[coding_index](./coding_index.md) is my summary, also include some class notes from NC.
+[coding_index](./coding_index.md) is my summary, including some class notes from NC.
 
 [zz_coding_index](./zz_coding_index.md) is the summary of leetcode questions by programming solutions, copied from Peking2.
 
 [system_design](./system_design.md) is my summary to the system design questions.
 
-[Whitebook](./WhiteBook) includes some 150 Career Cup Questions. Very basic.
+[Whitebook](./WhiteBook) including some solutions from Career Cup 150 questions. Very basic.
 
 [Concept Implement](./Concept_Implement) includes the python implementation of important CS concepts.
 
-[run.py](./run.py) is a script to test Solutions when input is not very complicated. Just update the file name and function name in Solution and run the script.
+[run.py](./run.py) is a script to test solutions when input is not very complicated. Just update the file name and function name in Solution and run the script.
 
 [tool.py](./tool.py) has two functions:
 * Combine all the solutions in [Leetcode](./Leetcode), output to [Solutions](./solutions.md)
@@ -62,9 +65,9 @@
 
 * [水中的鱼](http://fisherlei.blogspot.com/) Another blog of leetcode solutions.
 
-* [Coding 4 Fun](http://c4fun.cn/blog/2014/03/20/leetcode-solution-02/) A python Solution.
+* [Coding 4 Fun](http://c4fun.cn/blog/2014/03/20/leetcode-solution-02/) solutions in Python
 
-* [jw2013](https://github.com/jw2013/Leetcode/) Another python solution.
+* [jw2013](https://github.com/jw2013/Leetcode/) Another solutions in Python.
 
 * [九章算法题解站](http://answer.ninechapter.com/) Leetcode solution from NineChapter in Java.
 
@@ -79,4 +82,4 @@ If you feel my solutions are helpful, I'll be happy. If you find problems or hav
 
 You can reach me at [cyandterry at gmail.com](mailto:cyandterry@gmail.com)
 
-Please feel free to share the code for any personal use. For other summaries, please do not repost it to anywhere else.
+Please feel free to share the code for any personal use. For concept summary(all markdown files), please do not copy, distribute or transmit the material without my permission.

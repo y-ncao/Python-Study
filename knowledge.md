@@ -10,7 +10,7 @@
   还有一些有空时候看的东西. About NP-complete problems(NP完全), Traverling Salesman Problem(旅行推销员问题) and Knapsack Problem(背包问题)
 
 * Math, 这个简单, 主要是离散数学, 稍微复习一下排列组合.
-* OS, 妈的这里实在是太蛋疼了, 实际真的都是经验之谈, 但是有好多傻逼的概念需要fresh-up
+* OS
   * Locks, Mutexes, Semaphores, Monitors
   * Deadlock and lovelock and how to avoid them
   * What resources a processes needs, and a thread needs
