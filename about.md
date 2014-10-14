@@ -295,7 +295,7 @@ After all, we found out this was a combination of several stuff.
 #####具体收获
 1. Production和Staging一定要确定data的大小一样, 最好在做这种release之前refresh staging database to make them sync.
 2. Team work, 5 of us we worked until 11 and no one left before we are sure the production is working fine.
-3. Test on different platform
+3. Test on different platform.
 4. When everybody work together, we can make the whole project success. If any of use left early that day, the problem wouldn't solved that quick.
 
 最后再问I hope I've answered that question to your satisfaction?
