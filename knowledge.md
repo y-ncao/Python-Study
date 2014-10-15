@@ -1508,6 +1508,7 @@ A __comparable__ object is capable of comparing itself with another object. The 
 A __comparator__ object is capable of comparing two different objects. The class is not comparing its instances, but some other class’s instances. This comparator class must implement the java.util.Comparator interface.
 
 -----
+
 Comparable lets a class implement its own comparison:
 
 * It's in __the same class__ (it is often an advantage)
