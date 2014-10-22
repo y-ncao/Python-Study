@@ -13,7 +13,7 @@
 
 * I work with other 3 developers. We are using Python and Oracle to build a Sales application that connects with Salesforce and we are achieveing that by gathering requirements from sales team directly and build these enhancements right into the application.
 
-* Build new quoting tool for our Salse Team.  
+* Build new quoting tool for our Salse Team.
   * SpineJS in Coffeescript handles the front-end. MVC framework on the front-end.
   * Tornado in Python handles the back-end, with Oracle Database. REST API on back-end.  
     Use Memecached to reduce the database fetch for 1. data is pretty big 2. data is used very frequently.
@@ -161,9 +161,10 @@ Fits well with our user's workflow.
 ####Redesign Project
 1. Use more popular front-end, like Angular - SpineJS's documentation is neat but not enough, we have been suffered from I found a problem, don't know how to solve, so I asked my teammate who is more focused on the front-end, and helped me with that. After that, I asked him, how did you know that? He said because I had a same problem and I dived into the source code
 2. We had to worry too much about security. But since this is internal tool, we think this is not a big problem to us. But we still have to face the problem
-3. We had small team and we didn't use TDD at the beginning.
-4. For backend, there are a lot of things that we can improve, like reduce the piping to the front-end, make some of the data fetch loaded later.
-5. But not anything we need to redesign. Tornado is pretty good, python web development is pretty good. Maybe get more async funcs on back-end but I cannot come up with a great use case for async.
+3. Too much rely on client side may cause problem. You don't know what the user's browser is, you don't what's user's box's performance. Local storage size and other's system attribute will cause all kinds of headache if you do it too much.
+4. We had small team and we didn't use TDD at the beginning.
+5. For backend, there are a lot of things that we can improve, like reduce the piping to the front-end, make some of the data fetch loaded later.
+6. But not anything we need to redesign. Tornado is pretty good, python web development is pretty good. Maybe get more async funcs on back-end but I cannot come up with a great use case for async.
 
 #####Backbone.js / Ember.js / Angular.js
 
@@ -207,7 +208,9 @@ Fits well with our user's workflow.
 1. Started from scratch and everyone works full-stack.
 2. The Memcache problem
 3. Support for different browsers on different OS. Especially on mobile device. Had a problem about memory using on iOS device.
-
+4. Client side rendering will cause more problem
+   * Cannot trust user's input, need to validate everything from the front-end.
+   * Need to be careful about the render process since it's async. For example, user submit a quote for approval, after clicked submit button, if they close the window immediately, it won't actually submit. So need to move process a bit earlier.
 
 #####6. About Team and Workflow
 1. We don't have a QA, we are our own QAs. We don't have a PM but we like grokking the business from the ground up, helping to steer our strategy, and defining and prioritizing our business.
