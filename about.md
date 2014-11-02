@@ -26,7 +26,7 @@
 ####4. Mercury特点
 * Provide our sales team a faster, more stable, more flexible platform and give them better user experience.
 1. Navisite is the king of customization. Our customer can buy whatever they want in whatever way as long as we have profit on the order. This is the goal for us. To build a tool that won't limit our sales people's creativity.
-2. A lot of procedures a data-driven, e.g. some approval rules are just a row of data in our database, we can react very fast if there's any need for us to change the rule, without touching the code base.
+2. A lot of procedures are data-driven, e.g. some approval rules are just a row of data in our database, we can react very fast if there's any need for us to change the rule, without touching the code base.
 3. We work closely with our Sales team and we listen to their feedback and make quick improvements based on their feedback.
 
 
