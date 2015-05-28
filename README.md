@@ -71,7 +71,7 @@ Please click [here](./tips.md) for some tips to start.
 
 * [jw2013](https://github.com/jw2013/Leetcode/) Another solutions in Python.
 
-* [九章算法题解站](http://answer.ninechapter.com/) Leetcode solution from NineChapter in Java.
+* [九章算法题解站](http://www.jiuzhang.com/solutions/) Leetcode solution from NineChapter in Java.
 
 ###Methodology
 
