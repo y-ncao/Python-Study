@@ -1,6 +1,6 @@
-##Play with Python and Leetcode
+## Play with Python and Leetcode
 
-###说给自己的话
+### 说给自己的话
 
 从14年四月开始准备跳槽, 到现在已经四个月了.
 
@@ -12,7 +12,7 @@
 
 2014/08/16
 
-###后记
+### 后记
 
 今天早上拿到了FB的offer, 非常开心这几个月以来的辛苦没有白费, 这一路面试一路跪过来, 最终被自己最向往的公司所认可, 也算是一种缘分, 否则以现在的我的心情, 无论多小的公司要我我都可能随时从了人家, 于是也就会跟我梦寐以求的公司失之交臂, 所以也要感谢那些跪了我的公司们, 要不是你们给我的"Mock Interview", 要不是你们恰到好处的跪了我激励我不断努力, 我也不会有今天这样的结果.
 
@@ -28,10 +28,10 @@
 
 2014/10/10
 
-###Tips
+### Tips
 Please click [here](./tips.md) for some tips to start.
 
-###About This Repository
+### About This Repository
 
 [leetcode.py](./leetcode.py) is my first pass for leetcode, started from March, 2014. Didn't complete all of them and code weren't submitted to OJ.
 
@@ -56,7 +56,7 @@ Please click [here](./tips.md) for some tips to start.
 * Generate the frequency map to [Frequency](./frequency.md)
 
 
-###Reference
+### Reference
 由衷的感谢这些无私分享的人, 没有你们的帮助, 我没法完成这152/152.
 
 * [AnnieKim](https://github.com/AnnieKim/LeetCode) Very good and simple leetcode implementation in C.
@@ -73,13 +73,13 @@ Please click [here](./tips.md) for some tips to start.
 
 * [九章算法题解站](http://www.jiuzhang.com/solutions/) Leetcode solution from NineChapter in Java.
 
-###Methodology
+### Methodology
 
 * [Dynamic Programming: From novice to advanced](http://hawstein.com/posts/dp-novice-to-advanced.html) Chinese translation.
 
 * [Knapsack problem](http://hawstein.com/posts/dp-knapsack.html) Another discussion about DP.
 
-###Sharing
+### Sharing
 If you feel my solutions are helpful, I'll be happy. If you find problems or have better solutions, I'll be more than happy if you can discuss with me.
 
 You can reach me at [cyandterry at gmail.com](mailto:cyandterry@gmail.com)
