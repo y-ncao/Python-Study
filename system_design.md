@@ -1,15 +1,15 @@
-#System Design
+# System Design
 
-##Table of Content
-####[1. Design Process](#design-process)
-####[2. Statistic Numbers](#statistic-numbers)
-####[3. Basic Knowledge](#basic-knowledge)
-####[4. Topics](#topics)
-####[5. 海量数据](#海量数据)
+## Table of Content
+#### [1. Design Process](#design-process)
+#### [2. Statistic Numbers](#statistic-numbers)
+#### [3. Basic Knowledge](#basic-knowledge)
+#### [4. Topics](#topics)
+#### [5. 海量数据](#海量数据)
 
 -----
 
-##Design Process
+## Design Process
 1. 按照网上的[步骤](http://www.hiredintech.com/app#system-design)走
    1. Constrains and use cases - 分析问题框架
    2. Abstract Design - 设计service/storage layer
@@ -27,22 +27,22 @@
 
 -----
 
-##Statistic Numbers
-####公司
+## Statistic Numbers
+#### 公司
 
-#####[Facebook](http://newsroom.fb.com/company-info/)
+##### [Facebook](http://newsroom.fb.com/company-info/)
 * 1.3 billion active user per month
 * 1.07 billion mobile user per month
 * 829 million daily active user per day (远大于Monthly因为monthly的active user不能重复计算)
 
-#####[Twitter](https://about.twitter.com/company)
+##### [Twitter](https://about.twitter.com/company)
 * 271 million monthly active users
 * 500 million Tweets are sent per day
 
-#####[Amazon](http://www.statista.com/topics/846/amazon/)
+##### [Amazon](http://www.statista.com/topics/846/amazon/)
 * 237 million active customer accounts worldwide
 
-####程序内
+#### 程序内
 * 一个char是1 byte, 一个int/float/long是4 bytes, 一个double是 8 bytes
 * 1 Million = 10^6, 1 Million char = 1MB, 1 Million int = 4MB, 1 Million double = 8MB
 * 1 Billion = 10^9, 1 Billion char = 1GB, 1 Billion int = 4GB, 1 Million double = 8GB
@@ -64,18 +64,18 @@
 | IP Address(IPv4) | 2**8 * 4 = 4 bytes | 4 KB | 4 MB | 4 GB |
 | IP Address(IPv6) | 128 bits = 16 bytes | 16 KB | 16 MB | 16 GB |
 
-####Computer
+#### Computer
 * SSD 50~200MB/s
 * DRAM 2-20GB/s
 
-####Note
+#### Note
 1. 所有IP是能放进内存的，因为一共2^32个ip地址
 
 ------
 
-##Basic Knowledge
+## Basic Knowledge
 
-###[Harvard Class](https://www.youtube.com/watch?v=-W9F__D3oY4)
+### [Harvard Class](https://www.youtube.com/watch?v=-W9F__D3oY4)
 1. 形式: Multi-tier architecture
 ![Multi-tier architecture](./img/arch-anganguera.png)
 ![Another Pic](./img/perfpatrol.png)
@@ -113,7 +113,7 @@
 
 ------
 
-###NoSQL vs Relational SQL
+### NoSQL vs Relational SQL
 * NoSQL
   * MongoDB(Document)
   * Google Big Table (Column)
@@ -133,7 +133,7 @@
   * A General Lack of Maturity
   * Performance and Scaling > Consistency - Performance and Scaling is good, lack of Consistency
 
-###[Sharding](http://docs.mongodb.org/manual/core/sharding-introduction/)
+### [Sharding](http://docs.mongodb.org/manual/core/sharding-introduction/)
 * Storing data across multiple machines
 * Purpose - horizontal scaling
 * Advantages
@@ -149,7 +149,7 @@
 * Splitting
 * Balancing
 
-###[MapReduce](http://michaelnielsen.org/blog/write-your-first-mapreduce-program-in-20-minutes/)
+### [MapReduce](http://michaelnielsen.org/blog/write-your-first-mapreduce-program-in-20-minutes/)
 拿[word count](./Concept_Implement/MapReduce.py)作为栗子
 * Map is a step to convert each chapter to a dict
   * 实际栗子里是把combine这步放到这里，把多个chapter组成一个intermediate list
@@ -161,7 +161,7 @@
   2. Apply function to the pieces in parallel without communication to each other between the analyzers
   3. Apply another function to combine the results
 
-###[Consistent Hashing](http://blog.csdn.net/sparkliang/article/details/5279393)
+### [Consistent Hashing](http://blog.csdn.net/sparkliang/article/details/5279393)
 * Naive way to do: hash(k) % n
 * four important keys
   * Balancing
@@ -183,7 +183,7 @@
 * 正常hash就直接hash ip就行了 hash('192.168.1.1')， 如果是hash virtual node可以 hash('192.168.1.1#1')
 ![consistent_hashing](/img/consistent_hashing.jpg)
 
-###[Storm](https://storm.incubator.apache.org/documentation/Home.html)
+### [Storm](https://storm.incubator.apache.org/documentation/Home.html)
 Storm is a distributed realtime computation system. Similar to how Hadoop provides a set of general primitives for doing batch processing, Storm provides a set of general primitives for doing realtime computation.
 
 [Another introduction](http://www.slideshare.net/ptgoetz/storm-hadoop-summit2014?next_slideshow=1)
@@ -194,19 +194,19 @@ Storm is a distributed realtime computation system. Similar to how Hadoop provid
 
 * Trident
 
-###[Spark](https://www.youtube.com/watch?v=cs3_3LdCny8)
+### [Spark](https://www.youtube.com/watch?v=cs3_3LdCny8)
 * Builds on top of HDFS
 * Not tied to two-stage Mapreduce
 * Proivde in-memory cluster computing
 * Use Cases: Machine Learning algorithms and Interactive analytics.
 
-###[Hadoop](http://www-01.ibm.com/software/data/infosphere/hadoop/)
+### [Hadoop](http://www-01.ibm.com/software/data/infosphere/hadoop/)
 * 最重要的两个是YARN and HDFS
 * 其他还有HBase database, the Apache Mahout machine learning system, and the Apache Hive Data Warehouse system
 
-###[Yet Another Resource Negotiator(YARN)](http://www.slideshare.net/hortonworks/apache-hadoop-yarn-understanding-the-data-operating-system-of-hadoop) (Cluster Resource Mangement)
+### [Yet Another Resource Negotiator(YARN)](http://www.slideshare.net/hortonworks/apache-hadoop-yarn-understanding-the-data-operating-system-of-hadoop) (Cluster Resource Mangement)
 
-####[Hadoop Distributed File System (HDFS)](http://hortonworks.com/hadoop/hdfs/) (Redundate, Reliable Storage)
+#### [Hadoop Distributed File System (HDFS)](http://hortonworks.com/hadoop/hdfs/) (Redundate, Reliable Storage)
 * Rack awareness allows consideration of a node’s physical location, when allocating storage and scheduling tasks
 * Minimal data motion. MapReduce moves compute processes to the data on HDFS and not the other way around. Processing tasks can occur on the physical node where the data resides. This significantly reduces the network I/O patterns and keeps most of the I/O on the local disk or within the same rack and provides very high aggregate read/write bandwidth.
 * Utilities diagnose the health of the files system and can rebalance the data on different nodes
@@ -214,16 +214,16 @@ Storm is a distributed realtime computation system. Similar to how Hadoop provid
 * Standby NameNode provides redundancy and supports high availability
 * Highly operable. Hadoop handles different types of cluster that might otherwise require operator intervention. This design allows a single operator to maintain a cluster of 1000s of nodes.
 
-###[ZooKeeper](http://zookeeper.apache.org/doc/trunk/zookeeperOver.html)
+### [ZooKeeper](http://zookeeper.apache.org/doc/trunk/zookeeperOver.html)
 A Distributed Coordination Service for Distributed Applications
 
-###[DevOps](http://www.infoq.com/cn/articles/devops-is-not-equal-chef-puppet)
+### [DevOps](http://www.infoq.com/cn/articles/devops-is-not-equal-chef-puppet)
 
 -----
 
-##Topics
+## Topics
 
-###[Tiny URL](http://www.hiredintech.com/app#the-system-design-process)
+### [Tiny URL](http://www.hiredintech.com/app#the-system-design-process)
 1. Constrains and Use Cases
    1. Use Cases - What do we use the system for?
       1. Shortening: take a url => return a much shorter url
@@ -246,7 +246,7 @@ A Distributed Coordination Service for Distributed Applications
          4. 1BN request per month
          5. request by second   400+per second(40 shorten 360 redirects)
          6. Total url 5 years * 12 * 100M: 6Billion url in 5 years
-         7. 每个url长度 500bytes: __1 char = 1 byte__ 这个太重要了(ASCII是128=2**7个, 1byte就够了, 但是UTF-8是1~4bytes一个字符)
+         7. 每个url长度 500bytes: __1 char = 1 byte__ 这个太重要了(ASCII是`128=2**7`个, 1byte就够了, 但是UTF-8是1~4bytes一个字符)
          8. __url是case sensitive的__
          9. 6 bytes per hash
          10. 注意, 10^3 K->kb, 10^6 M->MB, 10^9 B->GB, 10^12 ->TB
@@ -299,7 +299,7 @@ A Distributed Coordination Service for Distributed Applications
 
 -----
 
-###[Image Hosting Applicaiton](http://www.aosabook.org/en/distsys.html)
+### [Image Hosting Applicaiton](http://www.aosabook.org/en/distsys.html)
 * Services
 * Dedundancy
 * Partitions
@@ -380,7 +380,7 @@ A Distributed Coordination Service for Distributed Applications
 
 -----
 
-###[News Feed](http://www.quora.com/What-are-best-practices-for-building-something-like-a-News-Feed)
+### [News Feed](http://www.quora.com/What-are-best-practices-for-building-something-like-a-News-Feed)
 * Load Test: peak/non-peak
 * Services
   * User update - Write
@@ -403,7 +403,7 @@ Also see [this](./img/Facebook_News_Feed.pdf)
 
 -----
 
-###[Facebook Chat](./img/Facebook_Chat.pdf)
+### [Facebook Chat](./img/Facebook_Chat.pdf)
 * Client Side
    * Regular AJAX for sending messages
    * Regular AJAX for pull list of friends
@@ -422,7 +422,7 @@ Also see [this](./img/Facebook_News_Feed.pdf)
   * Web Tier -> via thrift <- Chat logger
   * Presence和Channel talk(via thrift) 用来获得在线列表
 
-###[Messaging System](http://www.slideshare.net/brizzzdotcom/facebook-messages-hbase)
+### [Messaging System](http://www.slideshare.net/brizzzdotcom/facebook-messages-hbase)
 * Use HBase
 * High write throughput
 * ```<user_id, word, message_id>```
@@ -441,13 +441,13 @@ Also see [this](./img/Facebook_News_Feed.pdf)
 * Social Graph
 * 1st Degree Graph Connection
 
-#####Services
+##### Services
 * FoF Friend of Friend
 * OoF Object of Friend
 * Global (Remove some sensitive stuff)
 * Aggregator - Merging, Ranking, Returning
 
-#####Three Way Trade-off
+##### Three Way Trade-off
 * Pre-compute
   * Trie - Keep users first-degree connection. Waste space.
   * 问题是如何Keep Sync
@@ -457,24 +457,24 @@ Also see [this](./img/Facebook_News_Feed.pdf)
 
 -----
 
-###[POI](http://1.znku.sinaapp.com/?p=331)
+### [POI](http://1.znku.sinaapp.com/?p=331)
 * [GeoHash](http://en.wikipedia.org/wiki/Geohash)
 * 一个5位的char -> base32变成 5*5bit(包括奇数位经度偶数位纬度) -> 0表示在low~mid, 1表示mid~high转成纬度
 
-#####Implement second/minute/hour/day counters
+##### Implement second/minute/hour/day counters
 
-#####Photo Storage
+##### Photo Storage
 * 比较普遍的见上面[Image hosting application](#image-hosting-applicaiton)
 * Facebook的是用Haystack
 
 -----
 
-##[海量数据](http://blog.csdn.net/v_july_v/article/category/1106578)
+## [海量数据](http://blog.csdn.net/v_july_v/article/category/1106578)
 
 -----
-##Others
+## Others
 
-#####[Facebook](./img/Facebook_Architecture.pdf)
+##### [Facebook](./img/Facebook_Architecture.pdf)
 * Web Tier
   * PHP - hiphop
 * Storage Tier
@@ -490,12 +490,12 @@ Also see [this](./img/Facebook_News_Feed.pdf)
   * Inefficient and messy - access hundreds of machines - nightly cron jobs
   * Build specialized services
 
-#####Note
+##### Note
 1. Similar to web server or CDN edge server
 
 -----
 
-###NC 笔记
+### NC 笔记
 * Concurrency
    * Thread
    * Deadlock
@@ -510,12 +510,12 @@ Also see [this](./img/Facebook_News_Feed.pdf)
     2. 长链接
     3. chunk传输
   * 访问google
-    __Client Side__
+    **Client Side**
     1. DNS: 把domain name转化成ip address, use cache
     2. HTTP: 80, GET/POST, request header, response header, content-length, accept type, etag, cookie-session
     3. 7 layer, 封包 解包 过程，tcp 3次握手协议
     4. rendering. html  
-    __Server Side__
+    **Server Side**
     GET /index.jsp?username=xxx, cookie (client端叫cookie, server端叫session)
     static, dynamic区分
     cdn(content delivery network)：
@@ -575,7 +575,7 @@ Also see [this](./img/Facebook_News_Feed.pdf)
         storage: consistant hashing: http://www.programering.com/a/MzN2MjMwATI.html  
      4. Locale: router
 
-###TODO
+### TODO
 * [ ] 总结下Twitter Pinterest Facebook题目
 * [ ] 精细化数据
 
