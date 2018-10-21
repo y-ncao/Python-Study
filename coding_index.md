@@ -2,20 +2,21 @@
 
 ## Permutation & Combination Type
 ### Questions
-* [x] Permutations
-* [x] Permutations II
-* [x] Permutation Sequence
-* [x] Next Permutation
-
-* [x] Combinations
-* [x] Combination Sum
-* [x] Combination Sum II
-* [x] Letter Combination of a Phone Number
-* [x] 找零钱 I == Combination Sum I
-* [x] 找零钱 II 求ways最好就不要用dfs了，最好方法是O(m*n)
-
-* [x] Subset
-* [x] Subset II
+* Permutations
+  * [x] Permutations
+  * [x] Permutations II
+  * [x] Permutation Sequence
+  * [x] Next Permutation
+* Combinations
+  * [x] Combinations
+  * [x] Combination Sum
+  * [x] Combination Sum II
+  * [x] Letter Combination of a Phone Number
+  * [x] 找零钱 I == Combination Sum I
+  * [x] 找零钱 II 求ways最好就不要用dfs了，最好方法是O(m*n)
+* Subset
+  * [x] Subset
+  * [x] Subset II
 
 ### 总结
 [Permutations](./Leetcode/Permutations.py) [II](./Leetcode/Permutations_II.py),
