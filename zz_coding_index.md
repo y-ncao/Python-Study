@@ -1,6 +1,6 @@
-#zz Coding Summary
+# zz Coding Summary
 
-##Two Pointers
+## Two Pointers
 1. 两个pointers从头往后走：感觉绝大多数的linked list的题目都涉及到这个操作，当然还有array。这类题目很多时候又可以称为sliding window。
   * Implement strStr()
   * Longest Substring Without Repeating Characters
@@ -32,25 +32,25 @@
   * Multiply Strings
   * Partition List
 
-##Permutation and Combination
-######Permutation
+## Permutation and Combination
+###### Permutation
 * 输入没有重复：Permutations, CC150 9.5, PIE Chapter7 Permutations of a String
 * 输入有重复，输出不能有重复：Permutations II
 * Next Permutation: 经典算法，背吧
 * Permutation Sequence: 非常有意思的题目
 * Combination
 
-######纯粹的subset
+###### 纯粹的subset
 * 输入没有重复：Subsets, CC150 9.4, PIE Chapter7 Combinations of a String
 * 输入有重复，输出不能有重复：Subsets II
 
-######需要满足一定要求的组合
+###### 需要满足一定要求的组合
 * 一个元素只能取一次(输入没有重复): Combinations
 * 一个元素可以取多次(输入没有重复): Combination Sum, CC150, 9.8
 * 一个元素只能取一次(输入有重复，输出不能有重复）: Combination Sum II
 * Gray Code: 具有subset的序列特点 （考虑CC150 9.4 Solution#2: Combinatorics)
 
-##Binary Search and Divide and Conquer
+## Binary Search and Divide and Conquer
 
 Binary search非常tricky，虽说道理简单，但是面试的时候却很容易出bug，因此总结一下是必须的。假设i=0,j=A.length-1, 我做了一下LeetCode上的所有binary search的题目，发现了以下几点值得注意。
 
@@ -76,7 +76,7 @@ Questions
 * Pow(x, n)
 * Sqrt(x)：其实算是一道典型的binary search题目，不过里边包括了几个tricky的地方，很难一次写对
 
-##Linked List
+## Linked List
 首先LeetCode上几乎所有的Linked list的题目都可以用two pointers来解决，或者会用到two pointers这个基本编程技巧。因此two pointers跟linked list是紧密相关的。因为two pointers以前已经总结过了，就不多讲了。
 
 其次，因为LinkedList和Array/ArrayList一样都具备有List的特性，因此很多题目都出现在了两种数据结构上，或者说很多题目都是可以把这两种数据结构互换的。比如：
@@ -123,7 +123,7 @@ Leetcode上graph的题目涉及的很少，不过从算法和coding来说DFS，B
 (这题原题在CC150是一道双向链表题，不知道Leetcode上怎么改单向了。双向链表应该更复杂一些，大家要注意一下）
 
 
-##数据结构
+## 数据结构
 * Array, ArrayList
 * String, StringBuffer
 * LinkedList
