@@ -1,24 +1,29 @@
-# Coding Summary by Keywords and Type
+## Coding Summary by Keywords and Type
 
-## Permutation & Combination Type
-### Questions
-* Permutations
-  * [x] Permutations
-  * [x] Permutations II
-  * [x] Permutation Sequence
-  * [x] Next Permutation
-* Combinations
-  * [x] Combinations
-  * [x] Combination Sum
-  * [x] Combination Sum II
-  * [x] Letter Combination of a Phone Number
-  * [x] 找零钱 I == Combination Sum I
-  * [x] 找零钱 II 求ways最好就不要用dfs了，最好方法是O(m*n)
-* Subset
-  * [x] Subset
-  * [x] Subset II
+### Permutation & Combination Type
+* [x] Permutations
+* [x] Permutations II
+* [x] Permutation Sequence
+* [x] Next Permutation
 
-### 总结
+-----
+
+* [x] Combinations
+* [x] Combination Sum
+* [x] Combination Sum II
+* [x] Letter Combination of a Phone Number
+* [x] 找零钱 I == Combination Sum I
+* [x] 找零钱 II 求ways最好就不要用dfs了，最好方法是O(m*n)
+
+
+-----
+
+* [x] Subset
+* [x] Subset II
+
+-----
+
+#### 总结
 [Permutations](./Leetcode/Permutations.py) [II](./Leetcode/Permutations_II.py),
 [Combinations](./Leetcode/Combinations.py),
 [Combinations Sum](./Leetcode/Combination_Sum.py) [II](./Leetcode/Combination_Sum_II.py)
@@ -32,13 +37,13 @@
    前三种题存过结果只后程序应该return
 
 2. 循环内call recursion时的输入变量不一样  
-   * Permu - `permu_helper(num[:i] + num[i+i:], res, ret)`(除了S[i])
-   * Combin - `comb_helper(i+1, n, k, res, ret)`(S[i+1:])
-   * Combin Sum - `comb_sum_helper(num[i:], target - n, res, ret)`(S[i:])
-   * Subsets - `sub_helper(S[i+1:], res, ret)`(S[i+1:])  
-   `S[i+1:]`决定了res内是不会有重复项的(除非S本身就有重复), `S[i:]`让当前元素可以重复使用
+   * Permu - ```permu_helper(num[:i] + num[i+i:], res, ret)```(除了S[i])
+   * Combin - ```comb_helper(i+1, n, k, res, ret)```(S[i+1:])
+   * Combin Sum - ```comb_sum_helper(num[i:], target - n, res, ret)```(S[i:])
+   * Subsets - ```sub_helper(S[i+1:], res, ret)```(S[i+1:])  
+   ```S[i+1:]``决定了res内是不会有重复项的(除非S本身就有重复), ```S[i:]```让当前元素可以重复使用
 
-### Note
+##### Note
 * II类去重题相比较I类题唯一的差别就是在循环的第一行需要check```if i > 0 and S[i] == S[i-1]: continue```
 * 注意II类题都需要先```sort```, 因为去重是判断前项相等否
 * 普通题目看情况如果要求输入时```res```内的元素有序那也需要```sort```
@@ -47,7 +52,7 @@
   所以是```comb_sum_II_helper(num[i+1:], target - n, res, ret)```
 * 记得尽量用```enumerate```
 
-### 复杂度O(n)
+##### 复杂度O(n)
 * Permutation： ```T(n) = n * T(n-1) + O(1)```所以是O(n!)
 * Combination and Subsets  
   运用递归公式  
@@ -100,7 +105,7 @@ _____
 * [x] Maximum Depth of Binary Tree
 * [x] Minimum Depth of Binary Tree
 
-### Binary Search Tree
+###Binary Search Tree
 * [x] Convert Sorted Array to Binary Search Tree
 * [x] Unique Binary Search Trees
 * [x] Unique Binary Search Trees II
