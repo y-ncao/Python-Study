@@ -8,7 +8,7 @@ Push和Pull是两种不同的system design approach,主要应用于feed design�
 ### Data Structure Differences
 一般来讲, 实现Push和Pull时需要的data structure是不一样的. 以feed design为例, 最naive的feed design是至少需要一个timeline table的, 就是用户所有的post按照chronological order的一个 list.
 在Pull model中, 只需实现一个
-```
+```python
 def getUserFeed(user_id: int, start_at: Optional[int] = None, ..., last_feed_item_id: Optional[int] = None):
     following_list = getFollowingList(user_id)
     feed = []
