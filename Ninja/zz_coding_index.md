@@ -33,18 +33,18 @@
   * Partition List
 
 ## Permutation and Combination
-###### Permutation
+### Permutation
 * 输入没有重复：Permutations, CC150 9.5, PIE Chapter7 Permutations of a String
 * 输入有重复，输出不能有重复：Permutations II
 * Next Permutation: 经典算法，背吧
 * Permutation Sequence: 非常有意思的题目
 * Combination
 
-###### 纯粹的subset
+### 纯粹的subset
 * 输入没有重复：Subsets, CC150 9.4, PIE Chapter7 Combinations of a String
 * 输入有重复，输出不能有重复：Subsets II
 
-###### 需要满足一定要求的组合
+### 需要满足一定要求的组合
 * 一个元素只能取一次(输入没有重复): Combinations
 * 一个元素可以取多次(输入没有重复): Combination Sum, CC150, 9.8
 * 一个元素只能取一次(输入有重复，输出不能有重复）: Combination Sum II
@@ -94,7 +94,7 @@ Questions
 
 第五，今天做了一遍LinkedList的题目，发现两个地方容易出bug。一是two pointers loop完之后常常会有一个收尾的工作，比如Add Two Numbers需要处理carrier>0的情况。二是在swap了nodes之后，新的tail需要把next置空，不然就出现死循环了。
 
-##Tree
+## Tree
 1. Recursive DFS
 2. Iterative DFS
 3. BFS
