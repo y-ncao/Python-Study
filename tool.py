@@ -8,16 +8,16 @@ def combiner(file_list):
     for i, answer in enumerate(file_list):
         with open(answer) as file:
             title = ' '.join(answer.split('/')[-1].split('.py')[0].split('_'))
-            folder = answer.split('/')[1]
+            folder = answer.split('/')[2]
             content = file.read()
             sections = content.split("\"\"\"")
             if len(sections) < 3 or len(sections[2]) < 10:
                 continue
             if folder == 'Leetcode':
                 address = title.lower().replace(' ', '-')
-                f.write('##[%d. %s](https://oj.leetcode.com/problems/%s/)\n' % (i+1,title,address))
+                f.write('## [%d. %s](https://oj.leetcode.com/problems/%s/)\n' % (i+1,title,address))
             else:
-                f.write('##%d. %s\n' % (i+1,title))
+                f.write('## %d. %s\n' % (i+1,title))
             if '\\' in sections[1]:
                 new_section = sections[1].split('\n')
                 min_index = len(new_section) - 1
@@ -45,7 +45,7 @@ def title_convert(title):
 
 def frequency_creator(file_list):
     f = open('frequency.md', 'wb')
-    f.write('##Leetcode Order by Frequency\n')
+    f.write('## Leetcode Order by Frequency\n')
     book = open_workbook('Leetcode Order by Frequency.xlsx')
     sheet = book.sheet_by_index(0)
 
@@ -89,14 +89,14 @@ def type_searchor(target, type):
 
 
 if __name__ == '__main__':
-    file_list = glob.glob('./Leetcode/*.py')
-    file_list.remove('./Leetcode/__init__.py')
+    file_list = glob.glob('./Ninja/Leetcode/*.py')
+    file_list.remove('./Ninja/Leetcode/__init__.py')
     file_list.sort()
     interview_list = glob.glob('./Interviews/*.py')
     interview_list.sort()
     file_list.extend(interview_list)
 
     combiner(file_list)
-    frequency_creator(file_list)
+    # frequency_creator(file_list)
     # type 1 == Data Structure, 2 == Algorithms
-    #type_searchor('dp', 2)
+    # type_searchor('dp', 2)
