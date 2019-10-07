@@ -15,9 +15,9 @@ def combiner(file_list):
                 continue
             if folder == 'Leetcode':
                 address = title.lower().replace(' ', '-')
-                f.write('## [%d. %s](https://oj.leetcode.com/problems/%s/)\n' % (i+1,title,address))
+                f.write('### [%d. %s](https://oj.leetcode.com/problems/%s/)\n' % (i+1,title,address))
             else:
-                f.write('## %d. %s\n' % (i+1,title))
+                f.write('### %d. %s\n' % (i+1,title))
             if '\\' in sections[1]:
                 new_section = sections[1].split('\n')
                 min_index = len(new_section) - 1
