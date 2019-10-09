@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-a = [1,3 ,4 ,5 ,7 ,8 , 10 , 12]
+a = [1, 3, 4, 5, 7, 8, 10, 12]
 
 def binary_search_1(a, target):
     N = len(a)
