@@ -1,11 +1,11 @@
 class TreeNode:
-    def __init__(self, data=None):
+    def __init__(self, data):
         self.left = None
         self.right = None
         self.data = data
 
 class LinkedListNode:
-    def __init__(self, data=None):
+    def __init__(self, data):
         self.data = data
         self.next = None
 
