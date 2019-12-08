@@ -4,7 +4,7 @@ import glob
 from xlrd import open_workbook
 
 def combiner(file_list):
-    f = open('solutions.md', 'wb')
+    f = open('solutions.md', 'w')
     for i, answer in enumerate(file_list):
         with open(answer) as file:
             title = ' '.join(answer.split('/')[-1].split('.py')[0].split('_'))
@@ -44,7 +44,7 @@ def title_convert(title):
     return title.lower()
 
 def frequency_creator(file_list):
-    f = open('frequency.md', 'wb')
+    f = open('frequency.md', 'w')
     f.write('## Leetcode Order by Frequency\n')
     book = open_workbook('Leetcode Order by Frequency.xlsx')
     sheet = book.sheet_by_index(0)
@@ -85,7 +85,7 @@ def type_searchor(target, type):
         col_index = 5
     for row_index in range(sheet.nrows):
         if target in str(sheet.cell(row_index, col_index).value):
-            print str(sheet.cell(row_index, 1).value)
+            print(str(sheet.cell(row_index, 1).value))
 
 
 if __name__ == '__main__':
