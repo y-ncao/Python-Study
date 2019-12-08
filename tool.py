@@ -7,15 +7,18 @@ def combiner(file_list):
     f = open('solutions.md', 'w')
     for i, answer in enumerate(file_list):
         with open(answer) as file:
-            title = ' '.join(answer.split('/')[-1].split('.py')[0].split('_'))
+            title = answer.split('/')[-1].split('.py')[0].split('_')
             folder = answer.split('/')[2]
             content = file.read()
             sections = content.split("\"\"\"")
             if len(sections) < 3 or len(sections[2]) < 10:
                 continue
             if folder == 'Leetcode':
-                address = title.lower().replace(' ', '-')
-                f.write('### [%d. %s](https://oj.leetcode.com/problems/%s/)\n' % (i+1,title,address))
+                whole_name = answer.split('/')[-1].split('.py')[0]
+                leetcode_num = whole_name.split('_')[0]
+                leetcode_title = ' '.join(whole_name.split('_')[1:])
+                leetcode_address = leetcode_title.replace(' ', '-').lower()
+                f.write('### [%d. %s](https://oj.leetcode.com/problems/%s/)\n' % (int(leetcode_num), leetcode_title, leetcode_address))
             else:
                 f.write('### %d. %s\n' % (i+1,title))
             if '\\' in sections[1]:
