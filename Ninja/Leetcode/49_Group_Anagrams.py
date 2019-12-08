@@ -1,7 +1,19 @@
 """
-Given an array of strings, return all groups of strings that are anagrams.
+Given an array of strings, group anagrams together.
 
-Note: All inputs will be in lower-case.
+Example:
+
+Input: ["eat", "tea", "tan", "ate", "nat", "bat"],
+Output:
+[
+  ["ate","eat","tea"],
+  ["nat","tan"],
+  ["bat"]
+]
+Note:
+
+All inputs will be in lowercase.
+The order of your output does not matter.
 """
 
 class Solution:
@@ -20,8 +32,3 @@ class Solution:
     # Note:
     # 1. Need to use extend here, return those len(d[key]) > 1
     # 2. Need to remember the definition of Anagrams
-    """
-    Input:      ["tea","and","ate","eat","dan"]
-    Output:     ["and","dan"]
-    Expected:   ["and","dan","tea","ate","eat"]
-    """
