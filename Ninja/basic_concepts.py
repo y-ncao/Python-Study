@@ -1,4 +1,4 @@
-## LinkedList
+## LinkedList, Double LinkedList. LinkedList Reverse
 class LinkedListNode:
     def __init__(self, val):
         self.val = val
@@ -18,6 +18,7 @@ class DLinkedListNode:
         self.val = val
         self.prev = self.next = None
 
+    # Unconfirmed yet
     def reverse(self, head):
         prev = None
         while(head.next):
@@ -28,7 +29,7 @@ class DLinkedListNode:
             prev = head
             head = tmp
 
-
+## Tree and Tree Search
 class TreeNode:
     def __init__(self, val):
         self.val = val
@@ -60,17 +61,28 @@ class TreeTraversal:
         self.in_order(root.right)
         print(root.val)
 
-    def binary_search(root_node, target):
-        while(root_node.left or root_node.right):
-            if root_node.data == target:
+    def binary_search_iteration(root, value):
+        while(root.left and root.right):
+            if root.val == value
                 return True
-            elif root_node.data < target:
-                root_node = root_node.right
+            elif value < root.val:
+                root = root.left
             else:
-                root_node = root_node.left
+                root = root.right
         return False
 
-    def binary_search(search_list, target):
+    def binary_search_recursion(root, value):
+        if not root:
+            return False
+
+        if root.val == value:
+            return True
+        elif value < root.val:
+            return binary_search_recursion(root.left, value)
+        else:
+            return binary_search_recursion(root.right, value)
+
+    def list_binary_search(search_list, target):
         left_index = 0
         right_index = len(list) - 1
         while left_index < right_index:
@@ -97,12 +109,51 @@ class TreeTraversal:
             q.append(current.right)
         return False
 
+## Queue
+queue = []  # same as list()
+size = len(queue)
+queue.append(1)
+queue.append(2)
+queue.pop(0) # return 1
+queue[0] # return 2 examine the first element
+
+## Stack
+stack = []
+size = len(stack)
+stack.append(1)
+stack.append(2)
+stack.pop() # return 2
+
+## Priority Queue - https://docs.python.org/2/library/heapq.html
+import heapq
+heap = []
+heapq.heappush(heap, 1)  # heap [1]
+heapq.heappush(heap, 3)  # heap [1,3]
+heapq.heappush(heap, 2)  # heap [1,3,2]
+heapq.heappop(heap)  # 1
+heapq.heappop(heap)  # 2
+heapq.heappop(heap)  # 3
+
+## Deque
+import collections
+dq = collections.deque()
+dq.append(1)  # [1]
+dq.appendleft(2)  # [2,1]
+dq.popleft()  # [1]
 
 
+## Set
+s = set({1,3,4,5,6,5})  # {1, 3, 4, 5, 6}
 
+## List
+a = [5,4,3,2,1]
+for index, value in enumerate(a):
+    print(index, value)
 
-
-
+## Dictionary
+d.items()
+d.keys()
+d.values()
 
 
 ## Permutation
