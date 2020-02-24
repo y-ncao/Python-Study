@@ -28,23 +28,21 @@ class Solution:
         if not head:
             return None
 
-        odd_current = head
-        even_current = head.next
-        even_head = head.next
-        current = head
-        i = 0
-        while current:
-            if i % 2 == 0:
-                even_current.next = current
-                even_current = even_current.next
+        odd_dummy = ListNode(0)
+        even_dummy = ListNode(0)
+        cur_odd = odd_dummy
+        cur_even = even_dummy
+        is_even = False
+        while head:
+            cur_odd.next = head
+            cur_even.next = head.next
+            cur_odd = cur_odd.next
+            cur_even = cur_even.next
+            if head.next:
+                head = head.next.next
             else:
-                odd_current.next = current
-                odd_current = odd_current.next
+                head = None
 
-            i += 1
-            current = current.next
+        cur_odd.next = even_dummy.next
 
-
-
-
-        return head
+        return odd_dummy.next
