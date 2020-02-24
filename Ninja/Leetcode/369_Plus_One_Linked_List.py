@@ -19,3 +19,18 @@ Output: [1,2,4]
 
 class Solution:
     def plusOne(self, head: ListNode) -> ListNode:
+        dummy = ListNode(0)
+        dummy.next = head
+        slow = fast = dummy
+        while fast:
+            if fast.val != 9:
+                slow = fast
+            fast = fast.next
+
+        slow.val += 1
+        slow = slow.next
+        while slow:
+            slow.val = 0
+            slow = slow.next
+
+        return dummy.next if dummy.val == 0 else dummy
