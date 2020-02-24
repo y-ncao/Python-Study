@@ -1,10 +1,11 @@
 """
-Given a linked list, swap every two adjacent nodes and return its head.
+Given a linked list, swap every two adjacent nodes and return its head.
 
-For example,
+You may not modify the values in the list's nodes, only nodes itself may be changed.
+
+Example:
+
 Given 1->2->3->4, you should return the list as 2->1->4->3.
-
-Your algorithm should use only constant space. You may not modify the values in the list, only nodes itself can be changed.
 """
 
 # Definition for singly-linked list.
@@ -49,3 +50,19 @@ class Solution:
         second.next = first
         first.next = self.swapPairs_3(first.next)
         return second
+
+    def swapPairs_3(self, head):
+        # used one more variable
+        dummy = ListNode(0)
+        dummy.next = head
+        current = head
+        prev = dummy
+        while current and current.next:
+            next = current.next
+            prev.next = next
+            current.next = next.next
+            next.next = current
+            prev = current
+            current = current.next
+
+        return dummy.next
