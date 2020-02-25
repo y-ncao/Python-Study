@@ -1,12 +1,13 @@
 """
-Given an array of integers, find two numbers such that they add up to a specific target number.
+Given an array of integers, return indices of the two numbers such that they add up to a specific target.
 
-The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
 
-You may assume that each input would have exactly one solution.
+Example:
+Given nums = [2, 7, 11, 15], target = 9,
 
-Input: numbers={2, 7, 11, 15}, target=9
-Output: index1=1, index2=2
+Because nums[0] + nums[1] = 2 + 7 = 9,
+return [0, 1].
 """
 
 class Solution:
@@ -25,11 +26,11 @@ class Solution:
     # O(n)
     def twoSum_2(self, num, target):
         num_map = {}
-        for i, n in enumerate(num):
-            if target - n not in num_map:
-                num_map[n] = i
+        for i, n in enumerate(nums):
+            if target - n in num_map:
+                return (num_map[target - n], i)
             else:
-                return (num_map[target-n] + 1, i + 1) # Don't know why leetcode call the index [0] as 1
+                num_map[n] = i
 
     # O(nlgn) This is the best way, used in X Sum
     def twoSum_3(self, num, target):
