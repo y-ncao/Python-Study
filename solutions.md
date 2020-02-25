@@ -2193,8 +2193,24 @@ class Solution:
 
 Given a linked list, determine if it has a cycle in it.
 
-Follow up:
-Can you solve it without using extra space?
+To represent a cycle in the given linked list, we use an integer pos which represents the position (0-indexed) in the linked list where tail connects to. If pos is -1, then there is no cycle in the linked list.
+
+Example 1:
+Input: head = [3,2,0,-4], pos = 1
+Output: true
+Explanation: There is a cycle in the linked list, where tail connects to the second node.
+
+
+Example 2:
+Input: head = [1,2], pos = 0
+Output: true
+Explanation: There is a cycle in the linked list, where tail connects to the first node.
+
+
+Example 3:
+Input: head = [1], pos = -1
+Output: false
+Explanation: There is no cycle in the linked list.
 
 ```python
 
@@ -2205,17 +2221,20 @@ Can you solve it without using extra space?
 #         self.next = None
 
 class Solution:
-    # @param head, a ListNode
-    # @return a boolean
-    def hasCycle(self, head):
-        slow = head
-        fast = head
-        while fast is not None and fast.next is not None:
+    def hasCycle(self, head: ListNode) -> bool:
+        slow = fast = head
+        while(
+            fast and
+            fast.next
+        ):
             slow = slow.next
             fast = fast.next.next
+
             if fast == slow:
                 return True
         return False
+
+    # Note that the fast == slow should be checked on the later.
 ```
 -----
 
@@ -2223,7 +2242,28 @@ class Solution:
 
 Given a linked list, return the node where the cycle begins. If there is no cycle, return null.
 
-Follow up:
+To represent a cycle in the given linked list, we use an integer pos which represents the position (0-indexed) in the linked list where tail connects to. If pos is -1, then there is no cycle in the linked list.
+
+Note: Do not modify the linked list.
+
+Example 1:
+Input: head = [3,2,0,-4], pos = 1
+Output: tail connects to node index 1
+Explanation: There is a cycle in the linked list, where tail connects to the second node.
+
+
+Example 2:
+Input: head = [1,2], pos = 0
+Output: tail connects to node index 0
+Explanation: There is a cycle in the linked list, where tail connects to the first node.
+
+
+Example 3:
+Input: head = [1], pos = -1
+Output: no cycle
+Explanation: There is no cycle in the linked list.
+
+Follow-up:
 Can you solve it without using extra space?
 
 ```python
@@ -2238,22 +2278,28 @@ class Solution:
     # @param head, a ListNode
     # @return a list node
     def detectCycle(self, head):
-        if head is None or head.next is None:
-            return None
-        slow = head.next
-        fast = head.next.next
-        while slow!=fast:
-            if fast is None or fast.next is None:
-                return None
+        fast = slow = head
+        while (
+            fast and
+            fast.next
+        ):
             slow = slow.next
             fast = fast.next.next
+            if fast == slow:
+                break
+        else:
+            return None
+
         fast = head
-        while slow!=fast:
-            slow = slow.next
+        while fast != slow:
             fast = fast.next
+            slow = slow.next
         return slow
 
     # Remember to set slow = head.next and fast = head.next.next before entering the loop
+    # Assume non-ring_length = a, ring_length = b, pointer fast went through f, pinter slow went through s.
+    # So we know: f = 2s. f-s = nb
+    # so s = nb. Which means short has went through n cycle's of the ring so far. So if we put f back to start, at the point they meet again, it's the entry point.
 ```
 -----
 
@@ -2874,6 +2920,66 @@ class Solution:
 ```
 -----
 
+### [160. Intersection of Two Linked Lists](https://oj.leetcode.com/problems/intersection-of-two-linked-lists/)
+
+Write a program to find the node at which the intersection of two singly linked lists begins.
+
+For example, the following two linked lists:
+
+begin to intersect at node c1.
+
+Example 1:
+Input: intersectVal = 8, listA = [4,1,8,4,5], listB = [5,0,1,8,4,5], skipA = 2, skipB = 3
+Output: Reference of the node with value = 8
+Input Explanation: The intersected node's value is 8 (note that this must not be 0 if the two lists intersect). From the head of A, it reads as [4,1,8,4,5]. From the head of B, it reads as [5,0,1,8,4,5]. There are 2 nodes before the intersected node in A; There are 3 nodes before the intersected node in B.
+ 
+
+Example 2:
+Input: intersectVal = 2, listA = [0,9,1,2,4], listB = [3,2,4], skipA = 3, skipB = 1
+Output: Reference of the node with value = 2
+Input Explanation: The intersected node's value is 2 (note that this must not be 0 if the two lists intersect). From the head of A, it reads as [0,9,1,2,4]. From the head of B, it reads as [3,2,4]. There are 3 nodes before the intersected node in A; There are 1 node before the intersected node in B.
+
+Example 3:
+Input: intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2
+Output: null
+Input Explanation: From the head of A, it reads as [2,6,4]. From the head of B, it reads as [1,5]. Since the two lists do not intersect, intersectVal must be 0, while skipA and skipB can be arbitrary values.
+Explanation: The two lists do not intersect, so return null.
+ 
+Notes:
+
+If the two linked lists have no intersection at all, return null.
+The linked lists must retain their original structure after the function returns.
+You may assume there are no cycles anywhere in the entire linked structure.
+Your code should preferably run in O(n) time and use only O(1) memory.
+
+```python
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
+        pa = headA
+        pb = headB
+        while pa and pb and pa!=pb:
+            pa = pa.next if pa else headB
+            pb = pb.next if pb else headA
+
+        if pa == pb:
+            return pa
+        else:
+            return None
+
+        # Similar to the circle of the ring
+        # assume length_A = A, length_B = B. a is the length for List A before intersect. b is the length for List B before intersect.
+        # A + b = B + a because A = a + c, b = b + c. a + c + b = b + c + a.
+        # So we put pa to headB when pa reach A's end. We put pb to headA when pb reach B's end.
+```
+-----
+
 ### [16. 3Sum Closest](https://oj.leetcode.com/problems/3sum-closest/)
 
 Given an array S of n integers, find three integers in S such that the sum is closest to a given number, target. Return the sum of the three integers. You may assume that each input would have exactly one solution.
@@ -3082,14 +3188,15 @@ class Solution:
 
 ### [1. Two Sum](https://oj.leetcode.com/problems/two-sum/)
 
-Given an array of integers, find two numbers such that they add up to a specific target number.
+Given an array of integers, return indices of the two numbers such that they add up to a specific target.
 
-The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
 
-You may assume that each input would have exactly one solution.
+Example:
+Given nums = [2, 7, 11, 15], target = 9,
 
-Input: numbers={2, 7, 11, 15}, target=9
-Output: index1=1, index2=2
+Because nums[0] + nums[1] = 2 + 7 = 9,
+return [0, 1].
 
 ```python
 
@@ -3109,11 +3216,11 @@ class Solution:
     # O(n)
     def twoSum_2(self, num, target):
         num_map = {}
-        for i, n in enumerate(num):
-            if target - n not in num_map:
-                num_map[n] = i
+        for i, n in enumerate(nums):
+            if target - n in num_map:
+                return (num_map[target - n], i)
             else:
-                return (num_map[target-n] + 1, i + 1) # Don't know why leetcode call the index [0] as 1
+                num_map[n] = i
 
     # O(nlgn) This is the best way, used in X Sum
     def twoSum_3(self, num, target):
@@ -3136,6 +3243,146 @@ class Solution:
 
     # Note:
     # 1. Keep in mind we need to use a dict to store the original position.
+```
+-----
+
+### [200. Number of Islands](https://oj.leetcode.com/problems/number-of-islands/)
+
+Given a 2d grid map of '1's (land) and '0's (water), count the number of islands. An island is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
+
+Example 1:
+
+Input:
+11110
+11010
+11000
+00000
+
+Output: 1
+Example 2:
+
+Input:
+11000
+11000
+00100
+00011
+
+Output: 3
+
+```python
+
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        visited = [[False for i in range(len(grid[0]))] for j in range(len(grid))]
+        islands = 0
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j] == "1" and not visited[i][j]:
+                    islands += 1
+                    self.DFS((i, j), grid, visited)
+
+        return islands
+
+    def DFS(self, current, grid, visited):
+        directions = [(0,1), (1,0), (0, -1), (-1, 0)]
+
+        x, y = current
+        if visited[x][y]:
+            return
+
+        visited[x][y] = True
+        for d in directions:
+            next_x = x + d[0]
+            next_y = y + d[1]
+
+            if (
+                0 <= next_x < len(grid) and
+                0 <= next_y < len(grid[0]) and
+                grid[next_x][next_y] == "1"
+            ):
+                self.DFS((next_x, next_y), grid, visited)
+```
+-----
+
+### [203. Remove Linked List Elements](https://oj.leetcode.com/problems/remove-linked-list-elements/)
+
+Remove all elements from a linked list of integers that have value val.
+
+Example:
+
+Input:  1->2->6->3->4->5->6, val = 6
+Output: 1->2->3->4->5
+
+```python
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def removeElements(self, head: ListNode, val: int) -> ListNode:
+        dummy = ListNode(0)
+        dummy.next = head
+        prev = dummy
+        while head:
+            if head.val == val:
+                prev.next = head.next
+            else:
+                prev = head
+            head = head.next
+
+        return dummy.next
+```
+-----
+
+### [206. Reverse Linked List](https://oj.leetcode.com/problems/reverse-linked-list/)
+
+Reverse a singly linked list.
+
+Example:
+
+Input: 1->2->3->4->5->NULL
+Output: 5->4->3->2->1->NULL
+Follow up:
+
+A linked list can be reversed either iteratively or recursively. Could you implement both?
+
+```python
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        # This is the moving head pointer solution
+        if not head:
+            return None
+
+        next = None
+        new_head = head
+        while head.next:
+            next = head.next
+            head.next = next.next
+            next.next = new_head
+            new_head = next
+        return new_head
+
+    def reverseList(self, head: ListNode) -> ListNode:
+        # This is the double pointer solution
+        prev = None
+        current = head
+        while current:
+            temp = current.next
+            current.next = prev
+            prev = current
+            current = temp
+
+        return prev
 ```
 -----
 
@@ -3230,6 +3477,51 @@ class Solution:
 ```
 -----
 
+### [237. Delete Node in a Linked List](https://oj.leetcode.com/problems/delete-node-in-a-linked-list/)
+
+Write a function to delete a node (except the tail) in a singly linked list, given only access to that node.
+
+Given linked list -- head = [4,5,1,9], which looks like following:
+
+Example 1:
+
+Input: head = [4,5,1,9], node = 5
+Output: [4,1,9]
+Explanation: You are given the second node with value 5, the linked list should become 4 -> 1 -> 9 after calling your function.
+Example 2:
+
+Input: head = [4,5,1,9], node = 1
+Output: [4,5,9]
+Explanation: You are given the third node with value 1, the linked list should become 4 -> 5 -> 9 after calling your function.
+ 
+
+Note:
+
+The linked list will have at least two elements.
+All of the nodes' values will be unique.
+The given node will not be the tail and it will always be a valid node of the linked list.
+Do not return anything from your function.
+
+
+```python
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def deleteNode(self, node):
+        
+        :type node: ListNode
+        :rtype: void Do not return anything, modify node in-place instead.
+        
+        node.val = node.next.val
+        node.next = node.next.next
+```
+-----
+
 ### [23. Merge k Sorted Lists](https://oj.leetcode.com/problems/merge-k-sorted-lists/)
 
 Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.
@@ -3266,12 +3558,13 @@ class Solution:
 
 ### [24. Swap Nodes in Pairs](https://oj.leetcode.com/problems/swap-nodes-in-pairs/)
 
-Given a linked list, swap every two adjacent nodes and return its head.
+Given a linked list, swap every two adjacent nodes and return its head.
 
-For example,
+You may not modify the values in the list's nodes, only nodes itself may be changed.
+
+Example:
+
 Given 1->2->3->4, you should return the list as 2->1->4->3.
-
-Your algorithm should use only constant space. You may not modify the values in the list, only nodes itself can be changed.
 
 ```python
 
@@ -3317,6 +3610,22 @@ class Solution:
         second.next = first
         first.next = self.swapPairs_3(first.next)
         return second
+
+    def swapPairs_3(self, head):
+        # used one more variable
+        dummy = ListNode(0)
+        dummy.next = head
+        current = head
+        prev = dummy
+        while current and current.next:
+            next = current.next
+            prev.next = next
+            current.next = next.next
+            next.next = current
+            prev = current
+            current = current.next
+
+        return dummy.next
 ```
 -----
 
@@ -3439,6 +3748,81 @@ class Solution:
         return i
 
     # Two pointer problem
+```
+-----
+
+### [286. Walls and Gates](https://oj.leetcode.com/problems/walls-and-gates/)
+
+You are given a m x n 2D grid initialized with these three possible values.
+
+-1 - A wall or an obstacle.
+0 - A gate.
+INF - Infinity means an empty room. We use the value 231 - 1 = 2147483647 to represent INF as you may assume that the distance to a gate is less than 2147483647.
+Fill each empty room with the distance to its nearest gate. If it is impossible to reach a gate, it should be filled with INF.
+
+Example: 
+
+Given the 2D grid:
+
+INF  -1  0  INF
+INF INF INF  -1
+INF  -1 INF  -1
+  0  -1 INF INF
+After running your function, the 2D grid should be:
+
+  3  -1   0   1
+  2   2   1  -1
+  1  -1   2  -1
+  0  -1   3   4
+
+```python
+from collections import deque
+class Solution:
+    def wallsAndGates(self, rooms: List[List[int]]) -> None:
+        
+        Do not return anything, modify rooms in-place instead.
+        
+        gates = self.find_gates(rooms)
+        print(gates)
+        if not gates:
+            return
+
+        for gate in gates:
+            self.BFS(gate, rooms)
+
+    def find_gates(self, rooms):
+        gates = []
+        for i in range(len(rooms)):
+            for j in range(len(rooms[0])):
+                if rooms[i][j] == 0:
+                    gates.append((i, j))
+        return gates
+
+    def BFS(self, start, rooms):
+        queue = [(start, 0)]
+        visited = set()
+        directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+
+        while queue:
+            cur_pos, distance = queue.pop(0)
+            if (
+                cur_pos in visited or
+                rooms[cur_pos[0]][cur_pos[1]] == -1
+            ):
+                continue
+            else:
+                visited.add(cur_pos)
+
+            rooms[cur_pos[0]][cur_pos[1]] = min(distance, rooms[cur_pos[0]][cur_pos[1]])
+
+            for d in directions:
+                next_point = (cur_pos[0] + d[0], cur_pos[1] + d[1])
+                if (
+                    0 <= next_point[0] < len(rooms) and
+                    0 <= next_point[1] < len(rooms[0]) and
+                    rooms[next_point[0]][next_point[1]] > distance + 1
+                ):
+                    queue.append((next_point, distance + 1))
 ```
 -----
 
@@ -3640,6 +4024,109 @@ class Solution:
     # 1. Iterate from the back to the front, find the first element that A[i-1] < A[i]
     # 2. Iterate from the back to the front, find the first element that A[j] > A[i-1]
     # 3. swap A[i-1] and A[j], return A[:i+1] + sorted(A[i+1:])
+```
+-----
+
+### [325. Maximum Size Subarray Sum Equals k](https://oj.leetcode.com/problems/maximum-size-subarray-sum-equals-k/)
+
+Given an array nums and a target value k, find the maximum length of a subarray that sums to k. If there isn't one, return 0 instead.
+
+Note:
+The sum of the entire nums array is guaranteed to fit within the 32-bit signed integer range.
+
+Example 1:
+
+Input: nums = [1, -1, 5, -2, 3], k = 3
+Output: 4
+Explanation: The subarray [1, -1, 5, -2] sums to 3 and is the longest.
+Example 2:
+
+Input: nums = [-2, -1, 2, 1], k = 1
+Output: 2
+Explanation: The subarray [-1, 2] sums to 1 and is the longest.
+Follow Up:
+Can you do it in O(n) time?
+
+```python
+
+class Solution:
+    def maxSubArrayLen(self, nums: List[int], k: int) -> int:
+        # Too slow, won't AC
+        max_len = 0
+        for i in range(len(nums)-1):
+            for j in range(1, len(nums)):
+                subarray = nums[i:j]
+                if sum(subarray) == k:
+                    max_len = max(max_len, j-i)
+
+        return max_len
+
+    def maxSubArrayLen(self, nums: List[int], k: int) -> int:
+        sum_map = {0:0}
+        cur_sum = 0
+        max_len = 0
+        for i, n in enumerate(nums):
+            cur_sum += n
+            if cur_sum - k in sum_map:
+                max_len = max(max_len, i + 1 - sum_map[cur_sum - k])
+
+            if cur_sum not in sum_map:
+                sum_map[cur_sum] = i + 1
+
+        return max_len
+```
+-----
+
+### [328. Odd Even Linked List](https://oj.leetcode.com/problems/odd-even-linked-list/)
+
+Given a singly linked list, group all odd nodes together followed by the even nodes. Please note here we are talking about the node number and not the value in the nodes.
+
+You should try to do it in place. The program should run in O(1) space complexity and O(nodes) time complexity.
+
+Example 1:
+
+Input: 1->2->3->4->5->NULL
+Output: 1->3->5->2->4->NULL
+Example 2:
+
+Input: 2->1->3->5->6->4->7->NULL
+Output: 2->3->6->7->1->5->4->NULL
+Note:
+
+The relative order inside both the even and odd groups should remain as it was in the input.
+The first node is considered odd, the second node even and so on ...
+
+```python
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def oddEvenList(self, head: ListNode) -> ListNode:
+        if not head:
+            return None
+
+        odd_dummy = ListNode(0)
+        even_dummy = ListNode(0)
+        cur_odd = odd_dummy
+        cur_even = even_dummy
+        is_even = False
+        while head:
+            cur_odd.next = head
+            cur_even.next = head.next
+            cur_odd = cur_odd.next
+            cur_even = cur_even.next
+            if head.next:
+                head = head.next.next
+            else:
+                head = None
+
+        cur_odd.next = even_dummy.next
+
+        return odd_dummy.next
 ```
 -----
 
@@ -3851,6 +4338,47 @@ class Solution:
 ```
 -----
 
+### [369. Plus One Linked List](https://oj.leetcode.com/problems/plus-one-linked-list/)
+
+Given a non-negative integer represented as non-empty a singly linked list of digits, plus one to the integer.
+
+You may assume the integer do not contain any leading zero, except the number 0 itself.
+
+The digits are stored such that the most significant digit is at the head of the list.
+
+Example :
+
+Input: [1,2,3]
+Output: [1,2,4]
+
+```python
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def plusOne(self, head: ListNode) -> ListNode:
+        dummy = ListNode(0)
+        dummy.next = head
+        slow = fast = dummy
+        while fast:
+            if fast.val != 9:
+                slow = fast
+            fast = fast.next
+
+        slow.val += 1
+        slow = slow.next
+        while slow:
+            slow.val = 0
+            slow = slow.next
+
+        return dummy.next if dummy.val == 0 else dummy
+```
+-----
+
 ### [36. Valid Sudoku](https://oj.leetcode.com/problems/valid-sudoku/)
 
 Determine if a Sudoku is valid, according to: Sudoku Puzzles - The Rules.
@@ -3978,6 +4506,75 @@ class Solution:
             cur.insert(-1, str(counter))
             prev = ''.join(cur)
         return prev
+```
+-----
+
+### [399. Evaluate Division](https://oj.leetcode.com/problems/evaluate-division/)
+
+Equations are given in the format A / B = k, where A and B are variables represented as strings, and k is a real number (floating point number). Given some queries, return the answers. If the answer does not exist, return -1.0.
+
+Example:
+Given a / b = 2.0, b / c = 3.0.
+queries are: a / c = ?, b / a = ?, a / e = ?, a / a = ?, x / x = ? .
+return [6.0, 0.5, -1.0, 1.0, -1.0 ].
+
+The input is: vector<pair<string, string>> equations, vector<double>& values, vector<pair<string, string>> queries , where equations.size() == values.size(), and the values are positive. This represents the equations. Return vector<double>.
+
+According to the example above:
+
+equations = [ ["a", "b"], ["b", "c"] ],
+values = [2.0, 3.0],
+queries = [ ["a", "c"], ["b", "a"], ["a", "e"], ["a", "a"], ["x", "x"] ].
+ 
+
+The input is always valid. You may assume that evaluating the queries will result in no division by zero and there is no contradiction.
+
+```python
+
+class Solution:
+    def calcEquation(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:
+        graph = {}
+
+        for index, e in enumerate(equations):
+            g_value = values[index]
+            d_value = (e[1], g_value)
+            d_key = e[0]
+            graph.setdefault(d_key, []).append(d_value)
+
+            if g_value != 0:
+                d_value = (e[0], 1.0 / g_value)
+                d_key = e[1]
+                graph.setdefault(d_key, []).append(d_value)
+
+        result = []
+        for q in queries:
+            result.append(self.dfs(q, graph))
+
+        return result
+
+    def dfs(self, query, graph):
+        start = query[0]
+        end = query[1]
+        if start == end and start not in graph:
+            return -1.0
+        stack = [(start, 1)]
+        visited = set(start)
+        while stack:
+            current, value = stack.pop()
+            visited.add(current)
+            if current == end:
+                return value
+
+            if current not in graph:
+                continue
+
+            edges = graph[current]
+            for edge, cost in edges:
+                if edge not in visited:
+                    stack.append((edge, value * cost))
+
+        return -1.0
+
 ```
 -----
 
@@ -4412,6 +5009,50 @@ class Solution:
                 for perm in rest_perms:
                     ret.append([n,]+perm)
         return ret
+```
+-----
+
+### [482. License Key Formatting](https://oj.leetcode.com/problems/license-key-formatting/)
+
+You are given a license key represented as a string S which consists only alphanumeric character and dashes. The string is separated into N+1 groups by N dashes.
+
+Given a number K, we would want to reformat the strings such that each group contains exactly K characters, except for the first group which could be shorter than K, but still must contain at least one character. Furthermore, there must be a dash inserted between two groups and all lowercase letters should be converted to uppercase.
+
+Given a non-empty string S and a number K, format the string according to the rules described above.
+
+Example 1:
+    Input: S = "5F3Z-2e-9-w", K = 4
+    Output: "5F3Z-2E9W"
+
+Explanation: The string S has been split into two parts, each part has 4 characters.
+Note that the two extra dashes are not needed and can be removed.
+
+
+Example 2:
+    Input: S = "2-5g-3-J", K = 2
+    Output: "2-5G-3J"
+
+Explanation: The string S has been split into three parts, each part has 2 characters except the first part as it could be shorter as mentioned above.
+
+
+Note:
+1. The length of string S will not exceed 12,000, and K is a positive integer.
+2. String S consists only of alphanumerical characters (a-z and/or A-Z and/or 0-9) and dashes(-).
+3. String S is non-empty.
+
+
+```python
+
+class Solution:
+    def licenseKeyFormatting(self, S: str, K: int) -> str:
+        original = S.replace('-','').upper()
+        reformat_list = []
+        length = len(original)
+        for i in range(int(length/K) + 1):
+            current = original[max(0, length-(i+1)*K):length-i*K]
+            if current:
+                reformat_list.insert(0, current)
+        return '-'.join(reformat_list)
 ```
 -----
 
@@ -6575,6 +7216,56 @@ class Solution:
 ```
 -----
 
+### [890. Find and Replace Pattern](https://oj.leetcode.com/problems/find-and-replace-pattern/)
+
+You have a list of words and a pattern, and you want to know which words in words matches the pattern.
+
+A word matches the pattern if there exists a permutation of letters p so that after replacing every letter x in the pattern with p(x), we get the desired word.
+
+(Recall that a permutation of letters is a bijection from letters to letters: every letter maps to another letter, and no two letters map to the same letter.)
+
+Return a list of the words in words that match the given pattern. 
+
+You may return the answer in any order.
+
+ 
+
+Example 1:
+
+Input: words = ["abc","deq","mee","aqq","dkd","ccc"], pattern = "abb"
+Output: ["mee","aqq"]
+Explanation: "mee" matches the pattern because there is a permutation {a -> m, b -> e, ...}.
+"ccc" does not match the pattern because {a -> c, b -> c, ...} is not a permutation,
+since a and b map to the same letter.
+ 
+
+Note:
+
+1 <= words.length <= 50
+1 <= pattern.length = words[i].length <= 20
+
+```python
+
+class Solution:
+    def findAndReplacePattern(self, words: List[str], pattern: str) -> List[str]:
+        return [word for word in words if self.isMatch(word, pattern)]
+
+    def isMatch(self, word, pattern):
+        if len(word) != len(pattern) or len(set(word)) != len(set(pattern)):
+            return False
+
+        d = {}
+        for w, p in zip(word, pattern):
+            if p not in d:
+                d[p] = w
+            else:
+                if d[p] != w:
+                    return False
+
+        return True
+```
+-----
+
 ### [89. Gray Code](https://oj.leetcode.com/problems/gray-code/)
 
 The gray code is a binary numeral system where two successive values differ in only one bit.
@@ -7249,7 +7940,7 @@ class Solution:
 ```
 -----
 
-### 153. ['Absolute', 'Minimum']
+### 167. ['Absolute', 'Minimum']
 
 #####From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32782345.html) for Amazon Interview
 Given three arrays A,B,C containing unsorted numbers. Find three numbers a,
@@ -7295,7 +7986,7 @@ def get_min_distance(A1, A2, A3):
 ```
 -----
 
-### 154. ['Alternating', 'Positive', 'N', 'Negative']
+### 168. ['Alternating', 'Positive', 'N', 'Negative']
 
 or Rearrange Array Alternating Positive Negative Items
 Given an array of positive and negative numbers, arrange them in an alternate fashion such that every positive number is followed by negative and vice-versa maintaining the order of appearance.
@@ -7380,7 +8071,7 @@ print rearrange_array_rotate(B)
 ```
 -----
 
-### 155. ['BFS', 'DFS']
+### 169. ['BFS', 'DFS']
 
 #####Summarize all kind of ways to do Tree Traversal
 * BFS
@@ -7616,7 +8307,7 @@ print_tree_as_list(head)
 ```
 -----
 
-### 156. ['Binary', 'Tree', 'Level', 'K', 'Nodes']
+### 170. ['Binary', 'Tree', 'Level', 'K', 'Nodes']
 
 #####From [blog](http://blog.csdn.net/luckyxiaoqiang/article/details/7518888#topic6)
 
@@ -7647,7 +8338,7 @@ print get_kth_level_nodes(root, 5)
 ```
 -----
 
-### 157. ['Blocking', 'Queue']
+### 171. ['Blocking', 'Queue']
 
 #####From Tango Interview Challenge
 This is pretty important design pattern, including the knowledge of thread
@@ -7764,7 +8455,7 @@ random_result()
 ```
 -----
 
-### 158. ['Coin', 'Change']
+### 172. ['Coin', 'Change']
 
 #####From [Geeksforgeeks](http://www.geeksforgeeks.org/dynamic-programming-set-7-coin-change/)
 
@@ -7799,7 +8490,7 @@ print coin_change(5)
 ```
 -----
 
-### 159. ['Consecutive', 'Subarray']
+### 173. ['Consecutive', 'Subarray']
 
 #####Interview With Cyan
 1. Shortest Path
@@ -7851,7 +8542,7 @@ print find_consecutive(num, sum)
 ```
 -----
 
-### 161. ['Count', 'zeros', 'in', 'Factorial']
+### 175. ['Count', 'zeros', 'in', 'Factorial']
 
 From mitbbs for Facebook
 
@@ -7880,7 +8571,7 @@ print fact(N)
 ```
 -----
 
-### 162. ['Delete', 'a', 'Node', 'in', 'BST']
+### 176. ['Delete', 'a', 'Node', 'in', 'BST']
 
 [Solution](http://answer.ninechapter.com/solutions/delete-a-node-in-binary-search-tree/)
 实际上有好几种做法
@@ -7943,7 +8634,7 @@ def delete_node_in_BST(parent, node):
 ```
 -----
 
-### 165. ['Flatten', 'a', 'Multilevel', 'Linked', 'List']
+### 179. ['Flatten', 'a', 'Multilevel', 'Linked', 'List']
 
 Given a linked list where in addition to the next pointer, each node has a child pointer, which may or may not point to a separate list. These child lists may have one or more children of their own, and so on, to produce a multilevel data structure, as shown in below figure.You are given the head of the first level of the list. Flatten the list so that all the nodes appear in a single-level linked list. You need to flatten the list in way that all nodes at first level should come first, then nodes of second level, and so on.
 
@@ -7976,7 +8667,7 @@ def flatten_list(head):
 ```
 -----
 
-### 166. ['Flattening', 'a', 'Linked', 'List']
+### 180. ['Flattening', 'a', 'Linked', 'List']
 
 Given a linked list where every node represents a linked list and contains two pointers of its type:
 (i) Pointer to next node in the main list (we call it ‘right’ pointer in below code)
@@ -8029,7 +8720,7 @@ def merge(node1, node2):
 ```
 -----
 
-### 167. ['Largest', 'None', 'Close', 'Sum']
+### 181. ['Largest', 'None', 'Close', 'Sum']
 
 #####9/23/2014 Interview with Kevin from Fivestars
 
@@ -8065,7 +8756,7 @@ def find_largest_none_close_sum(A):
 ```
 -----
 
-### 168. ['Longest', 'Common', 'Subsequence']
+### 182. ['Longest', 'Common', 'Subsequence']
 
 Need to distinguish from Longest Common Substring
 
@@ -8165,7 +8856,7 @@ print LCS('AGGTAB', 'GXTXAYB')
 ```
 -----
 
-### 169. ['Longest', 'Common', 'Substring']
+### 183. ['Longest', 'Common', 'Substring']
 
 ##### 9/4/2014 Interview with Tubular
 1. Subset(second le)
@@ -8223,7 +8914,7 @@ print Longest_Common_Substring("GeeksforGeeks", "GeeksQuiz")
 ```
 -----
 
-### 170. ['Longest', 'Increasing', 'Subsequence']
+### 184. ['Longest', 'Increasing', 'Subsequence']
 
 #####NC Class 5, slides 17
 
@@ -8285,7 +8976,7 @@ d_A = LIS(A)
 ```
 -----
 
-### 171. ['Lowest', 'Common', 'Ancestor']
+### 185. ['Lowest', 'Common', 'Ancestor']
 
 #####[LCA, Lowest Common Ancestor](http://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/) Pocket Gem possible question 9/8/2014
 
@@ -8359,7 +9050,7 @@ def get_LCA(root, node1, node2):
 ```
 -----
 
-### 172. ['Majority', 'Number']
+### 186. ['Majority', 'Number']
 
 #####From mibbs for Linkedin Interview
 Majority Element: A majority element in an array A[] of size n is an element that appears more than n/2 times (and hence there is at most one such element).
@@ -8418,7 +9109,7 @@ def majority_ii(A):
 ```
 -----
 
-### 173. ['Min', 'Num', 'to', 'Composite', 'Words']
+### 187. ['Min', 'Num', 'to', 'Composite', 'Words']
 
 #####From [Career Cup](http://www.careercup.com/page?pid=pinterest-interview-questions) Pinterest
 
@@ -8463,7 +9154,7 @@ print print_min_num_words(str, d)
 ```
 -----
 
-### 174. ['Min', 'Stack']
+### 188. ['Min', 'Stack']
 
 #####From NC Class 7 Data Structures, slides 8
 [Solution](http://www.geeksforgeeks.org/design-and-implement-special-stack-data-structure/)
@@ -8502,7 +9193,7 @@ class MinStack():
 ```
 -----
 
-### 175. ['Nested', 'Integer']
+### 189. ['Nested', 'Integer']
 
 #####From NC QQ group and mitbbs, Linkedin Second round phone interview
 This is the interface that represents nested lists.  
@@ -8557,7 +9248,7 @@ def get_depth_recur(input, depth)
 ```
 -----
 
-### 176. ['Operations', 'Calculation']
+### 190. ['Operations', 'Calculation']
 
 ##### 9/5/2014 Elasticbox
 加减运算
@@ -8614,7 +9305,7 @@ find_next_num()
 ```
 -----
 
-### 177. ['Print', 'Matrix']
+### 191. ['Print', 'Matrix']
 
 #####From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32570751.html) for Pinterest
 
@@ -8659,7 +9350,7 @@ print_matrix(matrix)
 ```
 -----
 
-### 178. ['Print', 'Numbers', 'With', 'Five']
+### 192. ['Print', 'Numbers', 'With', 'Five']
 
 ##### 9/7/2014 From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32651839.html) for Groupon
 写一个function，对于参数n，输出从0到n之间所有含5的数字。
@@ -8687,7 +9378,7 @@ print find_five(60)
 ```
 -----
 
-### 179. ['Queue', 'by', 'Two', 'Stacks']
+### 193. ['Queue', 'by', 'Two', 'Stacks']
 
 Implement a Queue by using two stacks. Support O(1) push, pop, top
 
@@ -8715,7 +9406,7 @@ class Queue():
 ```
 -----
 
-### 180. ['Recover', 'Rotated', 'Sorted', 'Array']
+### 194. ['Recover', 'Rotated', 'Sorted', 'Array']
 
 Given a rotated sorted array, recover it to sorted array in-place.
 
@@ -8746,7 +9437,7 @@ print recover_rotated_sorted_array(A)
 ```
 -----
 
-### 181. ['Rotated', 'Mirror', 'Number']
+### 195. ['Rotated', 'Mirror', 'Number']
 
 #####From Alec's email, someone's onsite interview with Facebook for finding rotated mirrow number like 808 which is less than N
 
@@ -8791,7 +9482,7 @@ print rotated_mirror_number(10000)
 ```
 -----
 
-### 184. ['Search', 'a', 'Range', 'in', 'BST']
+### 198. ['Search', 'a', 'Range', 'in', 'BST']
 
 or Print BST Keys in the Give Range
 
@@ -8822,7 +9513,7 @@ def search_a_range(root, k1, k2):
 ```
 -----
 
-### 185. ['Shortest', 'Path']
+### 199. ['Shortest', 'Path']
 
 #####With Twitter & Cyan
 
@@ -8905,7 +9596,7 @@ print find_path(map)
 ```
 -----
 
-### 186. ['Shuffle']
+### 200. ['Shuffle']
 
 #####Shuffle a given array
 Saw it from FiveStar's interview.
@@ -8934,7 +9625,7 @@ print shuffle_array(A)
 ```
 -----
 
-### 187. ['Sort', 'by', 'Stack']
+### 201. ['Sort', 'by', 'Stack']
 
 #####From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32230525.html) for Quantcast
 
@@ -8984,7 +9675,7 @@ print sort_by_two_stacks(s)
 ```
 -----
 
-### 188. ['isOneEditDistance']
+### 202. ['isOneEditDistance']
 
 #####From [mitbbs](http://www.mitbbs.com/article_t/JobHunting/32760941.html) for facebook
 
